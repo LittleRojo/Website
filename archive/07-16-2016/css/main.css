@@ -1,0 +1,74 @@
+//DOCUMENT
+.mainHTML	{
+	margin:0px;
+	min-width:100%;
+	}
+
+.mainBody	{
+	background-color:#070809
+	margin:0px;
+	min-width:100%;
+	}
+
+
+
+
+//HEADER
+.headerTable    {
+        margin:0px;
+        }
+
+.headerColumn   {
+	bg-color:black;
+	margin:0px;
+	height:10px;
+	width:30%;
+        }
+
+
+
+
+//MAIN
+.mainTable      {
+        margin:0px;
+	width:102%;
+        }
+
+.container	{
+	margin:0px;
+	width:100%;
+	}
+
+.rojoName	{
+	align:left;
+	bold:true;
+}
+
+.headerSpacing	{
+	height:18px;
+}
+
+
+
+
+//FOOTER
+#footerTable 	{
+	position:absolute;
+	bottom:0px;
+	margin:0px;
+	min-width:100%;
+	}
+
+#footerFillerColumn	{
+	margin:0px;
+	width:50%;
+	}
+
+#footerColumn 	{
+	margin:0px;
+	}
+#linkTable	{
+	font-family:'Archer';
+	color:maroon;
+	size:14px;
+	}

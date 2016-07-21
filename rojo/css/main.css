@@ -1,0 +1,45 @@
+#mainHTML	{
+	margin:0px;
+	min-height:100%;
+	min-width:100%;
+	}
+
+#mainBody	{
+	background-color:black;
+	margin:0px;
+	min-height:100%;
+	min-width:100%;
+	}
+
+#mainCanvas	{
+	margin:0px
+	min-height:100%;
+	min-width:100%;
+	}
+
+#mainTable 	{
+	background-color:black;
+	margin:0px;
+	min-height:96%;
+	min-width:100%;
+	}
+
+#footerTable 	{
+	background-color:black;
+	margin:0px;
+	min-height:4%;
+	min-width:100%;
+	}
+
+#footerFillerColumn	{
+	background-color:black;
+	margin:0px;
+	width:40%;	
+	}
+
+#footerColumn 	{
+	color:green;
+	background-color:black;
+	margin:0px;
+	align:center;
+	}
