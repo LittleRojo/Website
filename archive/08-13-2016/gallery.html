@@ -5,10 +5,10 @@
                 <link rel="alternate" href="https://www.littlerojo.com" hreflang="en-us" />
 
                 <!--Browser Icon?-->
-                <link rel="shortcut icon" href="img/LittleRojoLogoBigger.png" type="image/x-icon" />
+                <link rel="shortcut icon" href="/img/LittleRojoLogoBigger.png" type="image/x-icon" />
 
 		<!--Apple Web App-->
-		<link rel="apple-touch-icon" href="img/LittleRojoLogo.png">
+		<link rel="apple-touch-icon" href="/img/LittleRojoLogo.png">
 		<meta name="apple-mobile-web-app-title" content="Little Rojo" />
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
 		<meta name="apple-mobile-web-app-capable" content="yes" />
@@ -18,16 +18,15 @@
 		<meta http-equiv="pragma" content="no-cache" />
 
 		<!--Style Sheets-->
-		<link rel="stylesheet" type="text/css" href="css/main.css">
+		<link rel="stylesheet" type="text/css" href="/css/main.css">
 
 		<!--Javascript-->
-                <script type="text/javascript" src="https://littlerojo.com/js/three.js-master/build/three.min.js"></script>
-                <script type="text/javascript" src="https://littlerojo.com/js/three.js-master/examples/js/renderers/CanvasRenderer.js"></script>
-                <script type="text/javascript" src="https://littlerojo.com/js/three.js-master/examples/js/renderers/Projector.js"></script>
-		<script type="text/javascript" src="https://littlerojo.com/js/other/jquery-3.1.0.js"></script>
-		<script type="text/javascript" src="js/me/utils.js"></script>
-		<script type="text/javascript" src="js/me/background.js"></script>
-                <script type="text/javascript" src="js/me/tojo2.js"></script>
+                <script type="text/javascript" src="/js/three.js-master/build/three.min.js"></script>
+                <script type="text/javascript" src="/js/three.js-master/examples/js/renderers/CanvasRenderer.js"></script>
+                <script type="text/javascript" src="/js/three.js-master/examples/js/renderers/Projector.js"></script>
+		<script type="text/javascript" src="/js/me/utils.js"></script>
+		<script type="text/javascript" src="/js/me/background.js"></script>
+                <script type="text/javascript" src="/js/me/tojo2.js"></script>
 		
 	        <!--Social Media-->
 
@@ -37,79 +36,81 @@
 	<body class="mainBody" style="background-color:#000000" onload="onload()">
 		<table id="headerTable" style="position:absolute; top:0px; left:0px; visibility:hidden;">
                         <tr style="">
-				<td align="center" style="width:16%;" bgcolor="#cea500"> 
-                                        <a style="text-decoration:none;" href="/"><font size="3" color="black" face="Arial Black"><b>Home</b></font></a>
+				<tr style="">
+                                <td align="center" style="width:16%; background:transperant;">
+                                        <a style="text-decoration:none;" href="/"><font size="3" color="#cea500" face="Arial Black"><b>Home</b></font></a>
+                                </td>
+                                <td align="center" style="width:16%; background:#cea500;">
+                                        <a style="text-decoration:none;" href="gallery.html"><font size="3" color="black" face="Arial Black"><b>Gallery</b></font></a>
                                 </td>
                                 <td align="center" style="width:16%; background:transperant;">
-					<a style="text-decoration:none;" href="gallery.html"><font size="3" color="#cea500" face="Arial Black"><b>Gallery</b></font></a>
-				</td>
-				<td align="center" style="width:16%; background:transperant;">
-					<a style="text-decoration:none;" href="games.html"><font size="3" color="#cea500" face="Arial Black"><b>Games</b></font></a>
+                                        <a style="text-decoration:none;" href="games.html"><font size="3" color="#cea500" face="Arial Black"><b>Games</b></font></a>
                                 </td>
-				<td align="center" style="width:16%; background:transperant">
+                                <td align="center" style="width:16%; background:transperant">
                                         <a style="text-decoration:none;" href="archive.html"><font size="3" color="#cea500" face="Arial Black"><b>Archive</b></font></a>
                                 </td>
-				<td align="center" style="width:16%; background:transperant">
-					<a style="text-decoration:none;" href="admin.html"><font size="3" color="#cea500" face="Arial Black"><b>Admin</b></font></a>
+                                <td align="center" style="width:16%; background:transperant">
+                                        <a style="text-decoration:none;" href="admin.html"><font size="3" color="#cea500" face="Arial Black"><b>Admin</b></font></a>
                                 </td>
-				<td align="center" style="width:16%; background:transperant;">
+                                <td align="center" style="width:16%; background:transperant;">
                                         <a style="text-decoration:none;" href="about.html"><font size="3" color="#cea500" face="Arial Black"><b>About</b></font></a>
                                 </td>
                         </tr>
                 </table>	
 		<canvas id="mainCanvas" style="absolute; left:0px; top:0px; width:100%; height:100%;"></canvas>
-		<table id="socialMedia" width="100%" align="bottom" style="position:absolute; bottom:0; opacity:.6; align:bottom; min-width:100%; visibility:hidden;">
+
+		<!--<table id="socialMedia" width="100%" align="bottom" style="position:absolute; bottom:0; opacity:.6; align:bottom; min-width:100%; visibility:hidden;">
 			<tr style="align:center;">
 				<td style="width:fill;">
 					<a />
 				</td>				
 				<td style="width:45px">
-					<a target="_blank" href="https://www.facebook.com/littlerojo101">
+					<a href="https://www.facebook.com/littlerojo101">
 						<img style="width:100%; height:auto;" src="img/Facebook.png" />
 					</a>
 				</td>
 				<td style="width:45px">
-					<a target="_blank" href="https://www.twitter.com/littlerojo101">
-	                                        <img style="width:100%; height:auto;" src="img/Twitter.png" />
-        		                </a>
+					<a href="https://www.twitter.com/littlerojo101">
+                                                <img style="width:100%; height:auto;" src="img/Twitter.png" />
+                                        </a>
 				</td>
 				<td style="width:45px">
-					<a target="_blank" href="https://www.reddit.com/user/LittleRojo101/">
+					<a href="https://www.reddit.com/user/LittleRojo101/">
                                                 <img style="width:100%; height:auto;" src="img/reddit.png" />
                                         </a>
 				</td>
 				<td style="height:45px; width:45px;">
-					<a target="_blank" href="https://www.pinterest.com/little_rojo/">
+					<a href="https://www.pinterest.com/little_rojo/">
                                                 <img style=" width:100%; height:auto;" src="img/Pinterest.png" />
                                         </a>
 				</td>
 				<td style="width:45px;">	
-					<a target="_blank" href="https://www.instagram.com/littlerojo101/">
+					<a href="https://www.instagram.com/littlerojo101/">
                                                 <img style="width:100%; height:auto;" src="img/Instagram.png" />
                                         </a>
 				</td>	
 				<td style="width:45px;">
-					 <a target="_blank" href="https://github.com/LittleRojo">
+					 <a href="https://github.com/LittleRojo">
                                                 <img style="width:100%; height:auto;" src="img/Github.png" />
                                         </a>
 				</td>
 				<td style="width:45px;">
-					<a target="_blank" href="https://www.youtube.com/channel/UCdgASQaEwA-WDrrrCrLcYIQ">
+					<a href="https://www.youtube.com/channel/UCdgASQaEwA-WDrrrCrLcYIQ">
                                                 <img style="width:100%; height:auto;" src="img/YouTube.png" />
                                         </a>
 				</td>
 				<td style="width:45px;">
-					<a target="_blank" href="https://plus.google.com/113670833215137840563/posts">
+					<a href="https://plus.google.com/113670833215137840563/posts">
                                                 <img style="width:100%; height:auto;" src="img/Google Plus.png" />
                                         </a>
 				</td>
 				<td style="width:45px;">
-					<a target="_blank" href="https://www.linkedin.com/company/little-rojo?trk=biz-companies-cyf">
+					<a href="https://www.linkedin.com/company/little-rojo?trk=biz-companies-cyf">
                                                 <img style="width:100%; height:auto;" src="img/Linkedin.png" />
                                         </a>
 				</td>
 				<td style="width:45px;">
-                                        <a target="_blank" href="https://littlerojo.blogspot.com/">
+                                        <a href="https://littlerojo.blogspot.com/">
                                                 <img style="width:100%; height:auto;" src="img/Blogger.png" />
                                         </a>
                                 </td>
@@ -117,6 +118,6 @@
 					<a />
 				</td>
 			</tr>
-		</table>
+		</table>-->
 	</body>
 </html>
