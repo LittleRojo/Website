@@ -74,7 +74,7 @@ function onload() {
 	//window.background.renderer.domElement.addEventListener( 'mouseup', window.background.onMouseUp, false );
 
 	//GO
-	if(window.location.pathname == "/index.html" || window.location.pathname == "/" || window.location.pathname.contains("archive")) {
+	if(window.location.pathname == "/index.html" || window.location.pathname == "/" || window.location.pathname.includes("archive")) {
 		//SET OBJECT
         	this.background = new Background(mainCanvas);
 
