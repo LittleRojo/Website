@@ -10,14 +10,12 @@ archiveFolder=/usr/share/nginx/html/archive/$now
 
 #UPDATE SITEMAP
 afterSM="<!--AUTO-MARKER-->"
-toIntertSM="<!--$now-->\r<url>\r<loc>https://www.littlerojo.com/archive/08-05-2016/</loc>\r<lastmod>2016-07-30T19:42:26+00:00</lastmod>\r</url>\r<url>\r<loc>https://www.littlerojo.com/archive/08-05-2016/gallery.html</loc>\r<lastmod>2016-07-30T19:42:26+00:00</lastmod>\r</url>\r<url>\r<loc>https://www.littlerojo.com/archive/08-05-2016/games.html</loc>\r<lastmod>2016-07-30T19:42:26+00:00</lastmod>\r</url>\r<url>\r<loc>https://www.littlerojo.com/archive/08-05-2016/admin.html</loc>\r<lastmod>2016-07-30T19:42:26+00:00</lastmod>\r</url>\r<url>\r<loc>https://www.littlerojo.com/archive/08-05-2016/about.html</loc>\r<lastmod>2016-07-30T19:42:26+00:00</lastmod>\r</url>"
+toInsertSM="<!--$now--><url><loc>https://www.littlerojo.com\/archive\/${now}\/<\/loc><lastmod>2016-07-30T19:42:26+00:00<\/lastmod><\/url><url><loc>https://www.littlerojo.com\/archive\/${now}\/gallery.html<\/loc><lastmod>2016-07-30T19:42:26+00:00<\/lastmod><\/url><url><loc>https://www.littlerojo.com\/archive\/${now}\/games.html<\/loc><lastmod>2016-07-30T19:42:26+00:00<\/lastmod><\/url><url><loc>https://www.littlerojo.com\/archive\/${now}\/admin.html<\/loc><lastmod>2016-07-30T19:42:26+00:00<\/lastmod><\/url><url><loc>https://www.littlerojo.com\/archive\/${now}\/about.html<\/loc><lastmod>2016-07-30T19:42:26+00:00<\/lastmod><\/url>"
 
-echo sed -i "/${afterText}/a ${toInsert}" /usr/share/nginx/html/sitemap.xml
-sed -i "/${afterText}/a ${toInsert}" /usr/share/nginx/html/sitemap.xml
+echo sed -i "/${afterSM}/a ${toInsertSM}" /usr/share/nginx/html/sitemap.xml
+sed -i "/${afterSM}/a ${toInsertSM}" /usr/share/nginx/html/sitemap.xml
 
 echo 'SITEMAP UPDATED'
-
-ryan is the man
 
 #COPY SITE TO ARCHIVE
 mkdir $archiveFolder
@@ -39,20 +37,20 @@ toInsert="<tr><td><a style=\\\"text-decoration:none;\\\" href=\\\"https://www.li
 #echo $toInsert
 
 echo sed -i "/${afterText}/a ${toInsert}" /usr/share/nginx/html/archive.html
-sed -i "/${afterText}/a ${toInsert}" /usr/share/nginx/html/archive.html
+#sed -i "/${afterText}/a ${toInsert}" /usr/share/nginx/html/archive.html
 
 echo 'ARCHIVE CREATED'
 
 cd /usr/share/nginx/html
-git add .
-git commit -m "$now Branch"
-git push origin --mirror
+#git add .
+#git commit -m "$now Branch"
+#git push origin --mirror
 
 echo 'GIT CHECKIN COMPLETE'
 
-git checkout -b $now
-git push origin $now
-git checkout master
+#git checkout -b $now
+#git push origin $now
+#git checkout master
 
 echo 'GIT BRANCH CHECKED IN'
 echo 'COMPLETE'
