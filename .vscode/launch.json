@@ -6,16 +6,16 @@
             "name": "Launch index.html (without sourcemaps)",
             "type": "chrome",
             "request": "launch",
-            "file": "Users/Me/Desktop/LittleRojo/Website/index.html"
-            //"file": "${workspaceRoot}/index.html"
+            //"file": "Users/Me/Desktop/LittleRojo/Website/index.html"
+            "file": "${workspaceRoot}/index.html"
         },
         {
             "name": "Attach to url with files served from ./out",
             "type": "chrome",
             "request": "attach",
             "port": 9222,
-            "webRoot": "Users/Me/Desktop/LittleRojo/Website/"
-            //"webRoot": "${workspaceRoot}"
+            //"webRoot": "Users/Me/Desktop/LittleRojo/Website/"
+            "webRoot": "${workspaceRoot}"
         }
     ]
 }
