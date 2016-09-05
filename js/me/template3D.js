@@ -18,21 +18,17 @@ var mouseXOnMouseDown = 0;
 var windowHalfX = window.innerWidth / 2;
 var windowHalfY = window.innerHeight / 2;
 
-var tojo;
-var rojo;
-
-function Background(canvas) {	
+function Template3D(canvas) {	
 	this.renderer = new THREE.WebGLRenderer({ canvas:canvas, antilias: true, alpha: true, clearAlpha: 1});	
-        this.renderer.setSize( window.innerWidth, window.innerHeight );
-	//this.renderer.sortObjects = false;
+    this.renderer.setSize( window.innerWidth, window.innerHeight );
 	this.renderer.shadowMap.enabled = true;
 	this.renderer.shadowMap.type = THREE.PCFShadowMap;
 
-        this.camera = new THREE.PerspectiveCamera( 70, window.innerWidth / (window.innerHeight), 9, 5900 );
-        this.camera.position.set( 0, -2000, 5000 );
-        this.scene = new THREE.Scene();
+    this.camera = new THREE.PerspectiveCamera( 70, window.innerWidth / (window.innerHeight), 9, 5900 );
+    this.camera.position.set( 0, -2000, 5000 );
+    this.scene = new THREE.Scene();
 
-        this.raycaster = new THREE.Raycaster();
+    this.raycaster = new THREE.Raycaster();
 	this.keyboard = new THREEx.KeyboardState();
 	//this.mouse = new THREE.TrackballControls( this.camera );
 	this.projector = new THREE.Projector();
@@ -46,16 +42,8 @@ function Background(canvas) {
 	this.offset = new THREE.Vector3(),
 	this.intersection = new THREE.Vector3(),
 	this.plane = new THREE.Plane();
-	
 
-	this.tojo = new tojo3();
-	//this.rojo = new rojo();
-
-	/*document.addEventListener( 'touchstart', this.onDocumentTouchStart, false );
-	document.addEventListener( 'touchmove', this.onDocumentTouchMove, false );
-	document.addEventListener( 'deviceorientation', this.deviceOrientation, false);*/
-
-	return {
+	/*return {
 		windowHalfX:this.windowHalfX,
 		windowHalfY:this.windowHalfY,
 		targetRotation:this.targetRotation,
@@ -85,17 +73,17 @@ function Background(canvas) {
 		offset:this.offset,
 		INTERSECTED:this.INTERSECTED,
 		SELECTED:this.SELECTED
-	};
+	};*/
 }
 
-Background.prototype.animate = function() {
-        window.background.renderNextFrame();
-        window.background.adjustNextFrameStaging();
-	window.background.updateKeyboard();
-        requestAnimationFrame( window.background.animate );
+Template3D.prototype.animate = function() {
+        this.renderNextFrame();
+        this.adjustNextFrameStaging();
+		this.updateKeyboard();
+        requestAnimationFrame( this.animate );
 }
 
-Background.prototype.drawScene = function() {
+Template3D.prototype.drawScene = function() {
 	//this.rojo.GO();
         /*mapboxgl.accessToken = 'pk.eyJ1IjoibGl0dGxlcm9qbyIsImEiOiJjaXJpbmNmazYwMDBiZmduYnJwcHE3bTFyIn0.QElYybeFCSAo-q4gRLq6cA';
         var bounds = [
@@ -112,63 +100,63 @@ Background.prototype.drawScene = function() {
                 style: 'mapbox://styles/littlerojo/ciripj1kq0003gjns0tvtqvb4'
         });*/	
         this.tojo.drawScene();
-	window.background.renderer.render( window.background.scene, window.background.camera );  //best way to render?
+	window.Template3D.renderer.render( window.Template3D.scene, window.Template3D.camera );  //best way to render?
 }
 
-Background.prototype.renderNextFrame = function() {
+Template3D.prototype.renderNextFrame = function() {
 	this.tojo.renderNextFrame();
-	//window.background.mouse.update();
-	window.background.renderer.render( window.background.scene, window.background.camera );  //best way to render?
+	//window.Template3D.mouse.update();
+	window.Template3D.renderer.render( window.Template3D.scene, window.Template3D.camera );  //best way to render?
 }
 
-Background.prototype.adjustNextFrameStaging = function() {
+Template3D.prototype.adjustNextFrameStaging = function() {
 	this.tojo.adjustNextFrameStaging();
-	window.background.renderer.render( window.background.scene, window.background.camera );
+	window.Template3D.renderer.render( window.Template3D.scene, window.Template3D.camera );
 }
 
-Background.prototype.updateKeyboard = function() {
-	window.background.keyboard.update();
-	window.background.tojo.updateKeyboard();
-	//window.background.mouse.update();
+Template3D.prototype.updateKeyboard = function() {
+	window.Template3D.keyboard.update();
+	window.Template3D.tojo.updateKeyboard();
+	//window.Template3D.mouse.update();
 }
 
-Background.prototype.updateMouse = function() {
-	window.background.mouse.rotateSpeed = 1.0;
-        window.background.mouse.zoomSpeed = 1.2;
-        window.background.mouse.panSpeed = 0.8;
-        window.background.mouse.noZoom = false;
-        window.background.mouse.noPan = false;
-        window.background.mouse.staticMoving = true;
-        window.background.mouse.dynamicDampingFactor = 0.3;
-	window.background.mouse.addEventListener( 'change', window.background.renderNextFrame );
+Template3D.prototype.updateMouse = function() {
+	window.Template3D.mouse.rotateSpeed = 1.0;
+        window.Template3D.mouse.zoomSpeed = 1.2;
+        window.Template3D.mouse.panSpeed = 0.8;
+        window.Template3D.mouse.noZoom = false;
+        window.Template3D.mouse.noPan = false;
+        window.Template3D.mouse.staticMoving = true;
+        window.Template3D.mouse.dynamicDampingFactor = 0.3;
+	window.Template3D.mouse.addEventListener( 'change', window.Template3D.renderNextFrame );
 }
 
-Background.prototype.onMouseMove = function( event ) {
+Template3D.prototype.onMouseMove = function( event ) {
 	return;
 	event.preventDefault();
-	if(window.background != null) {
-		window.background.mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
-		window.background.mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
-		window.background.raycaster.setFromCamera( window.background.mouse, window.background.camera );
+	if(window.Template3D != null) {
+		window.Template3D.mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+		window.Template3D.mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+		window.Template3D.raycaster.setFromCamera( window.Template3D.mouse, window.Template3D.camera );
 	
-		if ( window.background.SELECTED ) {
-			if ( window.background.raycaster.ray.intersectPlane( window.background.plane, window.background.intersection ) ) {
-				window.background.SELECTED.position.copy( window.background.intersection.sub( window.background.offset ) );
+		if ( window.Template3D.SELECTED ) {
+			if ( window.Template3D.raycaster.ray.intersectPlane( window.Template3D.plane, window.Template3D.intersection ) ) {
+				window.Template3D.SELECTED.position.copy( window.Template3D.intersection.sub( window.Template3D.offset ) );
 			}
 			return;
 		}
 
-		var intersects = window.background.raycaster.intersectObjects( window.background.scene.children );
+		var intersects = window.Template3D.raycaster.intersectObjects( window.Template3D.scene.children );
 		if ( intersects.length > 0 ) {
-			if ( window.background.INTERSECTED != intersects[ 0 ].object ) {
-				if ( window.background.INTERSECTED ) window.background.INTERSECTED.material.color.setHex( window.background.INTERSECTED.currentHex );
-				window.background.INTERSECTED = intersects[ 0 ].object;
-				window.background.INTERSECTED.currentHex = window.background.INTERSECTED.material.color.getHex();
-				window.background.plane.setFromNormalAndCoplanarPoint(window.background.camera.getWorldDirection( window.background.plane.normal ),window.background.INTERSECTED.position );
+			if ( window.Template3D.INTERSECTED != intersects[ 0 ].object ) {
+				if ( window.Template3D.INTERSECTED ) window.Template3D.INTERSECTED.material.color.setHex( window.Template3D.INTERSECTED.currentHex );
+				window.Template3D.INTERSECTED = intersects[ 0 ].object;
+				window.Template3D.INTERSECTED.currentHex = window.Template3D.INTERSECTED.material.color.getHex();
+				window.Template3D.plane.setFromNormalAndCoplanarPoint(window.Template3D.camera.getWorldDirection( window.Template3D.plane.normal ),window.Template3D.INTERSECTED.position );
 			}
 		} else {
-			if ( window.background.INTERSECTED ) window.background.INTERSECTED.material.color.setHex( window.background.INTERSECTED.currentHex );
-			window.background.INTERSECTED = null;
+			if ( window.Template3D.INTERSECTED ) window.Template3D.INTERSECTED.material.color.setHex( window.Template3D.INTERSECTED.currentHex );
+			window.Template3D.INTERSECTED = null;
 		}
 	}
 
@@ -176,17 +164,17 @@ Background.prototype.onMouseMove = function( event ) {
 	targetRotation = targetRotationOnMouseDown + ( mouseX - mouseXOnMouseDown ) * 0.02;
 }
 
-Background.prototype.onMouseDown = function( event ) {
+Template3D.prototype.onMouseDown = function( event ) {
 	return;
 	event.preventDefault();
-	window.background.raycaster.setFromCamera( window.background.mouse, window.background.camera );
+	window.Template3D.raycaster.setFromCamera( window.Template3D.mouse, window.Template3D.camera );
 
-	var intersects = window.background.raycaster.intersectObjects( window.background.scene.children );
+	var intersects = window.Template3D.raycaster.intersectObjects( window.Template3D.scene.children );
 	if ( intersects.length > 0 ) {
-		window.background.mouse.enabled = false;
-		window.background.SELECTED = intersects[ 0 ].object;
-		if ( window.background.raycaster.ray.intersectPlane( window.background.plane, window.background.intersection ) ) {
-			window.background.offset.copy( window.background.intersection ).sub( window.background.SELECTED.position );
+		window.Template3D.mouse.enabled = false;
+		window.Template3D.SELECTED = intersects[ 0 ].object;
+		if ( window.Template3D.raycaster.ray.intersectPlane( window.Template3D.plane, window.Template3D.intersection ) ) {
+			window.Template3D.offset.copy( window.Template3D.intersection ).sub( window.Template3D.SELECTED.position );
 		}
 	}
 
@@ -194,19 +182,19 @@ Background.prototype.onMouseDown = function( event ) {
 	targetRotationOnMouseDown = targetRotation;
 }
 
-Background.prototype.onMouseUp = function( event ) {
+Template3D.prototype.onMouseUp = function( event ) {
 	return;
 	event.preventDefault();
-	window.background.mouse.enabled = true;
-	if ( window.background.INTERSECTED ) {
-		window.background.SELECTED = null;
+	window.Template3D.mouse.enabled = true;
+	if ( window.Template3D.INTERSECTED ) {
+		window.Template3D.SELECTED = null;
 	}
 }
 
 
 ////////////
 
-Background.prototype.onDocumentTouchStart = function( event ) {
+Template3D.prototype.onDocumentTouchStart = function( event ) {
 	return;
     if ( ! _this.enabled ) return;
 
@@ -230,7 +218,7 @@ Background.prototype.onDocumentTouchStart = function( event ) {
     }
 }
 
-Background.prototype.onDocumentTouchMove = function( event ) {
+Template3D.prototype.onDocumentTouchMove = function( event ) {
 	return;
     if ( ! _this.enabled ) return;
     event.preventDefault();
@@ -252,9 +240,9 @@ Background.prototype.onDocumentTouchMove = function( event ) {
     }
 }
 
-Background.prototype.deviceOrientation = function(e) {
+Template3D.prototype.deviceOrientation = function(e) {
 	/*var alpha = e.alpha; //compass direction
-	$.each(window.background.scene.children, function(i, item) {
+	$.each(window.Template3D.scene.children, function(i, item) {
 		item.z += e.beta;
 		item.x += e.gamma;
 	});*/

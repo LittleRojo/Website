@@ -195,4 +195,3 @@ tojo3.prototype.onMouseMove = function() {
 tojo3.prototype.onMouseUp = function() {
 
 }
-
