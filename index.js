@@ -10,6 +10,46 @@
 ///////  head.onload
 ///////////////
 function bodyonload() {
+	var loaded = false;
+        Object.keys(HTMLImports.importer.documents).forEach(function(key) {
+          var doc = HTMLImports.importer.documents[key];
+          if (!doc) {
+            return;
+          }
+          var links = doc.getElementsByTagName("link");
+		  for(index in links) {
+			if(links[index].rel == "import"){
+				//IMPORT JS
+				var script = doc.createElement("script");
+			}
+			if(links[index].rel == "stylesheet"){
+				//IMPORT CSS
+				var script = doc.createElement("script");
+				script.href = links[index].href;
+			}
+			script.rel = links[index].rel;
+			script.type = links[index].type;
+			script.id = links[index].id;
+			var head = document.getElementsByTagName("head")[0];
+			head.appendChild(script);
+		  }
+      });
+	
+return;
+	var element = document.createElement("div");
+	element.id = "index.socialmedia.menu.html";
+	element.innerHTML = "<canvas id=\"ryan\"></canvas>";
+	document.getElementById('body').appendChild(element);
+
+	/*var foo = document.getElementById("fooBar");
+	//Append the element in page (in span).  
+	foo.appendChild(element);
+	var code = "<html id=\"html\"><head id=\"head\"><link rel=\"apple-touch-icon\" href=\"https://littlerojo.com/apple-touch-icon.png\"></html></head>";
+	//var a = $.parseHTML(code);	
+	var b = $.globalEval("var a = 1; var b = 2;")//# sourceURL=index.user.js";*/
+	var c = eval("var a = 1; var b = 2;")//# sourceURL=index.user2.js";
+
+
 	//Navigation - IPHONE WEB APP STUFF
 	if((navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i))) {
 	

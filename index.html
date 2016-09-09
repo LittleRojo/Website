@@ -23,7 +23,7 @@
 		<!------------->
 		<!-----  HTML
 		<!------------->
-		<link rel="import" href="index.socialmedia.menu/index.socialmedia.menu.html">
+		<link id="importtest" rel="import" href="index_socialmedia_menu/index_socialmedia_menu.html">
 		
 		<!------------->
 		<!-----  STYLE SHEETS
@@ -34,7 +34,9 @@
 		<!-----  JAVASCRIPT
 		<!------------->
 		<script id="js" type="text/javascript" src="index.js"></script>
-
+		<script id="js" type="text/javascript" src="jquery-3.1.0.js"></script>
+		<script id="js" type="text/javascript" src="webcomponents.js"></script>
+	
 		<!-------------------OTHER-->
 		
 		<!------------->
@@ -62,7 +64,7 @@
 <!-----  PAGE FUN
 <!------------->
 	<body id="body" onload="bodyonload()">
-		<div id="socialmedia" w3-include-html="index.socialmedia.menu/index.socialmedia.menu.html"></div>		
+		<div id="socialmedia"></div>		
 		<!--<div w3-include-html="index.webgl.background.html"></div>		
 		<div w3-include-html="index.navigation.menu.html"></div>-->		
 	</body>
