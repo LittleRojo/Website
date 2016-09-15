@@ -71,7 +71,7 @@ tojo9.prototype.UpdateUserMouse = function() {
 
 //ANIMATION
 var stopScene = false;
-tojo9.prototype.AnimateScene = function(fps = 60) {
+tojo9.prototype.AnimateScene = function(fps) {
 	if(App.scene.stopScene) {
 		startScene = false;
 		return;
