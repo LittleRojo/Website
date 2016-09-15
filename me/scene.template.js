@@ -1,83 +1,82 @@
-function SceneTemplate(canvas) {
-	this.renderer = new THREE.WebGLRenderer({ canvas:canvas, antilias: true, alpha: true, clearAlpha: 1});	;
-	this.renderer.setSize( window.innerWidth, window.innerHeight );
-	this.renderer.shadowMap.enabled = true;
-	this.renderer.shadowMap.type = THREE.PCFShadowMap;
-
-	this.camera = new THREE.PerspectiveCamera( 90, window.innerWidth / (window.innerHeight), 1, 10000 );	
-	this.camera.position.set( 40, 100, 1010 );
-	this.camera.lookAt(new THREE.Vector3(0, 0, 0));
-
-	//this.camera = new THREE.OrthographicCamera( window.innerWidth / - 2, window.innerWidth / 2, window.innerHeight / 2, window.innerHeight / - 2, -1000, 1000 );
-	//this.camera.position.set( 20, 120, 992 );
-	//this.camera.lookAt(new THREE.Vector3(0, 0, 0));
-
+function tojo9() {
+	this.name = "tojo9";
+	this.fps = 0;
+	this.sampleSize = 5;
+	this.renderLengthQueue = [];
+	this.previousRenderStamp;
 	this.scene = new THREE.Scene();
-
-	this.raycaster = new THREE.Raycaster();
-	
-	//this.keyboard = new THREEx.KeyboardState();
-	
-	this.mouse = new THREE.TrackballControls( this.camera );
-	//this.mouse.rotateSpeed = 3;
-	//this.mouse.zoomSpeed = 1.2;
-	//this.mouse.panSpeed = 0.8;
-	//this.mouse.noZoom = false;
-	//this.mouse.noPan = false;
-	//this.mouse.staticMoving = true;
-	//this.mouse.dynamicDampingFactor = 0.3;
-	//this.mouse.addEventListener( 'change', this.UpdateScene );
-
-	this.projector = new THREE.Projector();
 }
 
-SceneTemplate.prototype.SetupScene = function() {
-
+tojo9.prototype.SetupScene = function() {
+	
+	App.renderer.render( this.scene, App.camera );
 }
 
-SceneTemplate.prototype.RedrawScene = function() {
+tojo9.prototype.RedrawScene = function() {
 	this.RedrawSceneFrame();
 	this.UpdateSceneCamera();
 	this.UpdateSceneLighting();
 	this.UpdateUserInput();
-	this.renderer.render( this.scene, this.camera );
+	App.renderer.render( this.scene, App.camera );
+	this.CalculateFPS();
 }
 
-SceneTemplate.prototype.RedrawSceneFrame = function() {
-		
+tojo9.prototype.RedrawSceneFrame = function() {
+
 }
   
-SceneTemplate.prototype.UpdateSceneCamera = function() {
+tojo9.prototype.UpdateSceneCamera = function() {
 	
 }
 
-SceneTemplate.prototype.UpdateSceneLighting = function() {
+tojo9.prototype.UpdateSceneLighting = function() {
 	
 }
 
 //USER EVENTS
-SceneTemplate.prototype.UpdateUserInput = function() {
+tojo9.prototype.UpdateUserInput = function() {
 	this.UpdateUserKeyboard();
 	this.UpdateUserMouse();
 }
 
-SceneTemplate.prototype.UpdateUserKeyboard = function() {
+tojo9.prototype.UpdateUserKeyboard = function() {
 	//this.keyboard.update();	
 }
 
-SceneTemplate.prototype.UpdateUserMouse = function() {
-	this.mouse.update();
+tojo9.prototype.UpdateUserMouse = function() {
+	//this.mouse.update();
 }
 
 //ANIMATION
-SceneTemplate.prototype.AnimateScene = function(fps = 60) {
-	this.stopScene = false;
-	setTimeout(function() {
-		if(this.stopScene) return;
-		this.RedrawScene();		
-	}, 1000);
+var stopScene = false;
+tojo9.prototype.AnimateScene = function(fps) {
+	if(App.scene.stopScene) {
+		startScene = false;
+		return;
+	}
+	App.scene.RedrawScene();
+	requestAnimationFrame(App.scene.AnimateScene);
 }
 
-SceneTemplate.prototype.StopAnimation = function() {
-	this.stopScene = true;
+tojo9.prototype.StopAnimation = function() {
+	stopScene = true;
+}
+
+
+tojo9.prototype.CalculateFPS = function() {
+	if(this.previousRenderStamp == null) {
+		this.previousRenderStamp = Date.now();
+		return;
+	}
+	var time = Date.now() - this.previousRenderStamp;
+	this.previousRenderStamp = Date.now();
+	if(this.renderLengthQueue.length > 0) {
+		this.renderLengthQueue.shift();
+	}
+	this.renderLengthQueue.push(time);
+	var length = 0;
+	this.renderLengthQueue.forEach(function(a) {
+		length += a;
+	});
+	this.fps = (1000/(length / this.renderLengthQueue.length)) * this.renderLengthQueue.length;
 }

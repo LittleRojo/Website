@@ -1,12 +1,7 @@
-if (!Date.now) {
-    Date.now = function() { return new Date().getTime(); }
-}
-
-function tojo9(fps) {
+function tojo9() {
 	this.name = "tojo9";
-	this.fpsWant = fps;
 	this.fps = 0;
-	this.sampleSize = 5;
+	this.sampleSize = 30;
 	this.renderLengthQueue = [];
 	this.previousRenderStamp;
 	this.scene = new THREE.Scene();
@@ -26,7 +21,7 @@ tojo9.prototype.RedrawScene = function() {
 	this.UpdateSceneLighting();
 	this.UpdateUserInput();
 	App.renderer.render( this.scene, App.camera );
-	//this.CalculateFPS();
+	this.CalculateFPS();
 }
 
 var direction = 1;
