@@ -1,5 +1,14 @@
-function tojo9(canvas) {
+if (!Date.now) {
+    Date.now = function() { return new Date().getTime(); }
+}
+
+function tojo9(fps) {
 	this.name = "tojo9";
+	this.fpsWant = fps;
+	this.fps = 0;
+	this.sampleSize = 5;
+	this.renderLengthQueue = [];
+	this.previousRenderStamp;
 	this.scene = new THREE.Scene();
 }
 
@@ -17,10 +26,25 @@ tojo9.prototype.RedrawScene = function() {
 	this.UpdateSceneLighting();
 	this.UpdateUserInput();
 	App.renderer.render( this.scene, App.camera );
+	this.CalculateFPS();
 }
 
+var direction = 1;
 tojo9.prototype.RedrawSceneFrame = function() {
-	this.mesh["a"].translateX(50);
+	this.scene.children.forEach(function (mesh) {
+		if(mesh.position.x > 300){
+			direction = 0;
+		}
+		if(mesh.position.x < -300) {
+			direction = 1;
+		}
+		if(direction == 1) {
+			mesh.position.x += 10;
+		}
+		else {
+			mesh.position.x -= 10;
+		}
+	});
 }
   
 tojo9.prototype.UpdateSceneCamera = function() {
@@ -42,18 +66,39 @@ tojo9.prototype.UpdateUserKeyboard = function() {
 }
 
 tojo9.prototype.UpdateUserMouse = function() {
-	this.mouse.update();
+	//this.mouse.update();
 }
 
 //ANIMATION
+var stopScene = false;
 tojo9.prototype.AnimateScene = function(fps = 60) {
-	this.stopScene = false;
-	setTimeout(function() {
-		if(App.scenes[0].stopScene) return;
-		App.scenes[0].RedrawScene();		
-	}, 1000);
+	if(App.scene.stopScene) {
+		startScene = false;
+		return;
+	}
+	App.scene.RedrawScene();
+	requestAnimationFrame(App.scene.AnimateScene);
 }
 
 tojo9.prototype.StopAnimation = function() {
-	this.stopScene = true;
+	stopScene = true;
+}
+
+
+tojo9.prototype.CalculateFPS = function() {
+	if(this.previousRenderStamp == null) {
+		this.previousRenderStamp = Date.now();
+		return;
+	}
+	var time = Date.now() - this.previousRenderStamp;
+	this.previousRenderStamp = Date.now();
+	if(this.renderLengthQueue.length > 0) {
+		this.renderLengthQueue.shift();
+	}
+	this.renderLengthQueue.push(time);
+	var length = 0;
+	this.renderLengthQueue.forEach(function(a) {
+		length += a;
+	});
+	this.fps = (1000/(length / this.renderLengthQueue.length)) * this.renderLengthQueue.length;
 }

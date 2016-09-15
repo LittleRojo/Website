@@ -35,5 +35,10 @@ Set.prototype.Stage = function(canvas) {
 }
 
 Set.prototype.AddScene = function (sceneObj) {	
+	this.scene = sceneObj;
 	sceneObj.SetupScene();
+}
+
+Set.prototype.AnimateScene = function (sceneObj, fps) {
+	sceneObj.AnimateScene(fps);
 }
