@@ -82,10 +82,10 @@ function Background(canvas) {
 }
 
 Background.prototype.animate = function() {
-        window.background.renderNextFrame();
-        window.background.adjustNextFrameStaging();
+    window.background.renderNextFrame();
+    window.background.adjustNextFrameStaging();
 	window.background.updateKeyboard();
-        requestAnimationFrame( window.background.animate );
+    requestAnimationFrame( window.background.animate );
 }
 
 Background.prototype.drawScene = function() {
