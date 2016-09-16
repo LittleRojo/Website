@@ -6,25 +6,27 @@ function tojo10() {
 	this.previousRenderStamp;
 
 	this.particleCount = 100;
+	this.particles = new THREE.Geometry();
 	this.scene = new THREE.Scene();
 }
 
 tojo10.prototype.SetupScene = function() {
-	var particles = new THREE.Geometry();
-	var material = new THREE.PointsMaterial({
-			color:0x0F0F0F,
-			size: 200
+	var material = new THREE.ParticleBasicMaterial({
+			color:0xFFFFFF,
+			size: 20
 		});
 	for(var a = 0; a < this.particleCount; a++) {
-		var pX = Math.random() * 10;
-			pY = Math.random() * 10;
-			pZ = Math.random() * 10;
+		var pX = Math.random() * 500,
+			pY = Math.random() * 500,
+			pZ = Math.random() * 500,
 			particle = new THREE.Vertex(
 				new THREE.Vector3(pX, pY, pZ)
-			);
-		particles.vertices.push(particle);
+			);			
+		particle.velocity = new THREE.Vector3(0, -Math.random(), 0);
+		this.particles.vertices.push(particle);
 	}
-	this.particleSystem = new THREE.ParticleSystem(particles, material);
+	this.particleSystem = new THREE.ParticleSystem(this.particles, material);
+	this.particleSystem.sortParticles = true;
 	this.scene.add(this.particleSystem);
 	App.renderer.render( this.scene, App.camera );
 }
@@ -39,7 +41,19 @@ tojo10.prototype.RedrawScene = function() {
 }
 
 tojo10.prototype.RedrawSceneFrame = function() {
-
+	this.particleSystem.rotation.y += 0.1;
+	var pCount = this.particleCount;
+	while(pCount--){
+		var particle = this.particles.vertices[pCount];
+		if(particle.position.y < -200){
+			particle.position.y = 200;
+			particle.velocity = 0;
+		}
+		particle.velocity.y -= Math.random() * 0.1;
+		particle.position.addSelf(particle.velocity);
+	}
+	this.particleSystem.geometry.__dirtyVertices = true;
+	App.renderer.render(this.scene, App.camera);
 }
   
 tojo10.prototype.UpdateSceneCamera = function() {
