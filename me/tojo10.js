@@ -5,7 +5,7 @@ function tojo10() {
 	this.renderLengthQueue = [];
 	this.previousRenderStamp;
 
-	this.layerCount = 25;
+	this.layerCount = 10;
 	this.particleCount = 1;	
 	this.layers = [];
 	this.particleSystems = [];
@@ -18,7 +18,7 @@ tojo10.prototype.SetupScene = function() {
 		this.layers.push(layer);
 		var material = new THREE.PointsMaterial({
 				color: "rgb(" + Math.floor(Math.random() * 255) + "," + Math.floor(Math.random() * 255) + "," + Math.floor(Math.random() * 255) + ")",
-				size: 4,
+				size: 10,
 				//map: THREE.ImageUtils.loadTexture("archive/07-26-2016/apple-icon.png"),
 				//map: THREE.ImageUtils.loadTexture("daddy.png"),
 				//map: THREE.ImageUtils.loadTexture("Lawson.png"),
