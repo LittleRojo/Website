@@ -5,8 +5,8 @@ function tojo10() {
 	this.renderLengthQueue = [];
 	this.previousRenderStamp;
 
-	this.layerCount = 10;
-	this.particleCount = 10;	
+	this.layerCount = 25;
+	this.particleCount = 1;	
 	this.layers = [];
 	this.particleSystems = [];
 	this.scene = new THREE.Scene();
@@ -18,7 +18,7 @@ tojo10.prototype.SetupScene = function() {
 		this.layers.push(layer);
 		var material = new THREE.PointsMaterial({
 				color: "rgb(" + Math.floor(Math.random() * 255) + "," + Math.floor(Math.random() * 255) + "," + Math.floor(Math.random() * 255) + ")",
-				size: 1,
+				size: 4,
 				map: THREE.ImageUtils.loadTexture("archive/07-26-2016/apple-icon.png"),
 				blending: THREE.AdditiveBlending,
 				transparent: true,
@@ -28,9 +28,9 @@ tojo10.prototype.SetupScene = function() {
 			var	pY = Math.random() * 20 - 10;
 			var	pZ = 0; //Math.random() * 20 - 10;
 			var	particle = new THREE.Vector3(pX, pY, pZ);
-			particle.speedX = Math.random() / 10;
-			particle.speedY = Math.random() / 10;
-			particle.speedZ = Math.random() / 10;			
+			particle.speedX = Math.random() / 50;
+			particle.speedY = Math.random() / 50;
+			particle.speedZ = Math.random() / 50;			
 			
 			if(Math.random() % 2 == 0) {
 				particle.xDirection = 1;
