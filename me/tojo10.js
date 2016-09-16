@@ -5,8 +5,8 @@ function tojo10() {
 	this.renderLengthQueue = [];
 	this.previousRenderStamp;
 
-	this.layerCount = 10;
-	this.particleCount = 1;	
+	this.layerCount = 4;
+	this.particleCount = 2;	
 	this.layers = [];
 	this.particleSystems = [];
 	this.scene = new THREE.Scene();
@@ -24,20 +24,29 @@ tojo10.prototype.SetupScene = function() {
 				//map: THREE.ImageUtils.loadTexture("Lawson.png"),
 				blending: THREE.AdditiveBlending,
 				transparent: true,
-		});
-		if(b % 4 == 0) material.map = THREE.ImageUtils.loadTexture("archive/07-26-2016/apple-icon.png");
- 		else if(b % 4 == 1) material.map = THREE.ImageUtils.loadTexture("Momma.png");
-		else if(b % 4 == 2)material.map = THREE.ImageUtils.loadTexture("Daddy.png");
-		else material.map = THREE.ImageUtils.loadTexture("Lawson.png");
-		for(var a = 0; a < this.particleCount; a++) {
-			var pX = Math.random() * 20 - 10;
-			var	pY = Math.random() * 20 - 10;
+		});		
+		for(var a = 4; a < 4 + this.particleCount; a++) {
+			var pX = Math.random() * 10 - 5;
+			var	pY = Math.random() * 10 - 5;
 			var	pZ = 0; //Math.random() * 20 - 10;
 			var	particle = new THREE.Vector3(pX, pY, pZ);
 			particle.speedX = Math.random() / 50;
 			particle.speedY = Math.random() / 50;
 			particle.speedZ = Math.random() / 50;			
 			
+			if(b % 4 == 0) {
+				material.map = THREE.ImageUtils.loadTexture("archive/07-26-2016/apple-icon.png");
+			}
+			else if(b % 4 == 1) {
+				material.map = THREE.ImageUtils.loadTexture("Momma.png");
+			}
+			else if(b % 4 == 2) {
+				material.map = THREE.ImageUtils.loadTexture("Daddy.png");
+			}
+			else {
+				material.map = THREE.ImageUtils.loadTexture("Lawson.png");
+			}
+
 			if(Math.random() % 2 == 0) {
 				particle.xDirection = 1;
 			}
@@ -105,7 +114,7 @@ tojo10.prototype.RedrawSceneFrame = function() {
 				//}
 				particle.xDirection = 1;
 			}
-			if(particle.y > 10) {
+			if(particle.y > 6) {
 				var angle = Math.PI * Math.random() / 1000;
 				var axis = new THREE.Vector3( 0, 1, 0 );
 				//if(date.getMilliseconds() % 2 == 0) {
@@ -113,7 +122,7 @@ tojo10.prototype.RedrawSceneFrame = function() {
 				//}
 				particle.yDirection = -1;
 			}
-			else if(particle.y < -10) {
+			else if(particle.y < -5) {
 				var angle = Math.PI * Math.random() / 1000;
 				var axis = new THREE.Vector3( 0, 1, 0 );
 				//if(date.getMilliseconds() % 2 == 0) {
