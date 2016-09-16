@@ -6,7 +6,7 @@ function tojo10() {
 	this.previousRenderStamp;
 
 	this.layerCount = 10;
-	this.particleCount = 1000;	
+	this.particleCount = 10;	
 	this.layers = [];
 	this.particleSystems = [];
 	this.scene = new THREE.Scene();
@@ -19,19 +19,37 @@ tojo10.prototype.SetupScene = function() {
 		var material = new THREE.PointsMaterial({
 				color: "rgb(" + Math.floor(Math.random() * 255) + "," + Math.floor(Math.random() * 255) + "," + Math.floor(Math.random() * 255) + ")",
 				size: 1,
-				//map: THREE.ImageUtils.loadTexture("logo.png"),
+				map: THREE.ImageUtils.loadTexture("archive/07-26-2016/apple-icon.png"),
 				blending: THREE.AdditiveBlending,
 				transparent: true,
 		});
-		var a = "rgb(" + Math.floor(Math.random() * 255) + "," + Math.floor(Math.random() * 255) + "," + Math.floor(Math.random() * 255) + ")"
 		for(var a = 0; a < this.particleCount; a++) {
-			var pX = Math.random() * 200 - 100;
-			var	pY = Math.random() * 150 - 75;
-			var	pZ = Math.random() * 500 - 250;
+			var pX = Math.random() * 20 - 10;
+			var	pY = Math.random() * 20 - 10;
+			var	pZ = 0; //Math.random() * 20 - 10;
 			var	particle = new THREE.Vector3(pX, pY, pZ);
-			//this.particles.faces.push(new THREE.Face3(0, 1, 2));	
-			//this.particles.faces[0].vertexColors.push(new THREE.Color(Math.random(), Math.random(), Math.random()));				
-			//particle.velocity = new THREE.Vector3(0, -Math.random(), 0);
+			particle.speedX = Math.random() / 100;
+			particle.speedY = Math.random() / 100;
+			particle.speedZ = Math.random() / 100;			
+			
+			if(Math.random() % 2 == 0) {
+				particle.xDirection = 1;
+			}
+			else {
+				particle.xDirection = -1;
+			}
+			if(Math.random() % 2 == 0) {
+				particle.yDirection = 1;
+			}
+			else {
+				particle.yDirection = -1;
+			}
+			if(Math.random() % 2 == 0) {
+				particle.zDirection = 1;
+			}
+			else {
+				particle.zDirection = -1;
+			}		
 			layer.vertices.push(particle);
 		}
 		var particleSystem = new THREE.Points(layer, material);
@@ -47,27 +65,75 @@ tojo10.prototype.RedrawScene = function() {
 	this.UpdateSceneLighting();
 	this.UpdateUserInput();
 	App.renderer.render( this.scene, App.camera );
-	this.CalculateFPS();
+	//this.CalculateFPS();
 }
 
-tojo10.prototype.RedrawSceneFrame = function() {		
+tojo10.prototype.RedrawSceneFrame = function() {	
 	for(var a = 0; a < this.layers.length; a++) {
-		if(a % 2 == 0) {
-			this.particleSystems[a].rotation.z += a / 1000;
+		/*if(a % 2 == 0) {
+			this.particleSystems[a].rotation.z += a / 10000;
 		}
 		else {
-			this.particleSystems[a].rotation.z -= a / 1000;
-		}
+			this.particleSystems[a].rotation.z -= a / 10000;
+		}*/
 		for(var b = 0; b < this.layers[a].vertices.length; b++) {
 			var particle = this.layers[a].vertices[b];
-			if(particle.z < -150){
-				particle.z = 150;
-				//particle.velocity = 0;
+			particle.x += (particle.speedX * particle.xDirection);
+			particle.y += (particle.speedY * particle.yDirection);
+			//particle.z = particle.z + (this.speedY * particle.zDirection);			
+			particle.set( particle.x, particle.y, particle.z );
+
+			if(particle.x > 10) {
+				var angle = Math.PI * Math.random();
+				var axis = new THREE.Vector3( 1, 0, 0 );
+				//if(date.getMilliseconds() % 2 == 0) {
+					//particle.applyAxisAngle(axis, angle)		
+				//}
+				particle.xDirection = -1;
 			}
-			//particle.velocity.y -= Math.random() * 0.1;
-			//particle.position.addSelf(particle.velocity);
+			else if(particle.x < -10) {
+				var angle = Math.PI * Math.random() / 1000;
+				var axis = new THREE.Vector3( 1, 0, 0 );
+				//if(date.getMilliseconds() % 2 == 0) {
+					//particle.applyAxisAngle(axis, angle)		
+				//}
+				particle.xDirection = 1;
+			}
+			if(particle.y > 10) {
+				var angle = Math.PI * Math.random() / 1000;
+				var axis = new THREE.Vector3( 0, 1, 0 );
+				//if(date.getMilliseconds() % 2 == 0) {
+				//	particle.applyAxisAngle(axis, angle)		
+				//}
+				particle.yDirection = -1;
+			}
+			else if(particle.y < -10) {
+				var angle = Math.PI * Math.random() / 1000;
+				var axis = new THREE.Vector3( 0, 1, 0 );
+				//if(date.getMilliseconds() % 2 == 0) {
+					//particle.applyAxisAngle(axis, angle)		
+				//}
+				particle.yDirection = 1;
+			}
+			if(particle.z > 10) {
+				var angle = Math.PI * Math.random();
+				var axis = new THREE.Vector3( 0, 0, 1 );
+				//if(date.getMilliseconds() % 2 == 0) {
+					//particle.applyAxisAngle(axis, angle)		
+				//}
+				particle.zDirection = -1;
+			}
+			else if(particle.z < -10) {
+				var angle = Math.PI * Math.random();
+				var axis = new THREE.Vector3( 0, 0, 1 );
+				//if(date.getMilliseconds() % 2 == 0) {
+					//particle.applyAxisAngle(axis, angle)		
+				//}
+				particle.zDirection = 1;
+			}
 		}
 		this.particleSystems[a].geometry.___dirtyVertices = true;
+		this.particleSystems[a].geometry.verticesNeedUpdate = true;
 	}
 	App.renderer.render(this.scene, App.camera);
 }
