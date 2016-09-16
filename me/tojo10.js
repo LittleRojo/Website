@@ -19,7 +19,7 @@ tojo10.prototype.SetupScene = function() {
 		var material = new THREE.PointsMaterial({
 				color: "rgb(" + Math.floor(Math.random() * 255) + "," + Math.floor(Math.random() * 255) + "," + Math.floor(Math.random() * 255) + ")",
 				size: 1,
-				//map: THREE.ImageUtils.loadTexture("archive/07-26-2016/apple-icon.png"),
+				map: THREE.ImageUtils.loadTexture("archive/07-26-2016/apple-icon.png"),
 				blending: THREE.AdditiveBlending,
 				transparent: true,
 		});
