@@ -19,10 +19,16 @@ tojo10.prototype.SetupScene = function() {
 		var material = new THREE.PointsMaterial({
 				color: "rgb(" + Math.floor(Math.random() * 255) + "," + Math.floor(Math.random() * 255) + "," + Math.floor(Math.random() * 255) + ")",
 				size: 4,
-				map: THREE.ImageUtils.loadTexture("archive/07-26-2016/apple-icon.png"),
+				//map: THREE.ImageUtils.loadTexture("archive/07-26-2016/apple-icon.png"),
+				//map: THREE.ImageUtils.loadTexture("daddy.png"),
+				//map: THREE.ImageUtils.loadTexture("Lawson.png"),
 				blending: THREE.AdditiveBlending,
 				transparent: true,
 		});
+		if(b % 4 == 0) material.map = THREE.ImageUtils.loadTexture("archive/07-26-2016/apple-icon.png");
+ 		else if(b % 4 == 1) material.map = THREE.ImageUtils.loadTexture("momma.png");
+		else if(b % 4 == 2)material.map = THREE.ImageUtils.loadTexture("daddy.png");
+		else material.map = THREE.ImageUtils.loadTexture("Lawson.png");
 		for(var a = 0; a < this.particleCount; a++) {
 			var pX = Math.random() * 20 - 10;
 			var	pY = Math.random() * 20 - 10;
