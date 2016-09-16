@@ -5,5 +5,5 @@ function onload(){
 	App.Stage(main);
 	var tojo = new tojo10();
 	App.AddScene(tojo);
-	//App.AnimateScene(tojo);	
+	App.AnimateScene(tojo);	
 }

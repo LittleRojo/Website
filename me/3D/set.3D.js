@@ -7,16 +7,16 @@ Set.prototype.Stage = function(canvas) {
 	this.mainCanvas = canvas;
 	this.renderer = new THREE.WebGLRenderer({ canvas:this.mainCanvas, antilias: true, alpha: true, clearAlpha: 1});	;
 	this.renderer.setSize( window.innerWidth, window.innerHeight );
-	this.renderer.setClearColor( 0x000000, 1 );
+	//this.renderer.setClearColor( 0x000000, 1 );
 	//this.renderer.shadowMap.enabled = true;
 	//this.renderer.shadowMap.type = THREE.PCFShadowMap;
 
 	//this.projector = new THREE.Projector();
 	//this.raycaster = new THREE.Raycaster();
 
-	this.camera = new THREE.PerspectiveCamera( 45, window.innerWidth / (window.innerHeight), 0.1, 10000 );	
-	this.camera.position.set( 0, 0, 300 );
-	//this.camera.lookAt(new THREE.Vector3(0, 0, 0));
+	this.camera = new THREE.PerspectiveCamera( 75, window.innerWidth / (window.innerHeight), 1, 1000 );	
+	this.camera.position.z = 100;
+	this.camera.lookAt(new THREE.Vector3(0, 0, 0));
 
 	//window.camera = new THREE.OrthographicCamera( window.innerWidth / - 2, window.innerWidth / 2, window.innerHeight / 2, window.innerHeight / - 2, -1000, 1000 );
 	//window.camera.position.set( 20, 120, 992 );
