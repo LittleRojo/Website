@@ -7,3 +7,8 @@ function onload(){
 	App.AddScene(tojo);
 	App.AnimateScene(tojo);	
 }
+
+function play(){
+	var audio = document.getElementById("audio");
+	audio.play();
+}
