@@ -6,7 +6,7 @@ function tojo10() {
 	this.previousRenderStamp;
 
 	this.layerCount = 4;
-	this.particleCount = 2;	
+	this.particleCount = 1;	
 	this.layers = [];
 	this.particleSystems = [];
 	this.scene = new THREE.Scene();
