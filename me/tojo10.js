@@ -41,13 +41,13 @@ tojo10.prototype.RedrawScene = function() {
 }
 
 tojo10.prototype.RedrawSceneFrame = function() {
-	this.particleSystem.rotation.y += 0.1;
+	this.particleSystem.rotation.z += 0.1;
 	var pCount = this.particleCount;
 	while(pCount--){
 		var particle = this.particles.vertices[pCount];
-		if(particle.y < -150){
-			particle.y = 150;
-			particle.velocity = 0;
+		if(particle.z < -150){
+			particle.z = 150;
+			//particle.velocity = 0;
 		}
 		//particle.velocity.y -= Math.random() * 0.1;
 		//particle.position.addSelf(particle.velocity);
