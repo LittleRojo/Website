@@ -7,7 +7,7 @@ Set.prototype.Stage = function(canvas) {
 	this.mainCanvas = canvas;
 	this.renderer = new THREE.WebGLRenderer({ canvas:this.mainCanvas, antilias: true, alpha: true, clearAlpha: 1});	;
 	this.renderer.setSize( window.innerWidth, window.innerHeight );
-	//this.renderer.setClearColor( 0x000000, 1 );
+	this.renderer.setClearColor( 0x000000, 1 );
 	//this.renderer.shadowMap.enabled = true;
 	//this.renderer.shadowMap.type = THREE.PCFShadowMap;
 
