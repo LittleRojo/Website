@@ -26,8 +26,8 @@ tojo10.prototype.SetupScene = function() {
 				transparent: true,
 		});
 		if(b % 4 == 0) material.map = THREE.ImageUtils.loadTexture("archive/07-26-2016/apple-icon.png");
- 		else if(b % 4 == 1) material.map = THREE.ImageUtils.loadTexture("momma.png");
-		else if(b % 4 == 2)material.map = THREE.ImageUtils.loadTexture("daddy.png");
+ 		else if(b % 4 == 1) material.map = THREE.ImageUtils.loadTexture("Mmomma.png");
+		else if(b % 4 == 2)material.map = THREE.ImageUtils.loadTexture("Daddy.png");
 		else material.map = THREE.ImageUtils.loadTexture("Lawson.png");
 		for(var a = 0; a < this.particleCount; a++) {
 			var pX = Math.random() * 20 - 10;
