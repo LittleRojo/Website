@@ -5,29 +5,39 @@ function tojo10() {
 	this.renderLengthQueue = [];
 	this.previousRenderStamp;
 
-	this.particleCount = 10000;
-	this.particles = new THREE.Geometry();
+	this.layerCount = 10;
+	this.particleCount = 1000;	
+	this.layers = [];
+	this.particleSystems = [];
 	this.scene = new THREE.Scene();
 }
 
 tojo10.prototype.SetupScene = function() {
-	var material = new THREE.PointsMaterial({
-			color: 0xff0000,
-			size: 1,
-			//map: THREE.ImageUtils.loadTexture("logo.png"),
-            blending: THREE.AdditiveBlending,
-            transparent: true,
-	});
-	for(var a = 0; a < this.particleCount; a++) {
-		var pX = Math.random() * 200 - 100;
-		var	pY = Math.random() * 150 - 75;
-		var	pZ = Math.random() * 500 - 250;
-		var	particle = new THREE.Vector3(pX, pY, pZ);					
-		//particle.velocity = new THREE.Vector3(0, -Math.random(), 0);
-		this.particles.vertices.push(particle);
+	for(var b = 0; b < this.layerCount; b++ ) {
+		layer = new THREE.Geometry();
+		this.layers.push(layer);
+		var material = new THREE.PointsMaterial({
+				color: "rgb(" + Math.floor(Math.random() * 255) + "," + Math.floor(Math.random() * 255) + "," + Math.floor(Math.random() * 255) + ")",
+				size: 1,
+				//map: THREE.ImageUtils.loadTexture("logo.png"),
+				blending: THREE.AdditiveBlending,
+				transparent: true,
+		});
+		var a = "rgb(" + Math.floor(Math.random() * 255) + "," + Math.floor(Math.random() * 255) + "," + Math.floor(Math.random() * 255) + ")"
+		for(var a = 0; a < this.particleCount; a++) {
+			var pX = Math.random() * 200 - 100;
+			var	pY = Math.random() * 150 - 75;
+			var	pZ = Math.random() * 500 - 250;
+			var	particle = new THREE.Vector3(pX, pY, pZ);
+			//this.particles.faces.push(new THREE.Face3(0, 1, 2));	
+			//this.particles.faces[0].vertexColors.push(new THREE.Color(Math.random(), Math.random(), Math.random()));				
+			//particle.velocity = new THREE.Vector3(0, -Math.random(), 0);
+			layer.vertices.push(particle);
+		}
+		var particleSystem = new THREE.Points(layer, material);
+		this.particleSystems.push(particleSystem);
+		this.scene.add(particleSystem);
 	}
-	this.particleSystem = new THREE.Points(this.particles, material);
-	this.scene.add(this.particleSystem);
 	App.renderer.render( this.scene, App.camera );
 }
 
@@ -40,19 +50,25 @@ tojo10.prototype.RedrawScene = function() {
 	this.CalculateFPS();
 }
 
-tojo10.prototype.RedrawSceneFrame = function() {
-	this.particleSystem.rotation.z += 0.1;
-	var pCount = this.particleCount;
-	while(pCount--){
-		var particle = this.particles.vertices[pCount];
-		if(particle.z < -150){
-			particle.z = 150;
-			//particle.velocity = 0;
+tojo10.prototype.RedrawSceneFrame = function() {		
+	for(var a = 0; a < this.layers.length; a++) {
+		if(a % 2 == 0) {
+			this.particleSystems[a].rotation.z += a / 1000;
 		}
-		//particle.velocity.y -= Math.random() * 0.1;
-		//particle.position.addSelf(particle.velocity);
+		else {
+			this.particleSystems[a].rotation.z -= a / 1000;
+		}
+		for(var b = 0; b < this.layers[a].vertices.length; b++) {
+			var particle = this.layers[a].vertices[b];
+			if(particle.z < -150){
+				particle.z = 150;
+				//particle.velocity = 0;
+			}
+			//particle.velocity.y -= Math.random() * 0.1;
+			//particle.position.addSelf(particle.velocity);
+		}
+		this.particleSystems[a].geometry.___dirtyVertices = true;
 	}
-	this.particleSystem.geometry.__dirtyVertices = true;
 	App.renderer.render(this.scene, App.camera);
 }
   
