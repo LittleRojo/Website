@@ -19,7 +19,7 @@ tojo10.prototype.SetupScene = function() {
 		var material = new THREE.PointsMaterial({
 				color: "rgb(" + Math.floor(Math.random() * 255) + "," + Math.floor(Math.random() * 255) + "," + Math.floor(Math.random() * 255) + ")",
 				size: 1,
-				map: THREE.ImageUtils.loadTexture("archive/07-26-2016/apple-icon.png"),
+				//map: THREE.ImageUtils.loadTexture("archive/07-26-2016/apple-icon.png"),
 				blending: THREE.AdditiveBlending,
 				transparent: true,
 		});
@@ -28,9 +28,9 @@ tojo10.prototype.SetupScene = function() {
 			var	pY = Math.random() * 20 - 10;
 			var	pZ = 0; //Math.random() * 20 - 10;
 			var	particle = new THREE.Vector3(pX, pY, pZ);
-			particle.speedX = Math.random() / 100;
-			particle.speedY = Math.random() / 100;
-			particle.speedZ = Math.random() / 100;			
+			particle.speedX = Math.random() / 10;
+			particle.speedY = Math.random() / 10;
+			particle.speedZ = Math.random() / 10;			
 			
 			if(Math.random() % 2 == 0) {
 				particle.xDirection = 1;
