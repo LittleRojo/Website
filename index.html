@@ -1,37 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<title>three.js webgl - buffer geometry custom attributes - particles</title>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-		<style>
-			body {
-				color: #ffffff;
-				background-color: #000000;
-				margin: 0px;
-				overflow: hidden;
-			}
-			#info {
-				position: absolute;
-				top: 0px;
-				width: 100%;
-				padding: 5px;
-				font-family: Monospace;
-				font-size: 13px;
-				text-align: center;
-				font-weight: bold;
-			}
-			a {
-				color: #fff;
-			}
-		</style>
-	</head>
+<html id="html">
+	<head id="head">
 
-	<body>
-		<div id="container"></div>
-		<div id="info"><a href="http://threejs.org" target="_blank">three.js</a> webgl - buffergeometry custom attributes - particles</div>
+		<title id="title">Little Rojo</title>
+		<meta name="description" content="">
+		<meta name="keywords" content="">
+		<meta id="author" name="author" content="Γ°┘°">
+		<link rel="alternate" href="https://littlerojo.com" hreflang="en-us" />
+		<link rel="shortcut icon" href="https://littlerojo.com/favicon.ico" type="image/x-icon" />
 
-		<script src="js/three.js"></script>
+		<link rel="apple-touch-icon" href="https://littlerojo.com/logo.png">
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-title" content="Little Rojo - Generationem" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale = 1.0, minimum-scale=1.0, maximum-scale=1.0"/>
+
+		<audio id="audio" src="Kansas_-_Carry_On_My_Wayward_Son.wav" autoplay></audio>	
+		<link id="css" rel="stylesheet" type="text/css" href="index.css">
+
+		<script id="js" type="text/javascript" src="me/global.js"></script>
+		<script id="js" type="text/javascript" src="me/3D/set.3D.js"></script>
+		<script id="js" type="text/javascript" src="me/tojo10.js"></script>
+
+		<script id="js" type="text/javascript" src="js/jquery-3.1.0.js"></script>
+		<script id="js" type="text/javascript" src="js/three.min.js"></script>
+		<!--<script id="js" type="text/javascript" src="js/projector.js"></script>
+		<script id="js" type="text/javascript" src="js/TrackballControls.js"></script>-->
 
 		<script type="x-shader/x-vertex" id="vertexshader">
 
@@ -70,11 +63,12 @@
 			}
 
 		</script>
-
-
-		<script>
-
-
+		
+	</head>	
+	<body id="body" onload="onload()">
+		<canvas id="mainCanvas" onclick="play()" />	
+		<!--<script>
+		
 		var renderer, scene, camera, stats;
 
 		var particleSystem, uniforms, geometry;
@@ -97,8 +91,7 @@
 			uniforms = {
 
 				color:     { value: new THREE.Color( 0xffffff ) },
-				texture:   { value: new THREE.TextureLoader().load( "spark1.png" ) }
-
+				texture:   { value: new THREE.TextureLoader().load( "logo.png" ) }
 			};
 
 			var shaderMaterial = new THREE.ShaderMaterial( {
@@ -148,11 +141,10 @@
 
 			scene.add( particleSystem );
 
-			renderer = new THREE.WebGLRenderer();
+var canvas = document.getElementById("mainCanvas");
+			renderer = new THREE.WebGLRenderer({ canvas: canvas });
 			renderer.setPixelRatio( window.devicePixelRatio );
 			renderer.setSize( WIDTH, HEIGHT );
-
-			//
 
 			window.addEventListener( 'resize', onWindowResize, false );
 
@@ -195,7 +187,6 @@
 
 		}
 
-	</script>
-
-</body>
+	</script>-->
+	</body>
 </html>

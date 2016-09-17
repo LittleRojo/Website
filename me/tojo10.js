@@ -31,13 +31,13 @@ tojo10.prototype.SetupScene = function() {
 		var colors = new Float32Array( this.particleCount * 3 );
 		var sizes = new Float32Array( this.particleCount );
 		for(var a = 4; a < 4 + this.particleCount; a++) {
-			var pX = Math.random() * 10 - 5;
+			/*var pX = Math.random() * 10 - 5;
 			var	pY = Math.random() * 10 - 5;
 			var	pZ = 0; //Math.random() * 20 - 10;
 			var	particle = new THREE.Vector3(pX, pY, pZ);
 			particle.speedX = Math.random() / 1;
 			particle.speedY = Math.random() / 1;
-			particle.speedZ = Math.random() / 1;			
+			particle.speedZ = Math.random() / 1;*/			
 			
 			colors[ a + 0 ] = Math.floor(Math.random() * 255);
 			colors[ a + 1 ] = Math.floor(Math.random() * 255);
@@ -64,7 +64,7 @@ tojo10.prototype.SetupScene = function() {
 				}
 			}
 
-			if(Math.random() % 2 == 0) {
+			/*if(Math.random() % 2 == 0) {
 				particle.xDirection = 1;
 			}
 			else {
@@ -81,7 +81,7 @@ tojo10.prototype.SetupScene = function() {
 			}
 			else {
 				particle.zDirection = -1;
-			}		
+			}	*/	
 			//layer.vertices.push(particle);
 		}
 
@@ -104,7 +104,7 @@ tojo10.prototype.SetupScene = function() {
 		layer.addAttribute( 'size', new THREE.BufferAttribute( sizes, 1 ) );
 			
 		var particleSystem = new THREE.Points(layer, material);
-		//particleSystem.dynamic = true;
+		particleSystem.dynamic = true;
 		this.particleSystems.push(particleSystem);
 		this.scene.add(particleSystem);
 	}
