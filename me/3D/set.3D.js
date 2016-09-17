@@ -18,8 +18,8 @@ Set.prototype.Stage = function(canvas) {
 	this.camera = new THREE.PerspectiveCamera( 40, window.innerWidth / (window.innerHeight), 1, 10000 );	
 	this.camera.position.x = 0;
 	this.camera.position.y = 0;
-	this.camera.position.z = 300;
-	//this.camera.lookAt(new THREE.Vector3(0, 0, 0));
+	this.camera.position.z = 200;
+	this.camera.lookAt(new THREE.Vector3(0, 0, 0));
 
 	//window.camera = new THREE.OrthographicCamera( window.innerWidth / - 2, window.innerWidth / 2, window.innerHeight / 2, window.innerHeight / - 2, -1000, 1000 );
 	//window.camera.position.set( 20, 120, 992 );
