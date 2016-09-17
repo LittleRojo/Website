@@ -1,12 +1,14 @@
 function tojo10() {
 	this.name = "tojo10";
+	this.radius = 20;
+
 	this.fps = 0;
 	this.sampleSize = 5;
 	this.renderLengthQueue = [];
 	this.previousRenderStamp;
 
-	this.layerCount = 50;
-	this.particleCount =4;	
+	this.layerCount = 1;
+	this.particleCount = 1000;	
 	this.layers = [];
 	this.particleSystems = [];
 	this.scene = new THREE.Scene();
@@ -14,27 +16,40 @@ function tojo10() {
 
 tojo10.prototype.SetupScene = function() {
 	for(var b = 0; b < this.layerCount; b++ ) {
-		layer = new THREE.Geometry();
+		layer = new THREE.BufferGeometry();
 		this.layers.push(layer);
-		var material = new THREE.PointsMaterial({
+		/*var material = new THREE.PointsMaterial({
 				color: "rgb(" + Math.floor(Math.random() * 255) + "," + Math.floor(Math.random() * 255) + "," + Math.floor(Math.random() * 255) + ")",
-				size: 35,
+				size: 1,
 				//map: THREE.ImageUtils.loadTexture("archive/07-26-2016/apple-icon.png"),
 				//map: THREE.ImageUtils.loadTexture("daddy.png"),
 				//map: THREE.ImageUtils.loadTexture("Lawson.png"),
 				blending: THREE.AdditiveBlending,
 				transparent: true,
-		});		
+		});	*/
+		var positions = new Float32Array( this.particleCount * 3 );
+		var colors = new Float32Array( this.particleCount * 3 );
+		var sizes = new Float32Array( this.particleCount );
 		for(var a = 4; a < 4 + this.particleCount; a++) {
 			var pX = Math.random() * 10 - 5;
 			var	pY = Math.random() * 10 - 5;
 			var	pZ = 0; //Math.random() * 20 - 10;
 			var	particle = new THREE.Vector3(pX, pY, pZ);
-			particle.speedX = Math.random() * 1;
-			particle.speedY = Math.random() * 1;
-			particle.speedZ = Math.random() * 1;			
+			particle.speedX = Math.random() / 1;
+			particle.speedY = Math.random() / 1;
+			particle.speedZ = Math.random() / 1;			
 			
-			if(true){
+			colors[ a + 0 ] = Math.floor(Math.random() * 255);
+			colors[ a + 1 ] = Math.floor(Math.random() * 255);
+			colors[ a + 2 ] = Math.floor(Math.random() * 255);
+
+			positions[ a + 0 ] = ( Math.random() * 2 - 1 ) * this.radius;
+			positions[ a + 1 ] = ( Math.random() * 2 - 1 ) * this.radius;
+			positions[ a + 2 ] = ( Math.random() * 2 - 1 ) * this.radius;
+
+			sizes[ a ] = 20;
+
+			if(false){
 				if(b % 4 == 0) {
 					material.map = THREE.ImageUtils.loadTexture("archive/07-26-2016/apple-icon.png");
 				}
@@ -67,9 +82,29 @@ tojo10.prototype.SetupScene = function() {
 			else {
 				particle.zDirection = -1;
 			}		
-			layer.vertices.push(particle);
+			//layer.vertices.push(particle);
 		}
+
+		var uniforms = {
+				color:     { value: new THREE.Color( 0xffffff ) },
+				texture:   { value: new THREE.TextureLoader().load( "logo.png" ) }
+			};
+		var material = new THREE.ShaderMaterial( 
+		{
+			uniforms:       uniforms,
+			vertexShader:   document.getElementById( 'vertexshader' ).textContent,
+			fragmentShader: document.getElementById( 'fragmentshader' ).textContent,
+
+			blending:       THREE.AdditiveBlending,
+			depthTest:      false,
+			transparent:    true
+		});
+		layer.addAttribute( 'position', new THREE.BufferAttribute( positions, 3 ) );
+		layer.addAttribute( 'customColor', new THREE.BufferAttribute( colors, 3 ) );
+		layer.addAttribute( 'size', new THREE.BufferAttribute( sizes, 1 ) );
+			
 		var particleSystem = new THREE.Points(layer, material);
+		//particleSystem.dynamic = true;
 		this.particleSystems.push(particleSystem);
 		this.scene.add(particleSystem);
 	}
@@ -87,11 +122,24 @@ tojo10.prototype.RedrawScene = function() {
 
 tojo10.prototype.RedrawSceneFrame = function() {	
 	for(var a = 0; a < this.layers.length; a++) {
-		/*if(a % 2 == 0) {
+		//this.particleSystems[a].rotation.z += (Math.random() * 2 - 1000) / 10000;
+		/*if(Math.random() % 2 == 0) {
 			this.particleSystems[a].rotation.z += a / 10000;
+			if(Math.random() % 2 == 0) {
+				this.particleSystems[a].rotation.y += a / 100;
+			}
+			else {
+				this.particleSystems[a].rotation.y -= a / 100;
+			}
 		}
 		else {
 			this.particleSystems[a].rotation.z -= a / 10000;
+			/*if(Math.random() % 2 == 0) {
+				this.particleSystems[a].rotation.y += a / 10000;
+			}
+			else {
+				this.particleSystems[a].rotation.y -= a / 10000;
+			}
 		}*/
 		for(var b = 0; b < this.layers[a].vertices.length; b++) {
 			var particle = this.layers[a].vertices[b];
@@ -117,7 +165,8 @@ tojo10.prototype.RedrawSceneFrame = function() {
 				//}
 				particle.xDirection = 1;
 			}
-			if(particle.y > 80) {
+			var minY = 90;
+			if(particle.y > minY) {
 				var angle = Math.PI * Math.random() / 1000;
 				var axis = new THREE.Vector3( 0, 1, 0 );
 				//if(date.getMilliseconds() % 2 == 0) {
@@ -125,7 +174,7 @@ tojo10.prototype.RedrawSceneFrame = function() {
 				//}
 				particle.yDirection = -1;
 			}
-			else if(particle.y < -80) {
+			else if(particle.y < -minY) {
 				var angle = Math.PI * Math.random() / 1000;
 				var axis = new THREE.Vector3( 0, 1, 0 );
 				//if(date.getMilliseconds() % 2 == 0) {
@@ -133,7 +182,7 @@ tojo10.prototype.RedrawSceneFrame = function() {
 				//}
 				particle.yDirection = 1;
 			}
-			if(particle.z > 100) {
+			if(particle.z > 50) {
 				var angle = Math.PI * Math.random();
 				var axis = new THREE.Vector3( 0, 0, 1 );
 				//if(date.getMilliseconds() % 2 == 0) {
@@ -141,7 +190,7 @@ tojo10.prototype.RedrawSceneFrame = function() {
 				//}
 				particle.zDirection = -1;
 			}
-			else if(particle.z < -100) {
+			else if(particle.z < -50) {
 				var angle = Math.PI * Math.random();
 				var axis = new THREE.Vector3( 0, 0, 1 );
 				//if(date.getMilliseconds() % 2 == 0) {
