@@ -17,7 +17,7 @@ Set.prototype.Stage = function(canvas) {
 	this.camera = new THREE.PerspectiveCamera( 75, window.innerWidth / (window.innerHeight), .1, 100 );	
 	this.camera.position.x = 0;
 	this.camera.position.y = 0;
-	this.camera.position.z = -10;
+	this.camera.position.z = -100;
 	this.camera.lookAt(new THREE.Vector3(0, 0, 0));
 
 	//window.camera = new THREE.OrthographicCamera( window.innerWidth / - 2, window.innerWidth / 2, window.innerHeight / 2, window.innerHeight / - 2, -1000, 1000 );

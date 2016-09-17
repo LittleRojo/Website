@@ -5,8 +5,8 @@ function tojo10() {
 	this.renderLengthQueue = [];
 	this.previousRenderStamp;
 
-	this.layerCount = 4;
-	this.particleCount = 1;	
+	this.layerCount = 50;
+	this.particleCount =4;	
 	this.layers = [];
 	this.particleSystems = [];
 	this.scene = new THREE.Scene();
@@ -18,7 +18,7 @@ tojo10.prototype.SetupScene = function() {
 		this.layers.push(layer);
 		var material = new THREE.PointsMaterial({
 				color: "rgb(" + Math.floor(Math.random() * 255) + "," + Math.floor(Math.random() * 255) + "," + Math.floor(Math.random() * 255) + ")",
-				size: 8,
+				size: 35,
 				//map: THREE.ImageUtils.loadTexture("archive/07-26-2016/apple-icon.png"),
 				//map: THREE.ImageUtils.loadTexture("daddy.png"),
 				//map: THREE.ImageUtils.loadTexture("Lawson.png"),
@@ -30,21 +30,23 @@ tojo10.prototype.SetupScene = function() {
 			var	pY = Math.random() * 10 - 5;
 			var	pZ = 0; //Math.random() * 20 - 10;
 			var	particle = new THREE.Vector3(pX, pY, pZ);
-			particle.speedX = Math.random() / 50;
-			particle.speedY = Math.random() / 50;
-			particle.speedZ = Math.random() / 50;			
+			particle.speedX = Math.random() * 1;
+			particle.speedY = Math.random() * 1;
+			particle.speedZ = Math.random() * 1;			
 			
-			if(b % 4 == 0) {
-				material.map = THREE.ImageUtils.loadTexture("archive/07-26-2016/apple-icon.png");
-			}
-			else if(b % 4 == 1) {
-				material.map = THREE.ImageUtils.loadTexture("Momma.png");
-			}
-			else if(b % 4 == 2) {
-				material.map = THREE.ImageUtils.loadTexture("Daddy.png");
-			}
-			else {
-				material.map = THREE.ImageUtils.loadTexture("Lawson.png");
+			if(true){
+				if(b % 4 == 0) {
+					material.map = THREE.ImageUtils.loadTexture("archive/07-26-2016/apple-icon.png");
+				}
+				else if(b % 4 == 1) {
+					material.map = THREE.ImageUtils.loadTexture("Momma.png");
+				}
+				else if(b % 4 == 2) {
+					material.map = THREE.ImageUtils.loadTexture("Daddy.png");
+				}
+				else {
+					material.map = THREE.ImageUtils.loadTexture("Lawson.png");
+				}
 			}
 
 			if(Math.random() % 2 == 0) {
@@ -98,7 +100,8 @@ tojo10.prototype.RedrawSceneFrame = function() {
 			//particle.z = particle.z + (this.speedY * particle.zDirection);			
 			particle.set( particle.x, particle.y, particle.z );
 
-			if(particle.x > 10) {
+			var minX = 140;//window.innerWidth / 1028 * 10;
+			if(particle.x > minX) {
 				var angle = Math.PI * Math.random();
 				var axis = new THREE.Vector3( 1, 0, 0 );
 				//if(date.getMilliseconds() % 2 == 0) {
@@ -106,7 +109,7 @@ tojo10.prototype.RedrawSceneFrame = function() {
 				//}
 				particle.xDirection = -1;
 			}
-			else if(particle.x < -10) {
+			else if(particle.x < -minX) {
 				var angle = Math.PI * Math.random() / 1000;
 				var axis = new THREE.Vector3( 1, 0, 0 );
 				//if(date.getMilliseconds() % 2 == 0) {
@@ -114,7 +117,7 @@ tojo10.prototype.RedrawSceneFrame = function() {
 				//}
 				particle.xDirection = 1;
 			}
-			if(particle.y > 6) {
+			if(particle.y > 80) {
 				var angle = Math.PI * Math.random() / 1000;
 				var axis = new THREE.Vector3( 0, 1, 0 );
 				//if(date.getMilliseconds() % 2 == 0) {
@@ -122,7 +125,7 @@ tojo10.prototype.RedrawSceneFrame = function() {
 				//}
 				particle.yDirection = -1;
 			}
-			else if(particle.y < -5) {
+			else if(particle.y < -80) {
 				var angle = Math.PI * Math.random() / 1000;
 				var axis = new THREE.Vector3( 0, 1, 0 );
 				//if(date.getMilliseconds() % 2 == 0) {
@@ -130,7 +133,7 @@ tojo10.prototype.RedrawSceneFrame = function() {
 				//}
 				particle.yDirection = 1;
 			}
-			if(particle.z > 10) {
+			if(particle.z > 100) {
 				var angle = Math.PI * Math.random();
 				var axis = new THREE.Vector3( 0, 0, 1 );
 				//if(date.getMilliseconds() % 2 == 0) {
@@ -138,7 +141,7 @@ tojo10.prototype.RedrawSceneFrame = function() {
 				//}
 				particle.zDirection = -1;
 			}
-			else if(particle.z < -10) {
+			else if(particle.z < -100) {
 				var angle = Math.PI * Math.random();
 				var axis = new THREE.Vector3( 0, 0, 1 );
 				//if(date.getMilliseconds() % 2 == 0) {
