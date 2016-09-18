@@ -58,6 +58,9 @@ tojo10.prototype.SetupScene = function() {
 
 				pixels.size[counter] = 1;
 
+				pixels.xDirection = 1;
+				pixels.yDirection = 1;
+				pixels.zDirection = -1;
 				layer.vertices.push(new THREE.Vector3(pixels.position[ 3 * counter ], pixels.position[ 3 * counter + 1 ], pixels.position[ 3 * counter + 2 ]))
 				counter++;
 			}
@@ -67,7 +70,7 @@ tojo10.prototype.SetupScene = function() {
 		var material = new THREE.PointsMaterial( 
 		{
 			color: 0xffffff,
-			size: 2.7478,
+			size: 2.883397,//2.7479,
 			blending: THREE.AdditiveBlending,
 			vertexColors: THREE.VertexColors,
 			//map: THREE.ImageUtils.loadTexture('spark1.png'),
@@ -91,7 +94,7 @@ tojo10.prototype.SetupScene = function() {
 		App.tojo.AnimateScene();
 	};
 	img.style.display = "none";
-	img.src = 'momma.png';			
+	img.src = 'logo.png';			
 }	
 
 tojo10.prototype.RedrawScene = function() {
@@ -106,8 +109,36 @@ tojo10.prototype.RedrawScene = function() {
 tojo10.prototype.RedrawSceneFrame = function() {	
 	for(var a = 0; a < this.layers.length; a++) {
 		var pixels = this.particleSystems[a].geometry.vertices;
+		var xEdge = 1000;
 		for ( var i = 0; i < pixels.length; i++ ) {
-			pixels[i].x += 1;
+			//if(pixels[i].x <-xEdge || pixels[i].x > xEdge) {
+			//	pixels[i].xDirection = pixels[i].xDirection * -1;
+			//	}
+
+			pixels[i].x += Math.random() * 1 - .5; 
+			pixels[i].y += Math.random() * 1 - .5;
+			
+			
+			//var theta = 1;
+			//var x = pixels[i].x;
+			//var z = pixels[i].y;
+
+			//pixels[i].x = x * Math.cos(theta) + z * Math.sin(theta) + 1;
+			//pixels[i].y = z * Math.cos(theta) - x * Math.sin(theta) + 1;
+
+			//var vector = new THREE.Vector3( 1, 0, 0 );
+			//var axis = new THREE.Vector3( 0, 0, 1 );
+			//var angle = Math.PI / Math.random() / 100;
+
+			//pixels[i].applyAxisAngle( axis, angle );
+		/////pixels[i].x += Math.random() / 1;
+			
+			//var pos = new THREE.Vector3(App.tojo.scene.position); 
+			//pos.x += 100;
+			//App.camera.lookAt(pos);
+			
+			//rotateX(30);
+			
 			//pixels[i].y += i * .00001;//( Math.random() * 8 - 1 ) * this.radius;
 			//pixels[i].z += 0;//( Math.random() * 2 - 1 ) * this.radius;
 		}		
@@ -115,6 +146,30 @@ tojo10.prototype.RedrawSceneFrame = function() {
 	}
 }
   
+  function rotateX(rot) {
+	  var camera = App.camera;
+        var x = camera.position.x,
+            y = camera.position.y,
+            z = camera.position.z;
+
+        camera.position.x = x * Math.cos(rot) + z * Math.sin(rot);
+        camera.position.z = z * Math.cos(rot) - x * Math.sin(rot);
+
+        camera.lookAt(App.tojo.scene.position);
+    }
+
+    function rotateY(rot) {
+		var camera = App.camera;
+        var x = camera.position.x,
+            y = camera.position.y,
+            z = camera.position.z;
+
+        camera.position.z = z * Math.cos(rot) + y * Math.sin(rot);
+        camera.position.y = y * Math.cos(rot) - z * Math.sin(rot);
+
+        camera.lookAt(App.tojo.scene.position);     
+    }
+
 tojo10.prototype.UpdateSceneCamera = function() {
 	
 }

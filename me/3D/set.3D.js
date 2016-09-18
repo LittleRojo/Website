@@ -19,10 +19,10 @@ Set.prototype.Stage = function(canvas, tojo) {
 	//this.raycaster = new THREE.Raycaster();
 
 	this.camera = new THREE.PerspectiveCamera( 40, window.innerWidth / (window.innerHeight), 1, 1000000 );	
-	this.camera.position.x = 0;
-	this.camera.position.y = 0;
-	this.camera.position.z = 700;
-	this.camera.lookAt(new THREE.Vector3(500, 500, 0));
+	this.camera.position.set(90, 120, 40);
+	this.camera.translate
+	this.camera.up = new THREE.Vector3(0,0,1);
+	this.camera.lookAt(new THREE.Vector3(0,0,0));
 
 	//window.camera = new THREE.OrthographicCamera( window.innerWidth / - 2, window.innerWidth / 2, window.innerHeight / 2, window.innerHeight / - 2, -1000, 1000 );
 	//window.camera.position.set( 20, 120, 992 );
