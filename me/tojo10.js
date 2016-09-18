@@ -105,12 +105,12 @@ tojo10.prototype.RedrawScene = function() {
 
 tojo10.prototype.RedrawSceneFrame = function() {	
 	for(var a = 0; a < this.layers.length; a++) {
-		//var position = this.particleSystems[a].geometry.attributes.position.array;
-		//for ( var i = 0; i < position.length; i++ ) {
-			//position[ 3 * i + 0 ] += i * .00001;
-			//position[ 3 * i + 1 ] += i * .00001;//( Math.random() * 8 - 1 ) * this.radius;
-			//position[ 3 * i + 2 ] += 0;//( Math.random() * 2 - 1 ) * this.radius;
-		//}		
+		var pixels = this.particleSystems[a].geometry.vertices;
+		for ( var i = 0; i < pixels.length; i++ ) {
+			pixels[i].x += 1;
+			//pixels[i].y += i * .00001;//( Math.random() * 8 - 1 ) * this.radius;
+			//pixels[i].z += 0;//( Math.random() * 2 - 1 ) * this.radius;
+		}		
 		this.particleSystems[a].geometry.verticesNeedUpdate = true;
 	}
 }
