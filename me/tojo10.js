@@ -53,7 +53,7 @@ tojo10.prototype.SetupScene = function() {
 				pixels.color[ 4 * counter + 3 ] = pixel.data[3];*/
 
 				pixels.position[ 3 * counter ] = x - (img.width / 2);
-				pixels.position[ 3 * counter + 1 ] = y - (img.height / 2);
+				pixels.position[ 3 * counter + 1 ] = (img.height - y) - (img.height / 2);
 				pixels.position[ 3 * counter+ 2 ] = 0;//( Math.random() * 2 - 1 ) * this.radius;
 
 				pixels.size[counter] = 1;
@@ -91,7 +91,7 @@ tojo10.prototype.SetupScene = function() {
 		App.tojo.AnimateScene();
 	};
 	img.style.display = "none";
-	img.src = 'Daddy.png';			
+	img.src = 'momma.png';			
 }	
 
 tojo10.prototype.RedrawScene = function() {
