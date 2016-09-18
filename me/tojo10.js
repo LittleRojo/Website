@@ -115,8 +115,8 @@ tojo10.prototype.RedrawSceneFrame = function() {
 			//	pixels[i].xDirection = pixels[i].xDirection * -1;
 			//	}
 
-			pixels[i].x += Math.random() * 1 - .5; 
-			pixels[i].y += Math.random() * 1 - .5;
+			pixels[i].x += (Math.random() - .5) * 9.7; 
+			pixels[i].y += (Math.random() - .5) * 9.7;
 			
 			
 			//var theta = 1;
