@@ -12,15 +12,16 @@ Set.prototype.Stage = function(canvas, tojo) {
 	this.renderer.setPixelRatio( window.devicePixelRatio );
 	this.renderer.setSize( window.innerWidth, window.innerHeight );
 	this.renderer.setClearColor( 0x000000, 1 );
-	//this.renderer.shadowMap.enabled = true;
-	//this.renderer.shadowMap.type = THREE.PCFShadowMap;
+	this.renderer.shadowMap.enabled = true;
+	this.renderer.shadowMap.type = THREE.PCFShadowMap;
+	this.renderer.shadowMapBias = 0.0039;
+	this.renderer.shadowMapDarkness = 0.5;
 
 	//this.projector = new THREE.Projector();
 	//this.raycaster = new THREE.Raycaster();
 
-	this.camera = new THREE.PerspectiveCamera( 40, window.innerWidth / (window.innerHeight), 1, 1000000 );	
+	this.camera = new THREE.PerspectiveCamera( 45, window.innerWidth / (window.innerHeight), 1, 1000000 );	
 	this.camera.position.set(90, 120, 40);
-	this.camera.translate
 	this.camera.up = new THREE.Vector3(0,0,1);
 	this.camera.lookAt(new THREE.Vector3(0,0,0));
 
