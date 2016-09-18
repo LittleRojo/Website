@@ -15,9 +15,6 @@ function tojo10() {
 
 tojo10.prototype.SetupScene = function() {
 	
-	var layer = new THREE.BufferGeometry();
-	this.layers.push(layer);
-
 	var canvas = document.createElement('canvas');
 	var ctx = canvas.getContext('2d');
 	var img = new Image();
@@ -29,54 +26,45 @@ tojo10.prototype.SetupScene = function() {
 		var counter = 0;
 		var pixels = img.width * img.height;
 		var positions = new Float32Array( pixels * 3 );
-		var colors = new Float32Array( pixels * 3 );
+		var colors = new Float32Array( pixels * 4 );
 		var sizes = new Float32Array( pixels );
-		
 		for(var x = 0; x < img.width; x++){
 			for(var y = 0; y < img.height; y++) {
 				var pixel = ctx.getImageData(x, y, 1, 1);
 
-				var bg = {red: 0, green: 0, blue: 0};
-				var RGBA = {red: pixel.data[0], green: pixel.data[1], blue: pixel.data[2], alpha: pixel.data[3]};
-				var alpha = 1 - RGBA.alpha;
-				colors[ counter ] = Math.round((RGBA.alpha * (RGBA.red / 255) + (alpha * (bg.red / 255))) * 255);
-				colors[ counter  + 1 ]   = Math.round((RGBA.alpha * (RGBA.green / 255) + (alpha * (bg.green / 255))) * 255);
-				colors[ counter  + 2 ]  = Math.round((RGBA.alpha * (RGBA.blue / 255) + (alpha * (bg.blue / 255))) * 255);
+				colors[ 4 * counter ] = pixel.data[0];
+				colors[ 4 * counter + 1 ] = pixel.data[1];
+				colors[ 4 * counter + 2 ] = pixel.data[2];
+				colors[ 4 * counter + 3 ] = pixel.data[3];
 
-				/*colors[ counter ]  = pixel.data[0];
-				colors[ counter + 1 ] = pixel.data[1];
-				colors[ counter + 2 ] = pixel.data[2];
-				//var a = imgData.data[3];*/
+				positions[ 3 * counter ] = x - (img.width / 2);
+				positions[ 3 * counter + 1 ] = y - (img.height / 2);
+				positions[ 3 * counter+ 2 ] = 0;//( Math.random() * 2 - 1 ) * this.radius;
 
-				positions[ counter ] = x - (img.width / 2);
-				positions[ counter + 1 ] = y - (img.height / 2);
-				positions[ counter+ 2 ] = 0;//( Math.random() * 2 - 1 ) * this.radius;
-
-				sizes[ counter ] = 10;
-				counter += 3;
+				sizes[counter] = 1;
+				counter++;
 			}
 		}
-		
-		var uniforms = {
-			color:     { value: new THREE.Color( 0xffffff ) },
-			texture:   { value: new THREE.TextureLoader().load( "https://www.littlerojo.com/spark1.png" ) }
-		};
+
+		var layer = new THREE.BufferGeometry();				
+		layer.addAttribute("color", new THREE.BufferAttribute(colors, 4));
+		layer.addAttribute("position", new THREE.BufferAttribute(positions, 3));
+		layer.addAttribute("size", new THREE.BufferAttribute(sizes, 1));
+		App.tojo.layers.push(layer);
 
 		var material = new THREE.ShaderMaterial( 
 		{
-			uniforms:       uniforms,
+			uniforms: {
+				time: { value: 1.0 }
+			},
 			vertexShader:   document.getElementById( 'vertexshader' ).textContent,
 			fragmentShader: document.getElementById( 'fragmentshader' ).textContent,
 
 			//blending:       THREE.AdditiveBlending,
-			depthTest:      false,
+			//depthTest:      false,
 			transparent:    true
 		});
-
-		layer.addAttribute( 'position', new THREE.BufferAttribute( positions, 3 ) );
-		layer.addAttribute( 'customColor', new THREE.BufferAttribute( colors, 3 ) );
-		layer.addAttribute( 'size', new THREE.BufferAttribute( sizes, 1 ) );
-		layer.attributes.size.needsUpdate = true;
+		material.needsUpdate = true;
 
 		var particleSystem = new THREE.Points(layer, material);
 		App.tojo.particleSystems.push(particleSystem);
@@ -103,8 +91,8 @@ tojo10.prototype.RedrawSceneFrame = function() {
 		var position = this.particleSystems[a].geometry.attributes.position.array;
 		for ( var i = 0; i < position.length; i++ ) {
 			position[ 3 * i + 0 ] += i * .00001;
-			position[ 3 * i + 1 ] += i * .00001;//( Math.random() * 8 - 1 ) * this.radius;
-			position[ 3 * i + 2 ] += 0;//( Math.random() * 2 - 1 ) * this.radius;
+			//position[ 3 * i + 1 ] += i * .00001;//( Math.random() * 8 - 1 ) * this.radius;
+			//position[ 3 * i + 2 ] += 0;//( Math.random() * 2 - 1 ) * this.radius;
 		}		
 		this.particleSystems[a].geometry.attributes.position.needsUpdate = true;
 	}

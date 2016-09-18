@@ -2,8 +2,11 @@ function Set() {
 	
 }
 
-Set.prototype.Stage = function(canvas) {
+Set.prototype.Stage = function(canvas, tojo) {
 		
+	this.tojo = tojo;
+	this.tojo.SetupScene();
+
 	this.mainCanvas = canvas;
 	this.renderer = new THREE.WebGLRenderer({ canvas:this.mainCanvas, antilias: true, alpha: true, clearAlpha: 1});
 	this.renderer.setPixelRatio( window.devicePixelRatio );
@@ -36,11 +39,6 @@ Set.prototype.Stage = function(canvas) {
 	this.mouse.staticMoving = true;
 	this.mouse.dynamicDampingFactor = 0.3;
 	this.mouse.addEventListener( 'change', this.UpdateScene );
-}
-
-Set.prototype.AddScene = function (sceneObj) {	
-	this.tojo = sceneObj;
-	sceneObj.SetupScene();
 }
 
 Set.prototype.AnimateScene = function (sceneObj, fps) {
