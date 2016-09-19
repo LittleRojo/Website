@@ -79,7 +79,7 @@ tojo10.prototype.SetupScene = function() {
 			size: 2.883397,//2.7479,
 			//blending: THREE.AdditiveBlending,
 			vertexColors: THREE.VertexColors,
-			//map: THREE.ImageUtils.loadTexture('spark1.png'),
+			map: THREE.ImageUtils.loadTexture('man.png'),
 			opacity: 1,
 			transparent: true
 		});
@@ -274,13 +274,13 @@ tojo10.prototype.RedrawSceneFrame = function() {
         camera.lookAt(App.tojo.scene.position);     
     }
 
-var xStepFactor = 100;
-var yStepFactor = 100;
-var zStepFactor = 100;
+var xStepFactor = 500;
+var yStepFactor = 500;
+var zStepFactor = 500;
 
-var XMax = 150, XMin = -150;
-var YMax = 175, YMin = -175;
-var ZMax = 100, ZMin = 10;
+var XMax = 200, XMin = -200;
+var YMax = 215, YMin = -215;
+var ZMax = 110, ZMin = 10;
 tojo10.prototype.UpdateSceneCamera = function() {
 	
 	var camera = App.camera;
@@ -292,30 +292,42 @@ tojo10.prototype.UpdateSceneCamera = function() {
 	var newZ = camera.position.z + camera.zStep;
 
 	if(newX > XMax || newX < XMin){
+		xStepFactor = xStepFactor * Math.random() - (1300 - 700) + 900;
+		yStepFactor = yStepFactor * Math.random() - (1300 - 700) + 900;
+		zStepFactor = zStepFactor * Math.random() - (1300 - 700) + 900;
 		var X = Math.random() * (XMax - XMin) + XMin;
 		var Y = Math.random() * (YMax - YMin) + YMin;
 		var Z = Math.random() * (ZMax - ZMin) + ZMin;
 		camera.origin = new THREE.Vector3(newX, newY, newZ);
 		camera.destination = new THREE.Vector3(X, Y, Z);
+		//camera.target.position(new THREE.Vector3(X, Y, Z));
 	}
 	if(newY > YMax || newY < YMin){
+		xStepFactor = xStepFactor * Math.random() - (1300 - 700) + 900;
+		yStepFactor = yStepFactor * Math.random() - (1300 - 700) + 900;
+		zStepFactor = zStepFactor * Math.random() - (1300 - 700) + 900;
 		var X = Math.random() * (XMax - XMin) + XMin;
 		var Y = Math.random() * (YMax - YMin) + YMin;
 		var Z = Math.random() * (ZMax - ZMin) + ZMin;
 		camera.origin = new THREE.Vector3(newX, newY, newZ);
 		camera.destination = new THREE.Vector3(X, Y, Z);
+		//camera.target.position(new THREE.Vector3(X, Y, Z));
 	}
 	if(newZ > ZMax || newZ < ZMin){
+		xStepFactor = xStepFactor * Math.random() - (1300 - 700) + 900;
+		yStepFactor = yStepFactor * Math.random() - (1300 - 700) + 900;
+		zStepFactor = zStepFactor * Math.random() - (1300 - 700) + 900;
 		var X = Math.random() * (XMax - XMin) + XMin;
 		var Y = Math.random() * (YMax - YMin) + YMin;
 		var Z = Math.random() * (ZMax - ZMin) + ZMin;
 		camera.origin = new THREE.Vector3(newX, newY, newZ);
 		camera.destination = new THREE.Vector3(X, Y, Z);
+		//camera.target.position(new THREE.Vector3(X, Y, Z));
 	}
 
 	camera.position.set(newX, newY, newZ);
 	camera.up = new THREE.Vector3(0,0,1);
-	camera.lookAt(camera.destination);
+	//camera.lookAt(camera.destination);
 }
 
 tojo10.prototype.UpdateSceneLighting = function() {
