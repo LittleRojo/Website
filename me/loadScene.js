@@ -85,27 +85,3 @@ img.onload = function(){
     App.renderer.render(App.tojo.scene, App.camera);
     App.tojo.AnimateScene();
 };
-img.style.display = "none";
-img.src = 'logo.png';	
-
-/*var dirLight = new THREE.DirectionalLight(0x00ff00, 1);
-dirLight.position.set(180, 240, 80);
-this.scene.add(dirLight);*/
-
-/*var bluePoint = new THREE.PointLight(0x0033ff, 0, 0);
-bluePoint.position.set( 0, 0, 10 );
-this.scene.add(bluePoint);
-this.scene.add(new THREE.PointLightHelper(bluePoint, 0));*/
-
-var light = new THREE.SpotLight(0xffffff);
-light.intensity = 50;
-//light.shadowDarkness = 100;
-light.castShadow = true;
-//light.shadowCameraRight     =  5;
-//light.shadowCameraLeft     = -5;
-//light.shadowCameraTop      =  5;
-//light.shadowCameraBottom   = -5;
-//light.target.position.set( 0, 0, 0 );
-light.shadow.camera.near = true;
-light.position.set(-70, -100, 90);
-App.tojo.scene.add(light);	
