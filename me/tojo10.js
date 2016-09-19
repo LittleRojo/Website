@@ -127,12 +127,12 @@ tojo10.prototype.SetupScene = function() {
 	light.position.set(-70, -100, 90);
 	this.scene.add(light);	
 
-	var geometry = new THREE.PlaneGeometry( 10000, 10000, 1, 1 );
+	/*var geometry = new THREE.PlaneGeometry( 10000, 10000, 1, 1 );
 	var planeMaterial = new THREE.MeshLambertMaterial( { color: 0x00ff00, side: THREE.DoubleSide } );
 	var ground = new THREE.Mesh( geometry, planeMaterial );
 	ground.position.z = -1;
 	ground.receiveShadow = true;
-	this.scene.add( ground );
+	this.scene.add( ground );*/
 
 	/*var stars = 100000;
 	var counter = 0;

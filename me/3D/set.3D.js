@@ -5,8 +5,7 @@ function Set() {
 Set.prototype.Stage = function(canvas, tojo) {
 		
 	this.tojo = tojo;
-	this.tojo.SetupScene();
-
+	
 	this.mainCanvas = canvas;
 	this.renderer = new THREE.WebGLRenderer({ canvas:this.mainCanvas, antilias: true, alpha: true, clearAlpha: 1});
 	this.renderer.setPixelRatio( window.devicePixelRatio );
@@ -46,6 +45,12 @@ Set.prototype.AnimateScene = function (sceneObj, fps) {
 	sceneObj.AnimateScene(fps);
 }
 
-Set.prototype.UpdateScene = function () {
-	App.renderer.render(App.tojo.scene, App.camera);
+Set.prototype.AddWorld = function () {
+	var geometry = new THREE.PlaneGeometry( 10000, 10000, 1, 1 );
+	var planeMaterial = new THREE.MeshLambertMaterial( { color: 0x00ff00, side: THREE.DoubleSide } );
+	var ground = new THREE.Mesh( geometry, planeMaterial );
+	ground.position.z = -1;
+	ground.receiveShadow = true;
+	App.tojo.scene.add( ground );
+	this.renderer.render(this.tojo.scene, this.camera);
 }
