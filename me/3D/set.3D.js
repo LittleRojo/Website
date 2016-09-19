@@ -41,8 +41,9 @@ Set.prototype.Stage = function(canvas, tojo) {
 	this.mouse.addEventListener( 'change', this.UpdateScene );
 }
 
-Set.prototype.AnimateScene = function (sceneObj, fps) {
-	sceneObj.AnimateScene(fps);
+Set.prototype.AnimateScene = function () {
+	this.tojo.SetupScene();
+	this.tojo.AnimateScene();
 }
 
 Set.prototype.AddWorld = function () {
@@ -53,4 +54,17 @@ Set.prototype.AddWorld = function () {
 	ground.receiveShadow = true;
 	App.tojo.scene.add( ground );
 	this.renderer.render(this.tojo.scene, this.camera);
+
+	var light = new THREE.SpotLight(0xffffff);
+	light.intensity = 50;
+	//light.shadowDarkness = 100;
+	light.castShadow = true;
+	//light.shadowCameraRight     =  5;
+	//light.shadowCameraLeft     = -5;
+	//light.shadowCameraTop      =  5;
+	//light.shadowCameraBottom   = -5;
+	//light.target.position.set( 0, 0, 0 );
+	light.shadow.camera.near = true;
+	light.position.set(-70, -100, 90);
+	this.tojo.scene.add(light);	
 }

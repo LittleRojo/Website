@@ -114,7 +114,7 @@ tojo10.prototype.SetupScene = function() {
 	this.scene.add(bluePoint);
 	this.scene.add(new THREE.PointLightHelper(bluePoint, 0));*/
 
-	var light = new THREE.SpotLight(0xffffff);
+	/*var light = new THREE.SpotLight(0xffffff);
 	light.intensity = 50;
 	//light.shadowDarkness = 100;
 	light.castShadow = true;
@@ -125,7 +125,7 @@ tojo10.prototype.SetupScene = function() {
 	//light.target.position.set( 0, 0, 0 );
 	light.shadow.camera.near = true;
 	light.position.set(-70, -100, 90);
-	this.scene.add(light);	
+	App.tojo.scene.add(light);	*/
 
 	/*var geometry = new THREE.PlaneGeometry( 10000, 10000, 1, 1 );
 	var planeMaterial = new THREE.MeshLambertMaterial( { color: 0x00ff00, side: THREE.DoubleSide } );
