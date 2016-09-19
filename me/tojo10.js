@@ -65,7 +65,19 @@ tojo10.prototype.SetupScene = function() {
 				pixels.position[ 3 * counter ] = x - width;
 				pixels.position[ 3 * counter + 1 ] = (img.height - y) - height;
 				pixels.position[ 3 * counter+ 2 ] = 0;//( Math.random() * 2 - 1 ) * this.radius;
+				var s = Math.random() / 3 * 1000;
+				var t = Math.random() / 3 * 1000;
+				var cosS = Math.cos(s * (Math.PI / 180));
+				var cosT = Math.cos(t * (Math.PI / 180));
+				var sinS = Math.sin(s * (Math.PI / 180));
+				var sinT = Math.sin(t * (Math.PI / 180));
+				//x = r * cos(s) * sin(t)
+				//y = r * sin(s) * sin(t)
+				//z = r * cos(t)
 
+				//pixels.position[ 3 * counter ] = 100 * cosS * sinT;//(Math.random() - .5) * -10000;		
+				//pixels.position[ 3 * counter + 1 ] = 100 * sinS * sinT;//(Math.random() - .5) * 10000;
+				//pixels.position[ 3 * counter + 2 ] = 100 * cosT;
 				//pixels.size[counter] = 1;
 
 				//pixels.xDirection = 1;
@@ -140,19 +152,21 @@ tojo10.prototype.SetupScene = function() {
 
 	
 
-	//var ambientLight = new THREE.AmbientLight(0xfffff);
-	//this.scene.add(ambientLight); 
+	var ambientLight = new THREE.AmbientLight(0xfffff, .3);
+	this.scene.add(ambientLight); 
 
 	var geometry = new THREE.PlaneGeometry( 10000, 10000, 1, 1 );
-	var planeMaterial = new THREE.MeshLambertMaterial( { color: 0x00ff00, side: THREE.DoubleSide } );
+	var planeMaterial = new THREE.MeshLambertMaterial( { color: 0x00ff00  } );
 	var ground = new THREE.Mesh( geometry, planeMaterial );
+	ground.position.x = 0;
+	ground.position.y = 0;
 	ground.position.z = -1;
 	//ground.receiveShadow = true;
-	ground.shading = THREE.SmoothShading;
+	ground.shading = THREE.FlatShading;
 	this.scene.add( ground );
 
 	var light = new THREE.SpotLight(0xffffff);
-	light.power = 800;
+	light.power = .3;
 	//light.target = particleSystem;
 	App.tojo.scene.add(light.target);
 	light.shadowDarkness = 100;
@@ -164,7 +178,7 @@ tojo10.prototype.SetupScene = function() {
 	//light.target.position.set( 0, 0, 0 );
 	//light.shadow.camera.near = true;
 	//light.position.set(-70, -100, 90);
-	light.position.set(5, 10, 10);
+	light.position.set(5000, 1000, 1000);
 	this.scene.add(light);
 
 	starStart = counter;
@@ -194,7 +208,7 @@ tojo10.prototype.SetupScene = function() {
 
 		pixels.position[ 3 * counter ] = 100000 * Math.cos((Math.random() / 3 * 1000) * (Math.PI / 180));//(Math.random() - .5) * -10000;		
 		pixels.position[ 3 * counter + 1 ] =  100000 * Math.sin((Math.random() / 3 * 1000) * (Math.PI / 180));//(Math.random() - .5) * 10000;
-		pixels.position[ 3 * counter+ 2 ] = Math.random() * 100000;
+		pixels.position[ 3 * counter + 2 ] = (Math.random() - .5) * 1000000;
 
 		pixels.size[counter] = 100;
 
