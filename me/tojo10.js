@@ -79,8 +79,8 @@ tojo10.prototype.SetupScene = function() {
 			size: 2.883397,//2.7479,
 			//blending: THREE.AdditiveBlending,
 			vertexColors: THREE.VertexColors,
-			//map: THREE.ImageUtils.loadTexture('man.png'),
-			opacity: 1,
+			map: THREE.ImageUtils.loadTexture('man.jpg'),
+			opacity: 100,
 			transparent: true
 		});
 		material.castShadow = true;
