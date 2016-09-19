@@ -170,7 +170,7 @@ tojo10.prototype.SetupScene = function() {
 	starStart = counter;
 	
 
-	var stars = 1000;
+	var stars = 10000;
 	var counter = 0;
 	var pixels = new Pixel({
 		position: new Float32Array( stars * 3 ),
@@ -192,9 +192,9 @@ tojo10.prototype.SetupScene = function() {
 		
 		//pixels.color[ counter ] = new THREE.Color("rgb(255,255,255)");
 
-		pixels.position[ 3 * counter ] = 10000 * Math.cos((Math.random() / 3 * 1000) * (Math.PI / 180));//(Math.random() - .5) * -10000;		
-		pixels.position[ 3 * counter + 1 ] =  10000 * Math.sin((Math.random() / 3 * 1000) * (Math.PI / 180));//(Math.random() - .5) * 10000;
-		pixels.position[ 3 * counter+ 2 ] = Math.random() * 10000;
+		pixels.position[ 3 * counter ] = 100000 * Math.cos((Math.random() / 3 * 1000) * (Math.PI / 180));//(Math.random() - .5) * -10000;		
+		pixels.position[ 3 * counter + 1 ] =  100000 * Math.sin((Math.random() / 3 * 1000) * (Math.PI / 180));//(Math.random() - .5) * 10000;
+		pixels.position[ 3 * counter+ 2 ] = Math.random() * 100000;
 
 		pixels.size[counter] = 100;
 
@@ -207,10 +207,10 @@ tojo10.prototype.SetupScene = function() {
 	var material1 = new THREE.PointsMaterial( 
 	{
 		color: 0xffffff,
-		size: 20.883397,//2.7479,
+		size: 1000.883397,//2.7479,
 		//blending: THREE.AdditiveBlending,
 		//vertexColors: THREE.VertexColors,
-		//map: THREE.ImageUtils.loadTexture('spark1.png'),
+		map: THREE.ImageUtils.loadTexture('star.png'),
 		opacity: 1,
 		transparent: true
 	});
