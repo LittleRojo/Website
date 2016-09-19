@@ -30,7 +30,7 @@ Set.prototype.Stage = function(canvas, tojo) {
 
 	//window.keyboard = new THREEx.KeyboardState();
 	
-	this.mouse = new THREE.TrackballControls( this.camera, this.render.domElement );
+	this.mouse = new THREE.TrackballControls( this.camera, renderer.domElement );
 	this.mouse.rotateSpeed = 3;
 	this.mouse.zoomSpeed = 1.2;
 	this.mouse.panSpeed = 0.8;
