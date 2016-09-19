@@ -10,7 +10,6 @@ function tojo10() {
 	this.layers = [];
 	this.particleSystems = [];
 	this.scene = new THREE.Scene();
-	this.xhr = new XMLHttpRequest();
 }
 
 tojo10.prototype.SetupScene = function() {
@@ -42,10 +41,10 @@ tojo10.prototype.SetupScene = function() {
 			size: new Float32Array( img.width * img.height )
 		});
 		for(var x = 0; x < img.width; x++){
-			if(x % 2 == 0) { continue; }
+			if(x % 3 == 0) { continue; }
 			for(var y = 0; y < img.height; y++) {
 				var pixel = ctx.getImageData(x, y, 1, 1);
-				if(y % 2 == 0) { continue; }
+				if(y % 3 == 0) { continue; }
 				pixels.color[counter] = new THREE.Color("rgb(" + pixel.data[0] + "," + pixel.data[1] + "," + pixel.data[2] + ")");
 				if(pixels.color[counter].r == 0 && pixels.color[counter].g == 0 && pixels.color[counter].b == 0){
 					continue;
@@ -115,7 +114,7 @@ tojo10.prototype.SetupScene = function() {
 	this.scene.add(bluePoint);
 	this.scene.add(new THREE.PointLightHelper(bluePoint, 0));*/
 
-	/*var light = new THREE.SpotLight(0xffffff);
+	var light = new THREE.SpotLight(0xffffff);
 	light.intensity = 50;
 	//light.shadowDarkness = 100;
 	light.castShadow = true;
@@ -126,14 +125,14 @@ tojo10.prototype.SetupScene = function() {
 	//light.target.position.set( 0, 0, 0 );
 	light.shadow.camera.near = true;
 	light.position.set(-70, -100, 90);
-	App.tojo.scene.add(light);	*/
+	App.tojo.scene.add(light);
 
-	/*var geometry = new THREE.PlaneGeometry( 10000, 10000, 1, 1 );
+	var geometry = new THREE.PlaneGeometry( 10000, 10000, 1, 1 );
 	var planeMaterial = new THREE.MeshLambertMaterial( { color: 0x00ff00, side: THREE.DoubleSide } );
 	var ground = new THREE.Mesh( geometry, planeMaterial );
 	ground.position.z = -1;
 	ground.receiveShadow = true;
-	this.scene.add( ground );*/
+	this.scene.add( ground );
 
 	/*var stars = 100000;
 	var counter = 0;
@@ -187,7 +186,7 @@ tojo10.prototype.SetupScene = function() {
 	App.tojo.particleSystems.push(particleSystem);
 	App.tojo.scene.add(particleSystem);	*/
 
-	//App.renderer.render(this.scene, App.camera);
+	//App.renderer.render(App.tojo.scene, App.camera);
 }	
 
 tojo10.prototype.RedrawScene = function() {
