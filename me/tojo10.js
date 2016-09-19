@@ -30,8 +30,8 @@ tojo10.prototype.SetupScene = function() {
 		layer.normalsNeedUpdate = true;
 		layer.colorsNeedUpdate = true;
 		layer.uvsNeedUpdate = true;
-		layer.castShadow = true;
-		layer.recieveShadow = true;		
+		//layer.castShadow = true;
+		//layer.recieveShadow = true;		
 		App.tojo.layers.push(layer);
 
 		var counter = 0;
@@ -83,12 +83,15 @@ tojo10.prototype.SetupScene = function() {
 			opacity: 1,
 			transparent: true
 		});
+		material.castShadow = true;
+		material.recieveShadow = true;
 		//material.needsUpdate = true;
 		
 		var particleSystem = new THREE.Points(layer, material);
-		//particleSystem.castShadow = true;
-		//particleSystem.recieveShadow = true;
-		particleSystem.shading = THREE.FlatShading;
+		particleSystem.castShadow = true;
+		particleSystem.recieveShadow = true;
+		//particleSystem.shading = THREE.FlatShading;
+		particleSystem.sortParticles = true;
 		//layer.attributes.color.needsUpdate = true;
 		//layer.attributes.size.needsUpdate = true;
 		//layer.attributes.position.needsUpdate = true;
@@ -98,6 +101,21 @@ tojo10.prototype.SetupScene = function() {
 		//particleSystem.geometry.attributes.color.needsUpdate = true;
 		App.tojo.particleSystems.push(particleSystem);
 		App.tojo.scene.add(particleSystem);	
+		
+		var light = new THREE.SpotLight(0xffffff, 500, 100000);
+		light.target = particleSystem;
+		App.tojo.scene.add(light.target);
+		//light.shadowDarkness = 100;
+		light.castShadow = true;
+		/*light.shadowCameraRight     =  5;
+		light.shadowCameraLeft     = -5;
+		light.shadowCameraTop      =  5;
+		light.shadowCameraBottom   = -5;*/
+		//light.target.position.set( 0, 0, 0 );
+		//light.shadow.camera.near = true;
+		//light.position.set(-70, -100, 90);
+		light.position.set(5, 10, 10);
+		App.tojo.scene.add(light);
 		
 		App.renderer.render(App.tojo.scene, App.camera);
 		App.tojo.AnimateScene();
@@ -114,24 +132,17 @@ tojo10.prototype.SetupScene = function() {
 	this.scene.add(bluePoint);
 	this.scene.add(new THREE.PointLightHelper(bluePoint, 0));*/
 
-	var light = new THREE.SpotLight(0xffffff);
-	light.intensity = 50;
-	//light.shadowDarkness = 100;
-	light.castShadow = true;
-	//light.shadowCameraRight     =  5;
-	//light.shadowCameraLeft     = -5;
-	//light.shadowCameraTop      =  5;
-	//light.shadowCameraBottom   = -5;
-	//light.target.position.set( 0, 0, 0 );
-	light.shadow.camera.near = true;
-	light.position.set(-70, -100, 90);
-	App.tojo.scene.add(light);
+	
+
+	//var ambientLight = new THREE.AmbientLight(0xfffff);
+	//this.scene.add(ambientLight); 
 
 	var geometry = new THREE.PlaneGeometry( 10000, 10000, 1, 1 );
 	var planeMaterial = new THREE.MeshLambertMaterial( { color: 0x00ff00, side: THREE.DoubleSide } );
 	var ground = new THREE.Mesh( geometry, planeMaterial );
-	ground.position.z = -1;
-	ground.receiveShadow = true;
+	ground.position.z = -5;
+	//ground.receiveShadow = true;
+	ground.shading = THREE.SmoothShading;
 	this.scene.add( ground );
 
 	/*var stars = 100000;
@@ -263,8 +274,48 @@ tojo10.prototype.RedrawSceneFrame = function() {
         camera.lookAt(App.tojo.scene.position);     
     }
 
+var xStepFactor = 100;
+var yStepFactor = 100;
+var zStepFactor = 100;
+
+var XMax = 150, XMin = -150;
+var YMax = 175, YMin = -175;
+var ZMax = 100, ZMin = 10;
 tojo10.prototype.UpdateSceneCamera = function() {
 	
+	var camera = App.camera;
+	camera.xStep = (camera.destination.x - camera.origin.x) / xStepFactor;
+	var newX = camera.position.x + camera.xStep;
+	camera.yStep = (camera.destination.y - camera.origin.y) / yStepFactor;
+	var newY = camera.position.y + camera.yStep;
+	camera.zStep = (camera.destination.z - camera.origin.z) / zStepFactor;
+	var newZ = camera.position.z + camera.zStep;
+
+	if(newX > XMax || newX < XMin){
+		var X = Math.random() * (XMax - XMin) + XMin;
+		var Y = Math.random() * (YMax - YMin) + YMin;
+		var Z = Math.random() * (ZMax - ZMin) + ZMin;
+		camera.origin = new THREE.Vector3(newX, newY, newZ);
+		camera.destination = new THREE.Vector3(X, Y, Z);
+	}
+	if(newY > YMax || newY < YMin){
+		var X = Math.random() * (XMax - XMin) + XMin;
+		var Y = Math.random() * (YMax - YMin) + YMin;
+		var Z = Math.random() * (ZMax - ZMin) + ZMin;
+		camera.origin = new THREE.Vector3(newX, newY, newZ);
+		camera.destination = new THREE.Vector3(X, Y, Z);
+	}
+	if(newZ > ZMax || newZ < ZMin){
+		var X = Math.random() * (XMax - XMin) + XMin;
+		var Y = Math.random() * (YMax - YMin) + YMin;
+		var Z = Math.random() * (ZMax - ZMin) + ZMin;
+		camera.origin = new THREE.Vector3(newX, newY, newZ);
+		camera.destination = new THREE.Vector3(X, Y, Z);
+	}
+
+	camera.position.set(newX, newY, newZ);
+	camera.up = new THREE.Vector3(0,0,1);
+	camera.lookAt(camera.destination);
 }
 
 tojo10.prototype.UpdateSceneLighting = function() {
