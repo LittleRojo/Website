@@ -79,7 +79,7 @@ tojo10.prototype.SetupScene = function() {
 			size: 2.883397,//2.7479,
 			//blending: THREE.AdditiveBlending,
 			vertexColors: THREE.VertexColors,
-			map: THREE.ImageUtils.loadTexture('man.png'),
+			//map: THREE.ImageUtils.loadTexture('man.png'),
 			opacity: 1,
 			transparent: true
 		});
@@ -159,22 +159,22 @@ tojo10.prototype.SetupScene = function() {
 		pixels.color[ 4 * counter + 2 ] = 255;
 		pixels.color[ 4 * counter + 3 ] = 1;
 
-		pixels.position[ 3 * counter ] = -Math.random();
-		pixels.position[ 3 * counter + 1 ] = -Math.random();
-		pixels.position[ 3 * counter+ 2 ] = -Math.random();
+		pixels.position[ 3 * counter ] = (Math.random() - .5) * -1000;
+		pixels.position[ 3 * counter + 1 ] = (Math.random() - .5) * 1000;
+		pixels.position[ 3 * counter+ 2 ] = (Math.random()) * 1000;
 
 		pixels.size[counter] = 100;
 
 		var spot = new THREE.Vector3(pixels.position[ 3 * counter ], pixels.position[ 3 * counter + 1 ], pixels.position[ 3 * counter + 2 ])	
-		layer.vertices.push(spot)
+		geometry.vertices.push(spot)
 		counter++;
 	}
 
-	layer.colors = pixels.color;
+	geometry.colors = pixels.color;
 	var material = new THREE.PointsMaterial( 
 	{
 		color: 0xffffff,
-		size: 2.883397,//2.7479,
+		size: 200.883397,//2.7479,
 		//blending: THREE.AdditiveBlending,
 		vertexColors: THREE.VertexColors,
 		//map: THREE.ImageUtils.loadTexture('spark1.png'),
@@ -183,7 +183,7 @@ tojo10.prototype.SetupScene = function() {
 	});
 	//material.needsUpdate = true;
 	
-	var particleSystem = new THREE.Points(layer, material);
+	var particleSystem = new THREE.Points(geometry, material);
 	//particleSystem.castShadow = true;
 	//particleSystem.recieveShadow = true;
 	particleSystem.shading = THREE.FlatShading;
@@ -195,7 +195,7 @@ tojo10.prototype.SetupScene = function() {
 	//var particleSystem = new THREE.Mesh(layer, material);
 	//particleSystem.geometry.attributes.color.needsUpdate = true;
 	App.tojo.particleSystems.push(particleSystem);
-	App.tojo.scene.add(particleSystem);	*/
+	App.tojo.scene.add(particleSystem);*/
 
 	//App.renderer.render(App.tojo.scene, App.camera);
 }	
