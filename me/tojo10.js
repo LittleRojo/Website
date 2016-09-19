@@ -10,6 +10,8 @@ function tojo10() {
 	this.layers = [];
 	this.particleSystems = [];
 	this.scene = new THREE.Scene();
+
+	this.clock = new THREE.Clock();
 }
 
 tojo10.prototype.SetupScene = function() {
@@ -41,10 +43,10 @@ tojo10.prototype.SetupScene = function() {
 			size: new Float32Array( img.width * img.height )
 		});
 		for(var x = 0; x < img.width; x++){
-			if(x % 3 == 0) { continue; }
+			if(x % 2 != 0) { continue; }
 			for(var y = 0; y < img.height; y++) {
 				var pixel = ctx.getImageData(x, y, 1, 1);
-				if(y % 3 == 0) { continue; }
+				if(y % 2 != 0) { continue; }
 				pixels.color[counter] = new THREE.Color("rgb(" + pixel.data[0] + "," + pixel.data[1] + "," + pixel.data[2] + ")");
 				if(pixels.color[counter].r == 0 && pixels.color[counter].g == 0 && pixels.color[counter].b == 0){
 					continue;
@@ -90,7 +92,7 @@ tojo10.prototype.SetupScene = function() {
 		var particleSystem = new THREE.Points(layer, material);
 		particleSystem.castShadow = true;
 		particleSystem.recieveShadow = true;
-		//particleSystem.shading = THREE.FlatShading;
+		particleSystem.shading = THREE.FlatShading;
 		particleSystem.sortParticles = true;
 		//layer.attributes.color.needsUpdate = true;
 		//layer.attributes.size.needsUpdate = true;
@@ -102,10 +104,11 @@ tojo10.prototype.SetupScene = function() {
 		App.tojo.particleSystems.push(particleSystem);
 		App.tojo.scene.add(particleSystem);	
 		
-		var light = new THREE.SpotLight(0xffffff, 500, 100000);
+		var light = new THREE.SpotLight(0xffffff);
+		light.power = 800;
 		light.target = particleSystem;
 		App.tojo.scene.add(light.target);
-		//light.shadowDarkness = 100;
+		light.shadowDarkness = 100;
 		light.castShadow = true;
 		/*light.shadowCameraRight     =  5;
 		light.shadowCameraLeft     = -5;
@@ -140,7 +143,7 @@ tojo10.prototype.SetupScene = function() {
 	var geometry = new THREE.PlaneGeometry( 10000, 10000, 1, 1 );
 	var planeMaterial = new THREE.MeshLambertMaterial( { color: 0x00ff00, side: THREE.DoubleSide } );
 	var ground = new THREE.Mesh( geometry, planeMaterial );
-	ground.position.z = -5;
+	ground.position.z = -1;
 	//ground.receiveShadow = true;
 	ground.shading = THREE.SmoothShading;
 	this.scene.add( ground );
@@ -209,17 +212,25 @@ tojo10.prototype.RedrawScene = function() {
 	//this.CalculateFPS();
 }
 
+var elapsedTime = 0;
 tojo10.prototype.RedrawSceneFrame = function() {	
 	for(var a = 0; a < this.layers.length; a++) {
 		var pixels = this.particleSystems[a].geometry.vertices;
 		var xEdge = 1000;
+		var go = this.clock.getDelta();
+		elapsedTime += go;
+		if(elapsedTime <= 1 / 25) {
+			elapsedTime += go;
+			return;
+		} 
+		elapsedTime = 0;
 		for ( var i = 0; i < pixels.length; i++ ) {
 			//if(pixels[i].x <-xEdge || pixels[i].x > xEdge) {
 			//	pixels[i].xDirection = pixels[i].xDirection * -1;
 			//	}
 
-			pixels[i].x += (Math.random() - .5) * 0.7; 
-			pixels[i].y += (Math.random() - .5) * 0.7;
+			pixels[i].x += (Math.random() - .5) * .75; 
+			pixels[i].y += (Math.random() - .5) * .75;
 			
 			
 			//var theta = 1;
@@ -280,7 +291,7 @@ var zStepFactor = 500;
 
 var XMax = 200, XMin = -200;
 var YMax = 215, YMin = -215;
-var ZMax = 110, ZMin = 10;
+var ZMax = 110, ZMin = 2;
 tojo10.prototype.UpdateSceneCamera = function() {
 	
 	var camera = App.camera;
