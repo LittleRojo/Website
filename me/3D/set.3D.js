@@ -3,9 +3,6 @@ function Set() {
 }
 
 Set.prototype.Stage = function(canvas, tojo) {
-		
-	this.tojo = tojo;
-	this.tojo.SetupScene();
 	
 	this.mainCanvas = canvas;
 	this.renderer = new THREE.WebGLRenderer({ canvas:this.mainCanvas, antilias: true, alpha: true, clearAlpha: 1});
@@ -21,11 +18,11 @@ Set.prototype.Stage = function(canvas, tojo) {
 	//this.raycaster = new THREE.Raycaster();
 
 	this.camera = new THREE.PerspectiveCamera( 45, window.innerWidth / (window.innerHeight), 1, 1000000 );	
-	this.camera.position.set(490, 420, 340);
+	this.camera.position.set(490, 420, 180);
 	this.camera.up = new THREE.Vector3(0,0,1);
 	this.camera.lookAt(new THREE.Vector3(0,0,0));
 	this.camera.destination = new THREE.Vector3(0,0,0);
-	this.camera.origin = new THREE.Vector3(490,420,340);
+	this.camera.origin = new THREE.Vector3(490,420,180);
 
 	//window.camera = new THREE.OrthographicCamera( window.innerWidth / - 2, window.innerWidth / 2, window.innerHeight / 2, window.innerHeight / - 2, -1000, 1000 );
 	//window.camera.position.set( 20, 120, 992 );
@@ -42,6 +39,9 @@ Set.prototype.Stage = function(canvas, tojo) {
 	this.mouse.staticMoving = true;
 	this.mouse.dynamicDampingFactor = 0.3;
 	this.mouse.addEventListener( 'change', this.UpdateScene );
+
+	this.tojo = tojo;
+	this.tojo.SetupScene();
 }
 
 Set.prototype.AnimateScene = function () {

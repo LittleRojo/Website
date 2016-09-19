@@ -42,11 +42,13 @@ tojo10.prototype.SetupScene = function() {
 			color: [],
 			size: new Float32Array( img.width * img.height )
 		});
+		var width = img.width / 2;
+		var height = img.height / 2;
 		for(var x = 0; x < img.width; x++){
 			if(x % 2 != 0) { continue; }
-			for(var y = 0; y < img.height; y++) {
-				var pixel = ctx.getImageData(x, y, 1, 1);
+			for(var y = 0; y < img.height; y++) {				
 				if(y % 2 != 0) { continue; }
+				var pixel = ctx.getImageData(x, y, 1, 1);
 				pixels.color[counter] = new THREE.Color("rgb(" + pixel.data[0] + "," + pixel.data[1] + "," + pixel.data[2] + ")");
 				if(pixels.color[counter].r == 0 && pixels.color[counter].g == 0 && pixels.color[counter].b == 0){
 					continue;
@@ -58,15 +60,15 @@ tojo10.prototype.SetupScene = function() {
 				pixels.color[ 4 * counter + 2 ] = pixel.data[2];
 				pixels.color[ 4 * counter + 3 ] = pixel.data[3];*/
 
-				pixels.position[ 3 * counter ] = x - (img.width / 2);
-				pixels.position[ 3 * counter + 1 ] = (img.height - y) - (img.height / 2);
+				pixels.position[ 3 * counter ] = x - width;
+				pixels.position[ 3 * counter + 1 ] = (img.height - y) - height;
 				pixels.position[ 3 * counter+ 2 ] = 0;//( Math.random() * 2 - 1 ) * this.radius;
 
-				pixels.size[counter] = 1;
+				//pixels.size[counter] = 1;
 
-				pixels.xDirection = 1;
-				pixels.yDirection = 1;
-				pixels.zDirection = -1;
+				//pixels.xDirection = 1;
+				//pixels.yDirection = 1;
+				//pixels.zDirection = -1;
 
 				var spot = new THREE.Vector3(pixels.position[ 3 * counter ], pixels.position[ 3 * counter + 1 ], pixels.position[ 3 * counter + 2 ])	
 				layer.vertices.push(spot)
@@ -104,22 +106,6 @@ tojo10.prototype.SetupScene = function() {
 		App.tojo.particleSystems.push(particleSystem);
 		App.tojo.scene.add(particleSystem);	
 		
-		var light = new THREE.SpotLight(0xffffff);
-		light.power = 800;
-		light.target = particleSystem;
-		App.tojo.scene.add(light.target);
-		light.shadowDarkness = 100;
-		light.castShadow = true;
-		/*light.shadowCameraRight     =  5;
-		light.shadowCameraLeft     = -5;
-		light.shadowCameraTop      =  5;
-		light.shadowCameraBottom   = -5;*/
-		//light.target.position.set( 0, 0, 0 );
-		//light.shadow.camera.near = true;
-		//light.position.set(-70, -100, 90);
-		light.position.set(5, 10, 10);
-		App.tojo.scene.add(light);
-		
 		App.renderer.render(App.tojo.scene, App.camera);
 		App.tojo.AnimateScene();
 	};
@@ -148,6 +134,21 @@ tojo10.prototype.SetupScene = function() {
 	ground.shading = THREE.SmoothShading;
 	this.scene.add( ground );
 
+	var light = new THREE.SpotLight(0xffffff);
+	light.power = 800;
+	//light.target = particleSystem;
+	App.tojo.scene.add(light.target);
+	light.shadowDarkness = 100;
+	light.castShadow = true;
+	/*light.shadowCameraRight     =  5;
+	light.shadowCameraLeft     = -5;
+	light.shadowCameraTop      =  5;
+	light.shadowCameraBottom   = -5;*/
+	//light.target.position.set( 0, 0, 0 );
+	//light.shadow.camera.near = true;
+	//light.position.set(-70, -100, 90);
+	light.position.set(5, 10, 10);
+	this.scene.add(light);
 	/*var stars = 100000;
 	var counter = 0;
 	var pixels = new Pixel({
@@ -200,7 +201,7 @@ tojo10.prototype.SetupScene = function() {
 	App.tojo.particleSystems.push(particleSystem);
 	App.tojo.scene.add(particleSystem);*/
 
-	//App.renderer.render(App.tojo.scene, App.camera);
+	App.renderer.render(this.scene, App.camera);
 }	
 
 tojo10.prototype.RedrawScene = function() {
