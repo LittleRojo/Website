@@ -83,7 +83,7 @@ tojo10.prototype.SetupScene = function() {
 			size: 2.883397,//2.7479,
 			//blending: THREE.AdditiveBlending,
 			vertexColors: THREE.VertexColors,
-			map: THREE.ImageUtils.loadTexture('man.jpg'),
+			map: THREE.ImageUtils.loadTexture('man.png'),
 			opacity: 100,
 			transparent: true
 		});
@@ -230,8 +230,8 @@ tojo10.prototype.RedrawSceneFrame = function() {
 			//	pixels[i].xDirection = pixels[i].xDirection * -1;
 			//	}
 
-			pixels[i].x += (Math.random() - .5) * .75; 
-			pixels[i].y += (Math.random() - .5) * .75;
+			pixels[i].x += (Math.random() - .5) * .5; 
+			pixels[i].y += (Math.random() - .5) * .5;
 			
 			
 			//var theta = 1;
