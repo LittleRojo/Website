@@ -14,6 +14,7 @@ function tojo10() {
 	this.clock = new THREE.Clock();
 }
 
+var starStart=0;
 tojo10.prototype.SetupScene = function() {
 	
 	var canvas = document.createElement('canvas');
@@ -36,6 +37,7 @@ tojo10.prototype.SetupScene = function() {
 		//layer.recieveShadow = true;		
 		App.tojo.layers.push(layer);
 
+		var stars = 1000;
 		var counter = 0;
 		var pixels = new Pixel({
 			position: new Float32Array( img.width * img.height * 3 ),
@@ -49,14 +51,14 @@ tojo10.prototype.SetupScene = function() {
 			for(var y = 0; y < img.height; y++) {				
 				if(y % 2 != 0) { continue; }
 				var pixel = ctx.getImageData(x, y, 1, 1);
+				
 				pixels.color[counter] = new THREE.Color("rgb(" + pixel.data[0] + "," + pixel.data[1] + "," + pixel.data[2] + ")");
 				if(pixels.color[counter].r == 0 && pixels.color[counter].g == 0 && pixels.color[counter].b == 0){
 					continue;
 				}
 				//pixels.color[counter].setHSL( Math.random(), 1.0, 0.5 );
-		
-				/*pixels.color[ 4 * counter ] = pixel.data[0];
-				pixels.color[ 4 * counter + 1 ] = pixel.data[1];
+						
+				/*pixels.color[ 4 * counter + 1 ] = pixel.data[1];
 				pixels.color[ 4 * counter + 2 ] = pixel.data[2];
 				pixels.color[ 4 * counter + 3 ] = pixel.data[3];*/
 
@@ -75,6 +77,21 @@ tojo10.prototype.SetupScene = function() {
 				counter++;
 			}
 		}
+		/*starStart = counter;
+		for(var x = 0; x < stars; x++){
+			
+			pixels.color[counter ] = new THREE.Color("rgb(255,255,255)");
+
+			pixels.position[ 3 * counter ] = 1000 * Math.cos((Math.random() / 3 * 1000) * (Math.PI / 180));//(Math.random() - .5) * -10000;		
+			pixels.position[ 3 * counter + 1 ] =  1000 * Math.sin((Math.random() / 3 * 1000) * (Math.PI / 180));//(Math.random() - .5) * 10000;
+			pixels.position[ 3 * counter+ 2 ] = Math.random() * 1000;
+
+			pixels.size[counter] = 100;
+
+			var spot = new THREE.Vector3(pixels.position[ 3 * counter ], pixels.position[ 3 * counter + 1 ], pixels.position[ 3 * counter + 2 ])	
+			layer.vertices.push(spot)
+			counter++;
+		}*/
 
 		layer.colors = pixels.color;
 		var material = new THREE.PointsMaterial( 
@@ -83,7 +100,7 @@ tojo10.prototype.SetupScene = function() {
 			size: 2.883397,//2.7479,
 			//blending: THREE.AdditiveBlending,
 			vertexColors: THREE.VertexColors,
-			map: THREE.ImageUtils.loadTexture('man.png'),
+			map: THREE.ImageUtils.loadTexture('woman.png'),
 			opacity: 100,
 			transparent: true
 		});
@@ -149,45 +166,57 @@ tojo10.prototype.SetupScene = function() {
 	//light.position.set(-70, -100, 90);
 	light.position.set(5, 10, 10);
 	this.scene.add(light);
-	/*var stars = 100000;
+
+	starStart = counter;
+	
+
+	var stars = 1000;
 	var counter = 0;
 	var pixels = new Pixel({
 		position: new Float32Array( stars * 3 ),
 		color: [],
 		size: new Float32Array( stars )
 	});
+	var layer1 = new THREE.Geometry();				
+	//layer.addAttribute("color", new THREE.BufferAttribute(pixels.color, 4));
+	//layer.addAttribute("position", new THREE.BufferAttribute(positions, 3));
+	//layer.addAttribute("size", new THREE.BufferAttribute(pixels.size, 1));
+	layer1.verticesNeedUpdate = true;
+	layer1.normalsNeedUpdate = true;
+	layer1.colorsNeedUpdate = true;
+	layer1.uvsNeedUpdate = true;
+	//layer.castShadow = true;
+	//layer.recieveShadow = true;		
+	this.layers.push(layer1);
 	for(var x = 0; x < stars; x++){
 		
-		pixels.color[ 4 * counter ] = 255;
-		pixels.color[ 4 * counter + 1 ] = 255;
-		pixels.color[ 4 * counter + 2 ] = 255;
-		pixels.color[ 4 * counter + 3 ] = 1;
+		//pixels.color[ counter ] = new THREE.Color("rgb(255,255,255)");
 
-		pixels.position[ 3 * counter ] = (Math.random() - .5) * -1000;
-		pixels.position[ 3 * counter + 1 ] = (Math.random() - .5) * 1000;
-		pixels.position[ 3 * counter+ 2 ] = (Math.random()) * 1000;
+		pixels.position[ 3 * counter ] = 10000 * Math.cos((Math.random() / 3 * 1000) * (Math.PI / 180));//(Math.random() - .5) * -10000;		
+		pixels.position[ 3 * counter + 1 ] =  10000 * Math.sin((Math.random() / 3 * 1000) * (Math.PI / 180));//(Math.random() - .5) * 10000;
+		pixels.position[ 3 * counter+ 2 ] = Math.random() * 10000;
 
 		pixels.size[counter] = 100;
 
 		var spot = new THREE.Vector3(pixels.position[ 3 * counter ], pixels.position[ 3 * counter + 1 ], pixels.position[ 3 * counter + 2 ])	
-		geometry.vertices.push(spot)
+		layer1.vertices.push(spot)
 		counter++;
 	}
 
-	geometry.colors = pixels.color;
-	var material = new THREE.PointsMaterial( 
+	//geometry.colors = pixels.color;
+	var material1 = new THREE.PointsMaterial( 
 	{
 		color: 0xffffff,
-		size: 200.883397,//2.7479,
+		size: 20.883397,//2.7479,
 		//blending: THREE.AdditiveBlending,
-		vertexColors: THREE.VertexColors,
+		//vertexColors: THREE.VertexColors,
 		//map: THREE.ImageUtils.loadTexture('spark1.png'),
 		opacity: 1,
 		transparent: true
 	});
 	//material.needsUpdate = true;
 	
-	var particleSystem = new THREE.Points(geometry, material);
+	var particleSystem = new THREE.Points(layer1, material1);
 	//particleSystem.castShadow = true;
 	//particleSystem.recieveShadow = true;
 	particleSystem.shading = THREE.FlatShading;
@@ -198,8 +227,8 @@ tojo10.prototype.SetupScene = function() {
 	
 	//var particleSystem = new THREE.Mesh(layer, material);
 	//particleSystem.geometry.attributes.color.needsUpdate = true;
-	App.tojo.particleSystems.push(particleSystem);
-	App.tojo.scene.add(particleSystem);*/
+	this.particleSystems.push(particleSystem);
+	this.scene.add(particleSystem);
 
 	App.renderer.render(this.scene, App.camera);
 }	
@@ -215,7 +244,7 @@ tojo10.prototype.RedrawScene = function() {
 
 var elapsedTime = 0;
 tojo10.prototype.RedrawSceneFrame = function() {	
-	for(var a = 0; a < this.layers.length; a++) {
+	for(var a = 1; a < this.layers.length; a++) {
 		var pixels = this.particleSystems[a].geometry.vertices;
 		var xEdge = 1000;
 		var go = this.clock.getDelta();
@@ -226,6 +255,7 @@ tojo10.prototype.RedrawSceneFrame = function() {
 		} 
 		elapsedTime = 0;
 		for ( var i = 0; i < pixels.length; i++ ) {
+			//if(i >= starStart) break;
 			//if(pixels[i].x <-xEdge || pixels[i].x > xEdge) {
 			//	pixels[i].xDirection = pixels[i].xDirection * -1;
 			//	}
