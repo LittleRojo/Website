@@ -5,6 +5,7 @@ function Set() {
 Set.prototype.Stage = function(canvas, tojo) {
 		
 	this.tojo = tojo;
+	this.tojo.SetupScene();
 	
 	this.mainCanvas = canvas;
 	this.renderer = new THREE.WebGLRenderer({ canvas:this.mainCanvas, antilias: true, alpha: true, clearAlpha: 1});
@@ -42,8 +43,8 @@ Set.prototype.Stage = function(canvas, tojo) {
 }
 
 Set.prototype.AnimateScene = function () {
-	this.tojo.SetupScene();
-	this.tojo.AnimateScene();
+	//this.tojo.SetupScene();
+	//this.tojo.AnimateScene();
 }
 
 Set.prototype.AddWorld = function () {
@@ -52,8 +53,7 @@ Set.prototype.AddWorld = function () {
 	var ground = new THREE.Mesh( geometry, planeMaterial );
 	ground.position.z = -1;
 	ground.receiveShadow = true;
-	App.tojo.scene.add( ground );
-	this.renderer.render(this.tojo.scene, this.camera);
+	this.tojo.scene.add( ground );
 
 	var light = new THREE.SpotLight(0xffffff);
 	light.intensity = 50;
@@ -67,4 +67,10 @@ Set.prototype.AddWorld = function () {
 	light.shadow.camera.near = true;
 	light.position.set(-70, -100, 90);
 	this.tojo.scene.add(light);	
+
+	this.renderer.render(this.tojo.scene, this.camera);
 }
+
+Set.prototype.UpdateScene = function () {
+ 	App.renderer.render(App.tojo.scene, App.camera);
+ }
