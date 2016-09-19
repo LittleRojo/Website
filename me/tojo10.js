@@ -42,9 +42,10 @@ tojo10.prototype.SetupScene = function() {
 			size: new Float32Array( img.width * img.height )
 		});
 		for(var x = 0; x < img.width; x++){
+			if(x % 2 == 0) { continue; }
 			for(var y = 0; y < img.height; y++) {
 				var pixel = ctx.getImageData(x, y, 1, 1);
-
+				if(y % 2 == 0) { continue; }
 				pixels.color[counter] = new THREE.Color("rgb(" + pixel.data[0] + "," + pixel.data[1] + "," + pixel.data[2] + ")");
 				if(pixels.color[counter].r == 0 && pixels.color[counter].g == 0 && pixels.color[counter].b == 0){
 					continue;
