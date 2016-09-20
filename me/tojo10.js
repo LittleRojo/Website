@@ -156,7 +156,7 @@ tojo10.prototype.SetupScene = function() {
 	//this.scene.add(ambientLight); 
 
 	var geometry = new THREE.PlaneGeometry( 10000, 10000, 1, 1 );
-	var planeMaterial = new THREE.MeshLambertMaterial( { color: 0x00ff00  } );
+	var planeMaterial = new THREE.MeshLambertMaterial( { color: 0xA2C00E  } );
 	var ground = new THREE.Mesh( geometry, planeMaterial );
 	ground.position.x = 0;
 	ground.position.y = 0;
@@ -166,7 +166,7 @@ tojo10.prototype.SetupScene = function() {
 	this.scene.add( ground );
 
 	var light = new THREE.SpotLight(0xffffff);
-	light.power = 700.9;
+	light.power = 1000.9;
 	light.target = ground;
 	light.shadowCameraVisible = true;
 	App.tojo.scene.add(light.target);
