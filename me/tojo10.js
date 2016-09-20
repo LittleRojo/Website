@@ -80,7 +80,7 @@ tojo10.prototype.SetupScene = function() {
 			vertexColors: THREE.VertexColors,
 			map: THREE.ImageUtils.loadTexture('img/woman.png'),
 			opacity: 100,
-			transparent: true
+			transparent: trueas
 		});
 		material.castShadow = true;
 		material.recieveShadow = true;
@@ -90,7 +90,7 @@ tojo10.prototype.SetupScene = function() {
 		particleSystem.recieveShadow = true;
 		particleSystem.shading = THREE.FlatShading;
 		particleSystem.sortParticles = true;
-		particleSystem.rotateZ(130 * (Math.PI / 180));
+		particleSystem.rotateZ(135 * (Math.PI / 180));
 		App.tojo.particleSystems.push(particleSystem);
 		App.tojo.scene.add(particleSystem);	
 		
