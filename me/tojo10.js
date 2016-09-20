@@ -166,7 +166,7 @@ tojo10.prototype.SetupScene = function() {
 	this.scene.add( ground );
 
 	var light = new THREE.SpotLight(0xffffff);
-	light.power = 400.9;
+	light.power = 700.9;
 	light.target = ground;
 	light.shadowCameraVisible = true;
 	App.tojo.scene.add(light.target);
