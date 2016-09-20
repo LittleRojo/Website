@@ -62,9 +62,9 @@ tojo10.prototype.SetupScene = function() {
 				pixels.color[ 4 * counter + 2 ] = pixel.data[2];
 				pixels.color[ 4 * counter + 3 ] = pixel.data[3];*/
 
-				pixels.position[ 3 * counter ] = (x - width) * 4;
-				pixels.position[ 3 * counter + 1 ] = ((img.height - y) - height) * 4;
-				pixels.position[ 3 * counter+ 2 ] = 4;//( Math.random() * 2 - 1 ) * this.radius;
+				pixels.position[ 3 * counter ] = (x - width) * 1;
+				pixels.position[ 3 * counter + 1 ] = ((img.height - y) - height) * 1;
+				pixels.position[ 3 * counter+ 2 ] = 0;//( Math.random() * 2 - 1 ) * this.radius;
 				var s = Math.random() / 3 * 1000;
 				var t = Math.random() / 3 * 1000;
 				var cosS = Math.cos(s * (Math.PI / 180));
@@ -109,10 +109,10 @@ tojo10.prototype.SetupScene = function() {
 		var material = new THREE.PointsMaterial( 
 		{
 			color: 0xffffff,
-			size: 12.883397,//2.7479,
+			size: 2.883397,//2.7479,
 			//blending: THREE.AdditiveBlending,
 			vertexColors: THREE.VertexColors,
-			map: THREE.ImageUtils.loadTexture('Momma.png'),
+			map: THREE.ImageUtils.loadTexture('woman.png'),
 			opacity: 100,
 			transparent: true
 		});
