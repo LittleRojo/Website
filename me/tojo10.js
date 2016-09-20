@@ -152,8 +152,8 @@ tojo10.prototype.SetupScene = function() {
 
 	
 
-	var ambientLight = new THREE.AmbientLight(0xfffff, .3);
-	this.scene.add(ambientLight); 
+	//var ambientLight = new THREE.AmbientLight(0xfffff, .3);
+	//this.scene.add(ambientLight); 
 
 	var geometry = new THREE.PlaneGeometry( 10000, 10000, 1, 1 );
 	var planeMaterial = new THREE.MeshLambertMaterial( { color: 0x00ff00  } );
@@ -166,11 +166,13 @@ tojo10.prototype.SetupScene = function() {
 	this.scene.add( ground );
 
 	var light = new THREE.SpotLight(0xffffff);
-	light.power = .3;
-	//light.target = particleSystem;
+	light.power = 400.9;
+	light.target = ground;
+	light.shadowCameraVisible = true;
 	App.tojo.scene.add(light.target);
 	light.shadowDarkness = 100;
 	light.castShadow = true;
+	
 	/*light.shadowCameraRight     =  5;
 	light.shadowCameraLeft     = -5;
 	light.shadowCameraTop      =  5;
@@ -178,7 +180,7 @@ tojo10.prototype.SetupScene = function() {
 	//light.target.position.set( 0, 0, 0 );
 	//light.shadow.camera.near = true;
 	//light.position.set(-70, -100, 90);
-	light.position.set(5000, 1000, 1000);
+	light.position.set(-5, -5, 10);
 	this.scene.add(light);
 
 	starStart = counter;
