@@ -80,7 +80,7 @@ tojo10.prototype.SetupScene = function() {
 			vertexColors: THREE.VertexColors,
 			map: THREE.ImageUtils.loadTexture('img/woman.png'),
 			opacity: 100,
-			transparent: trueas
+			transparent: true
 		});
 		material.castShadow = true;
 		material.recieveShadow = true;
