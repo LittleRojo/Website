@@ -36,5 +36,9 @@ Set.prototype.Stage = function(canvas, tojo) {
 }
 
 Set.prototype.UpdateScene = function () {
- 	App.renderer.render(App.tojo.scene, App.camera);
+ 	var id = App.renderer.render(App.tojo.scene, App.camera);
+ }
+
+ Set.prototype.AlterVideo = function () {
+ 	cancelAnimationFrame(id);
  }

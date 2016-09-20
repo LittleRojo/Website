@@ -42,9 +42,9 @@ tojo10.prototype.SetupScene = function() {
 		var width = img.width / 2;
 		var height = img.height / 2;
 		for(var x = 0; x < img.width; x++){
-			if(x % 2 != 0) { continue; }
+			if(x % 4 != 0) { continue; }
 			for(var y = 0; y < img.height; y++) {				
-				if(y % 2 != 0) { continue; }
+				if(y % 4 != 0) { continue; }
 				var pixel = ctx.getImageData(x, y, 1, 1);
 				
 				pixels.color[counter] = new THREE.Color("rgb(" + pixel.data[0] + "," + pixel.data[1] + "," + pixel.data[2] + ")");
