@@ -56,6 +56,9 @@ tojo10.prototype.SetupScene = function() {
 				if(pixels.color[counter].r == 0 && pixels.color[counter].g == 0 && pixels.color[counter].b == 0){
 					continue;
 				}
+				if(pixels.color[counter].r == 42 && pixels.color[counter].g == 126 && pixels.color[counter].b == 188){
+					continue;
+				}
 				//pixels.color[counter].setHSL( Math.random(), 1.0, 0.5 );
 						
 				/*pixels.color[ 4 * counter + 1 ] = pixel.data[1];
@@ -125,6 +128,7 @@ tojo10.prototype.SetupScene = function() {
 		particleSystem.recieveShadow = true;
 		particleSystem.shading = THREE.FlatShading;
 		particleSystem.sortParticles = true;
+		particleSystem.rotateZ(130 * (Math.PI / 180));
 		//layer.attributes.color.needsUpdate = true;
 		//layer.attributes.size.needsUpdate = true;
 		//layer.attributes.position.needsUpdate = true;
@@ -139,7 +143,7 @@ tojo10.prototype.SetupScene = function() {
 		App.tojo.AnimateScene();
 	};
 	img.style.display = "none";
-	img.src = 'logo.png';	
+	img.src = 'map.jpg';	
 
 	/*var dirLight = new THREE.DirectionalLight(0x00ff00, 1);
     dirLight.position.set(180, 240, 80);
@@ -155,14 +159,20 @@ tojo10.prototype.SetupScene = function() {
 	//var ambientLight = new THREE.AmbientLight(0xfffff, .3);
 	//this.scene.add(ambientLight); 
 
+	var texture = THREE.ImageUtils.loadTexture( "grass.jpg" );
+	texture.wrapS = THREE.RepeatWrapping; 
+	texture.wrapT = THREE.RepeatWrapping;
+	texture.repeat.set( 100, 100 ); 
+
 	var geometry = new THREE.PlaneGeometry( 10000, 10000, 1, 1 );
-	var planeMaterial = new THREE.MeshLambertMaterial( { color: 0xA7EC6A  } );
+	var planeMaterial = new THREE.MeshBasicMaterial( { map: texture } );
 	var ground = new THREE.Mesh( geometry, planeMaterial );
 	ground.position.x = 0;
 	ground.position.y = 0;
 	ground.position.z = -1;
 	//ground.receiveShadow = true;
 	ground.shading = THREE.FlatShading;
+	ground.rotateZ(130 * (Math.PI / 180));
 	this.scene.add( ground );
 
 	var light = new THREE.SpotLight(0xffffff);
@@ -332,9 +342,9 @@ tojo10.prototype.RedrawSceneFrame = function() {
         camera.lookAt(App.tojo.scene.position);     
     }
 
-var xStepFactor = 500;
-var yStepFactor = 500;
-var zStepFactor = 500;
+var xStepFactor = 5;
+var yStepFactor = 5;
+var zStepFactor = 5;
 
 var XMax = 200, XMin = -200;
 var YMax = 215, YMin = -215;
@@ -343,11 +353,11 @@ tojo10.prototype.UpdateSceneCamera = function() {
 	
 	var camera = App.camera;
 	camera.xStep = (camera.destination.x - camera.origin.x) / xStepFactor;
-	var newX = camera.position.x + camera.xStep;
+	var newX = camera.position.x + (camera.xStep);
 	camera.yStep = (camera.destination.y - camera.origin.y) / yStepFactor;
-	var newY = camera.position.y + camera.yStep;
+	var newY = camera.position.y + (camera.yStep);
 	camera.zStep = (camera.destination.z - camera.origin.z) / zStepFactor;
-	var newZ = camera.position.z + camera.zStep;
+	var newZ = camera.position.z + (camera.zStep);
 
 	if(newX > XMax || newX < XMin){
 		xStepFactor = xStepFactor * Math.random() - (1300 - 700) + 900;
