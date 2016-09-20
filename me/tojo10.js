@@ -98,15 +98,15 @@ tojo10.prototype.SetupScene = function() {
 		App.tojo.AnimateScene();
 	};
 	img.style.display = "none";
-	img.src = 'map.jpg';	
+	img.src = 'map.png';	
 
-	var texture = THREE.ImageUtils.loadTexture( "grass.jpg" );
+	var texture = THREE.ImageUtils.loadTexture( "grass.png" );
 	texture.wrapS = THREE.RepeatWrapping; 
 	texture.wrapT = THREE.RepeatWrapping;
 	texture.repeat.set( 100, 100 ); 
 
 	var geometry = new THREE.PlaneGeometry( 10000, 10000, 1, 1 );
-	var planeMaterial = new THREE.MeshBasicMaterial( { map: texture } );
+	var planeMaterial = new THREE.MeshBasicMaterial( { map: texture, side: THREE.DoubleSide } );
 	var ground = new THREE.Mesh( geometry, planeMaterial );
 	ground.position.x = 0;
 	ground.position.y = 0;
