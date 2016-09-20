@@ -62,9 +62,9 @@ tojo10.prototype.SetupScene = function() {
 				pixels.color[ 4 * counter + 2 ] = pixel.data[2];
 				pixels.color[ 4 * counter + 3 ] = pixel.data[3];*/
 
-				pixels.position[ 3 * counter ] = x - width;
-				pixels.position[ 3 * counter + 1 ] = (img.height - y) - height;
-				pixels.position[ 3 * counter+ 2 ] = 0;//( Math.random() * 2 - 1 ) * this.radius;
+				pixels.position[ 3 * counter ] = (x - width) * 4;
+				pixels.position[ 3 * counter + 1 ] = ((img.height - y) - height) * 4;
+				pixels.position[ 3 * counter+ 2 ] = 4;//( Math.random() * 2 - 1 ) * this.radius;
 				var s = Math.random() / 3 * 1000;
 				var t = Math.random() / 3 * 1000;
 				var cosS = Math.cos(s * (Math.PI / 180));
@@ -109,10 +109,10 @@ tojo10.prototype.SetupScene = function() {
 		var material = new THREE.PointsMaterial( 
 		{
 			color: 0xffffff,
-			size: 2.883397,//2.7479,
+			size: 12.883397,//2.7479,
 			//blending: THREE.AdditiveBlending,
 			vertexColors: THREE.VertexColors,
-			map: THREE.ImageUtils.loadTexture('woman.png'),
+			map: THREE.ImageUtils.loadTexture('momma.png'),
 			opacity: 100,
 			transparent: true
 		});
@@ -156,7 +156,7 @@ tojo10.prototype.SetupScene = function() {
 	//this.scene.add(ambientLight); 
 
 	var geometry = new THREE.PlaneGeometry( 10000, 10000, 1, 1 );
-	var planeMaterial = new THREE.MeshLambertMaterial( { color: 0xA2C00E  } );
+	var planeMaterial = new THREE.MeshLambertMaterial( { color: 0xA7EC6A  } );
 	var ground = new THREE.Mesh( geometry, planeMaterial );
 	ground.position.x = 0;
 	ground.position.y = 0;
@@ -180,7 +180,7 @@ tojo10.prototype.SetupScene = function() {
 	//light.target.position.set( 0, 0, 0 );
 	//light.shadow.camera.near = true;
 	//light.position.set(-70, -100, 90);
-	light.position.set(-5, -5, 10);
+	light.position.set(5, 5, 10);
 	this.scene.add(light);
 
 	starStart = counter;
