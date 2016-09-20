@@ -174,7 +174,6 @@ tojo10.prototype.SetupScene = function() {
 tojo10.prototype.RedrawScene = function() {
 	this.RedrawSceneFrame();
 	this.UpdateSceneCamera();
-	this.UpdateSceneLighting();
 	this.UpdateUserInput();
 	App.renderer.render( this.scene, App.camera );
 }
