@@ -103,7 +103,7 @@ tojo10.prototype.SetupScene = function() {
 	var texture = THREE.ImageUtils.loadTexture( "img/grass.png" );
 	texture.wrapS = THREE.RepeatWrapping; 
 	texture.wrapT = THREE.RepeatWrapping;
-	texture.repeat.set( 100, 100 ); 
+	texture.repeat.set( 2500, 2500 ); 
 
 	var geometry = new THREE.PlaneGeometry( 10000, 10000, 1, 1 );
 	var planeMaterial = new THREE.MeshBasicMaterial( { map: texture, side: THREE.DoubleSide } );
@@ -116,14 +116,13 @@ tojo10.prototype.SetupScene = function() {
 	this.scene.add( ground );
 
 	var light = new THREE.SpotLight(0xffffff);
-	light.power = 1000.9;
+	light.power = .2;
 	light.target = ground;
 	light.shadowCameraVisible = true;
 	App.tojo.scene.add(light.target);
-	light.shadowDarkness = 100;
-	light.castShadow = true;
-	
-	light.position.set(5, 5, 10);
+	light.shadowDarkness = 10000;
+	light.castShadow = true;	
+	light.position.set(400, 400, 10);
 	this.scene.add(light);
 
 	starStart = counter;
