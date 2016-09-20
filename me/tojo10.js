@@ -78,7 +78,7 @@ tojo10.prototype.SetupScene = function() {
 			color: 0xffffff,
 			size: 2.883397,
 			vertexColors: THREE.VertexColors,
-			map: THREE.ImageUtils.loadTexture('woman.png'),
+			map: THREE.ImageUtils.loadTexture('img/woman.png'),
 			opacity: 100,
 			transparent: true
 		});
@@ -98,9 +98,9 @@ tojo10.prototype.SetupScene = function() {
 		App.tojo.AnimateScene();
 	};
 	img.style.display = "none";
-	img.src = 'map.png';	
+	img.src = 'img/map.png';	
 
-	var texture = THREE.ImageUtils.loadTexture( "grass.png" );
+	var texture = THREE.ImageUtils.loadTexture( "img/grass.png" );
 	texture.wrapS = THREE.RepeatWrapping; 
 	texture.wrapT = THREE.RepeatWrapping;
 	texture.repeat.set( 100, 100 ); 
@@ -158,7 +158,7 @@ tojo10.prototype.SetupScene = function() {
 	{
 		color: 0xffffff,
 		size: 1000.883397,
-		map: THREE.ImageUtils.loadTexture('star.png'),
+		map: THREE.ImageUtils.loadTexture('img/star.png'),
 		opacity: 1,
 		transparent: true
 	});
