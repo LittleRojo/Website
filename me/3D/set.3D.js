@@ -14,9 +14,6 @@ Set.prototype.Stage = function(canvas, tojo) {
 	this.renderer.shadowMapBias = 0.0039;
 	this.renderer.shadowMapDarkness = 0.5;
 
-	//this.projector = new THREE.Projector();
-	//this.raycaster = new THREE.Raycaster();
-
 	this.camera = new THREE.PerspectiveCamera( 45, window.innerWidth / (window.innerHeight), 1, 1000000 );	
 	this.camera.position.set(4090, 4020, 1000);
 	this.camera.up = new THREE.Vector3(0,0,1);
@@ -24,12 +21,6 @@ Set.prototype.Stage = function(canvas, tojo) {
 	this.camera.destination = new THREE.Vector3(0,0,0);
 	this.camera.origin = new THREE.Vector3(4090,4020,1000);
 
-	//window.camera = new THREE.OrthographicCamera( window.innerWidth / - 2, window.innerWidth / 2, window.innerHeight / 2, window.innerHeight / - 2, -1000, 1000 );
-	//window.camera.position.set( 20, 120, 992 );
-	//window.camera.lookAt(new THREE.Vector3(0, 0, 0));
-
-	//window.keyboard = new THREEx.KeyboardState();
-	
 	this.mouse = new THREE.TrackballControls( this.camera );
 	this.mouse.rotateSpeed = 3;
 	this.mouse.zoomSpeed = 1.2;
@@ -42,33 +33,6 @@ Set.prototype.Stage = function(canvas, tojo) {
 
 	this.tojo = tojo;
 	this.tojo.SetupScene();
-}
-
-Set.prototype.AnimateScene = function () {
-	//this.tojo.SetupScene();
-	//this.tojo.AnimateScene();
-}
-
-Set.prototype.AddWorld = function () {
-	var geometry = new THREE.PlaneGeometry( 10000, 10000, 1, 1 );
-	var planeMaterial = new THREE.MeshLambertMaterial( { color: 0x00ff00, side: THREE.DoubleSide } );
-	var ground = new THREE.Mesh( geometry, planeMaterial );
-	ground.position.z = -10;
-	ground.receiveShadow = true;
-	ground.shading = THREE.FlatShading;
-	this.tojo.scene.add( ground );
-
-	var light = new THREE.SpotLight(0xff0000);
-	light.intensity = 5;
-	//light.shadowDarkness = 100;
-	light.castShadow = true;
-	//light.target.position.set( 0, 0, 0 );
-	//light.shadow.camera.near = true;
-	//light.position.set(-70, -100, 90);
-	light.position.set(-0, -0, 10);
-	this.tojo.scene.add(light);	
-
-	this.renderer.render(this.tojo.scene, this.camera);
 }
 
 Set.prototype.UpdateScene = function () {
