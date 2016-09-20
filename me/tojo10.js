@@ -252,8 +252,7 @@ tojo10.prototype.UpdateSceneCamera = function() {
 }
 
 //USER EVENTS
-tojo10.prototype.UpdateUserInput = function() {
-	this.UpdateUserKeyboard();
+tojo10.prototype.UpdateUserInput = function() {	
 	this.UpdateUserMouse();
 }
 
