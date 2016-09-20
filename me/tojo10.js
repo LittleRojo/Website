@@ -112,7 +112,7 @@ tojo10.prototype.SetupScene = function() {
 			size: 12.883397,//2.7479,
 			//blending: THREE.AdditiveBlending,
 			vertexColors: THREE.VertexColors,
-			map: THREE.ImageUtils.loadTexture('momma.png'),
+			map: THREE.ImageUtils.loadTexture('Momma.png'),
 			opacity: 100,
 			transparent: true
 		});
