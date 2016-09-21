@@ -29,7 +29,7 @@ var clock = new THREE.Clock();
 Sound.prototype.Play = function() {
     var context = new (window.AudioContext || window.webkitAudioContext)();
 
-    this.vol = context.createGainNode();
+    this.vol = context.createGain();
     this.vol.gain.value = 1; // from 0 to 1, 1 full volume, 0 is muted    
     this.vol.connect(context.destination); // connect vol to context destination
 
