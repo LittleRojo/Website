@@ -10,8 +10,6 @@ function tojo10() {
 	this.layers = [];
 	this.particleSystems = [];
 	this.scene = new THREE.Scene();
-
-	this.clock = new THREE.Clock();
 }
 
 var starStart=0;
@@ -174,15 +172,17 @@ tojo10.prototype.RedrawScene = function() {
 	this.RedrawSceneFrame();
 	this.UpdateSceneCamera();
 	this.UpdateUserInput();
+	this.UpdateMusic();
 	App.renderer.render( this.scene, App.camera );
 }
 
 var elapsedTime = 0;
+var cameraClock = new THREE.Clock();
 tojo10.prototype.RedrawSceneFrame = function() {	
 	for(var a = 1; a < this.layers.length; a++) {
 		var pixels = this.particleSystems[a].geometry.vertices;
 		var xEdge = 1000;
-		var go = this.clock.getDelta();
+		var go = cameraClock.getDelta();
 		elapsedTime += go;
 		if(elapsedTime <= 1 / 25) {
 			elapsedTime += go;
@@ -268,4 +268,15 @@ tojo10.prototype.AnimateScene = function(fps) {
 	}
 	App.tojo.RedrawScene();
 	requestAnimationFrame(App.tojo.AnimateScene);
+}
+
+var clock = new THREE.Clock();
+var clockTime = 0;
+tojo10.prototype.UpdateMusic = function() {
+	var delta = clock.getDelta() * 1000;
+	clockTime += delta;
+	if(clockTime > 1000) {
+		//App.Sound.osc.frequency.value -= 10;
+		clockTime = 0;
+	}
 }
