@@ -4,16 +4,15 @@ function Pixel(){
     this.size = 1;
 }
 
-function Note(note, octave, duration, rest) {
-    if(note == "REST"){
-        this.note = "XX";
-        this.duration = 1;
-        this.rest = 1;
-        return;
-    }
-    else {
-        this.note = note + octave;
-    }
-    this.duration = duration;
-    this.rest = (typeof rest === 'undefined') ? 0 : rest;
+function Note(note) {
+    this.note = note[0];
+    this.octave = note[1];
+    this.frequency = 0;    
+    if(this.note == "C") this.frequency = 261.6;
+    if(this.note == "D") this.frequency = 293.7;
+    if(this.note == "E") this.frequency = 329.6;
+    if(this.note == "F") this.frequency = 349.2;
+    if(this.note == "G") this.frequency = 392;
+    if(this.note == "A") this.frequency = 440;
+    if(this.note == "B") this.frequency = 493.9;
 }
