@@ -37,17 +37,19 @@
 		</script>
 	</head>	
 	<body style="margin:0px" bgcolor="black" id="body" onload="onload()" >
-		<audio id="tinwkle" src="media/twinkle.m4a" autoplay controls loop></audio>
-		
-		<div style="position:fixed; top:4px; left:1000px; visibility:hidden;" id="speedLabel">
-			<font style="color:yellow">Speed: </font>
+		<div id="wrapper">
+			<audio id="tinwkle" src="media/twinkle.m4a" autoplay controls loop></audio>
+			
+			<div style="position:fixed; top:4px; left:1000px; visibility:hidden;" id="speedLabel">
+				<font style="color:yellow">Speed: </font>
+			</div>
+			<input onchange="updateSpeed(this);" style="background:gray; visibility:hidden;" type="range" id="speed" value=".0035" min="0" max=".0035" step=".000001">
+			
+			<div style="position:fixed; top:4px; left:550px; visibility:hidden;" id="navigation">
+				<font style="color:red">The Pixel People</font>
+			</div>
+			
+			<canvas id="mainCanvas" style="position:fixed; left:0px; top:25px;" />
 		</div>
-		<input onchange="updateSpeed(this);" style="background:gray; visibility:hidden;" type="range" id="speed" value=".0035" min="0" max=".0035" step=".000001">
-		
-		<div style="position:fixed; top:4px; left:550px; visibility:hidden;" id="navigation">
-			<font style="color:red">The Pixel People</font>
-		</div>
-		
-		<canvas id="mainCanvas" style="position:fixed; left:0px; top:25px;" />
 	</body>
 </html>
