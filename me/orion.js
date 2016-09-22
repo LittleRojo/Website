@@ -75,8 +75,6 @@ Sound.prototype.Load = function() {
         .note('whole', 'C' + octave)
         .rest('whole');
 
-    this.rightHand.repeatFromBeginning(1000);
-
     /*octave = 4;
     this.leftHand.setVolume(50);
     this.leftHand.note('eighth', 'C' + octave)
