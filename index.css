@@ -1,0 +1,17 @@
+#speed {
+    position: fixed;
+    top: 10px;
+    left: 90px;
+    height: 2px;
+    width: 50px;
+    -webkit-appearance: none !important;
+}
+
+#speed::-webkit-slider-thumb {
+    -webkit-appearance: none !important;
+    background-color: #006CD0;
+    height: 12px;
+    width: 12px;
+    border-radius: 100%;
+    cursor: pointer;
+}
