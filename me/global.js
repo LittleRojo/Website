@@ -8,8 +8,7 @@ function onload(){
 		}
 
 		//IPHONE ORIANTATION - LANDSCAPE
-		else {  
-			window.orientation = 0;		
+		else {  		
 		}
 	}
 	
