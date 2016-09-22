@@ -276,7 +276,10 @@ tojo10.prototype.UpdateMusic = function() {
 	var delta = clock.getDelta() * 1000;
 	clockTime += delta;
 	if(clockTime > 1000) {
-		//App.Sound.osc.frequency.value -= 10;
+		if(!App.Sound.on) {
+			App.Sound.Load();
+			App.Sound.Play();
+		}			
 		clockTime = 0;
 	}
 }

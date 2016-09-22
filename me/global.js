@@ -7,7 +7,7 @@ function onload(){
 	App = new Set();
 	var tojo = new tojo10();
 	App.Stage(main, tojo);
-	App.Sound = new Sound(120);
+	App.Sound = new Sound();
 	App.Sound.Load();
 	App.Sound.Play();
 }
