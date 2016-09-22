@@ -10,6 +10,8 @@ function tojo10() {
 	this.layers = [];
 	this.particleSystems = [];
 	this.scene = new THREE.Scene();
+
+	this.animationSpeed = .5;
 }
 
 var starStart=0;
@@ -190,64 +192,41 @@ tojo10.prototype.RedrawSceneFrame = function() {
 		} 
 		elapsedTime = 0;
 		for ( var i = 0; i < pixels.length; i++ ) {
-			pixels[i].x += (Math.random() - .5) * .5; 
-			pixels[i].y += (Math.random() - .5) * .5;			
+			pixels[i].x += (Math.random() - .5) * this.animationSpeed; 
+			pixels[i].y += (Math.random() - .5) * this.animationSpeed;			
 		}		
 		this.particleSystems[a].geometry.__dirtyVertices = true;
 		this.particleSystems[a].geometry.verticesNeedUpdate = true;
 	}
 }
   
-var xStepFactor = 5;
-var yStepFactor = 5;
-var zStepFactor = 5;
+var xStepFactor = .002;
+var yStepFactor = .002;
+var zStepFactor = .002;
 
 var XMax = 200, XMin = -200;
 var YMax = 215, YMin = -215;
 var ZMax = 110, ZMin = 2;
 tojo10.prototype.UpdateSceneCamera = function() {
 	
-	var camera = App.camera;
-	camera.xStep = (camera.destination.x - camera.origin.x) / xStepFactor;
-	var newX = camera.position.x + (camera.xStep);
-	camera.yStep = (camera.destination.y - camera.origin.y) / yStepFactor;
-	var newY = camera.position.y + (camera.yStep);
-	camera.zStep = (camera.destination.z - camera.origin.z) / zStepFactor;
-	var newZ = camera.position.z + (camera.zStep);
+	var camera = App.camera;	
+	camera.xStep = (camera.destination.x - camera.origin.x) * xStepFactor;	
+	camera.yStep = (camera.destination.y - camera.origin.y) * yStepFactor;	
+	camera.zStep = (camera.destination.z - camera.origin.z) * zStepFactor;	
+	var newX = camera.position.x + camera.xStep;
+	var newY = camera.position.y + camera.yStep;
+	var newZ = camera.position.z + camera.zStep;
 
-	if(newX > XMax || newX < XMin){
-		xStepFactor = xStepFactor * Math.random() - (1300 - 700) + 900;
-		yStepFactor = yStepFactor * Math.random() - (1300 - 700) + 900;
-		zStepFactor = zStepFactor * Math.random() - (1300 - 700) + 900;
+	if(newX > XMax || newX < XMin || newY > YMax || newY < YMin || newZ > ZMax || newZ < ZMin){
 		var X = Math.random() * (XMax - XMin) + XMin;
 		var Y = Math.random() * (YMax - YMin) + YMin;
 		var Z = Math.random() * (ZMax - ZMin) + ZMin;
-		camera.origin = new THREE.Vector3(newX, newY, newZ);
 		camera.destination = new THREE.Vector3(X, Y, Z);
+		camera.origin = new THREE.Vector3(camera.position.x, camera.position.y, camera.position.z);		
 	}
-	if(newY > YMax || newY < YMin){
-		xStepFactor = xStepFactor * Math.random() - (1300 - 700) + 900;
-		yStepFactor = yStepFactor * Math.random() - (1300 - 700) + 900;
-		zStepFactor = zStepFactor * Math.random() - (1300 - 700) + 900;
-		var X = Math.random() * (XMax - XMin) + XMin;
-		var Y = Math.random() * (YMax - YMin) + YMin;
-		var Z = Math.random() * (ZMax - ZMin) + ZMin;
-		camera.origin = new THREE.Vector3(newX, newY, newZ);
-		camera.destination = new THREE.Vector3(X, Y, Z);
-	}
-	if(newZ > ZMax || newZ < ZMin){
-		xStepFactor = xStepFactor * Math.random() - (1300 - 700) + 900;
-		yStepFactor = yStepFactor * Math.random() - (1300 - 700) + 900;
-		zStepFactor = zStepFactor * Math.random() - (1300 - 700) + 900;
-		var X = Math.random() * (XMax - XMin) + XMin;
-		var Y = Math.random() * (YMax - YMin) + YMin;
-		var Z = Math.random() * (ZMax - ZMin) + ZMin;
-		camera.origin = new THREE.Vector3(newX, newY, newZ);
-		camera.destination = new THREE.Vector3(X, Y, Z);
-	}
-
-	camera.position.set(newX, newY, newZ);
+	
 	camera.up = new THREE.Vector3(0,0,1);
+	camera.position.set(newX, newY, newZ);
 }
 
 //USER EVENTS

@@ -11,7 +11,8 @@ THREE.TrackballControls = function ( object, domElement ) {
 	var STATE = { NONE: - 1, ROTATE: 0, ZOOM: 1, PAN: 2, TOUCH_ROTATE: 3, TOUCH_ZOOM_PAN: 4 };
 
 	this.object = object;
-	this.domElement = ( domElement !== undefined ) ? domElement : document;
+	var canvas = document.getElementById("mainCanvas");
+	this.domElement = ( domElement !== undefined ) ? domElement : canvas;
 
 	// API
 
