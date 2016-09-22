@@ -9,18 +9,7 @@ function onload(){
 
 		//IPHONE ORIANTATION - LANDSCAPE
 		else {  
-			window.orientation = 0;
-			//MOVE HEADER TABLE
-			var table = document.getElementById( 'headerTable' );
-			if(table != null) {
-				table.style.top = 20;
-			}
-		}
-		
-		//MOVE HEADER TABLE
-		var table = document.getElementById( 'headerTable' );
-		if(table != null) {
-				table.style.top = 20;
+			window.orientation = 0;		
 		}
 	}
 	
