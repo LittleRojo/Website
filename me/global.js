@@ -20,7 +20,7 @@ function onload(){
 		title.style.visibility = "visible";
 
 		var main = document.getElementById( 'mainCanvas' );
-		main.style.top = window.innerHeight - 40;
+		main.style.top = 40;
 	}
 	else {
 		var title = document.getElementById( 'navigation' );
