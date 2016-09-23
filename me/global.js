@@ -16,13 +16,13 @@ function onload(){
 	title.style.left = window.innerWidth / 2 - 50;
 	title.style.visibility = "visible";
 	
-	var speedLabel = document.getElementById( 'speedLabel' );
-	speedLabel.style.left = window.innerWidth - 110;
-	speedLabel.style.visibility = "visible";
+	var down = document.getElementById( 'downButton' );
+	down.style.left = window.innerWidth - 40;
+	down.style.visibility = "visible";
 
-	var speed = document.getElementById( 'speed' );
-	speed.style.left = window.innerWidth - 60;
-	speed.style.visibility = "visible";
+	var up = document.getElementById( 'upButton' );
+	up.style.left = window.innerWidth - 20;
+	up.style.visibility = "visible";
 
 	var main = document.getElementById( 'mainCanvas' );
 	main.style.right = window.innerWidth - 20;
@@ -34,11 +34,24 @@ function onload(){
 	//App.Sound.Play();
 }
 
-function updateSpeed(slider) {
-	App.tojo.animationSpeed = slider.value * 400;
-	xStepFactor = slider.value * 3;
-	yStepFactor = slider.value * 3;
-	zStepFactor = slider.value * 3;
+function updateSpeed(button) {
+	var speed = 0;
+	if(button.id == "downButton") {
+		speed = .8;
+	}
+	else if(button.id == "upButton") {
+		speed = 1.2;
+	}
+	if(App.tojo.animationSpeed > 1.8 && speed == 1.2) {
+		return;
+	}
+	if(App.tojo.animationSpeed <.1 && speed == .8) {
+		return;
+	}
+	App.tojo.animationSpeed = App.tojo.animationSpeed * speed;
+	xStepFactor = xStepFactor * speed;
+	yStepFactor = yStepFactor * speed;
+	zStepFactor = zStepFactor * speed;
 }
 
 function onWindowResize(){
@@ -50,13 +63,13 @@ function onWindowResize(){
 	title.style.left = window.innerWidth / 2 - 50;
 	title.style.visibility = "visible";
 	
-	var speedLabel = document.getElementById( 'speedLabel' );
-	speedLabel.style.left = window.innerWidth - 110;
-	speedLabel.style.visibility = "visible";
+	var down = document.getElementById( 'downButton' );
+	down.style.left = window.innerWidth - 40;
+	down.style.visibility = "visible";
 
-	var speed = document.getElementById( 'speed' );
-	speed.style.left = window.innerWidth - 60;
-	speed.style.visibility = "visible";
+	var up = document.getElementById( 'upButton' );
+	up.style.left = window.innerWidth - 20;
+	up.style.visibility = "visible";
 }
 
 var audio = new Audio('media/twinkle.m4a');
