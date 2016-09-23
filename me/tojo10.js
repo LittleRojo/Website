@@ -11,7 +11,7 @@ function tojo10() {
 	this.particleSystems = [];
 	this.scene = new THREE.Scene();
 
-	this.animationSpeed = .5156;
+	this.animationSpeed = .00386699 * 440;
 }
 
 var starStart=0;

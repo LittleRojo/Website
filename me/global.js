@@ -16,20 +16,16 @@ function onload(){
 	title.style.left = window.innerWidth / 2 - 50;
 	title.style.visibility = "visible";
 
-	var down = document.getElementById( 'downButton' );
-	down.style.left = 60;
-	down.style.top = window.innerHeight - 46;
-	down.style.visibility = "visible";
+	var speed = document.getElementById( 'speed' );
+	speed.style.width = window.innerWidth - 120;
+	speed.style.left = 25;
+	speed.style.top = window.innerHeight - 23;
+	speed.style.visibility = "visible";
 
 	var sound = document.getElementById( 'soundButton' );
-	sound.style.left = window.innerWidth / 2 - 15;
+	sound.style.left = window.innerWidth - 70;
 	sound.style.top = window.innerHeight - 46;
 	sound.style.visibility = "visible";
-
-	var up = document.getElementById( 'upButton' );
-	up.style.left = window.innerWidth - 90;
-	up.style.top = window.innerHeight - 46;
-	up.style.visibility = "visible";
 
 	var main = document.getElementById( 'mainCanvas' );
 	main.style.right = window.innerWidth - 20;
@@ -42,24 +38,24 @@ function onload(){
 	//App.Sound.Play();
 }
 
+var xRoot = .00386699;
+var yRoot = .00386699;
+var zRoot = .00386699; 
+var animationRoot = .00386699;
 function updateSpeed(button) {
-	var speed = 0;
-	if(button.id == "downButton") {
-		speed = .8;
+	App.tojo.animationSpeed = animationRoot * button.value * 440;
+	xStepFactor = xRoot * button.value
+	yStepFactor = yRoot * button.value
+	zStepFactor = zRoot * button.value;
+
+	var speed = document.getElementById( 'speed' );
+	if(speed.value < 5) {
+		speed.style.backgroundColor =  0x00ff00;
 	}
-	else if(button.id == "upButton") {
-		speed = 1.2;
+	else {
+		speed.style.backgroundColor = 0x0000ff;
 	}
-	if(App.tojo.animationSpeed > 1.8 && speed == 1.2) {
-		return;
-	}
-	if(App.tojo.animationSpeed <.1 && speed == .8) {
-		return;
-	}
-	App.tojo.animationSpeed = App.tojo.animationSpeed * speed;
-	xStepFactor = xStepFactor * speed;
-	yStepFactor = yStepFactor * speed;
-	zStepFactor = zStepFactor * speed;
+	
 }
 
 function onWindowResize(){
@@ -71,27 +67,23 @@ function onWindowResize(){
 	title.style.left = window.innerWidth / 2 - 50;
 	title.style.visibility = "visible";
 
-	var down = document.getElementById( 'downButton' );
-	down.style.left = 60;
-	down.style.top = window.innerHeight - 46;
-	down.style.visibility = "visible";
+	var speed = document.getElementById( 'speed' );
+	speed.style.width = window.innerWidth - 120;
+	speed.style.left = 25;
+	speed.style.top = window.innerHeight - 23;
+	speed.style.visibility = "visible";
 
 	var sound = document.getElementById( 'soundButton' );
-	sound.style.left = window.innerWidth / 2 - 15;
+	sound.style.left = window.innerWidth - 70
 	sound.style.top = window.innerHeight - 46;
 	sound.style.visibility = "visible";
-
-	var up = document.getElementById( 'upButton' );
-	up.style.left = window.innerWidth - 90;
-	up.style.top = window.innerHeight - 46;
-	up.style.visibility = "visible";
 
 	var main = document.getElementById( 'mainCanvas' );
 	main.style.right = window.innerWidth - 20;
 	main.style.height = window.innerHeight - 71;
 }
 
-var audio = new Audio('media/twinkle.m4a');
+var audio = new Audio('media/rhythm.m4a');
 var state = 0;
 function play() {
 	if(state == 0){     

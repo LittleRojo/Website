@@ -1,17 +1,15 @@
 #speed {
     position: fixed;
-    top: 10px;
-    left: 90px;
     height: 2px;
-    width: 50px;
+    width: 5000px;
     -webkit-appearance: none !important;
 }
 
 #speed::-webkit-slider-thumb {
     -webkit-appearance: none !important;
     background-color: grey;
-    height: 12px;
-    width: 12px;
+    height: 40px;
+    width: 40px;
     border-radius: 100%;
     cursor: pointer;
 }
