@@ -90,13 +90,13 @@ function onWindowResize(){
 
 	if(("standalone" in window.navigator) && window.navigator.standalone) {
 		//IPHONE ORIENTATION - PROFILE
-		if(window.orientation === 90 || window.orientation === -90) {
-			App.renderer.setSize( window.innerWidth, window.innerHeight - 70 );
+		if(window.orientation === 90 || window.orientation === -90) {			
 			var main = document.getElementById( 'mainCanvas' );
 			main.style.top = "38px";	
 			var title = document.getElementById( 'navigation' );
 			title.style.left = window.innerWidth / 2 - 50;
 			title.style.top = "18px";		
+			App.renderer.setSize( window.innerWidth, window.innerHeight - 78 );
 		}
 
 		//IPHONE ORIANTATION - LANDSCAPE
