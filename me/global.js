@@ -65,19 +65,30 @@ function updateSpeed(button) {
 function onWindowResize(){
     App.camera.aspect = window.innerWidth / window.innerHeight;
     App.camera.updateProjectionMatrix();
-    App.renderer.setSize( window.innerWidth, window.innerHeight );	
+    App.renderer.setSize( window.innerWidth, window.innerHeight - 70 );	
 
 	var title = document.getElementById( 'navigation' );
 	title.style.left = window.innerWidth / 2 - 50;
 	title.style.visibility = "visible";
-	
+
 	var down = document.getElementById( 'downButton' );
-	down.style.left = window.innerWidth - 40;
+	down.style.left = 60;
+	down.style.top = window.innerHeight - 46;
 	down.style.visibility = "visible";
 
+	var sound = document.getElementById( 'soundButton' );
+	sound.style.left = window.innerWidth / 2 - 15;
+	sound.style.top = window.innerHeight - 46;
+	sound.style.visibility = "visible";
+
 	var up = document.getElementById( 'upButton' );
-	up.style.left = window.innerWidth - 20;
+	up.style.left = window.innerWidth - 90;
+	up.style.top = window.innerHeight - 46;
 	up.style.visibility = "visible";
+
+	var main = document.getElementById( 'mainCanvas' );
+	main.style.right = window.innerWidth - 20;
+	main.style.height = window.innerHeight - 71;
 }
 
 var audio = new Audio('media/twinkle.m4a');
