@@ -106,14 +106,14 @@ function onWindowResize(){
 			var title = document.getElementById( 'navigation' );
 			title.style.left = window.innerWidth / 2 - 50;
 			title.style.top = "-1px";
-			App.renderer.setSize( window.innerWidth, window.innerHeight - 64 );	
+			App.renderer.setSize( window.innerWidth, window.innerHeight - 65 );	
 		} 
 		
 	}
 	else {		
 		var main = document.getElementById( 'mainCanvas' );
 		main.style.top = "20px";
-		App.renderer.setSize( window.innerWidth, window.innerHeight - 80 );
+		App.renderer.setSize( window.innerWidth, window.innerHeight - 64 );
 
 		var title = document.getElementById( 'navigation' );
 		title.style.left = window.innerWidth / 2 - 50;
@@ -122,11 +122,11 @@ function onWindowResize(){
 	var speed = document.getElementById( 'speed' );
 	speed.style.width = window.innerWidth - 120;
 	speed.style.left = 25;
-	speed.style.top = window.innerHeight - 23;
+	speed.style.top = window.innerHeight - 25;
 
 	var sound = document.getElementById( 'soundButton' );
 	sound.style.left = window.innerWidth - 65
-	sound.style.top = window.innerHeight - 42.5;
+	sound.style.top = window.innerHeight - 42;
 }
 
 var audio = new Audio('media/rhythm.m4a');

@@ -14,11 +14,11 @@ Set.prototype.Stage = function(canvas, tojo) {
 		}
 		//IPHONE ORIENTATION - LANDSCAPE
 		else {
-			this.renderer.setSize( window.innerWidth, window.innerHeight - 60 );
+			this.renderer.setSize( window.innerWidth, window.innerHeight - 65 );
 		}
 	}
 	else {
-		this.renderer.setSize( window.innerWidth, window.innerHeight - 80 );
+		this.renderer.setSize( window.innerWidth, window.innerHeight - 64 );
 	}
 	this.renderer.setClearColor( 0x000000, 1 );
 	this.renderer.shadowMap.enabled = true;
