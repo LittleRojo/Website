@@ -47,19 +47,25 @@ function onload(){
 	}
 
 	var speed = document.getElementById( 'speed' );
-	speed.style.width = (window.innerWidth - 120) / 3;
+	speed.style.width = (window.innerWidth - 120) / 3.2;
 	speed.style.left = 25;
 	speed.style.top = window.innerHeight - 25;
 	speed.style.visibility = "visible";
 
 	var camera = document.getElementById( 'camera' );
-	camera.style.width = (window.innerWidth - 120) / 3;
-	camera.style.left = (window.innerWidth ) / 3;
+	camera.style.width = (window.innerWidth - 120) / 3.2;
+	camera.style.left = ((window.innerWidth - 120) / 5.5) * 2 + 24;
 	camera.style.top = window.innerHeight - 25;
 	camera.style.visibility = "visible";
 
+	var oddball = document.getElementById( 'oddball' );
+	oddball.style.width = (window.innerWidth - 120) / 3.2;
+	oddball.style.left = ((window.innerWidth - 120) / 5.5) * 4 + 24;
+	oddball.style.top = window.innerHeight - 25;
+	oddball.style.visibility = "visible";
+
 	var sound = document.getElementById( 'soundButton' );
-	sound.style.left = window.innerWidth - 65;
+	sound.style.left = window.innerWidth - 60;
 	sound.style.top = window.innerHeight - 42.5;
 	sound.style.visibility = "visible";
 
@@ -86,6 +92,9 @@ function updateCamera(button) {
 
 	var speed = document.getElementById( 'speed' );
 	camera.style.opacity =  (speed.value / 2) * .7 + .3;
+}
+
+function updateOddball(button) {
 }
 
 function onWindowResize(){
@@ -124,18 +133,24 @@ function onWindowResize(){
 	}
 
 	var speed = document.getElementById( 'speed' );
-	speed.style.width = (window.innerWidth - 120) / 3;
+	speed.style.width = (window.innerWidth - 120) / 3.2;
 	speed.style.left = 25;
 	speed.style.top = window.innerHeight - 25;
 
 	var camera = document.getElementById( 'camera' );
-	camera.style.width = (window.innerWidth - 120) / 3;
-	camera.style.left = (window.innerWidth - 120) / 3 + 40;
+	camera.style.width = (window.innerWidth - 120) / 3.2;
+	camera.style.left = ((window.innerWidth - 120) / 5.5) * 2 + 25;
 	camera.style.top = window.innerHeight - 25;
 	camera.style.visibility = "visible";
 
+	var oddball = document.getElementById( 'oddball' );
+	oddball.style.width = (window.innerWidth - 120) / 3.2;
+	oddball.style.left = ((window.innerWidth - 120) / 5.5) * 4 + 25;
+	oddball.style.top = window.innerHeight - 25;
+	oddball.style.visibility = "visible";
+
 	var sound = document.getElementById( 'soundButton' );
-	sound.style.left = window.innerWidth - 65
+	sound.style.left = window.innerWidth - 60;
 	sound.style.top = window.innerHeight - 42;
 }
 
