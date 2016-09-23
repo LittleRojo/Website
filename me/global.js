@@ -19,12 +19,12 @@ function onload(){
 	var speed = document.getElementById( 'speed' );
 	speed.style.width = window.innerWidth - 120;
 	speed.style.left = 25;
-	speed.style.top = window.innerHeight - 23;
+	speed.style.top = window.innerHeight - 25;
 	speed.style.visibility = "visible";
 
 	var sound = document.getElementById( 'soundButton' );
-	sound.style.left = window.innerWidth - 70;
-	sound.style.top = window.innerHeight - 46;
+	sound.style.left = window.innerWidth - 65;
+	sound.style.top = window.innerHeight - 42.5;
 	sound.style.visibility = "visible";
 
 	var main = document.getElementById( 'mainCanvas' );
@@ -48,13 +48,13 @@ function updateSpeed(button) {
 	yStepFactor = yRoot * button.value
 	zStepFactor = zRoot * button.value;
 
-	/*var speed = document.getElementById( 'speed' );
+	var speed = document.getElementById( 'speed' );
 	if(speed.value < 5) {
-		speed.style.backgroundColor =  0x00ff00;
+		//speed.style.background =  0x00ff00;
 	}
 	else {
-		speed.style.backgroundColor = 0x0000ff;
-	}*/	
+		//speed.style.background = 0x0000ff;
+	}	
 }
 
 function onWindowResize(){
@@ -73,8 +73,8 @@ function onWindowResize(){
 	speed.style.visibility = "visible";
 
 	var sound = document.getElementById( 'soundButton' );
-	sound.style.left = window.innerWidth - 70
-	sound.style.top = window.innerHeight - 46;
+	sound.style.left = window.innerWidth - 65
+	sound.style.top = window.innerHeight - 42.5;
 	sound.style.visibility = "visible";
 
 	var main = document.getElementById( 'mainCanvas' );
