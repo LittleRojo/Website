@@ -16,7 +16,7 @@ function onload(){
 	if(("standalone" in window.navigator) && window.navigator.standalone) {
  	    var title = document.getElementById( 'navigation' );
 		title.style.left = window.innerWidth / 2 - 50;
-		title.style.top = 18;
+		title.style.top = "28px";
 		title.style.visibility = "visible";
 
 		var main = document.getElementById( 'mainCanvas' );
@@ -78,14 +78,12 @@ function onWindowResize(){
 	if(("standalone" in window.navigator) && window.navigator.standalone) {
 		App.renderer.setSize( window.innerWidth, window.innerHeight - 86 );
 		var main = document.getElementById( 'mainCanvas' );
-		main.style.top = "50px";
-		main.style.height = (window.innerHeight - 65) + "px";
+		main.style.top = "45px";
 	}
 	else {
 		App.renderer.setSize( window.innerWidth, window.innerHeight - 70 );
 		var main = document.getElementById( 'mainCanvas' );
 		main.style.top = "25px";
-		main.style.height = (window.innerHeight -50) + "px";
 	}
 
 	var title = document.getElementById( 'navigation' );

@@ -8,7 +8,7 @@ Set.prototype.Stage = function(canvas, tojo) {
 	this.renderer = new THREE.WebGLRenderer({ canvas:this.mainCanvas, antilias: true, alpha: true, clearAlpha: 1});
 	this.renderer.setPixelRatio( window.devicePixelRatio );
 	if(("standalone" in window.navigator) && window.navigator.standalone) {
-		this.renderer.setSize( window.innerWidth, window.innerHeight - 86 );
+		this.renderer.setSize( window.innerWidth, window.innerHeight - 95 );
 	}
 	else {
 		this.renderer.setSize( window.innerWidth, window.innerHeight - 70 );
