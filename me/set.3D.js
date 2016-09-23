@@ -36,7 +36,7 @@ Set.prototype.Stage = function(canvas, tojo) {
 	this.mouse.dynamicDampingFactor = 0.3;
 	this.mouse.addEventListener( 'change', this.UpdateScene );
 
-	this.audio = new Audio('media/night night.m4a');
+	this.audio = new Audio('media/nightnight.m4a');
 	this.audio.addEventListener('ended', function() {
         this.currentTime = 0;
         this.play();
