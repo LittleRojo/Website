@@ -20,6 +20,7 @@ function onload(){
 		title.style.visibility = "visible";
 
 		var main = document.getElementById( 'mainCanvas' );
+		main.style.right = window.innerWidth - 20;
 		main.style.top = 40;
 		main.style.height = window.innerHeight - 100;
 	}
