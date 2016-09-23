@@ -171,6 +171,9 @@ tojo10.prototype.SetupScene = function() {
 	this.scene.add(particleSystem);
 
 	App.renderer.render(this.scene, App.camera);
+
+	var main = document.getElementById( 'mainCanvas' );
+	main.style.visibility = "visible";
 }	
 
 tojo10.prototype.RedrawScene = function() {
