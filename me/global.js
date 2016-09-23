@@ -22,12 +22,12 @@ function onload(){
 	down.style.visibility = "visible";
 
 	var sound = document.getElementById( 'soundButton' );
-	sound.style.left = window.innerWidth / 2 - 3;
+	sound.style.left = window.innerWidth / 2 - 15;
 	sound.style.top = window.innerHeight - 46;
 	sound.style.visibility = "visible";
 
 	var up = document.getElementById( 'upButton' );
-	up.style.left = window.innerWidth - 60;
+	up.style.left = window.innerWidth - 90;
 	up.style.top = window.innerHeight - 46;
 	up.style.visibility = "visible";
 
