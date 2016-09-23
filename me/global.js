@@ -60,9 +60,6 @@ function onload(){
 	App = new Set();
 	var tojo = new tojo10();
 	App.Stage(main, tojo);
-	//App.Sound = new Sound();
-	//App.Sound.Load();
-	//App.Sound.Play();
 }
 
 var xRoot = .00386699;
@@ -76,12 +73,7 @@ function updateSpeed(button) {
 	zStepFactor = zRoot * button.value;
 
 	var speed = document.getElementById( 'speed' );
-	if(speed.value < 5) {
-		//speed.style.background =  0x00ff00;
-	}
-	else {
-		//speed.style.background = 0x0000ff;
-	}	
+	speed.style.opacity =  (speed.value / 2) * .7 + .3;
 }
 
 function onWindowResize(){
