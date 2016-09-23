@@ -106,14 +106,14 @@ function onWindowResize(){
 			var title = document.getElementById( 'navigation' );
 			title.style.left = window.innerWidth / 2 - 50;
 			title.style.top = "-1px";
-			App.renderer.setSize( window.innerWidth, window.innerHeight - 65 );	
+			App.renderer.setSize( window.innerWidth, window.innerHeight - 64 );	
 		} 
 		
 	}
 	else {		
 		var main = document.getElementById( 'mainCanvas' );
 		main.style.top = "20px";
-		App.renderer.setSize( window.innerWidth, window.innerHeight - 65 );
+		App.renderer.setSize( window.innerWidth, window.innerHeight - 80 );
 
 		var title = document.getElementById( 'navigation' );
 		title.style.left = window.innerWidth / 2 - 50;
