@@ -60,7 +60,7 @@ function onload(){
 
 	var oddball = document.getElementById( 'oddball' );
 	oddball.style.width = (window.innerWidth - 120) / 3.2;
-	oddball.style.left = ((window.innerWidth - 120) / 5.5) * 4 + 24;
+	oddball.style.left = ((window.innerWidth - 120) / 5.5) * 4 + 26;
 	oddball.style.top = window.innerHeight - 25;
 	oddball.style.visibility = "visible";
 
@@ -139,13 +139,13 @@ function onWindowResize(){
 
 	var camera = document.getElementById( 'camera' );
 	camera.style.width = (window.innerWidth - 120) / 3.2;
-	camera.style.left = ((window.innerWidth - 120) / 5.5) * 2 + 25;
+	camera.style.left = ((window.innerWidth - 120) / 5.5) * 2 + 24;
 	camera.style.top = window.innerHeight - 25;
 	camera.style.visibility = "visible";
 
 	var oddball = document.getElementById( 'oddball' );
 	oddball.style.width = (window.innerWidth - 120) / 3.2;
-	oddball.style.left = ((window.innerWidth - 120) / 5.5) * 4 + 25;
+	oddball.style.left = ((window.innerWidth - 120) / 5.5) * 4 + 26;
 	oddball.style.top = window.innerHeight - 25;
 	oddball.style.visibility = "visible";
 
