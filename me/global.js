@@ -20,7 +20,7 @@ function onload(){
 		title.style.visibility = "visible";
 
 		var main = document.getElementById( 'mainCanvas' );
-		main.style.top = "45px";
+		main.style.top = "40px";
 		main.style.height = (window.innerHeight - 86) + "px";
 	}
 	else {
@@ -29,7 +29,7 @@ function onload(){
 		title.style.visibility = "visible";
 
 		var main = document.getElementById( 'mainCanvas' );
-		main.style.top = "25px";
+		main.style.top = "20px";
 		main.style.height = (window.innerHeight - 70) + "px";
 	}
 
