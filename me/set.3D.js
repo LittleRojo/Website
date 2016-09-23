@@ -8,14 +8,7 @@ Set.prototype.Stage = function(canvas, tojo) {
 	this.renderer = new THREE.WebGLRenderer({ canvas:this.mainCanvas, antilias: true, alpha: true, clearAlpha: 1});
 	this.renderer.setPixelRatio( window.devicePixelRatio );
 	if(("standalone" in window.navigator) && window.navigator.standalone) {
-		//IPHONE ORIENTATION - PROFILE
-		if(window.orientation === 90 || window.orientation === -90) {
-			this.renderer.setSize( window.innerWidth, window.innerHeight - 182 );
-		}
-		//IPHONE ORIENTATION - LANDSCAPE
-		else {
-			this.renderer.setSize( window.innerWidth, window.innerHeight - 64 );
-		}
+		this.renderer.setSize( window.innerWidth, window.innerHeight - 64 );
 	}
 	else {
 		this.renderer.setSize( window.innerWidth, window.innerHeight - 64 );
