@@ -47,10 +47,16 @@ function onload(){
 	}
 
 	var speed = document.getElementById( 'speed' );
-	speed.style.width = window.innerWidth - 120;
+	speed.style.width = (window.innerWidth - 120) / 3;
 	speed.style.left = 25;
 	speed.style.top = window.innerHeight - 25;
 	speed.style.visibility = "visible";
+
+	var camera = document.getElementById( 'camera' );
+	camera.style.width = (window.innerWidth - 120) / 3;
+	camera.style.left = (window.innerWidth ) / 3;
+	camera.style.top = window.innerHeight - 25;
+	camera.style.visibility = "visible";
 
 	var sound = document.getElementById( 'soundButton' );
 	sound.style.left = window.innerWidth - 65;
@@ -68,12 +74,18 @@ var zRoot = .00386699;
 var animationRoot = .00386699;
 function updateSpeed(button) {
 	App.tojo.animationSpeed = animationRoot * button.value * 440;
+
+	var speed = document.getElementById( 'speed' );
+	speed.style.opacity =  (speed.value / 2) * .7 + .3;
+}
+
+function updateCamera(button) {
 	xStepFactor = xRoot * button.value
 	yStepFactor = yRoot * button.value
 	zStepFactor = zRoot * button.value;
 
 	var speed = document.getElementById( 'speed' );
-	speed.style.opacity =  (speed.value / 2) * .7 + .3;
+	camera.style.opacity =  (speed.value / 2) * .7 + .3;
 }
 
 function onWindowResize(){
@@ -112,9 +124,15 @@ function onWindowResize(){
 	}
 
 	var speed = document.getElementById( 'speed' );
-	speed.style.width = window.innerWidth - 120;
+	speed.style.width = (window.innerWidth - 120) / 3;
 	speed.style.left = 25;
 	speed.style.top = window.innerHeight - 25;
+
+	var camera = document.getElementById( 'camera' );
+	camera.style.width = (window.innerWidth - 120) / 3;
+	camera.style.left = (window.innerWidth - 120) / 3 + 40;
+	camera.style.top = window.innerHeight - 25;
+	camera.style.visibility = "visible";
 
 	var sound = document.getElementById( 'soundButton' );
 	sound.style.left = window.innerWidth - 65
