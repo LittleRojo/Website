@@ -10,15 +10,15 @@ Set.prototype.Stage = function(canvas, tojo) {
 	if(("standalone" in window.navigator) && window.navigator.standalone) {
 		//IPHONE ORIENTATION - PROFILE
 		if(window.orientation === 90 || window.orientation === -90) {
-			this.renderer.setSize( window.innerWidth, window.innerHeight - 86 );
+			this.renderer.setSize( window.innerWidth, window.innerHeight - 80 );
 		}
 		//IPHONE ORIENTATION - LANDSCAPE
 		else {
-			this.renderer.setSize( window.innerWidth, window.innerHeight - 65 );
+			this.renderer.setSize( window.innerWidth, window.innerHeight - 60 );
 		}
 	}
 	else {
-		this.renderer.setSize( window.innerWidth, window.innerHeight - 65 );
+		this.renderer.setSize( window.innerWidth, window.innerHeight - 60 );
 	}
 	this.renderer.setClearColor( 0x000000, 1 );
 	this.renderer.shadowMap.enabled = true;
