@@ -1,5 +1,6 @@
 #speed {
     position: fixed;
+    top:5000px;
     height: 2px;
     width: 5000px;
     -webkit-appearance: none !important;

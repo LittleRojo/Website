@@ -45,7 +45,7 @@
 		
 			<canvas id="mainCanvas" style="position:fixed; left:0px; top:25px;"></canvas>
 
-			<input id="speed" type="range" min="0" value="1" max="2" step=".1" onchange="updateSpeed(this);"></input>
+			<input style="visibility:hidden" id="speed" type="range" min="0" value="1" max="2" step=".1" onchange="updateSpeed(this);"></input>
 			<img src="img/green.png" onclick="updateSpeed(this);" style="visibility:hidden; position:fixed; top:2px; left:1140px; width:46px; height:46px;" id="upButton" />
 			<img src="img/off.png" onclick="play();" style="visibility:hidden; position:fixed; top:3000px; left:400px; width:46px; height:46px;" id="soundButton" />
 		</div>
