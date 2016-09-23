@@ -18,22 +18,22 @@ function onload(){
 		if(window.orientation === 90 || window.orientation === -90) {
 			var title = document.getElementById( 'navigation' );
 			title.style.left = window.innerWidth / 2 - 50;
-			title.style.top = "18px";
+			title.style.top = "4px";
 			title.style.visibility = "visible";
 
 			var main = document.getElementById( 'mainCanvas' );
-			main.style.top = "38px";
+			main.style.top = "20px";			
 		}
 
 		//IPHONE ORIANTATION - LANDSCAPE
 		else {  
 			var title = document.getElementById( 'navigation' );
 			title.style.left = window.innerWidth / 2 - 50;
-			title.style.top = "4px";
+			title.style.top = "18px";
 			title.style.visibility = "visible";
 
 			var main = document.getElementById( 'mainCanvas' );
-			main.style.top = "20px";		
+			main.style.top = "38px";
 		} 	    
 	}
 	else {
@@ -88,9 +88,20 @@ function onWindowResize(){
     App.camera.updateProjectionMatrix();
 
 	if(("standalone" in window.navigator) && window.navigator.standalone) {
-		App.renderer.setSize( window.innerWidth, window.innerHeight - 86 );
-		var main = document.getElementById( 'mainCanvas' );
-		main.style.top = "38px";
+		//IPHONE ORIENTATION - PROFILE
+		if(window.orientation === 90 || window.orientation === -90) {
+			App.renderer.setSize( window.innerWidth, window.innerHeight - 86 );
+			var main = document.getElementById( 'mainCanvas' );
+			main.style.top = "38px";			
+		}
+
+		//IPHONE ORIANTATION - LANDSCAPE
+		else {  
+			App.renderer.setSize( window.innerWidth, window.innerHeight - 70 );
+			var main = document.getElementById( 'mainCanvas' );
+			main.style.top = "18px";
+		} 
+		
 	}
 	else {
 		App.renderer.setSize( window.innerWidth, window.innerHeight - 70 );
