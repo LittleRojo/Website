@@ -79,13 +79,13 @@ function onWindowResize(){
 		App.renderer.setSize( window.innerWidth, window.innerHeight - 86 );
 		var main = document.getElementById( 'mainCanvas' );
 		main.style.top = "50px";
-		main.style.height = (window.innerHeight - 86) + "px";
+		main.style.height = (window.innerHeight - 102) + "px";
 	}
 	else {
 		App.renderer.setSize( window.innerWidth, window.innerHeight - 70 );
 		var main = document.getElementById( 'mainCanvas' );
 		main.style.top = "25px";
-		main.style.height = (window.innerHeight - 70) + "px";
+		main.style.height = (window.innerHeight - 86) + "px";
 	}
 
 	var title = document.getElementById( 'navigation' );
