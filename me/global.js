@@ -96,7 +96,7 @@ function onWindowResize(){
 			var title = document.getElementById( 'navigation' );
 			title.style.left = window.innerWidth / 2 - 50;
 			title.style.top = "18px";		
-			App.renderer.setSize( window.innerWidth, window.innerHeight - 80 );
+			App.renderer.setSize( window.innerWidth, window.innerHeight - 82 );
 		}
 
 		//IPHONE ORIANTATION - LANDSCAPE
@@ -106,7 +106,7 @@ function onWindowResize(){
 			var title = document.getElementById( 'navigation' );
 			title.style.left = window.innerWidth / 2 - 50;
 			title.style.top = "-1px";
-			App.renderer.setSize( window.innerWidth, window.innerHeight - 65 );	
+			App.renderer.setSize( window.innerWidth, window.innerHeight - 64 );	
 		} 
 		
 	}

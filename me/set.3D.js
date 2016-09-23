@@ -14,7 +14,7 @@ Set.prototype.Stage = function(canvas, tojo) {
 		}
 		//IPHONE ORIENTATION - LANDSCAPE
 		else {
-			this.renderer.setSize( window.innerWidth, window.innerHeight - 65 );
+			this.renderer.setSize( window.innerWidth, window.innerHeight - 64 );
 		}
 	}
 	else {
