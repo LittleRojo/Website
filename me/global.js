@@ -35,10 +35,10 @@ function onload(){
 }
 
 function updateSpeed(slider) {
-	App.tojo.animationSpeed = slider.value * 200;
-	xStepFactor = slider.value * 2;
-	yStepFactor = slider.value * 2;
-	zStepFactor = slider.value * 2;
+	App.tojo.animationSpeed = slider.value * 400;
+	xStepFactor = slider.value * 3;
+	yStepFactor = slider.value * 3;
+	zStepFactor = slider.value * 3;
 }
 
 function onWindowResize(){
