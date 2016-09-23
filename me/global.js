@@ -16,16 +16,24 @@ function onload(){
 	title.style.left = window.innerWidth / 2 - 50;
 	title.style.visibility = "visible";
 	
+	var sound = document.getElementById( 'soundButton' );
+	sound.style.left = 3;
+	sound.style.top = window.innerHeight - 20;
+	sound.style.visibility = "visible";
+
 	var down = document.getElementById( 'downButton' );
 	down.style.left = window.innerWidth - 40;
+	down.style.top = window.innerHeight - 20;
 	down.style.visibility = "visible";
 
 	var up = document.getElementById( 'upButton' );
 	up.style.left = window.innerWidth - 20;
+	up.style.top = window.innerHeight - 20;
 	up.style.visibility = "visible";
 
 	var main = document.getElementById( 'mainCanvas' );
 	main.style.right = window.innerWidth - 20;
+
 	App = new Set();
 	var tojo = new tojo10();
 	App.Stage(main, tojo);
