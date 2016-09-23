@@ -100,7 +100,7 @@ function onWindowResize(){
 
 		//IPHONE ORIANTATION - LANDSCAPE
 		else {  
-			App.renderer.setSize( window.innerWidth, window.innerHeight - 86 );
+			App.renderer.setSize( window.innerWidth, window.innerHeight - 70 );
 			var main = document.getElementById( 'mainCanvas' );
 			main.style.top = "18px";
 			var title = document.getElementById( 'navigation' );
