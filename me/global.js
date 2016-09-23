@@ -154,18 +154,16 @@ function onWindowResize(){
 	sound.style.top = window.innerHeight - 42;
 }
 
-var audio = new Audio('media/rhythm.m4a');
-var state = 0;
 function play() {
-	if(state == 0){     
-		//audio.play();
-		state = 1;
+	if(App.audiostate == 0){     
+		App.audio.play();
+		App.audiostate = 1;
 		var img = document.getElementById('soundButton')
 		img.src = "img/play.png";
 	}
 	else {
-		//audio.pause();
-		state = 0;
+		App.audio.pause();
+		App.audiostate = 0;
 		var img = document.getElementById('soundButton')
 		img.src = "img/off.png";
 	}
