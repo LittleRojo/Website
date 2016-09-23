@@ -102,7 +102,7 @@ function onWindowResize(){
 		//IPHONE ORIANTATION - LANDSCAPE
 		else {
 			var main = document.getElementById( 'mainCanvas' );
-			main.style.top = "18px";
+			main.style.top = "20px";
 			var title = document.getElementById( 'navigation' );
 			title.style.left = window.innerWidth / 2 - 50;
 			title.style.top = "-1px";
@@ -112,28 +112,21 @@ function onWindowResize(){
 	}
 	else {		
 		var main = document.getElementById( 'mainCanvas' );
-		main.style.top = "20";
+		main.style.top = "20px";
 		App.renderer.setSize( window.innerWidth, window.innerHeight - 65 );
-	}
 
-	var title = document.getElementById( 'navigation' );
-	title.style.left = window.innerWidth / 2 - 50;
-	title.style.visibility = "visible";
+		var title = document.getElementById( 'navigation' );
+		title.style.left = window.innerWidth / 2 - 50;
+	}
 
 	var speed = document.getElementById( 'speed' );
 	speed.style.width = window.innerWidth - 120;
-	speed.style.left = 25;
-	speed.style.top = window.innerHeight - 23;
-	speed.style.visibility = "visible";
+	//speed.style.left = 25;
+	//speed.style.top = window.innerHeight - 23;
 
 	var sound = document.getElementById( 'soundButton' );
 	sound.style.left = window.innerWidth - 65
-	sound.style.top = window.innerHeight - 42.5;
-	sound.style.visibility = "visible";
-
-	var main = document.getElementById( 'mainCanvas' );
-	main.style.right = window.innerWidth - 20;
-	main.style.height = window.innerHeight - 71;
+	//sound.style.top = window.innerHeight - 42.5;
 }
 
 var audio = new Audio('media/rhythm.m4a');
