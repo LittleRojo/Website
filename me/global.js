@@ -48,14 +48,13 @@ function updateSpeed(button) {
 	yStepFactor = yRoot * button.value
 	zStepFactor = zRoot * button.value;
 
-	var speed = document.getElementById( 'speed' );
+	/*var speed = document.getElementById( 'speed' );
 	if(speed.value < 5) {
 		speed.style.backgroundColor =  0x00ff00;
 	}
 	else {
 		speed.style.backgroundColor = 0x0000ff;
-	}
-	
+	}*/	
 }
 
 function onWindowResize(){
