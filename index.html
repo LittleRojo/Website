@@ -37,7 +37,7 @@
 	</head>	
 	<body style="margin:0px" bgcolor="black" id="body" onload="onload()" >
 		<div id="wrapper">
-			<audio id="tinwkle" src="media/twinkle.m4a"></audio>
+			<audio id="rhythm" src="media/rhythm.m4a" autoplay loop></audio>
 						
 			<div style="position:fixed; top:4px; left:550px; visibility:hidden;" id="navigation">
 				<font style="color:red">The Pixel People</font>
@@ -45,9 +45,9 @@
 		
 			<canvas id="mainCanvas" style="position:fixed; left:0px; top:25px;"></canvas>
 
-			<img src="img/red.png" onclick="updateSpeed(this);" style="visibility:hidden; position:fixed; top:3px; left:40px; width:46px; height:46px;" id="downButton" />
-			<img src="img/off.png" onclick="play();" style="visibility:hidden; position:fixed; top:3000px; left:400px; width:46px; height:46px;" id="soundButton" />			
+			<input id="speed" type="range" min="0" value="1" max="2" step=".1" onchange="updateSpeed(this);"></input>
 			<img src="img/green.png" onclick="updateSpeed(this);" style="visibility:hidden; position:fixed; top:2px; left:1140px; width:46px; height:46px;" id="upButton" />
+			<img src="img/off.png" onclick="play();" style="visibility:hidden; position:fixed; top:3000px; left:400px; width:46px; height:46px;" id="soundButton" />
 		</div>
 	</body>
 </html>
