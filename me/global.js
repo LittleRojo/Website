@@ -14,13 +14,27 @@ function onload(){
 
 	//WEB APP LINKING	
 	if(("standalone" in window.navigator) && window.navigator.standalone) {
- 	    var title = document.getElementById( 'navigation' );
-		title.style.left = window.innerWidth / 2 - 50;
-		title.style.top = "18px";
-		title.style.visibility = "visible";
+		//IPHONE ORIENTATION - PROFILE
+		if(window.orientation === 90 || window.orientation === -90) {
+			var title = document.getElementById( 'navigation' );
+			title.style.left = window.innerWidth / 2 - 50;
+			title.style.top = "18px";
+			title.style.visibility = "visible";
 
-		var main = document.getElementById( 'mainCanvas' );
-		main.style.top = "38px";
+			var main = document.getElementById( 'mainCanvas' );
+			main.style.top = "38px";
+		}
+
+		//IPHONE ORIANTATION - LANDSCAPE
+		else {  
+			var title = document.getElementById( 'navigation' );
+			title.style.left = window.innerWidth / 2 - 50;
+			title.style.top = "4px";
+			title.style.visibility = "visible";
+
+			var main = document.getElementById( 'mainCanvas' );
+			main.style.top = "20px";		
+		} 	    
 	}
 	else {
 		var title = document.getElementById( 'navigation' );
