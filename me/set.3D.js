@@ -10,7 +10,7 @@ Set.prototype.Stage = function(canvas, tojo) {
 	if(("standalone" in window.navigator) && window.navigator.standalone) {
 		//IPHONE ORIENTATION - PROFILE
 		if(window.orientation === 90 || window.orientation === -90) {
-			this.renderer.setSize( window.innerWidth, window.innerHeight - 80 );
+			this.renderer.setSize( window.innerWidth, window.innerHeight - 82 );
 		}
 		//IPHONE ORIENTATION - LANDSCAPE
 		else {
