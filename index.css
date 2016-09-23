@@ -3,12 +3,13 @@
     top:5000px;
     height: 2px;
     width: 5000px;
+    background-color: white;
     -webkit-appearance: none !important;
 }
 
 #speed::-webkit-slider-thumb {
     -webkit-appearance: none !important;
-    background-color: grey;
+    background-color: darkblue;
     height: 37px;
     width: 37px;
     border-radius: 100%;

@@ -2,7 +2,7 @@ window.addEventListener( 'resize', onWindowResize, false );
 
 function onload(){
 	if((navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i))) {
-	
+		
 		//IPHONE ORIENTATION - PROFILE
 		if(window.orientation === 90 || window.orientation === -90) {
 		}
@@ -11,10 +11,19 @@ function onload(){
 		else {  		
 		}
 	}
-	
-	var title = document.getElementById( 'navigation' );
-	title.style.left = window.innerWidth / 2 - 50;
-	title.style.visibility = "visible";
+
+	//WEB APP LINKING	
+	if(("standalone" in window.navigator) && window.navigator.standalone) {
+ 	    var title = document.getElementById( 'navigation' );
+		title.style.left = window.innerWidth / 2 - 50;
+		title.style.top = 50;
+		title.style.visibility = "visible";
+	}
+	else {
+		var title = document.getElementById( 'navigation' );
+		title.style.left = window.innerWidth / 2 - 50;
+		title.style.visibility = "visible";
+	}
 
 	var speed = document.getElementById( 'speed' );
 	speed.style.width = window.innerWidth - 120;
