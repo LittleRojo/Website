@@ -16,12 +16,11 @@ function onload(){
 	if(("standalone" in window.navigator) && window.navigator.standalone) {
  	    var title = document.getElementById( 'navigation' );
 		title.style.left = window.innerWidth / 2 - 50;
-		title.style.top = "20px";
+		title.style.top = "18px";
 		title.style.visibility = "visible";
 
 		var main = document.getElementById( 'mainCanvas' );
 		main.style.top = "38px";
-		main.style.height = (window.innerHeight - 86) + "px";
 	}
 	else {
 		var title = document.getElementById( 'navigation' );
@@ -30,7 +29,6 @@ function onload(){
 
 		var main = document.getElementById( 'mainCanvas' );
 		main.style.top = "20px";
-		main.style.height = (window.innerHeight - 70) + "px";
 	}
 
 	var speed = document.getElementById( 'speed' );
@@ -78,12 +76,12 @@ function onWindowResize(){
 	if(("standalone" in window.navigator) && window.navigator.standalone) {
 		App.renderer.setSize( window.innerWidth, window.innerHeight - 86 );
 		var main = document.getElementById( 'mainCanvas' );
-		main.style.top = "45px";
+		main.style.top = "38px";
 	}
 	else {
 		App.renderer.setSize( window.innerWidth, window.innerHeight - 70 );
 		var main = document.getElementById( 'mainCanvas' );
-		main.style.top = "25px";
+		main.style.top = "20";
 	}
 
 	var title = document.getElementById( 'navigation' );
