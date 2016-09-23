@@ -15,19 +15,19 @@ function onload(){
 	var title = document.getElementById( 'navigation' );
 	title.style.left = window.innerWidth / 2 - 50;
 	title.style.visibility = "visible";
-	
-	var sound = document.getElementById( 'soundButton' );
-	sound.style.left = 4;
-	sound.style.top = window.innerHeight - 20;
-	sound.style.visibility = "visible";
 
 	var down = document.getElementById( 'downButton' );
-	down.style.left = window.innerWidth - 40;
+	down.style.left = 60;
 	down.style.top = window.innerHeight - 20;
 	down.style.visibility = "visible";
 
+	var sound = document.getElementById( 'soundButton' );
+	sound.style.left = window.innerWidth / 2 - 3;
+	sound.style.top = window.innerHeight - 20;
+	sound.style.visibility = "visible";
+
 	var up = document.getElementById( 'upButton' );
-	up.style.left = window.innerWidth - 20;
+	up.style.left = window.innerWidth - 60;
 	up.style.top = window.innerHeight - 20;
 	up.style.visibility = "visible";
 
