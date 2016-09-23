@@ -39,6 +39,7 @@ function onload(){
 	else {
 		var title = document.getElementById( 'navigation' );
 		title.style.left = window.innerWidth / 2 - 50;
+		title.style.top = "1px";
 		title.style.visibility = "visible";
 
 		var main = document.getElementById( 'mainCanvas' );
@@ -100,7 +101,7 @@ function onWindowResize(){
 
 		//IPHONE ORIANTATION - LANDSCAPE
 		else {  
-			App.renderer.setSize( window.innerWidth, window.innerHeight - 70 );
+			App.renderer.setSize( window.innerWidth, window.innerHeight - 65 );
 			var main = document.getElementById( 'mainCanvas' );
 			main.style.top = "18px";
 			var title = document.getElementById( 'navigation' );
@@ -110,7 +111,7 @@ function onWindowResize(){
 		
 	}
 	else {
-		App.renderer.setSize( window.innerWidth, window.innerHeight - 70 );
+		App.renderer.setSize( window.innerWidth, window.innerHeight - 65 );
 		var main = document.getElementById( 'mainCanvas' );
 		main.style.top = "20";
 	}
