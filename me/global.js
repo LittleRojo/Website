@@ -105,7 +105,7 @@ function onWindowResize(){
 			main.style.top = "18px";
 			var title = document.getElementById( 'navigation' );
 			title.style.left = window.innerWidth / 2 - 50;
-			title.style.top = "4px";	
+			title.style.top = "2px";	
 		} 
 		
 	}
