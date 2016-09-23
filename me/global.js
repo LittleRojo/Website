@@ -16,11 +16,11 @@ function onload(){
 	if(("standalone" in window.navigator) && window.navigator.standalone) {
  	    var title = document.getElementById( 'navigation' );
 		title.style.left = window.innerWidth / 2 - 50;
-		title.style.top = "28px";
+		title.style.top = "24px";
 		title.style.visibility = "visible";
 
 		var main = document.getElementById( 'mainCanvas' );
-		main.style.top = "50px";
+		main.style.top = "45px";
 		main.style.height = (window.innerHeight - 86) + "px";
 	}
 	else {
