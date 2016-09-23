@@ -57,7 +57,7 @@ tojo10.prototype.SetupScene = function() {
 
 				pixels.position[ 3 * counter ] = (x - width) * 1;
 				pixels.position[ 3 * counter + 1 ] = ((img.height - y) - height) * 1;
-				pixels.position[ 3 * counter+ 2 ] = 0;
+				pixels.position[ 3 * counter+ 2 ] = 1;
 
 				var s = Math.random() / 3 * 1000;
 				var t = Math.random() / 3 * 1000;
@@ -76,7 +76,7 @@ tojo10.prototype.SetupScene = function() {
 		var material = new THREE.PointsMaterial( 
 		{
 			color: 0xffffff,
-			size: 4.883397,
+			size: 8.883397,
 			vertexColors: THREE.VertexColors,
 			map: THREE.ImageUtils.loadTexture('img/woman.png'),
 			opacity: 100,
