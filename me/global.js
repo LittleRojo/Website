@@ -16,13 +16,19 @@ function onload(){
 	if(("standalone" in window.navigator) && window.navigator.standalone) {
  	    var title = document.getElementById( 'navigation' );
 		title.style.left = window.innerWidth / 2 - 50;
-		title.style.top = 50;
+		title.style.top = 30;
 		title.style.visibility = "visible";
+
+		var main = document.getElementById( 'mainCanvas' );
+		main.style.top = window.innerWidth - 40;
 	}
 	else {
 		var title = document.getElementById( 'navigation' );
 		title.style.left = window.innerWidth / 2 - 50;
 		title.style.visibility = "visible";
+
+		var main = document.getElementById( 'mainCanvas' );
+		main.style.right = window.innerWidth - 20;
 	}
 
 	var speed = document.getElementById( 'speed' );
@@ -35,9 +41,6 @@ function onload(){
 	sound.style.left = window.innerWidth - 65;
 	sound.style.top = window.innerHeight - 42.5;
 	sound.style.visibility = "visible";
-
-	var main = document.getElementById( 'mainCanvas' );
-	main.style.right = window.innerWidth - 20;
 
 	App = new Set();
 	var tojo = new tojo10();
