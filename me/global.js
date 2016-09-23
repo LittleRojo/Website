@@ -121,12 +121,12 @@ function onWindowResize(){
 
 	var speed = document.getElementById( 'speed' );
 	speed.style.width = window.innerWidth - 120;
-	//speed.style.left = 25;
-	//speed.style.top = window.innerHeight - 23;
+	speed.style.left = 25;
+	speed.style.top = window.innerHeight - 23;
 
 	var sound = document.getElementById( 'soundButton' );
 	sound.style.left = window.innerWidth - 65
-	//sound.style.top = window.innerHeight - 42.5;
+	sound.style.top = window.innerHeight - 42.5;
 }
 
 var audio = new Audio('media/rhythm.m4a');
