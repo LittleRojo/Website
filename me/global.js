@@ -90,7 +90,7 @@ function onWindowResize(){
 	if(("standalone" in window.navigator) && window.navigator.standalone) {
 		//IPHONE ORIENTATION - PROFILE
 		if(window.orientation === 90 || window.orientation === -90) {
-			App.renderer.setSize( window.innerWidth, window.innerHeight - 86 );
+			App.renderer.setSize( window.innerWidth, window.innerHeight - 80 );
 			var main = document.getElementById( 'mainCanvas' );
 			main.style.top = "38px";	
 			var title = document.getElementById( 'navigation' );
@@ -100,12 +100,12 @@ function onWindowResize(){
 
 		//IPHONE ORIANTATION - LANDSCAPE
 		else {  
-			App.renderer.setSize( window.innerWidth, window.innerHeight - 70 );
+			App.renderer.setSize( window.innerWidth, window.innerHeight - 80 );
 			var main = document.getElementById( 'mainCanvas' );
 			main.style.top = "18px";
 			var title = document.getElementById( 'navigation' );
 			title.style.left = window.innerWidth / 2 - 50;
-			title.style.top = "2px";	
+			title.style.top = "0px";	
 		} 
 		
 	}
