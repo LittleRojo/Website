@@ -15,11 +15,11 @@ Set.prototype.Stage = function(canvas, tojo) {
 	this.renderer.shadowMapDarkness = 0.5;
 
 	this.camera = new THREE.PerspectiveCamera( 45, window.innerWidth / (window.innerHeight), 1, 1000000 );	
-	this.camera.position.set(15000, 15000, 7000);
+	this.camera.position.set(15000, 15000, 4500);
 	this.camera.up = new THREE.Vector3(0,0,1);
 	this.camera.lookAt(new THREE.Vector3(0,0,0));
 	this.camera.destination = new THREE.Vector3(0,0,0);
-	this.camera.origin = new THREE.Vector3(15000, 15000, 7000);
+	this.camera.origin = new THREE.Vector3(15000, 15000, 4500);
 
 	this.mouse = new THREE.TrackballControls( this.camera );
 	this.mouse.rotateSpeed = 3;

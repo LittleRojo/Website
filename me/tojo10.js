@@ -76,7 +76,7 @@ tojo10.prototype.SetupScene = function() {
 		var material = new THREE.PointsMaterial( 
 		{
 			color: 0xffffff,
-			size: 2.883397,
+			size: 4.883397,
 			vertexColors: THREE.VertexColors,
 			map: THREE.ImageUtils.loadTexture('img/woman.png'),
 			opacity: 100,
@@ -98,7 +98,7 @@ tojo10.prototype.SetupScene = function() {
 		App.tojo.AnimateScene();
 	};
 	img.style.display = "none";
-	img.src = 'logo.png';	
+	img.src = 'img/logo2.png';	
 
 	var texture = THREE.ImageUtils.loadTexture( "img/grass.png" );
 	texture.wrapS = THREE.RepeatWrapping; 
@@ -115,7 +115,7 @@ tojo10.prototype.SetupScene = function() {
 	ground.rotateZ(135 * (Math.PI / 180));
 	this.scene.add( ground );
 
-	var light = new THREE.SpotLight(0xffffff);
+	/*var light = new THREE.SpotLight(0xffffff);
 	light.power = .2;
 	light.target = ground;
 	light.shadowCameraVisible = true;
@@ -123,7 +123,10 @@ tojo10.prototype.SetupScene = function() {
 	light.shadowDarkness = 10000;
 	light.castShadow = true;	
 	light.position.set(400, 400, 10);
-	this.scene.add(light);
+	this.scene.add(light);*/
+
+	var light = new THREE.AmbientLight(0xffffff, .01);
+	this.scene.add( light );
 
 	starStart = counter;
 	
