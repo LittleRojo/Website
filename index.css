@@ -21,5 +21,13 @@
 }
 
 #soundButton:hover { 
-    transform: scale(1.2); 
+    transform: scale(1.1); 
+}
+
+#downButton:hover { 
+    transform: scale(1.1); 
+}
+
+#upButton:hover { 
+    transform: scale(1.1); 
 }

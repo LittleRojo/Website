@@ -40,15 +40,13 @@
 			<!--<audio id="tinwkle" src="media/twinkle.m4a" autoplay controls loop></audio>-->
 			
 			<img src="img/off.png" onclick="play();" style="position:fixed; top:3px; left:4px; width:20px; height:20px;" id="soundButton" />
-			<div style="position:fixed; top:4px; left:1000px; visibility:hidden;" id="speedLabel">
-				<font style="color:grey">Speed: </font>
-			</div>
-			<input onchange="updateSpeed(this);" style="background:gray; visibility:hidden;" type="range" id="speed" value=".001289" min="0" max=".0035" step=".000001">
-			
 			<div style="position:fixed; top:4px; left:550px; visibility:hidden;" id="navigation">
 				<font style="color:red">The Pixel People</font>
 			</div>
 			
+			<img src="img/red.png" onclick="updateSpeed(this);" style="visibility:hidden; position:fixed; top:2px; left:1120px; width:20px; height:20px;" id="downButton" />
+			<img src="img/green.png" onclick="updateSpeed(this);" style="visibility:hidden; position:fixed; top:2px; left:1140px; width:20px; height:20px;" id="upButton" />
+
 			<canvas id="mainCanvas" style="position:fixed; left:0px; top:25px;" />
 		</div>
 	</body>
