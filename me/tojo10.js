@@ -11,7 +11,7 @@ function tojo10() {
 	this.particleSystems = [];
 	this.scene = new THREE.Scene();
 
-	this.animationSpeed = .5;
+	this.animationSpeed = .5156;
 }
 
 var starStart=0;
@@ -203,13 +203,13 @@ tojo10.prototype.RedrawSceneFrame = function() {
 	}
 }
   
-var xStepFactor = .002;
-var yStepFactor = .002;
-var zStepFactor = .002;
+var xStepFactor = .00386699;
+var yStepFactor = .00386699;
+var zStepFactor = .00386699;
 
-var XMax = 200, XMin = -200;
-var YMax = 215, YMin = -215;
-var ZMax = 110, ZMin = 2;
+var XMax = 500, XMin = -500;
+var YMax = 515, YMin = -515;
+var ZMax = 210, ZMin = 2;
 tojo10.prototype.UpdateSceneCamera = function() {
 	
 	var camera = App.camera;	
