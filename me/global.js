@@ -21,7 +21,7 @@ function onload(){
 
 		var main = document.getElementById( 'mainCanvas' );
 		main.style.top = 40;
-		main.style.height = window.innerHeight - 40;
+		main.style.height = window.innerHeight - 60;
 	}
 	else {
 		var title = document.getElementById( 'navigation' );
