@@ -36,6 +36,13 @@ Set.prototype.Stage = function(canvas, tojo) {
 	this.mouse.dynamicDampingFactor = 0.3;
 	this.mouse.addEventListener( 'change', this.UpdateScene );
 
+	this.audio = new Audio('media/night night.m4a');
+	this.audio.addEventListener('ended', function() {
+        this.currentTime = 0;
+        this.play();
+    }, false);
+	this.audiostate = 0;
+
 	this.tojo = tojo;
 	this.tojo.SetupScene();
 }
@@ -44,6 +51,6 @@ Set.prototype.UpdateScene = function () {
  	var id = App.renderer.render(App.tojo.scene, App.camera);
  }
 
- Set.prototype.AlterVideo = function () {
+ Set.prototype.CanceScene = function () {
  	cancelAnimationFrame(id);
  }

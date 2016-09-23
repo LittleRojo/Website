@@ -60,7 +60,7 @@ function onload(){
 
 	var oddball = document.getElementById( 'oddball' );
 	oddball.style.width = (window.innerWidth - 120) / 3.2;
-	oddball.style.left = ((window.innerWidth - 120) / 5.5) * 4 + 24;
+	oddball.style.left = ((window.innerWidth - 120) / 5.5) * 4 + 26;
 	oddball.style.top = window.innerHeight - 25;
 	oddball.style.visibility = "visible";
 
@@ -139,13 +139,13 @@ function onWindowResize(){
 
 	var camera = document.getElementById( 'camera' );
 	camera.style.width = (window.innerWidth - 120) / 3.2;
-	camera.style.left = ((window.innerWidth - 120) / 5.5) * 2 + 25;
+	camera.style.left = ((window.innerWidth - 120) / 5.5) * 2 + 24;
 	camera.style.top = window.innerHeight - 25;
 	camera.style.visibility = "visible";
 
 	var oddball = document.getElementById( 'oddball' );
 	oddball.style.width = (window.innerWidth - 120) / 3.2;
-	oddball.style.left = ((window.innerWidth - 120) / 5.5) * 4 + 25;
+	oddball.style.left = ((window.innerWidth - 120) / 5.5) * 4 + 26;
 	oddball.style.top = window.innerHeight - 25;
 	oddball.style.visibility = "visible";
 
@@ -154,18 +154,16 @@ function onWindowResize(){
 	sound.style.top = window.innerHeight - 42;
 }
 
-var audio = new Audio('media/rhythm.m4a');
-var state = 0;
 function play() {
-	if(state == 0){     
-		//audio.play();
-		state = 1;
+	if(App.audiostate == 0){     
+		App.audio.play();
+		App.audiostate = 1;
 		var img = document.getElementById('soundButton')
 		img.src = "img/play.png";
 	}
 	else {
-		//audio.pause();
-		state = 0;
+		App.audio.pause();
+		App.audiostate = 0;
 		var img = document.getElementById('soundButton')
 		img.src = "img/off.png";
 	}
