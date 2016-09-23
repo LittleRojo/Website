@@ -17,7 +17,7 @@ function onload(){
 	title.style.visibility = "visible";
 	
 	var sound = document.getElementById( 'soundButton' );
-	sound.style.left = 3;
+	sound.style.left = 4;
 	sound.style.top = window.innerHeight - 20;
 	sound.style.visibility = "visible";
 
