@@ -58,3 +58,20 @@ function onWindowResize(){
 	speed.style.left = window.innerWidth - 60;
 	speed.style.visibility = "visible";
 }
+
+var audio = new Audio('media/twinkle.m4a');
+var state = 0;
+function play() {
+	if(state == 0){     
+		audio.play();
+		state = 1;
+		var img = document.getElementById('soundButton')
+		img.src = "img/play.png";
+	}
+	else {
+		audio.pause();
+		state = 0;
+		var img = document.getElementById('soundButton')
+		img.src = "img/off.png";
+	}
+}
