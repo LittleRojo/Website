@@ -7,7 +7,12 @@ Set.prototype.Stage = function(canvas, tojo) {
 	this.mainCanvas = canvas;
 	this.renderer = new THREE.WebGLRenderer({ canvas:this.mainCanvas, antilias: true, alpha: true, clearAlpha: 1});
 	this.renderer.setPixelRatio( window.devicePixelRatio );
-	this.renderer.setSize( window.innerWidth, window.innerHeight - 70 );
+	if(("standalone" in window.navigator) && window.navigator.standalone) {
+		this.renderer.setSize( window.innerWidth, window.innerHeight - 86 );
+	}
+	else {
+		this.renderer.setSize( window.innerWidth, window.innerHeight - 70 );
+	}
 	this.renderer.setClearColor( 0x000000, 1 );
 	this.renderer.shadowMap.enabled = true;
 	this.renderer.shadowMap.type = THREE.PCFShadowMap;
