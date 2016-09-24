@@ -78,6 +78,7 @@ var xRoot = .00386699;
 var yRoot = .00386699;
 var zRoot = .00386699; 
 var animationRoot = .00386699;
+var pixelRandomnessRoot = 1;
 function updateSpeed(button) {
 	App.tojo.animationSpeed = animationRoot * button.value * 440;
 
@@ -95,6 +96,7 @@ function updateCamera(button) {
 }
 
 function updateOddball(button) {
+	App.tojo.pixelRandomness = pixelRandomnessRoot * buttonValue;
 }
 
 function onWindowResize(){

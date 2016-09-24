@@ -12,6 +12,7 @@ function tojo10() {
 	this.scene = new THREE.Scene();
 
 	this.animationSpeed = .00386699 * 440;
+	this.randomness = .5
 }
 
 var starStart=0;
@@ -253,18 +254,4 @@ tojo10.prototype.AnimateScene = function(fps) {
 	}
 	App.tojo.RedrawScene();
 	requestAnimationFrame(App.tojo.AnimateScene);
-}
-
-var clock = new THREE.Clock();
-var clockTime = 0;
-tojo10.prototype.UpdateMusic = function() {
-	var delta = clock.getDelta() * 1000;
-	clockTime += delta;
-	if(clockTime > 1000) {
-		/*if(!App.Sound.on) {
-			App.Sound.Load();
-			App.Sound.Play();
-		}*/			
-		clockTime = 0;
-	}
 }
