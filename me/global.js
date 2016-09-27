@@ -95,7 +95,19 @@ function updateSpeed(button) {
 }
 
 function updateOddball(button) {
-	App.tojo.pixelRandomness = pixelRandomnessRoot * buttonValue;
+	for(var a = 1; a < App.tojo.layers.length; a++) {
+		var pixels = App.tojo.particleSystems[a].geometry.vertices;
+		for ( var i = 0; i < pixels.length; i++ ) {
+			if(i % button.value == 0) {			
+				pixels[i].z = 1;
+			}
+			else {
+				pixels[i].z = -11;
+			}	
+		}		
+		App.tojo.particleSystems[a].geometry.__dirtyVertices = true;
+		App.tojo.particleSystems[a].geometry.verticesNeedUpdate = true;
+	}
 }
 
 function onWindowResize(){
