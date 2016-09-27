@@ -47,27 +47,27 @@ function onload(){
 	}
 
 	var speed = document.getElementById( 'speed' );
-	speed.style.width = (window.innerWidth - 120) / 3.2;
-	speed.style.left = 25;
+	speed.style.width = ((window.innerWidth - 0) / 3);
+	speed.style.left = 0;
 	speed.style.top = window.innerHeight - 25;
 	speed.style.visibility = "visible";
 
 	var camera = document.getElementById( 'camera' );
-	camera.style.width = (window.innerWidth - 120) / 3.2;
-	camera.style.left = ((window.innerWidth - 120) / 5.5) * 2 + 24;
+	camera.style.width = ((window.innerWidth - 0) / 3);
+	camera.style.left = ((window.innerWidth - 0) / 3);
 	camera.style.top = window.innerHeight - 25;
 	camera.style.visibility = "visible";
 
 	var oddball = document.getElementById( 'oddball' );
-	oddball.style.width = (window.innerWidth - 120) / 3.2;
-	oddball.style.left = ((window.innerWidth - 120) / 5.5) * 4 + 26;
+	oddball.style.width = ((window.innerWidth - 0) / 3);
+	oddball.style.left = ((window.innerWidth - 0) / 3) * 2;
 	oddball.style.top = window.innerHeight - 25;
 	oddball.style.visibility = "visible";
 
-	var sound = document.getElementById( 'soundButton' );
-	sound.style.left = window.innerWidth - 60;
-	sound.style.top = window.innerHeight - 42.5;
-	sound.style.visibility = "visible";
+	//var sound = document.getElementById( 'soundButton' );
+	//sound.style.left = (((window.innerWidth - ((((window.innerWidth - 100) / 3) * 3))) / 2) - 19) + ((window.innerWidth - 100) / 3) * 3;
+	//sound.style.top = window.innerHeight - 42.5;
+	//sound.style.visibility = "visible";
 
 	App = new Set();
 	var tojo = new tojo10();
@@ -78,20 +78,20 @@ var xRoot = .00386699;
 var yRoot = .00386699;
 var zRoot = .00386699; 
 var animationRoot = .00386699;
-function updateSpeed(button) {
+function updateCamera(button) {
 	App.tojo.animationSpeed = animationRoot * button.value * 440;
 
-	var speed = document.getElementById( 'speed' );
-	speed.style.opacity =  (speed.value / 2) * .7 + .3;
+	//var speed = document.getElementById( 'speed' );
+	//speed.style.opacity =  (speed.value / 2) * .7 + .3;
 }
 
-function updateCamera(button) {
+function updateSpeed(button) {
 	xStepFactor = xRoot * button.value
 	yStepFactor = yRoot * button.value
 	zStepFactor = zRoot * button.value;
 
-	var speed = document.getElementById( 'speed' );
-	camera.style.opacity =  (speed.value / 2) * .7 + .3;
+	//var speed = document.getElementById( 'speed' );
+	//camera.style.opacity =  (speed.value / 2) * .7 + .3;
 }
 
 function updateOddball(button) {
@@ -133,25 +133,25 @@ function onWindowResize(){
 	}
 
 	var speed = document.getElementById( 'speed' );
-	speed.style.width = (window.innerWidth - 120) / 3.2;
-	speed.style.left = 25;
+	speed.style.width = ((window.innerWidth - 0) / 3);
+	speed.style.left = 0;
 	speed.style.top = window.innerHeight - 25;
 
 	var camera = document.getElementById( 'camera' );
-	camera.style.width = (window.innerWidth - 120) / 3.2;
-	camera.style.left = ((window.innerWidth - 120) / 5.5) * 2 + 24;
+	camera.style.width = ((window.innerWidth - 0) / 3);
+	camera.style.left = ((window.innerWidth - 0) / 3);
 	camera.style.top = window.innerHeight - 25;
 	camera.style.visibility = "visible";
 
 	var oddball = document.getElementById( 'oddball' );
-	oddball.style.width = (window.innerWidth - 120) / 3.2;
-	oddball.style.left = ((window.innerWidth - 120) / 5.5) * 4 + 26;
+	oddball.style.width = ((window.innerWidth - 0) / 3);
+	oddball.style.left = ((window.innerWidth - 0) / 3) * 2;
 	oddball.style.top = window.innerHeight - 25;
 	oddball.style.visibility = "visible";
 
-	var sound = document.getElementById( 'soundButton' );
-	sound.style.left = window.innerWidth - 60;
-	sound.style.top = window.innerHeight - 42;
+	//var sound = document.getElementById( 'soundButton' );
+	//sound.style.left = (((window.innerWidth - ((((window.innerWidth - 100) / 3) * 3))) / 2) - 19) + ((window.innerWidth - 100) / 3) * 3;
+	//sound.style.top = window.innerHeight - 42;
 }
 
 function play() {

@@ -231,6 +231,7 @@ tojo10.prototype.UpdateSceneCamera = function() {
 		camera.origin = new THREE.Vector3(camera.position.x, camera.position.y, camera.position.z);		
 	}
 	
+	camera.lookAt(0,0,0);
 	camera.up = new THREE.Vector3(0,0,1);
 	camera.position.set(newX, newY, newZ);
 }
