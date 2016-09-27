@@ -98,7 +98,7 @@ function updateOddball(button) {
 	for(var a = 1; a < App.tojo.layers.length; a++) {
 		var pixels = App.tojo.particleSystems[a].geometry.vertices;
 		for ( var i = 0; i < pixels.length; i++ ) {
-			if(i % button.value == 0) {			
+			if(button.value == -1 || i % button.value == 0) {			
 				pixels[i].z = 1;
 			}
 			else {
