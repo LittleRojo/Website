@@ -95,6 +95,7 @@ function updateSpeed(button) {
 }
 
 function updateOddball(button) {
+	App.tojo.pixelRandomness = pixelRandomnessRoot * buttonValue;
 }
 
 function onWindowResize(){

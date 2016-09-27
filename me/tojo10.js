@@ -12,6 +12,7 @@ function tojo10() {
 	this.scene = new THREE.Scene();
 
 	this.animationSpeed = .00386699 * 440;
+	this.randomness = .5
 }
 
 var starStart=0;
