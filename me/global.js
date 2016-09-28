@@ -95,48 +95,23 @@ function updateSpeed(button) {
 }
 
 function updateOddball(button) {
-	var counter = 0;
-	var total = App.tojo.layers.length.length;
 	for(var a = 1; a < App.tojo.layers.length; a++) {		
 		var pixels = App.tojo.particleSystems[a].geometry.vertices;
 		for ( var i = 0; i < pixels.length; i++ ) {
-			counter++;
-			if(button.value == 1) {			
+			if(button.value == 0) {			
 				pixels[i].z = -11;
 			}
-			else if(button.value == 2) {
-				if(counter % 1000 == 0) {
+			else if(button.value > 0 && button.value < 2) {
+				if(Math.floor(i % (pixels.length / (pixels.length * button.value))) == 0) {
 					pixels[i].z = 1;
 				}
 				else {
 					pixels[i].z = -11;
 				}
-			}
-			else if(button.value == 3) {
-				if(counter % 50 == 0) {
-					pixels[i].z = 1;
-				}
-				else {
-					pixels[i].z = -11;
-				}
-			}
-			else if(button.value == 4) {
-				if(counter % 5 == 0) {
-					pixels[i].z = 1;
-				}
-				else {
-					pixels[i].z = -11;
-				}
-			}
+			}			
 			else {
 				pixels[i].z = 1;
 			}
-			/*if(counter % Math.floor(Math.log(button.value) * 30) == 0) {			
-				pixels[i].z = -11;
-			}
-			else {
-				pixels[i].z = 1;
-			}*/
 		}		
 		App.tojo.particleSystems[a].geometry.__dirtyVertices = true;
 		App.tojo.particleSystems[a].geometry.verticesNeedUpdate = true;
