@@ -94,26 +94,9 @@ function updateSpeed(button) {
 	//camera.style.opacity =  (speed.value / 2) * .7 + .3;
 }
 
+var breadth = 1;
 function updateOddball(button) {
-	for(var a = 1; a < App.tojo.layers.length; a++) {		
-		var pixels = App.tojo.particleSystems[a].geometry.vertices;
-		for ( var i = 0; i < pixels.length; i++ ) {
-			if(button.value == 0) {			
-				pixels[i].height = -11;
-			}
-			else if(button.value > 0 && button.value < 2) {
-				if(Math.floor(i % (pixels.length / (pixels.length * button.value))) == 0) {
-					pixels[i].height = 1;
-				}
-				else {
-					pixels[i].height = -11;
-				}
-			}			
-			else {
-				pixels[i].height = 1;
-			}
-		}		
-	}
+	breadth = button.value;	
 }
 
 function onWindowResize(){

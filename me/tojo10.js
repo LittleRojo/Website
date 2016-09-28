@@ -202,6 +202,20 @@ tojo10.prototype.RedrawSceneFrame = function() {
 		for ( var i = 0; i < pixels.length; i++ ) {
 			pixels[i].x += (Math.random() - .5) * this.animationSpeed; 
 			pixels[i].y += (Math.random() - .5) * this.animationSpeed;
+			if(breadth == 0) {			
+				pixels[i].z = -11;
+			}
+			else if(breadth > 0 && breadth < 2) {
+				if(Math.floor(i % (pixels.length / (pixels.length * breadth))) == 0) {
+					pixels[i].z = 1;
+				}
+				else {
+					pixels[i].z = -11;
+				}
+			}			
+			else {
+				pixels[i].z = 1;
+			}
 			pixels[i].z = pixels[i].height;			
 		}		
 		this.particleSystems[a].geometry.__dirtyVertices = true;
