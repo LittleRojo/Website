@@ -116,6 +116,7 @@ function updateOddball(button) {
 		App.tojo.particleSystems[a].geometry.__dirtyVertices = true;
 		App.tojo.particleSystems[a].geometry.verticesNeedUpdate = true;
 	}
+	App.renderer.render( App.tojo.scene, App.camera );
 }
 
 function onWindowResize(){
