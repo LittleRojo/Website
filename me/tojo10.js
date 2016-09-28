@@ -67,8 +67,7 @@ tojo10.prototype.SetupScene = function() {
 				var sinS = Math.sin(s * (Math.PI / 180));
 				var sinT = Math.sin(t * (Math.PI / 180));
 
-				var spot = new THREE.Vector3(pixels.position[ 3 * counter ], pixels.position[ 3 * counter + 1 ], pixels.position[ 3 * counter + 2 ])
-				spot.height = 1;	
+				var spot = new THREE.Vector3(pixels.position[ 3 * counter ], pixels.position[ 3 * counter + 1 ], pixels.position[ 3 * counter + 2 ])				
 				layer.vertices.push(spot)
 				counter++;
 			}
@@ -215,8 +214,7 @@ tojo10.prototype.RedrawSceneFrame = function() {
 			}			
 			else {
 				pixels[i].z = 1;
-			}
-			pixels[i].z = pixels[i].height;			
+			}		
 		}		
 		this.particleSystems[a].geometry.__dirtyVertices = true;
 		this.particleSystems[a].geometry.verticesNeedUpdate = true;
