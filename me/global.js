@@ -99,24 +99,21 @@ function updateOddball(button) {
 		var pixels = App.tojo.particleSystems[a].geometry.vertices;
 		for ( var i = 0; i < pixels.length; i++ ) {
 			if(button.value == 0) {			
-				pixels[i].z = -11;
+				pixels[i].height = -11;
 			}
 			else if(button.value > 0 && button.value < 2) {
 				if(Math.floor(i % (pixels.length / (pixels.length * button.value))) == 0) {
-					pixels[i].z = 1;
+					pixels[i].height = 1;
 				}
 				else {
-					pixels[i].z = -11;
+					pixels[i].height = -11;
 				}
 			}			
 			else {
-				pixels[i].z = 1;
+				pixels[i].height = 1;
 			}
 		}		
-		App.tojo.particleSystems[a].geometry.__dirtyVertices = true;
-		App.tojo.particleSystems[a].geometry.verticesNeedUpdate = true;
 	}
-	App.renderer.render( App.tojo.scene, App.camera );
 }
 
 function onWindowResize(){
