@@ -99,7 +99,7 @@ tojo10.prototype.SetupScene = function() {
 		App.tojo.AnimateScene();
 	};
 	img.style.display = "none";
-	img.src = 'img/logo2.png';	
+	img.src = "img/mikescharf.png";//'img/logo2.png';	
 
 	var texture = THREE.ImageUtils.loadTexture( "img/grass.png" );
 	texture.wrapS = THREE.RepeatWrapping; 
@@ -202,14 +202,14 @@ tojo10.prototype.RedrawSceneFrame = function() {
 			pixels[i].x += (Math.random() - .5) * this.animationSpeed; 
 			pixels[i].y += (Math.random() - .5) * this.animationSpeed;
 			if(breadth == 0) {			
-				pixels[i].z = -11;
+				pixels[i].z = -3;
 			}
 			else if(breadth > 0 && breadth < 2) {
 				if(Math.floor(i % (pixels.length / (pixels.length * breadth))) == 0) {
 					pixels[i].z = 1;
 				}
 				else {
-					pixels[i].z = -11;
+					pixels[i].z = -3;					
 				}
 			}			
 			else {
