@@ -99,7 +99,7 @@ tojo10.prototype.SetupScene = function() {
 		App.tojo.AnimateScene();
 	};
 	img.style.display = "none";
-	img.src = "img/mikescharf.png";//'img/logo2.png';	
+	img.src = 'img/logo2.png';	
 
 	var texture = THREE.ImageUtils.loadTexture( "img/grass.png" );
 	texture.wrapS = THREE.RepeatWrapping; 
