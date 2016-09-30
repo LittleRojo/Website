@@ -19,23 +19,25 @@ Set.prototype.Stage = function(canvas, tojo) {
 	this.renderer.shadowMapBias = 0.0039;
 	this.renderer.shadowMapDarkness = 0.5;
 
-	this.camera = new THREE.PerspectiveCamera( 45, window.innerWidth / (window.innerHeight), 1, 1000000 );	
-	this.camera.position.set(15000, 15000, 4500);
+	this.camera = new THREE.PerspectiveCamera( 45, window.innerWidth / (window.innerHeight), 1, 10000000 );	
+	this.camera.position.set(100000, 100000, 50000);
 	this.camera.up = new THREE.Vector3(0,0,1);
-	this.camera.lookAt(new THREE.Vector3(0,0,0));
-	this.camera.destination = new THREE.Vector3(0,0,0);
-	this.camera.origin = new THREE.Vector3(15000, 15000, 4500);
-
+	this.camera.destination = new THREE.Vector3(950,950,500);
+	this.camera.origin = new THREE.Vector3(17500, -17500, 175);
+	this.camera.rotation.order = 'YXZ'
+	
 	this.mouse = new THREE.TrackballControls( this.camera );
 	this.mouse.rotateSpeed = 3;
 	this.mouse.zoomSpeed = 1.2;
 	this.mouse.panSpeed = 0.8;
 	this.mouse.noZoom = false;
 	this.mouse.noPan = false;
-	this.mouse.staticMoving = true;
-	this.mouse.dynamicDampingFactor = 0.3;
+	this.mouse.noRotate = false;
+	this.mouse.staticMoving = false;
+	this.mouse.dynamicDampingFactor = 0.9;
+	this.mouse.target = new THREE.Vector3(-75000, -75000, 10000);
 	this.mouse.addEventListener( 'change', this.UpdateScene );
-
+	
 	this.audio = new Audio('media/nightnight.m4a');
 	this.audio.addEventListener('ended', function() {
         this.currentTime = 0;
