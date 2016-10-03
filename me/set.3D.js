@@ -20,10 +20,10 @@ Set.prototype.Stage = function(canvas, tojo) {
 	this.renderer.shadowMapDarkness = 0.5;
 
 	this.camera = new THREE.PerspectiveCamera( 45, window.innerWidth / (window.innerHeight), 1, 10000000 );	
-	this.camera.position.set(100000, 100000, 50000);
+	this.camera.position.set(0, 0, 0);
 	this.camera.up = new THREE.Vector3(0,0,1);
-	this.camera.destination = new THREE.Vector3(950,950,500);
-	this.camera.origin = new THREE.Vector3(17500, -17500, 175);
+	this.camera.destination = new THREE.Vector3(0,0,0);
+	this.camera.origin = new THREE.Vector3(0, 0, 0);
 	this.camera.rotation.order = 'YXZ'
 	
 	this.mouse = new THREE.TrackballControls( this.camera );
@@ -35,7 +35,7 @@ Set.prototype.Stage = function(canvas, tojo) {
 	this.mouse.noRotate = false;
 	this.mouse.staticMoving = false;
 	this.mouse.dynamicDampingFactor = 0.9;
-	this.mouse.target = new THREE.Vector3(-75000, -75000, 10000);
+	this.mouse.target = new THREE.Vector3(0, 0, 0);
 	this.mouse.addEventListener( 'change', this.UpdateScene );
 	
 	this.audio = new Audio('media/nightnight.m4a');

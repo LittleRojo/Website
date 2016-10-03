@@ -36,7 +36,7 @@ tojo10.prototype.SetupScene = function() {
 		var width = img.width / 2;
 		var height = img.height / 2;
 		var images = [];
-		for(var u = 0; u < 10; u++) {
+		for(var u = 0; u < 280; u++) {
 			var path = 'img/Lawson/_' + ((u < 10) ? '0000' + u : (u < 100) ? '000' + u : (u < 10000) ? '00' + u : '00000') + '.jpg';
 			THREE.ImageUtils.crossOrigin = '';
 			var texture = THREE.ImageUtils.loadTexture(path);			
@@ -134,7 +134,7 @@ tojo10.prototype.SetupScene = function() {
 
 	starStart = counter;
 	
-	var stars = 10000;
+	var stars = 1000;
 	var counter = 0;
 	var pixels = new Pixel({
 		position: new Float32Array( stars * 3 ),
@@ -173,12 +173,6 @@ tojo10.prototype.SetupScene = function() {
 	particleSystem.shading = THREE.FlatShading;
 	this.particleSystems.push(particleSystem);
 	this.scene.add(particleSystem);
-
-	var axisHelper = new THREE.AxisHelper( 5000 );
-	this.scene.add( axisHelper );
-
-	var cameraHelper = new THREE.CameraHelper( App.camera );
-	this.scene.add(cameraHelper);
 
 	App.renderer.render(this.scene, App.camera);
 
@@ -240,6 +234,7 @@ var YMax = 290000, YMin = -290000;
 var ZMax = 4000, ZMin = 3000;
 
 var counter = 0;
+var firstHit = 0;
 tojo10.prototype.UpdateSceneCamera = function() {
 	
 	/*var camera = App.camera;
@@ -279,15 +274,22 @@ tojo10.prototype.UpdateSceneCamera = function() {
 	var newZ = camera.position.z + camera.zStep;
 
 	if(newX > XMax || newX < XMin || newY > YMax || newY < YMin || newZ > ZMax || newZ < ZMin ){
-		var X = Math.random() * (XMax - XMin) + XMin;
-		var Y = Math.random() * (YMax - YMin) + YMin;
-		var Z = Math.random() * (ZMax - ZMin) + ZMin;
-		camera.destination = new THREE.Vector3(X, Y, Z);
-		camera.origin = new THREE.Vector3(camera.position.x, camera.position.y, camera.position.z);
+		if(firstHit == 0) {
+			if(counter > 1) {
+				firstHit = 1;
+			}
+		}
+		else {		
+			var X = Math.random() * (XMax - XMin) + XMin;
+			var Y = Math.random() * (YMax - YMin) + YMin;
+			var Z = Math.random() * (ZMax - ZMin) + ZMin;
+			camera.destination = new THREE.Vector3(X, Y, Z);
+			camera.origin = new THREE.Vector3(camera.position.x, camera.position.y, camera.position.z);
 
-		//App.mouse.target.x = camera.destination.x;//(Math.random() * 110000 - 55000);
-		//App.mouse.target.y = camera.destination.y;//(Math.random() * 110000 - 55000);
-		//App.mouse.target.z = camera.destination.z;//(Math.random() * 8000 - 4000);	
+			//App.mouse.target.x = camera.destination.x;//(Math.random() * 110000 - 55000);
+			//App.mouse.target.y = camera.destination.y;//(Math.random() * 110000 - 55000);
+			//App.mouse.target.z = camera.destination.z;//(Math.random() * 8000 - 4000);
+		}	
 	}
 	
 	camera.up = new THREE.Vector3(0,0,1);	
@@ -296,6 +298,7 @@ tojo10.prototype.UpdateSceneCamera = function() {
 	App.mouse.target.y += .1;//(Math.random() * 10 - 5);
 	App.mouse.target.z += .1;//(Math.random() * 10 - 5);
 	camera.position.set(newX, newY, newZ);
+	counter++;
 }
 
 function degInRad(degree) {
