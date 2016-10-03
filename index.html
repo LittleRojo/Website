@@ -4,7 +4,7 @@
 		<title id="title">Little Rojo</title>
 		<meta name="description" content="">
 		<meta name="keywords" content="">
-		<meta id="author" name="author" content="Î“Â°â”˜Â°">
+		<meta id="author" name="author" content="Γ°┘°">
 		<link rel="alternate" href="https://littlerojo.com" hreflang="en-us" />
 		<link rel="shortcut icon" href="https://littlerojo.com/favicon.ico" type="image/x-icon" />
 		<link href="logo.png" />
@@ -22,8 +22,8 @@
 		<script id="js" type="text/javascript" src="js/TrackballControls.js"></script>
 
 		<script id="js" type="text/javascript" src="me/global.js"></script>
-		<script id="js" type="text/javascript" src="me/set.3D.js"></script>
-		<script id="js" type="text/javascript" src="me/tojo10.js"></script>
+		<script id="js" type="text/javascript" src="me/tojo10/tojo10.set.js"></script>
+		<script id="js" type="text/javascript" src="me/tojo10/tojo10.js"></script>
 		<script id="js" type="text/javascript" src="me/utils.js"></script>
 
 		<script>
@@ -35,9 +35,9 @@
 			ga('send', 'pageview');
 		</script>
 	</head>	
-	<body style="margin:0px" bgcolor="black" id="body" onload="onload()" >
+	<body style="margin:0px" bgcolor="black" id="body" onload="onload(10)" >
 		<div id="wrapper">
-			<!--<audio id="rhythm" src="media/nightnight.m4a"></audio>-->
+			<audio id="rhythm" src="media/nightnight.m4a"></audio>
 						
 			<div style="position:fixed; top:4px; left:550px; visibility:hidden;" id="navigation">
 				<font style="color:red">Pixel People</font>
@@ -45,9 +45,9 @@
 		
 			<canvas id="mainCanvas" style="visibility:hidden; position:fixed; left:0px; top:25px; height:0px;"></canvas>
 
-			<input style="visibility:hidden; opacity:.55;" id="speed" type="range" min="0" value="1" max="2" step=".001" oninput="updateSpeed(this);"></input>
-			<input style="visibility:hidden; opacity:.55;" id="camera" type="range" min="0" value="1" max="2" step=".001" oninput="updateCamera(this);"></input>
-			<input style="visibility:hidden; opacity:.55;" id="oddball" type="range" min="0" value="1" max="1" step=".001" oninput="updateOddball(this);"></input>			
+			<input style="visibility:hidden; opacity:.55;" id="speed" type="range" min="0" value="1" max="2" step=".1" oninput="updateSpeed(this);"></input>
+			<input style="visibility:hidden; opacity:.55;" id="camera" type="range" min="0" value="1" max="2" step=".1" oninput="updateCamera(this);"></input>
+			<input style="visibility:hidden; opacity:.55;" id="oddball" type="range" min="0" value="1" max="2" step=".1" oninput="updateOddball(this);"></input>			
 			<!--<img src="img/off.png" onclick="play();" style="visibility:hidden; position:fixed; top:3000px; left:400px; width:38px; height:38px;" id="soundButton" />-->
 		</div>
 	</body>

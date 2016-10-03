@@ -1,0 +1,73 @@
+#speed {
+    position: fixed;
+    top:5000px;
+    height: 2px;
+    width: 5000px;
+    background-color: white;
+    -webkit-appearance: none !important;
+}
+
+#speed::-webkit-slider-thumb {
+    -webkit-appearance: none !important;
+    background-color: darkblue;
+    height: 37px;
+    width: 37px;
+    border-radius: 100%;
+    cursor: pointer;
+}
+
+#speed::-webkit-slider-thumb:hover { 
+    transform: scale(1.1); 
+}
+
+#camera {
+    position: fixed;
+    top:5000px;
+    height: 2px;
+    width: 5000px;
+    background-color: white;
+    -webkit-appearance: none !important;
+}
+
+#camera::-webkit-slider-thumb {
+    -webkit-appearance: none !important;
+    background-color: purple;
+    height: 37px;
+    width: 37px;
+    border-radius: 100%;
+    cursor: pointer;
+}
+
+#camera::-webkit-slider-thumb:hover { 
+    transform: scale(1.1); 
+}
+
+#oddball {
+    position: fixed;
+    top:5000px;
+    height: 2px;
+    width: 5000px;
+    background-color: white;
+    -webkit-appearance: none !important;
+}
+
+#oddball::-webkit-slider-thumb {
+    -webkit-appearance: none !important;
+    background-color: maroon;
+    height: 37px;
+    width: 37px;
+    border-radius: 100%;
+    cursor: pointer;
+}
+
+#oddball::-webkit-slider-thumb:hover { 
+    transform: scale(1.1); 
+}
+
+#soundButton { 
+    transition: all .2s ease-in-out; 
+}
+
+#soundButton:hover { 
+    transform: scale(1.1); 
+}
