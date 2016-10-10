@@ -5,29 +5,85 @@ function tojo11() {
 	this.renderLengthQueue = [];
 	this.previousRenderStamp;
 	this.scene = new THREE.Scene();
+    this.clock = new THREE.Clock();
 }
 
 tojo11.prototype.SetupScene = function() {
+
+    this.scene.fog = new THREE.Fog( 0xffffff, 1, 5000 );
+    this.scene.fog.color.setHSL( 0.6, 0, 1 );
+
+    //LIGHTS
+    hemiLight = new THREE.HemisphereLight( 0xffffff, 0xffffff, 0.6 );
+    hemiLight.color.setHSL( 0.6, 1, 0.6 );
+    hemiLight.groundColor.setHSL( 0.095, 1, 0.75 );
+    hemiLight.position.set( 0, 500, 0 );
+    this.scene.add( hemiLight );
+
+    var d = 50;
+    dirLight = new THREE.DirectionalLight( 0xffffff, 1 );
+    dirLight.color.setHSL( 0.1, 1, 0.95 );
+    dirLight.position.set( -1, 1.75, 1 );
+    dirLight.position.multiplyScalar( 50 );
+    dirLight.castShadow = true;
+    dirLight.shadowMapWidth = 2048;
+    dirLight.shadowMapHeight = 2048;    
+    dirLight.shadowCameraLeft = -d;
+    dirLight.shadowCameraRight = d;
+    dirLight.shadowCameraTop = d;
+    dirLight.shadowCameraBottom = -d;
+    dirLight.shadowCameraFar = 3500;
+    dirLight.shadowBias = -0.0001;    
+    dirLight.shadowCameraVisible = true;
+    this.scene.add( dirLight );
+
+    //GROUND
+    var groundGeo = new THREE.PlaneBufferGeometry( 10000, 10000 );
+    var groundMat = new THREE.MeshPhongMaterial( { color: 0xffffff, specular: 0x050505 } );
+    groundMat.color.setHSL( 0.095, 1, 0.75 );
+
+    var ground = new THREE.Mesh( groundGeo, groundMat );
+    ground.rotation.x = -Math.PI/2;
+    ground.position.y = -33;
+    ground.receiveShadow = true;
+    this.scene.add( ground );    
+
+    //DOME
+    var vertexShader = document.getElementById( 'vertexShader' ).textContent;
+    var fragmentShader = document.getElementById( 'fragmentShader' ).textContent;
+    var uniforms = {
+        topColor:    { value: new THREE.Color( 0x0077ff ) },
+        bottomColor: { value: new THREE.Color( 0xffffff ) },
+        offset:      { value: 33 },
+        exponent:    { value: 0.6 }
+    };
+    uniforms.topColor.value.copy( hemiLight.color );
+    this.scene.fog.color.copy( uniforms.bottomColor.value );
+
+    var skyGeo = new THREE.SphereGeometry( 4000, 32, 15 );
+    var skyMat = new THREE.ShaderMaterial( { 
+        vertexShader: vertexShader, 
+        fragmentShader: fragmentShader, 
+        uniforms: uniforms, 
+        side: THREE.BackSide } );
+
+    var sky = new THREE.Mesh( skyGeo, skyMat );
+    this.scene.add( sky );
+
+    //MIDDLE YELLO
 	var geometry = new THREE.CylinderGeometry( 0, 3, 8, 1000 );
     var material = new THREE.MeshPhongMaterial( {color: 0xffff00} );
-    var cylinder = new THREE.Mesh( geometry, material );
+    this.cylinder = new THREE.Mesh( geometry, material );
     var axis = new THREE.Vector3(0.5,0.5,0);   
-    cylinder.rotation.x = deg(140); 
-    this.scene.add( cylinder );
+    this.cylinder.rotation.x = deg(140); 
+    this.scene.add( this.cylinder );
 
-    var lights = [];
-    lights[ 0 ] = new THREE.PointLight( 0xffffff, 1, 0 );
-    lights[ 1 ] = new THREE.PointLight( 0xffffff, 1, 0 );
-    lights[ 2 ] = new THREE.PointLight( 0xffffff, 1, 0 );
-
-    lights[ 0 ].position.set( 0, 200, 0 );
-    lights[ 1 ].position.set( 100, 200, 100 );
-    lights[ 2 ].position.set( - 100, - 200, - 100 );
-
-    this.scene.add( lights[ 0 ] );
-    this.scene.add( lights[ 1 ] );
-    this.scene.add( lights[ 2 ] );
-
+    //GREEN BODY
+    var material2 = new THREE.MeshStandardMaterial( { color: 0x00ff00 } );
+    var geometry2 = new THREE.BoxBufferGeometry( 15, 15, 15 );
+    var mesh2 = new THREE.Mesh( geometry2, material2 );
+    //this.scene.add( mesh2 );
+   
 	App.renderer.render( this.scene, App.camera );
 }
 
@@ -44,7 +100,30 @@ tojo11.prototype.RedrawSceneFrame = function() {
 }
   
 tojo11.prototype.UpdateSceneCamera = function() {
-	
+    var rotSpeed = .05;
+    var x = App.camera.position.x;
+    var z = App.camera.position.z;
+    App.camera.position.x = x * Math.cos(rotSpeed) + z * Math.sin(rotSpeed);
+    App.camera.position.z = z * Math.cos(rotSpeed) - x * Math.sin(rotSpeed);
+    App.camera.lookAt(this.scene.position);
+    
+    /*var delta = this.clock.getDelta();
+	var rotateAngle = Math.PI / 2 * 20; 
+	var relativeCameraOffset = new THREE.Vector3(0,0,0);
+	var cameraOffset = relativeCameraOffset.applyMatrix4( this.cylinder.matrixWorld );
+	App.camera.position.x = cameraOffset.x;
+	App.camera.position.y = cameraOffset.y;
+	App.camera.position.z = cameraOffset.z;
+	App.camera.lookAt( this.cylinder.position );*/
+
+    /*var newX = App.camera.position.x;
+    var newY = App.camera.position.y;
+    var newZ = App.camera.position.z;
+
+    App.camera.up = new THREE.Vector3(0,0,1);
+	App.camera.position.set(newX, newY, newZ);
+    App.camera.lookAt(this.cylinder.position);	*/	
+    //App.camera.rotateOnAxis( new THREE.Vector3(1,0,0), -rotateAngle);
 }
 
 tojo11.prototype.UpdateSceneLighting = function() {
@@ -54,7 +133,7 @@ tojo11.prototype.UpdateSceneLighting = function() {
 //USER EVENTS
 tojo11.prototype.UpdateUserInput = function() {
 	this.UpdateUserKeyboard();
-	this.UpdateUserMouse();
+	//this.UpdateUserMouse();
 }
 
 tojo11.prototype.UpdateUserKeyboard = function() {

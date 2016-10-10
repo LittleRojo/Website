@@ -1,6 +1,8 @@
 window.addEventListener( 'resize', onWindowResize, false );
 
-function onload(page){
+var page;
+function onload(pageNumber){
+	page = pageNumber;
 	if((navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i))) {
 		
 		//IPHONE ORIENTATION - PROFILE
@@ -135,26 +137,31 @@ function onWindowResize(){
 		title.style.left = window.innerWidth / 2 - 50;
 	}
 
-	var speed = document.getElementById( 'speed' );
-	speed.style.width = ((window.innerWidth - 0) / 3);
-	speed.style.left = 0;
-	speed.style.top = window.innerHeight - 25;
+	if(page == "10") {
+		var speed = document.getElementById( 'speed' );
+		speed.style.width = ((window.innerWidth - 0) / 3);
+		speed.style.left = 0;
+		speed.style.top = window.innerHeight - 25;
 
-	var camera = document.getElementById( 'camera' );
-	camera.style.width = ((window.innerWidth - 0) / 3);
-	camera.style.left = ((window.innerWidth - 0) / 3);
-	camera.style.top = window.innerHeight - 25;
-	camera.style.visibility = "visible";
+		var camera = document.getElementById( 'camera' );
+		camera.style.width = ((window.innerWidth - 0) / 3);
+		camera.style.left = ((window.innerWidth - 0) / 3);
+		camera.style.top = window.innerHeight - 25;
+		camera.style.visibility = "visible";
 
-	var oddball = document.getElementById( 'oddball' );
-	oddball.style.width = ((window.innerWidth - 0) / 3);
-	oddball.style.left = ((window.innerWidth - 0) / 3) * 2;
-	oddball.style.top = window.innerHeight - 25;
-	oddball.style.visibility = "visible";
+		var oddball = document.getElementById( 'oddball' );
+		oddball.style.width = ((window.innerWidth - 0) / 3);
+		oddball.style.left = ((window.innerWidth - 0) / 3) * 2;
+		oddball.style.top = window.innerHeight - 25;
+		oddball.style.visibility = "visible";
 
-	//var sound = document.getElementById( 'soundButton' );
-	//sound.style.left = (((window.innerWidth - ((((window.innerWidth - 100) / 3) * 3))) / 2) - 19) + ((window.innerWidth - 100) / 3) * 3;
-	//sound.style.top = window.innerHeight - 42;
+		//var sound = document.getElementById( 'soundButton' );
+		//sound.style.left = (((window.innerWidth - ((((window.innerWidth - 100) / 3) * 3))) / 2) - 19) + ((window.innerWidth - 100) / 3) * 3;
+		//sound.style.top = window.innerHeight - 42;
+	}
+	else if(page == "11") {
+		
+	}
 }
 
 function play() {

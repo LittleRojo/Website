@@ -17,10 +17,10 @@ Set.prototype.Stage = function(canvas, tojo) {
 	//this.projector = new THREE.Projector();
 	//this.raycaster = new THREE.Raycaster();
 
-	this.camera = new THREE.PerspectiveCamera( 45, window.innerWidth / (window.innerHeight), 1, 100000000 );	
-	this.camera.position.set(50, 50, 50);
-	this.camera.up = new THREE.Vector3(0,0,1);
-	this.camera.lookAt(new THREE.Vector3(0,0,0));
+	this.camera = new THREE.PerspectiveCamera( 45, window.innerWidth / (window.innerHeight), 1, 50000 );	
+	this.camera.position.set(0, 0, 20);
+	//this.camera.up = new THREE.Vector3(0,0,1);
+	//this.camera.lookAt(new THREE.Vector3(0,0,0));
 	this.camera.destination = new THREE.Vector3(0,0,0);
 	this.camera.origin = new THREE.Vector3(0,0,0);
 
@@ -30,15 +30,14 @@ Set.prototype.Stage = function(canvas, tojo) {
 
 	//window.keyboard = new THREEx.KeyboardState();
 	
-	this.mouse = new THREE.TrackballControls( this.camera );
-	this.mouse.rotateSpeed = 3;
-	this.mouse.zoomSpeed = 1.2;
-	this.mouse.panSpeed = 0.8;
-	this.mouse.noZoom = false;
-	this.mouse.noPan = false;
-	this.mouse.staticMoving = true;
-	this.mouse.dynamicDampingFactor = 0.3;
-	this.mouse.addEventListener( 'change', this.UpdateScene );
+	/*this.mouse = new THREE.TrackballControls( this.camera );
+    this.mouse.rotateSpeed = 1.0;
+    this.mouse.zoomSpeed = 1.2;
+    this.mouse.panSpeed = 0.8;
+    this.mouse.noZoom = false;
+    this.mouse.noPan = false;
+    this.mouse.staticMoving = true;
+    this.mouse.dynamicDampingFactor = 0.15;*/
     
 	this.tojo = tojo;
 	this.tojo.SetupScene();
