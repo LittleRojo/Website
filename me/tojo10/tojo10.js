@@ -182,6 +182,7 @@ tojo10.prototype.RedrawScene = function() {
 	this.UpdateUserInput();
 	this.UpdateMusic();
 	App.renderer.render( this.scene, App.camera );
+	App.effect.render( this.scene, App.camera );
 }
 
 var elapsedTime = 0;

@@ -19,6 +19,11 @@ Set.prototype.Stage = function(canvas, tojo) {
 	this.renderer.shadowMapBias = 0.0039;
 	this.renderer.shadowMapDarkness = 0.5;
 
+	this.effect = new THREE.OculusRiftEffect(this.renderer, {
+        worldScale: 1000
+    });
+    this.effect.setSize(window.innerWidth, window.innerHeight);
+
 	this.camera = new THREE.PerspectiveCamera( 45, window.innerWidth / (window.innerHeight), 1, 1000000 );	
 	this.camera.position.set(15000, 15000, 4500);
 	this.camera.up = new THREE.Vector3(0,0,1);
