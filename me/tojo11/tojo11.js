@@ -156,7 +156,7 @@ tojo11.prototype.UpdateSceneLighting = function() {
 //USER EVENTS
 tojo11.prototype.UpdateUserInput = function() {
 	this.UpdateUserKeyboard();
-	this.UpdateUserMouse();
+	//this.UpdateUserMouse();
 }
 
 tojo11.prototype.UpdateUserKeyboard = function() {

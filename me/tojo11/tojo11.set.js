@@ -45,18 +45,44 @@ Set.prototype.Stage = function(canvas, tojo) {
 	//window.camera.lookAt(new THREE.Vector3(0, 0, 0));
 
 	//window.keyboard = new THREEx.KeyboardState();
-	
-	this.mouse = new THREE.TrackballControls( this.camera );
-    this.mouse.rotateSpeed = 1.0;
-    this.mouse.zoomSpeed = 1.2;
-    this.mouse.panSpeed = 0.8;
-    this.mouse.noZoom = false;
-    this.mouse.noPan = false;
-    this.mouse.staticMoving = true;
-    this.mouse.dynamicDampingFactor = 0.15;
+	/*var element = this.renderer.domElement;
+	this.mouse = new THREE.OrbitControls(camera, element);
+    this.mouse.target.set(
+        this.camera.position.x + 0.15,
+        this.camera.position.y,
+        this.camera.position.z
+    );
+    this.mouse.noPan = true;
+    this.mouse.noZoom = true;
     
-    window.addEventListener('deviceorientation', setOrientationControls, true);
+    window.addEventListener('deviceorientation', setOrientationControls, true);*/
     
+    if (navigator.getVRDisplays) {
+        // This object will be populated with the VRDisplay's pose and matricies
+        // every frame. We allocate it once here to avoid unnecessary garbage
+        // creation per frame.
+        frameData = new VRFrameData();
+
+        navigator.getVRDisplays().then(function (displays) {
+          // Use the first display in the array if one is available. If multiple
+          // displays are present you may want to present the user with a way to
+          // select which display they wish to use.
+          if (displays.length > 0) {
+            vrDisplay = displays[0];
+
+            // Being able to re-center your view is a useful thing in VR. It's
+            // good practice to provide your users with a simple way to do so.
+            VRSamplesUtil.addButton("Reset Pose", "R", null, function () { vrDisplay.resetPose(); });
+          } else {
+            VRSamplesUtil.addInfo("WebVR supported, but no VRDisplays found.", 3000);
+          }
+        });
+      } else if (navigator.getVRDevices) {
+        VRSamplesUtil.addError("Your browser supports WebVR but not the latest version. See <a href='http://webvr.info'>webvr.info</a> for more info.");
+      } else {
+        VRSamplesUtil.addError("Your browser does not support WebVR. See <a href='http://webvr.info'>webvr.info</a> for assistance.");
+      }
+
 	this.tojo = tojo;
 	this.tojo.SetupScene();
     this.tojo.AnimateScene();
