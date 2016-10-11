@@ -23,7 +23,7 @@ Set.prototype.Stage = function(canvas, tojo) {
 	//this.raycaster = new THREE.Raycaster();
 
 	this.camera = new THREE.PerspectiveCamera( 45, window.innerWidth / (window.innerHeight), 1, 50000 );	
-	this.camera.position.set(0, 5, 20);
+	this.camera.position.set(0, 0, 5);
     this.camera.rotation.y = .01;
 
 	//this.camera.up = new THREE.Vector3(0,0,1);

@@ -20,7 +20,7 @@ tojo11.prototype.SetupScene = function() {
     hemiLight.position.set( 0, 500, 0 );
     this.scene.add( hemiLight );
 
-    /*var d = 50;
+    var d = 50;
     dirLight = new THREE.DirectionalLight( 0xffffff, 1 );
     dirLight.color.setHSL( 0.1, 1, 0.95 );
     dirLight.position.set( -1, 1.75, 1 );
@@ -68,7 +68,7 @@ tojo11.prototype.SetupScene = function() {
         side: THREE.BackSide } );
 
     var sky = new THREE.Mesh( skyGeo, skyMat );
-    this.scene.add( sky );*/
+    this.scene.add( sky );
 
     //MIDDLE YELLO
 	var geometry = new THREE.CylinderGeometry( 0, 3, 8, 1000 );
@@ -107,7 +107,7 @@ tojo11.prototype.RedrawScene = function() {
 
 var degree = 0;
 tojo11.prototype.RedrawSceneFrame = function() {
-    //this.yellow.rotation.z = degree;
+    this.yellow.rotation.z = degree;
     this.green.rotation.x = degree;
     //this.green.rotation.z = -degree;
     degree+=.01;
