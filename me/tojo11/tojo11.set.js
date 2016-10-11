@@ -15,7 +15,7 @@ Set.prototype.Stage = function(canvas, tojo) {
 	this.renderer.shadowMapDarkness = 0.5;
 
     this.effect = new THREE.StereoEffect(this.renderer, { 
-        eyeSeparation: 1
+        eyeSeparation: 0
     });
     //this.effect.SetSize(window.innerWidth, window.innerHeight);
 
