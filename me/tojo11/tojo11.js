@@ -20,7 +20,7 @@ tojo11.prototype.SetupScene = function() {
     hemiLight.position.set( 0, 500, 0 );
     this.scene.add( hemiLight );
 
-    var d = 50;
+    /*var d = 50;
     dirLight = new THREE.DirectionalLight( 0xffffff, 1 );
     dirLight.color.setHSL( 0.1, 1, 0.95 );
     dirLight.position.set( -1, 1.75, 1 );
@@ -68,21 +68,22 @@ tojo11.prototype.SetupScene = function() {
         side: THREE.BackSide } );
 
     var sky = new THREE.Mesh( skyGeo, skyMat );
-    this.scene.add( sky );
+    this.scene.add( sky );*/
 
     //MIDDLE YELLO
 	var geometry = new THREE.CylinderGeometry( 0, 3, 8, 1000 );
     var material = new THREE.MeshPhongMaterial( {color: 0xffff00} );
-    this.cylinder = new THREE.Mesh( geometry, material );
+    this.yellow = new THREE.Mesh( geometry, material );
     var axis = new THREE.Vector3(0.5,0.5,0);   
-    this.cylinder.rotation.x = deg(140); 
-    this.scene.add( this.cylinder );
+    this.yellow.rotation.y = 1; 
+    this.scene.add( this.yellow );
 
     //GREEN BODY
     var material2 = new THREE.MeshStandardMaterial( { color: 0x00ff00 } );
-    var geometry2 = new THREE.BoxBufferGeometry( 15, 15, 15 );
-    var mesh2 = new THREE.Mesh( geometry2, material2 );
-    //this.scene.add( mesh2 );
+    var geometry2 = new THREE.BoxBufferGeometry( 5, 5, 5 );
+    this.green = new THREE.Mesh( geometry2, material2 );
+    this.green.rotation.y = 1;//deg(180);
+    this.scene.add( this.green );
    
 	App.renderer.render( this.scene, App.camera );
 }
@@ -92,20 +93,42 @@ tojo11.prototype.RedrawScene = function() {
 	this.UpdateSceneCamera();
 	this.UpdateSceneLighting();
 	this.UpdateUserInput();
-	App.renderer.render( this.scene, App.camera );
+    this.CalculateFPS();
+    if(true) {
+	    App.renderer.render( this.scene, App.camera );
+        App.effect.render( this.scene, App.camera )
+        //camera = 0;
+    }
+    else {
+        App.renderer.render( this.scene, App.camera2 );
+        camera = 1;
+    }
 }
 
+var degree = 0;
 tojo11.prototype.RedrawSceneFrame = function() {
-
+    //this.yellow.rotation.z = degree;
+    this.green.rotation.x = degree;
+    //this.green.rotation.z = -degree;
+    degree+=.01;
 }
   
+var camera = 1;  
 tojo11.prototype.UpdateSceneCamera = function() {
     var rotSpeed = .05;
     var x = App.camera.position.x;
     var z = App.camera.position.z;
-    App.camera.position.x = x * Math.cos(rotSpeed) + z * Math.sin(rotSpeed);
-    App.camera.position.z = z * Math.cos(rotSpeed) - x * Math.sin(rotSpeed);
-    App.camera.lookAt(this.scene.position);
+    //rotateCameraY(rotSpeed);
+    //App.camera.position.x = x * Math.cos(rotSpeed) + z * Math.sin(rotSpeed);
+    //App.camera.position.z = z * Math.cos(rotSpeed) - x * Math.sin(rotSpeed);
+    //App.camera.lookAt(this.scene.position);
+    //App.camera.rotation += 1.9;
+
+    //App.camera2.position.x = x * Math.cos(-rotSpeed) + z * Math.sin(-rotSpeed);
+    //App.camera2.position.z = z * Math.cos(-rotSpeed) - x * Math.sin(-rotSpeed);
+    //App.camera2.lookAt(this.scene.position);
+
+
     
     /*var delta = this.clock.getDelta();
 	var rotateAngle = Math.PI / 2 * 20; 
@@ -147,11 +170,13 @@ tojo11.prototype.UpdateUserMouse = function() {
 //ANIMATION
 var stopScene = false;
 tojo11.prototype.AnimateScene = function(fps) {
-    if(stopScene) {
-		startScene = false;
-		return;
-	}
-	App.tojo.RedrawScene();
+    //setInterval( function() {
+        if(stopScene) {
+            startScene = false;
+            return;
+        }
+        App.tojo.RedrawScene();
+    //}, 0);
 	requestAnimationFrame(App.tojo.AnimateScene);
 }
 
@@ -176,6 +201,7 @@ tojo11.prototype.CalculateFPS = function() {
 		length += a;
 	});
 	this.fps = (1000/(length / this.renderLengthQueue.length)) * this.renderLengthQueue.length;
+    //for(var a = 1; a < 100000000; a++){}
 }
 
 function deg(degree)   { return degree*(Math.PI/180); }
