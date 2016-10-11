@@ -76,7 +76,7 @@ tojo11.prototype.SetupScene = function() {
     this.yellow = new THREE.Mesh( geometry, material );
     var axis = new THREE.Vector3(0.5,0.5,0);   
     this.yellow.rotation.y = 1; 
-    this.scene.add( this.yellow );
+    //this.scene.add( this.yellow );
 
     //GREEN BODY
     var material2 = new THREE.MeshStandardMaterial( { color: 0x00ff00 } );
@@ -107,8 +107,8 @@ tojo11.prototype.RedrawScene = function() {
 
 var degree = 0;
 tojo11.prototype.RedrawSceneFrame = function() {
-    this.yellow.rotation.z = degree;
-    this.green.rotation.x = degree;
+    //this.yellow.rotation.z = degree;
+    //this.green.rotation.x = degree;
     //this.green.rotation.z = -degree;
     degree+=.01;
 }
@@ -156,7 +156,7 @@ tojo11.prototype.UpdateSceneLighting = function() {
 //USER EVENTS
 tojo11.prototype.UpdateUserInput = function() {
 	this.UpdateUserKeyboard();
-	//this.UpdateUserMouse();
+	this.UpdateUserMouse();
 }
 
 tojo11.prototype.UpdateUserKeyboard = function() {

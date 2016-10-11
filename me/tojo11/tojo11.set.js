@@ -14,11 +14,16 @@ Set.prototype.Stage = function(canvas, tojo) {
 	this.renderer.shadowMapBias = 0.0039;
 	this.renderer.shadowMapDarkness = 0.5;
 
+    this.effect = new THREE.StereoEffect(this.renderer, { 
+        eyeSeparation: 1
+    });
+    //this.effect.SetSize(window.innerWidth, window.innerHeight);
 
-    this.effect = new THREE.OculusRiftEffect(this.renderer, {
+
+    /*this.effect = new THREE.OculusRiftEffect(this.renderer, {
         worldScale: 1000
     });
-    this.effect.setSize(window.innerWidth, window.innerHeight);
+    this.effect.setSize(window.innerWidth, window.innerHeight);*/
 	//this.projector = new THREE.Projector();
 	//this.raycaster = new THREE.Raycaster();
 
@@ -41,14 +46,14 @@ Set.prototype.Stage = function(canvas, tojo) {
 
 	//window.keyboard = new THREEx.KeyboardState();
 	
-	/*this.mouse = new THREE.TrackballControls( this.camera );
+	this.mouse = new THREE.TrackballControls( this.camera );
     this.mouse.rotateSpeed = 1.0;
     this.mouse.zoomSpeed = 1.2;
     this.mouse.panSpeed = 0.8;
     this.mouse.noZoom = false;
     this.mouse.noPan = false;
     this.mouse.staticMoving = true;
-    this.mouse.dynamicDampingFactor = 0.15;*/
+    this.mouse.dynamicDampingFactor = 0.15;
     
 	this.tojo = tojo;
 	this.tojo.SetupScene();
