@@ -54,10 +54,8 @@ Set.prototype.Stage = function(canvas, tojo) {
     this.mouse.noPan = false;
     this.mouse.staticMoving = true;
     this.mouse.dynamicDampingFactor = 0.15;
-
     
     window.addEventListener('deviceorientation', setOrientationControls, true);
-
     
 	this.tojo = tojo;
 	this.tojo.SetupScene();
@@ -66,11 +64,12 @@ Set.prototype.Stage = function(canvas, tojo) {
 
 function setOrientationControls(e) {
     if (!e.alpha) {
-    return;
+        return;
     }
     this.mouse = new THREE.DeviceOrientationControls(App.camera, true);
     this.mouse.connect();
     this.mouse.update();
+    window.removeEventListener('deviceorientation', setOrientationControls, true);
 }
 
 Set.prototype.UpdateScene = function () {
