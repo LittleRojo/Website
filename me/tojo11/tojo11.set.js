@@ -68,11 +68,9 @@ function setOrientationControls(e) {
     if (!e.alpha) {
     return;
     }
-    controls = new THREE.DeviceOrientationControls(App.camera, true);
-    controls.connect();
-    controls.update();
-    //element.addEventListener('click', fullscreen, false);
-    window.removeEventListener('deviceorientation', setOrientationControls, true);
+    this.mouse = new THREE.DeviceOrientationControls(App.camera, true);
+    this.mouse.connect();
+    this.mouse.update();
 }
 
 Set.prototype.UpdateScene = function () {
