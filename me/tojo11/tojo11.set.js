@@ -9,14 +9,14 @@ Set.prototype.Stage = function(canvas, tojo) {
 	this.renderer.setPixelRatio( window.devicePixelRatio );
 	this.renderer.setSize( window.innerWidth, window.innerHeight );
 	this.renderer.setClearColor( 0x000000, 1 );
-	this.renderer.shadowMap.enabled = true;
-	this.renderer.shadowMap.tsype = THREE.PCFShadowMap;
-	this.renderer.shadowMapBias = 0.0039;
-	this.renderer.shadowMapDarkness = 0.5;
+    //this.renderer.gammaInput = true;
+    //this.renderer.gammaOutput = true;
+    this.renderer.shadowMap.enabled = true;
+    this.renderer.shadowMap.renderReverseSided = false;
 
     this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 10000);
-    this.camera.position.set(15, -9, 30);
-	this.camera.up = new THREE.Vector3(0,1,0);
+    this.camera.position.set(14, -10, 35);
+	this.camera.up = new THREE.Vector3(0,1,0);    
 	//this.camera.lookAt(new THREE.Vector3(400,400,0));
     /*this.camera.position = new THREE.Vector3(0,0,15);
     this.controls = new THREE.VRControls(this.camera);

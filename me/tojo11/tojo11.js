@@ -10,70 +10,80 @@ function tojo11() {
 
 tojo11.prototype.SetupScene = function() {
 
-    this.scene.fog = new THREE.Fog( 0xffffff, 1, 5000 );
-    this.scene.fog.color.setHSL( 0.6, 0, 1 );
+    //this.scene.fog = new THREE.Fog( 0xffffff, 1, 5000 );
+    //this.scene.fog.color.setHSL( 0.6, 0, 1 );
 
     //LIGHTS
-    hemiLight = new THREE.HemisphereLight( 0x0000ff, 0xffffff, .8 );
-    //hemiLight.color.setHSL( 0.1, 1, 1 );
-    //hemiLight.groundColor.setHSL( 1.095, 1, 1.75 );
-    hemiLight.position.set( 0, -1, 0 );
+    hemiLight = new THREE.HemisphereLight( 0xffffff, 0xffffff, .7 );
+    hemiLight.position.set( -1, 0, 0 );
+    //hemiLight.castShadow = true;
     this.scene.add( hemiLight );
 
-    var d = 5;
     dirLight = new THREE.DirectionalLight( 0xffffff, 1 );
-    dirLight.color.setHSL( 0, 2.5, 0.095 );
-    dirLight.position.set( 10, 10.75, 0 );
-    dirLight.position.multiplyScalar( 50 );
+    dirLight.position.set( 0, 5, 0 );
     dirLight.castShadow = true;
     dirLight.shadowMapWidth = 2048;
-    dirLight.shadowMapHeight = 2048;    
-    dirLight.shadowCameraLeft = -d;
-    dirLight.shadowCameraRight = d;
-    dirLight.shadowCameraTop = d;
-    dirLight.shadowCameraBottom = -d;
-    dirLight.shadowCameraFar = 3500;
-    dirLight.shadowBias = -0.0001;    
-    dirLight.shadowCameraVisible = true;
+    dirLight.shadowCameraRight = 100;
+    dirLight.shadowCameraLeft = -100;
+    dirLight.shadowCameraTop = 100;
+    dirLight.shadowCameraBottom = -100;
+    dirLight.shadowMapHeight = 2048;
+    //dirLight.shadowDarkness = 0.5;
     this.scene.add( dirLight );
 
+    spotLight = new THREE.SpotLight( 0xffffff );
+    spotLight.position.set( 0,100,0 );
+    spotLight.shadowMapWidth = 2048;
+    spotLight.shadowMapWidth = 2048;
+    this.scene.add(spotLight);
+
     //GROUND
-    var groundGeo = new THREE.PlaneBufferGeometry( 10000, 10000 );
-    var groundMat = new THREE.MeshPhongMaterial( { color: 0xCD853F, specular: 0x050505 } );
+    var groundGeo = new THREE.PlaneGeometry( 10000, 10000, 70, 70 );
+    for(var a = 0, b = groundGeo.vertices.length; a < b; a++ ){
+        var factor = 25;
+        if(groundGeo.vertices[a].x > 400 || groundGeo.vertices[a].x < -400 || groundGeo.vertices[a].z > 400 || groundGeo.vertices[a].z < -400) {
+            factor = 100;
+        }
+        groundGeo.vertices[a].z = Math.random() * factor;
+    }
+    var groundMat = new THREE.MeshPhongMaterial( { color: 0x003300, specular: 0x050505 } );
     
     var ground = new THREE.Mesh( groundGeo, groundMat );
     ground.rotation.x = -Math.PI/2;
     ground.position.y = -33;
     ground.receiveShadow = true;
+    //ground.castShadow = true;
     this.scene.add( ground );    
 
     //DOME
     var vertexShader = document.getElementById( 'vertexShader' ).textContent;
     var fragmentShader = document.getElementById( 'fragmentShader' ).textContent;
     var uniforms = {
-        topColor:    { value: new THREE.Color( 0x0077ff ) },
-        bottomColor: { value: new THREE.Color( 0xffffff ) },
+        topColor:    { value: new THREE.Color( 0x000000 ) },
+        bottomColor: { value: new THREE.Color( 0x000099 ) },
         offset:      { value: 33 },
         exponent:    { value: 0.6 }
     };
-    uniforms.topColor.value.copy( hemiLight.color );
-    this.scene.fog.color.copy( uniforms.bottomColor.value );
+    uniforms.topColor.value.copy( 0x000000 );
+    //this.scene.fog.color.copy( uniforms.bottomColor.value );
 
     var skyGeo = new THREE.SphereGeometry( 4000, 32, 15 );
     var skyMat = new THREE.ShaderMaterial( { 
         vertexShader: vertexShader, 
         fragmentShader: fragmentShader, 
         uniforms: uniforms, 
-        side: THREE.BackSide } );
+        side: THREE.BackSide,
+        shading: THREE.FlatShading
+    } );
 
     var sky = new THREE.Mesh( skyGeo, skyMat );
     this.scene.add( sky );
 
     //MIDDLE YELLO
-	var geometry = new THREE.CylinderGeometry( 0, 2.2, 7.5, 1000 );
+	var geometry = new THREE.CylinderGeometry( 0, 1.8, 7.0, 1000 );
     var material = new THREE.MeshPhongMaterial( {color: 0xFFCF00, side: THREE.DoubleSide } );
     this.yellow = new THREE.Mesh( geometry, material );
-    this.yellow.rotation.z = deg(32);
+    this.yellow.rotation.z = deg(34);
     //this.yellow.position.z = 5;
     this.yellow.position.x = 4.4;
     this.yellow.position.y = .5;    
@@ -81,19 +91,59 @@ tojo11.prototype.SetupScene = function() {
 
     //GREEN BODY    
     var pts = [];
-    pts.push( new THREE.Vector3( 7.1, -7.5,0 ));
-    pts.push( new THREE.Vector3( 8.5, -1.7,0 ));
-    pts.push( new THREE.Vector3( -.5,6.2,0 ));
-    pts.push( new THREE.Vector3( 1,-2.5,0 ));
+    pts.push( new THREE.Vector3( 7.1, -6.5,0 ));
+    pts.push( new THREE.Vector3( 7.85, -1.4,0 ));
+    pts.push( new THREE.Vector3( -1.5,7.0,0 ));
+    pts.push( new THREE.Vector3( 1.1,-1.0,0 ));
     App.mouse.target = new THREE.Vector3( 7.1, -7.5,0 );
     var shape = new THREE.Shape( pts );
     var geometry2 = new THREE.ShapeGeometry( shape );
     var material2 = new THREE.MeshPhongMaterial( { color: 0xC1CD23, side: THREE.DoubleSide, shading: THREE.SmoothShading } );    
     this.green = new THREE.Mesh( geometry2, material2 );  
     this.green.shading = true;  
-    //this.green.rotation.z = deg(40);
+    this.green.castShadow = true;
+    this.green.receiveShadow = true;
     this.scene.add( this.green );
+
+    //ORANGE BODY - LEFT 
+    var pts = [];
+    pts.push( new THREE.Vector3( 7.85, -1.4,0 ));
+    pts.push( new THREE.Vector3( 10.1, 0, 1 ));    
+    pts.push( new THREE.Vector3( 10.8, 7.0,4 ));
+    pts.push( new THREE.Vector3( 1.6,3.0,0 ));
+    App.mouse.target = new THREE.Vector3( 7.1, -7.5,0 );
+    var shape2 = new THREE.Shape( pts );
+    var geometry3 = new THREE.ShapeGeometry( shape2 );
+    var material3 = new THREE.MeshPhongMaterial( { color: 0xFF7F00, side: THREE.DoubleSide, shading: THREE.SmoothShading } );    
+    this.orangeLeft = new THREE.Mesh( geometry3, material3 );  
+    this.orangeLeft.shading = true;  
+    this.orangeLeft.rotation.x = deg(-20);
+    this.orangeLeft.rotation.y = deg(25);
+    this.orangeLeft.translateZ(1.9);
+    this.orangeLeft.castShadow = true;
+    this.orangeLeft.receiveShadow = true;
+    this.scene.add( this.orangeLeft );
+
+    //ORANGE BODY - RIGHT 
+    var pts = [];
+    pts.push( new THREE.Vector3( 7.85, -1.4,0 ));
+    pts.push( new THREE.Vector3( 10.1, 0,0 ));    
+    pts.push( new THREE.Vector3( 10.8, 7.0,0 ));
+    pts.push( new THREE.Vector3( 1.6,3.0,0 ));
+    App.mouse.target = new THREE.Vector3( 7.1, -7.5,0 );
+    var shape3 = new THREE.Shape( pts );
+    var geometry4 = new THREE.ShapeGeometry( shape3 );
+    var material4 = new THREE.MeshPhongMaterial( { color: 0xFF7F00, side: THREE.DoubleSide, shading: THREE.SmoothShading } );    
+    this.orangeRight = new THREE.Mesh( geometry4, material4 );  
+    this.orangeRight.shading = true;  
+    this.orangeRight.rotation.x = deg(20);
+    this.orangeRight.rotation.y = deg(-25);
+    this.orangeRight.translateZ(-1.9);
+    this.orangeRight.castShadow = true;
+    this.orangeRight.receiveShadow = true;
+    this.scene.add( this.orangeRight );
    
+    //rotateCameraY(24.7);
 	App.renderer.render( this.scene, App.camera );
 }
 
