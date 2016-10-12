@@ -31,7 +31,7 @@ tojo11.prototype.SetupScene = function() {
     //dirLight.shadowDarkness = 0.5;
     this.scene.add( dirLight );
 
-    spotLight = new THREE.SpotLight( 0xffffff );
+    spotLight = new THREE.SpotLight( 0xffffff, .8 );
     spotLight.position.set( 0,100,0 );
     spotLight.shadowMapWidth = 2048;
     spotLight.shadowMapWidth = 2048;
