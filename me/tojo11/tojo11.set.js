@@ -19,6 +19,14 @@ Set.prototype.Stage = function(canvas, tojo) {
     this.effect = new THREE.VREffect(this.renderer);
     this.effect.setSize(window.innerWidth, window.innerHeight);
     
+    this.vrDisplay = null;
+    navigator.getVRDisplays().then(function(displays) {
+        if (displays.length > 0) {
+            vrDisplay = displays[0];
+            vrDisplay.requestAnimationFrame(animate);
+        }
+    });
+
 	this.tojo = tojo;
 	this.tojo.SetupScene();
     this.tojo.AnimateScene();
