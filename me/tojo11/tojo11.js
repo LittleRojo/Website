@@ -14,16 +14,16 @@ tojo11.prototype.SetupScene = function() {
     this.scene.fog.color.setHSL( 0.6, 0, 1 );
 
     //LIGHTS
-    hemiLight = new THREE.HemisphereLight( 0xffffff, 0xffffff, 0.6 );
-    hemiLight.color.setHSL( 0.6, 1, 0.6 );
-    hemiLight.groundColor.setHSL( 0.095, 1, 0.75 );
-    hemiLight.position.set( 0, 500, 0 );
+    hemiLight = new THREE.HemisphereLight( 0x0000ff, 0xffffff, .8 );
+    //hemiLight.color.setHSL( 0.1, 1, 1 );
+    //hemiLight.groundColor.setHSL( 1.095, 1, 1.75 );
+    hemiLight.position.set( 0, -1, 0 );
     this.scene.add( hemiLight );
 
-    var d = 50;
+    var d = 5;
     dirLight = new THREE.DirectionalLight( 0xffffff, 1 );
-    dirLight.color.setHSL( 0.1, 1, 0.95 );
-    dirLight.position.set( -1, 1.75, 1 );
+    dirLight.color.setHSL( 0, 2.5, 0.095 );
+    dirLight.position.set( 10, 10.75, 0 );
     dirLight.position.multiplyScalar( 50 );
     dirLight.castShadow = true;
     dirLight.shadowMapWidth = 2048;
