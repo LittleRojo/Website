@@ -1,12 +1,3 @@
-this.vrDisplay = null;
-    navigator.getVRDisplays().then(function(displays) {
-        if (displays.length > 0) {
-            App.vrDisplay = displays[0];
-            App.tojo.AnimateScene();
-            //vrDisplay.requestAnimationFrame(animate);
-        }
-    }); 
-    
 function Set() {
 	
 }
