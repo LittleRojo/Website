@@ -80,13 +80,16 @@ tojo11.prototype.SetupScene = function() {
     this.scene.add( sky );
 
     //MIDDLE YELLO
-	var geometry = new THREE.CylinderGeometry( 0, 1.8, 7.0, 1000 );
+	var geometry = new THREE.CylinderGeometry( 0, 2.1, 7.0, 1000 );
     var material = new THREE.MeshPhongMaterial( {color: 0xFFCF00, side: THREE.DoubleSide } );
     this.yellow = new THREE.Mesh( geometry, material );
     this.yellow.rotation.z = deg(34);
     //this.yellow.position.z = 5;
     this.yellow.position.x = 4.4;
-    this.yellow.position.y = .5;    
+    this.yellow.position.y = .5;  
+    this.yellow.shading = true;
+    this.yellow.castShadow = true;
+    this.yellow.receiveShadow = true;  
     this.scene.add( this.yellow );
 
     //GREEN BODY    
@@ -94,7 +97,7 @@ tojo11.prototype.SetupScene = function() {
     pts.push( new THREE.Vector3( 7.1, -6.5,0 ));
     pts.push( new THREE.Vector3( 7.85, -1.4,0 ));
     pts.push( new THREE.Vector3( -1.5,7.0,0 ));
-    pts.push( new THREE.Vector3( 1.1,-1.0,0 ));
+    pts.push( new THREE.Vector3( 0.8,-1.0,0 ));
     App.mouse.target = new THREE.Vector3( 7.1, -7.5,0 );
     var shape = new THREE.Shape( pts );
     var geometry2 = new THREE.ShapeGeometry( shape );
@@ -105,12 +108,12 @@ tojo11.prototype.SetupScene = function() {
     this.green.receiveShadow = true;
     this.scene.add( this.green );
 
-    //ORANGE BODY - LEFT 
+    //ORANGE BODY - RIGHT 
     var pts = [];
-    pts.push( new THREE.Vector3( 7.85, -1.4,0 ));
-    pts.push( new THREE.Vector3( 10.1, 0, 1 ));    
-    pts.push( new THREE.Vector3( 10.8, 7.0,4 ));
-    pts.push( new THREE.Vector3( 1.6,3.0,0 ));
+    pts.push( new THREE.Vector3( 6.65, -1.5,0 ));
+    pts.push( new THREE.Vector3( 10.1, 0, 0 ));    
+    pts.push( new THREE.Vector3( 10.8, 7.0,0 ));
+    pts.push( new THREE.Vector3( 1.7,3.1,0 ));
     App.mouse.target = new THREE.Vector3( 7.1, -7.5,0 );
     var shape2 = new THREE.Shape( pts );
     var geometry3 = new THREE.ShapeGeometry( shape2 );
@@ -119,17 +122,17 @@ tojo11.prototype.SetupScene = function() {
     this.orangeLeft.shading = true;  
     this.orangeLeft.rotation.x = deg(-20);
     this.orangeLeft.rotation.y = deg(25);
-    this.orangeLeft.translateZ(1.9);
+    this.orangeLeft.translateZ(2.0);
     this.orangeLeft.castShadow = true;
     this.orangeLeft.receiveShadow = true;
     this.scene.add( this.orangeLeft );
 
-    //ORANGE BODY - RIGHT 
+    //ORANGE BODY - LEFT 
     var pts = [];
-    pts.push( new THREE.Vector3( 7.85, -1.4,0 ));
+    pts.push( new THREE.Vector3( 6.65, -1.5,0 ));
     pts.push( new THREE.Vector3( 10.1, 0,0 ));    
     pts.push( new THREE.Vector3( 10.8, 7.0,0 ));
-    pts.push( new THREE.Vector3( 1.6,3.0,0 ));
+    pts.push( new THREE.Vector3( 1.7,3.1,0 ));
     App.mouse.target = new THREE.Vector3( 7.1, -7.5,0 );
     var shape3 = new THREE.Shape( pts );
     var geometry4 = new THREE.ShapeGeometry( shape3 );
@@ -138,7 +141,7 @@ tojo11.prototype.SetupScene = function() {
     this.orangeRight.shading = true;  
     this.orangeRight.rotation.x = deg(20);
     this.orangeRight.rotation.y = deg(-25);
-    this.orangeRight.translateZ(-1.9);
+    this.orangeRight.translateZ(-2.0);
     this.orangeRight.castShadow = true;
     this.orangeRight.receiveShadow = true;
     this.scene.add( this.orangeRight );
