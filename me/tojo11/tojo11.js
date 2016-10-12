@@ -171,6 +171,7 @@ tojo11.prototype.AnimateScene = function(fps) {
         }
         App.tojo.RedrawScene();
     //}, 0);
+    App.effect.render(App.scene, App.camera);
     if(App.vrDisplay === undefined) {
         requestAnimationFrame(App.tojo.AnimateScene);
     }
