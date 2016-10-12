@@ -93,16 +93,10 @@ tojo11.prototype.RedrawScene = function() {
 	this.UpdateSceneCamera();
 	this.UpdateSceneLighting();
 	this.UpdateUserInput();
-    this.CalculateFPS();
-    if(true) {
-	    App.renderer.render( this.scene, App.camera );
-        App.effect.render( this.scene, App.camera )
-        //camera = 0;
-    }
-    else {
-        App.renderer.render( this.scene, App.camera2 );
-        camera = 1;
-    }
+    //this.CalculateFPS();
+
+    App.renderer.render( this.scene, App.camera );
+    App.effect.render( this.scene, App.camera )
 }
 
 var degree = 0;
@@ -156,7 +150,7 @@ tojo11.prototype.UpdateSceneLighting = function() {
 //USER EVENTS
 tojo11.prototype.UpdateUserInput = function() {
 	this.UpdateUserKeyboard();
-	//this.UpdateUserMouse();
+	this.UpdateUserMouse();
 }
 
 tojo11.prototype.UpdateUserKeyboard = function() {
@@ -164,7 +158,7 @@ tojo11.prototype.UpdateUserKeyboard = function() {
 }
 
 tojo11.prototype.UpdateUserMouse = function() {
-	App.mouse.update();
+	App.controls.update();
 }
 
 //ANIMATION
@@ -177,7 +171,12 @@ tojo11.prototype.AnimateScene = function(fps) {
         }
         App.tojo.RedrawScene();
     //}, 0);
-	requestAnimationFrame(App.tojo.AnimateScene);
+    if(App.vrDisplay === undefined) {
+        requestAnimationFrame(App.tojo.AnimateScene);
+    }
+    else {    
+	    App.vrDisplay.requestAnimationFrame(App.tojo.AnimateScene);
+    }
 }
 
 tojo11.prototype.StopAnimation = function() {
