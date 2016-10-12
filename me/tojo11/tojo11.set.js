@@ -15,9 +15,9 @@ Set.prototype.Stage = function(canvas, tojo) {
 	this.renderer.shadowMapDarkness = 0.5;
 
     this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 10000);
-    this.camera.position.set(0, 0, 10);
-	this.camera.up = new THREE.Vector3(0,0,1);
-	this.camera.lookAt(new THREE.Vector3(0,0,0));
+    this.camera.position.set(15, -9, 30);
+	this.camera.up = new THREE.Vector3(0,1,0);
+	//this.camera.lookAt(new THREE.Vector3(400,400,0));
     /*this.camera.position = new THREE.Vector3(0,0,15);
     this.controls = new THREE.VRControls(this.camera);
     this.controls.standing = true;
@@ -25,7 +25,7 @@ Set.prototype.Stage = function(canvas, tojo) {
     this.effect = new THREE.VREffect(this.renderer);
     this.effect.setSize(window.innerWidth, window.innerHeight);*/
     
-	this.mouse = new THREE.TrackballControls( this.camera );
+	this.mouse = new THREE.OrbitControls( this.camera );
 	this.mouse.rotateSpeed = 3;
 	this.mouse.zoomSpeed = 1.2;
 	this.mouse.panSpeed = 0.8;
@@ -34,7 +34,6 @@ Set.prototype.Stage = function(canvas, tojo) {
 	this.mouse.noRotate = false;
 	this.mouse.staticMoving = false;
 	this.mouse.dynamicDampingFactor = 0.9;
-	this.mouse.target = new THREE.Vector3(0, 0, 0);
 	this.mouse.addEventListener( 'change', this.UpdateScene );
 
 	this.tojo = tojo;

@@ -39,9 +39,8 @@ tojo11.prototype.SetupScene = function() {
 
     //GROUND
     var groundGeo = new THREE.PlaneBufferGeometry( 10000, 10000 );
-    var groundMat = new THREE.MeshPhongMaterial( { color: 0xffffff, specular: 0x050505 } );
-    groundMat.color.setHSL( 0.095, 1, 0.75 );
-
+    var groundMat = new THREE.MeshPhongMaterial( { color: 0xCD853F, specular: 0x050505 } );
+    
     var ground = new THREE.Mesh( groundGeo, groundMat );
     ground.rotation.x = -Math.PI/2;
     ground.position.y = -33;
@@ -71,18 +70,28 @@ tojo11.prototype.SetupScene = function() {
     this.scene.add( sky );
 
     //MIDDLE YELLO
-	var geometry = new THREE.CylinderGeometry( 0, 3, 8, 1000 );
-    var material = new THREE.MeshPhongMaterial( {color: 0xffff00} );
+	var geometry = new THREE.CylinderGeometry( 0, 2.2, 7.5, 1000 );
+    var material = new THREE.MeshPhongMaterial( {color: 0xFFCF00, side: THREE.DoubleSide } );
     this.yellow = new THREE.Mesh( geometry, material );
-    var axis = new THREE.Vector3(0.5,0.5,0);   
-    this.yellow.rotation.y = 1; 
-    //this.scene.add( this.yellow );
+    this.yellow.rotation.z = deg(32);
+    //this.yellow.position.z = 5;
+    this.yellow.position.x = 4.4;
+    this.yellow.position.y = .5;    
+    this.scene.add( this.yellow );
 
-    //GREEN BODY
-    var material2 = new THREE.MeshStandardMaterial( { color: 0x00ff00 } );
-    var geometry2 = new THREE.BoxBufferGeometry( 5, 5, 5 );
-    this.green = new THREE.Mesh( geometry2, material2 );
-    this.green.rotation.y = 1;//deg(180);
+    //GREEN BODY    
+    var pts = [];
+    pts.push( new THREE.Vector3( 7.1, -7.5,0 ));
+    pts.push( new THREE.Vector3( 8.5, -1.7,0 ));
+    pts.push( new THREE.Vector3( -.5,6.2,0 ));
+    pts.push( new THREE.Vector3( 1,-2.5,0 ));
+    App.mouse.target = new THREE.Vector3( 7.1, -7.5,0 );
+    var shape = new THREE.Shape( pts );
+    var geometry2 = new THREE.ShapeGeometry( shape );
+    var material2 = new THREE.MeshPhongMaterial( { color: 0xC1CD23, side: THREE.DoubleSide, shading: THREE.SmoothShading } );    
+    this.green = new THREE.Mesh( geometry2, material2 );  
+    this.green.shading = true;  
+    //this.green.rotation.z = deg(40);
     this.scene.add( this.green );
    
 	App.renderer.render( this.scene, App.camera );
