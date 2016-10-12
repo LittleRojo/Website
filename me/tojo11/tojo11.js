@@ -95,7 +95,7 @@ tojo11.prototype.RedrawScene = function() {
 	this.UpdateUserInput();
     //this.CalculateFPS();
 
-    App.renderer.render( this.scene, App.camera );
+    //App.renderer.render( this.scene, App.camera );
     App.effect.render( this.scene, App.camera )
 }
 
@@ -171,7 +171,6 @@ tojo11.prototype.AnimateScene = function(fps) {
         }
         App.tojo.RedrawScene();
     //}, 0);
-    App.effect.render(App.scene, App.camera);
     if(App.vrDisplay === undefined) {
         requestAnimationFrame(App.tojo.AnimateScene);
     }
