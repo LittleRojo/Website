@@ -95,8 +95,8 @@ tojo11.prototype.RedrawScene = function() {
 	this.UpdateUserInput();
     //this.CalculateFPS();
 
-    //App.renderer.render( this.scene, App.camera );
-    App.effect.render( this.scene, App.camera )
+    App.renderer.render( this.scene, App.camera );
+    //App.effect.render( this.scene, App.camera )
 }
 
 var degree = 0;
@@ -158,7 +158,8 @@ tojo11.prototype.UpdateUserKeyboard = function() {
 }
 
 tojo11.prototype.UpdateUserMouse = function() {
-	App.controls.update();
+    App.mouse.update();
+	//App.controls.update();
 }
 
 //ANIMATION
