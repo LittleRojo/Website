@@ -24,6 +24,10 @@ Set.prototype.Stage = function(canvas, tojo) {
 	this.tojo = tojo;
 	this.tojo.SetupScene(); 
 
+navigator.getUserMedia = ( navigator.getUserMedia ||
+                       navigator.webkitGetUserMedia ||
+                       navigator.mozGetUserMedia ||
+                       navigator.msGetUserMedia);
     this.vrDisplay = null;
 		navigator.getVRDisplays().then(function(displays) {
 			if (displays.length > 0) {
