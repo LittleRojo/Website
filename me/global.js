@@ -77,16 +77,6 @@ function onload(pageNumber){
 
 	var mainCanvas = document.getElementById( 'mainCanvas' );
 	mainCanvas.style.visibility = 'visible';
-
-	//if(navigator.getVRDisplays) {		
-		this.vrDisplay = null;
-		navigator.getVRDisplays().then(function(displays) {
-			if (displays.length > 0) {
-				App.vrDisplay = displays[0];
-				App.tojo.AnimateScene();
-			}
-		}); 
-	//}
 }
 
 var xRoot = .00386699;
