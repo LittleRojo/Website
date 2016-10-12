@@ -16,6 +16,8 @@ Set.prototype.Stage = function(canvas, tojo) {
 
     this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 10000);
     this.controls = new THREE.VRControls(this.camera);
+    this.controls.standing = true;
+    this.controls.standing = true;
     this.effect = new THREE.VREffect(this.renderer);
     this.effect.setSize(window.innerWidth, window.innerHeight);
     
