@@ -1,3 +1,12 @@
+this.vrDisplay = null;
+    navigator.getVRDisplays().then(function(displays) {
+        if (displays.length > 0) {
+            App.vrDisplay = displays[0];
+            App.tojo.AnimateScene();
+            //vrDisplay.requestAnimationFrame(animate);
+        }
+    }); 
+    
 function Set() {
 	
 }
@@ -20,16 +29,7 @@ Set.prototype.Stage = function(canvas, tojo) {
     this.effect.setSize(window.innerWidth, window.innerHeight);
     
 	this.tojo = tojo;
-	this.tojo.SetupScene();
-
-    this.vrDisplay = null;
-    navigator.getVRDisplays().then(function(displays) {
-        if (displays.length > 0) {
-            App.vrDisplay = displays[0];
-            App.tojo.AnimateScene();
-            //vrDisplay.requestAnimationFrame(animate);
-        }
-    });    
+	this.tojo.SetupScene();   
 }
 
 function setOrientationControls(e) {
