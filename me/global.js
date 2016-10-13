@@ -19,9 +19,9 @@ function onload(pageNumber){
 		//IPHONE ORIENTATION - PROFILE
 		if(window.orientation === 90 || window.orientation === -90) {
 			var title = document.getElementById( 'navigation' );
-			title.style.left = window.innerWidth / 2 - 50;
-			title.style.top = "4px";
-			title.style.visibility = "visible";
+			//title.style.left = window.innerWidth / 2 - 50;
+			//title.style.top = "4px";
+			//title.style.visibility = "visible";
 
 			var main = document.getElementById( 'mainCanvas' );
 			//main.style.top = "20px";			
@@ -30,9 +30,9 @@ function onload(pageNumber){
 		//IPHONE ORIANTATION - LANDSCAPE
 		else {  
 			var title = document.getElementById( 'navigation' );
-			title.style.left = window.innerWidth / 2 - 50;
-			title.style.top = "18px";
-			title.style.visibility = "visible";
+			//title.style.left = window.innerWidth / 2 - 50;
+			//title.style.top = "18px";
+			//title.style.visibility = "visible";
 
 			var main = document.getElementById( 'mainCanvas' );
 			//main.style.top = "38px";
