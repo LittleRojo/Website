@@ -10,7 +10,7 @@ function tojo11() {
 
 tojo11.prototype.SetupScene = function() {
 
-    this.signtLine = new THREE.Vector3( 10.8, 30.0,0 );
+    this.sightLine = new THREE.Vector3( 0, 60.0,0 );
     //this.scene.fog = new THREE.Fog( 0xffffff, 1, 5000 );
     //this.scene.fog.color.setHSL( 0.6, 0, 1 );
 
@@ -344,13 +344,15 @@ tojo11.prototype.SetupScene = function() {
         App.tojo.all.add( App.tojo.logoGroup );
         App.tojo.all.add( this.groupName );
         
-        App.tojo.all.translateY(65); 
-        //App.tojo.all.lookAt(new THREE.Vector3(0,10,200));
-        App.tojo.all.rotateY(-.110);     
+        App.tojo.all.translateY(165);
+        App.tojo.sightLine.y += 65; 
+        //App.tojo.all.lookAt(App.tojo.sightLine);
+        App.tojo.sightLine.y -= 65;
+        //App.tojo.all.rotateY(-.110);     
                
         App.tojo.scene.add(App.tojo.all);
 
-        App.mouse.target = App.tojo.signtLine;
+        App.mouse.target = new THREE.Vector3(App.tojo.sightLine.x, App.tojo.sightLine.y, App.tojo.sightLine.z);
 
 	    //App.renderer.render( App.tojo.scene, App.camera );
     });       
