@@ -110,7 +110,6 @@ function onWindowResize(){
 		//IPHONE ORIENTATION - PROFILE
 		if(window.orientation === 90 || window.orientation === -90) {			
 			var main = document.getElementById( 'mainCanvas' );
-			main.style.top = "38px";	
 			var title = document.getElementById( 'navigation' );
 			App.renderer.setSize( window.innerWidth, window.innerHeight - 82 );
 		}
@@ -118,7 +117,6 @@ function onWindowResize(){
 		//IPHONE ORIANTATION - LANDSCAPE
 		else {
 			var main = document.getElementById( 'mainCanvas' );
-			main.style.top = "20px";
 			var title = document.getElementById( 'navigation' );
 			App.renderer.setSize( window.innerWidth, window.innerHeight - 64 );	
 		} 
