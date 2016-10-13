@@ -112,8 +112,6 @@ function onWindowResize(){
 			var main = document.getElementById( 'mainCanvas' );
 			main.style.top = "38px";	
 			var title = document.getElementById( 'navigation' );
-			title.style.left = window.innerWidth / 2 - 50;
-			title.style.top = "18px";		
 			App.renderer.setSize( window.innerWidth, window.innerHeight - 82 );
 		}
 
@@ -122,19 +120,15 @@ function onWindowResize(){
 			var main = document.getElementById( 'mainCanvas' );
 			main.style.top = "20px";
 			var title = document.getElementById( 'navigation' );
-			title.style.left = window.innerWidth / 2 - 50;
-			title.style.top = "-1px";
 			App.renderer.setSize( window.innerWidth, window.innerHeight - 64 );	
 		} 
 		
 	}
 	else {		
 		var main = document.getElementById( 'mainCanvas' );
-		main.style.top = "20px";
 		App.renderer.setSize( window.innerWidth, window.innerHeight - 64 );
 
 		var title = document.getElementById( 'navigation' );
-		title.style.left = window.innerWidth / 2 - 50;
 	}
 
 	if(page == "10") {

@@ -25,11 +25,12 @@ Set.prototype.Stage = function(canvas, tojo) {
 	this.mouse.noRotate = false;
 	this.mouse.staticMoving = false;
 	this.mouse.dynamicDampingFactor = 0.9;
-	//this.mouse.addEventListener( 'change', this.UpdateScene );
+	this.mouse.addEventListener( 'change', this.UpdateScene );
 
 	this.tojo = tojo;
 	this.tojo.SetupScene(); 
     this.tojo.AnimateScene();
+	
    	/*this.vrDisplay = null;
 		navigator.getVRDisplays().then(function(displays) {
 			if (displays.length > 0) {
