@@ -9,23 +9,14 @@ Set.prototype.Stage = function(canvas, tojo) {
 	this.renderer.setPixelRatio( window.devicePixelRatio );
 	this.renderer.setSize( window.innerWidth, window.innerHeight );
 	this.renderer.setClearColor( 0x000000, 1 );
-    //this.renderer.gammaInput = true;
-    //this.renderer.gammaOutput = true;
     this.renderer.shadowMap.enabled = true;
     this.renderer.shadowMap.renderReverseSided = false;
 
     this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 10000);
     this.camera.position.set(14, -10, 85);
 	this.camera.up = new THREE.Vector3(0,1,0);    
-	//this.camera.lookAt(new THREE.Vector3(400,400,0));
-    /*this.camera.position = new THREE.Vector3(0,0,15);
-    this.controls = new THREE.VRControls(this.camera);
-    this.controls.standing = true;
-    this.controls.standing = true;
-    this.effect = new THREE.VREffect(this.renderer);
-    this.effect.setSize(window.innerWidth, window.innerHeight);*/
     
-	this.mouse = new THREE.OrbitControls( this.camera );
+	this.mouse = new THREE.TrackballControls( this.camera );
 	this.mouse.rotateSpeed = 3;
 	this.mouse.zoomSpeed = 1.2;
 	this.mouse.panSpeed = 0.8;
@@ -34,18 +25,18 @@ Set.prototype.Stage = function(canvas, tojo) {
 	this.mouse.noRotate = false;
 	this.mouse.staticMoving = false;
 	this.mouse.dynamicDampingFactor = 0.9;
-	this.mouse.addEventListener( 'change', this.UpdateScene );
+	//this.mouse.addEventListener( 'change', this.UpdateScene );
 
 	this.tojo = tojo;
 	this.tojo.SetupScene(); 
     this.tojo.AnimateScene();
-   /* this.vrDisplay = null;
+   	/*this.vrDisplay = null;
 		navigator.getVRDisplays().then(function(displays) {
 			if (displays.length > 0) {
 				App.vrDisplay = displays[0];
 				App.tojo.AnimateScene();
 			}
-		});  */ 
+	});*/ 
 }
 
 function setOrientationControls(e) {

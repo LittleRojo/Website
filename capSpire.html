@@ -17,8 +17,8 @@
 
 		<link rel="stylesheet" type="text/css" href="index.css">
 
-		 <!-- <script>
-			  WebVRConfig = {
+	<!--<script>
+			WebVRConfig = {
 				/**
 				* webvr-polyfill configuration
 				*/
@@ -51,27 +51,28 @@
 			// Prevents the polyfill from initializing automatically.
 			var WebVRConfig = { DEFER_INITIALIZATION: true }
 		</script>
-			
-			  <script>
-      // Prevents the polyfill from initializing automatically.
-      var WebVRConfig = { DEFER_INITIALIZATION: true }
-    </script>-->
+				
+		<script>
+			// Prevents the polyfill from initializing automatically.
+			var WebVRConfig = { DEFER_INITIALIZATION: true }
+		</script>-->
+
 		<script id="js" type="text/javascript" src="js/jquery-3.1.0.js"></script>
 		<script id="js" type="text/javascript" src="js/three.min.js"></script>
-		<script id="js" type="text/javascript" src="js/OrbitControls.js"></script>
+		<script id="js" type="text/javascript" src="js/TrackballControls.js"></script>
 		<!--<script id="js" type="text/javascript" src="js/VRControls.js"></script>
 		<script id="js" type="text/javascript" src="js/VREffect.js"></script>
 		<script id="js" type="text/javascript" src="js/webvr-polyfill.js"></script>-->
 
 		<script>
-      // Dynamically turn the polyfill on if requested by the query args.
-      //if (WGLUUrl.getBool('polyfill', false)) {
-        //InitializeWebVRPolyfill();
-      //} else {
-        // Shim for migration from older version of WebVR. Shouldn't be necessary for very long.
-        //InitializeSpecShim();
-      //}
-    </script>
+			// Dynamically turn the polyfill on if requested by the query args.
+			//if (WGLUUrl.getBool('polyfill', false)) {
+				//InitializeWebVRPolyfill();
+			//} else {
+				// Shim for migration from older version of WebVR. Shouldn't be necessary for very long.
+				//InitializeSpecShim();
+			//}
+		</script>
 
 		<script id="js" type="text/javascript" src="me/global.js"></script>
 		<script id="js" type="text/javascript" src="me/tojo11/tojo11.set.js"></script>
@@ -82,6 +83,7 @@
 			//InitializeWebVRPolyfill();
 			InitializeSpecShim();
 		</script>-->
+
 		<script type="x-shader/x-vertex" id="vertexShader">
 			varying vec3 vWorldPosition;
 			void main() {
@@ -110,10 +112,11 @@
 			ga('create', 'UA-80236281-1', 'auto');
 			ga('send', 'pageview');
 		</script>
+
 	</head>	
 	<body style="margin:0px" bgcolor="black" id="body" onload="onload(11)" >
 		<div id="wrapper">			
-			<canvas id="mainCanvas" style="visibility:hidden; position:fixed; left:0px; top:0px; height:0px;"></canvas>
+			<canvas id="mainCanvas" style="visibility:hidden;"></canvas>
 		</div>
 	</body>
 </html>
