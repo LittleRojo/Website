@@ -162,6 +162,8 @@ function onWindowResize(){
 	else if(page == "11") {
 		
 	}
+
+	App.UpdateScene();
 }
 
 function play() {
