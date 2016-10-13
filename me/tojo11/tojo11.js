@@ -37,6 +37,8 @@ tojo11.prototype.SetupScene = function() {
     spotLight.shadowMapWidth = 2048;
     this.scene.add(spotLight);
 
+if(1==0) {
+    
     //GROUND
     var groundGeo = new THREE.PlaneGeometry( 10000, 10000, 70, 70 );
     for(var a = 0, b = groundGeo.vertices.length; a < b; a++ ){
@@ -60,7 +62,7 @@ tojo11.prototype.SetupScene = function() {
     var fragmentShader = document.getElementById( 'fragmentShader' ).textContent;
     var uniforms = {
         topColor:    { value: new THREE.Color( 0x000000 ) },
-        bottomColor: { value: new THREE.Color( 0x000099 ) },
+        bottomColor: { value: new THREE.Color( 0x000000 ) },
         offset:      { value: 33 },
         exponent:    { value: 0.6 }
     };
@@ -78,7 +80,7 @@ tojo11.prototype.SetupScene = function() {
 
     var sky = new THREE.Mesh( skyGeo, skyMat );
     this.scene.add( sky );
-
+}
     this.logoGroup = new THREE.Group();
     //MIDDLE YELLO
 	var geometry = new THREE.CylinderGeometry( 0, 2.1, 7.0, 1000 );
@@ -155,7 +157,7 @@ tojo11.prototype.SetupScene = function() {
     this.logoGroup.translateY(43);
     this.logoGroup.translateZ(-6.1);
     this.scene.add(this.logoGroup);
-
+return;
     //NAME
     var loader = new THREE.FontLoader();
     loader.load( 'fonts/helvetiker.json', function ( font ) {
