@@ -105,27 +105,23 @@ function updateOddball(button) {
 function onWindowResize(){
     App.camera.aspect = window.innerWidth / window.innerHeight;
     App.camera.updateProjectionMatrix();
+	App.renderer.setSize( window.innerWidth, window.innerHeight );
 
 	if(("standalone" in window.navigator) && window.navigator.standalone) {
 		//IPHONE ORIENTATION - PROFILE
 		if(window.orientation === 90 || window.orientation === -90) {			
 			var main = document.getElementById( 'mainCanvas' );
 			var title = document.getElementById( 'navigation' );
-			App.renderer.setSize( window.innerWidth, window.innerHeight - 82 );
 		}
 
 		//IPHONE ORIANTATION - LANDSCAPE
 		else {
 			var main = document.getElementById( 'mainCanvas' );
 			var title = document.getElementById( 'navigation' );
-			App.renderer.setSize( window.innerWidth, window.innerHeight - 64 );	
-		} 
-		
+		} 		
 	}
 	else {		
 		var main = document.getElementById( 'mainCanvas' );
-		App.renderer.setSize( window.innerWidth, window.innerHeight - 64 );
-
 		var title = document.getElementById( 'navigation' );
 	}
 
