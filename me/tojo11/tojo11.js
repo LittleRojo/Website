@@ -63,7 +63,7 @@ tojo11.prototype.SetupScene = function() {
         offset:      { value: 33 },
         exponent:    { value: 0.6 }
     };
-    uniforms.topColor.value.copy( 0x000000 );
+    //uniforms.topColor.value.copy( 0x000000 );
     //this.scene.fog.color.copy( uniforms.bottomColor.value );
 
     var skyGeo = new THREE.SphereGeometry( 4000, 32, 15 );
@@ -76,8 +76,47 @@ tojo11.prototype.SetupScene = function() {
     });
 
     var sky = new THREE.Mesh( skyGeo, skyMat );
-    this.scene.add( sky );
+    //this.scene.add( sky );
 
+    //STARS
+    var stars = 1000;
+    var counter = 0;
+    var pixels = new Pixel({
+        position: new Float32Array( stars * 3 ),
+        color: [],
+        size: new Float32Array( stars )
+    });
+    var geometry = new THREE.Geometry();				
+    geometry.verticesNeedUpdate = true;
+    geometry.normalsNeedUpdate = true;
+    geometry.colorsNeedUpdate = true;
+    geometry.uvsNeedUpdate = true;
+    for(var x = 0; x < stars; x++){
+        pixels.position[ 3 * counter ] = 100000 * Math.cos((Math.random() / 3 * 1000) * (Math.PI / 180));//(Math.random() - .5) * -10000;		
+        pixels.position[ 3 * counter + 1 ] =  100000 * Math.sin((Math.random() / 3 * 1000) * (Math.PI / 180));//(Math.random() - .5) * 10000;
+        pixels.position[ 3 * counter + 2 ] = (Math.random() - .5) * 1000000;
+
+        pixels.size[counter] = 100;
+
+        var spot = new THREE.Vector3(pixels.position[ 3 * counter ], pixels.position[ 3 * counter + 1 ], pixels.position[ 3 * counter + 2 ])	
+        geometry.vertices.push(spot)
+        counter++;
+    }
+
+    var material = new THREE.PointsMaterial( 
+    {
+        color: 0xffffff,
+        size: 1000.883397,
+        map: THREE.ImageUtils.loadTexture('img/star.png'),
+        opacity: 1,
+        transparent: true
+    });
+    
+    var particleSystem = new THREE.Points(geometry, material);
+    particleSystem.shading = THREE.FlatShading;
+    this.scene.add(particleSystem);
+
+    //LOGO
     this.all = new THREE.Group();
     this.logoGroup = new THREE.Group();
 
@@ -210,13 +249,12 @@ tojo11.prototype.SetupScene = function() {
             curveSegments: 2
         });        
 
-        geometry.computeBoundingBox();
-        var material = new THREE.MultiMaterial( [
-            new THREE.MeshBasicMaterial( { color: 0x8B9B93, overdraw: 0.5 } ),
-            new THREE.MeshBasicMaterial( { color: 0x000000, overdraw: 0.5 } )
-        ]);
-        
         //NAME LETTERS
+        var material = new THREE.MultiMaterial( [
+            new THREE.MeshBasicMaterial( { color: 0x8B9B93, overdraw: 0.1 } ),
+            new THREE.MeshBasicMaterial( { color: 0x000000, overdraw: 0.9 } )
+        ]);
+                
         this.groupName = new THREE.Group();
         var mesh = new THREE.Mesh( geometryC, material );
         mesh.position.x = 0;
@@ -308,7 +346,7 @@ tojo11.prototype.SetupScene = function() {
         App.tojo.all.add( App.tojo.logoGroup );
         App.tojo.all.add( this.groupName );
         
-        App.tojo.all.translateZ(-0);
+        App.tojo.all.translateY(-3);
         App.tojo.scene.add(App.tojo.all);
 
 	    App.renderer.render( App.tojo.scene, App.camera );

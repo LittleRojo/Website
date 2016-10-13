@@ -12,7 +12,7 @@ Set.prototype.Stage = function(canvas, tojo) {
     this.renderer.shadowMap.enabled = true;
     this.renderer.shadowMap.renderReverseSided = false;
 
-    this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 10000);
+    this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000000);
     this.camera.position.set(14, -10, 85);
 	this.camera.up = new THREE.Vector3(0,1,0);    
     
