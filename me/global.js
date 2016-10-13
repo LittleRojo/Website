@@ -24,7 +24,7 @@ function onload(pageNumber){
 			title.style.visibility = "visible";
 
 			var main = document.getElementById( 'mainCanvas' );
-			main.style.top = "20px";			
+			//main.style.top = "20px";			
 		}
 
 		//IPHONE ORIANTATION - LANDSCAPE
@@ -35,17 +35,17 @@ function onload(pageNumber){
 			title.style.visibility = "visible";
 
 			var main = document.getElementById( 'mainCanvas' );
-			main.style.top = "38px";
+			//main.style.top = "38px";
 		} 	    
 	}
 	else {
-		var title = document.getElementById( 'navigation' );
+		/*var title = document.getElementById( 'navigation' );
 		title.style.left = window.innerWidth / 2 - 50;
 		title.style.top = "1px";
-		title.style.visibility = "visible";
+		title.style.visibility = "visible";*/
 
 		var main = document.getElementById( 'mainCanvas' );
-		main.style.top = "20px";
+		//main.style.top = "20px";
 	}
 
 	App = new Set();
