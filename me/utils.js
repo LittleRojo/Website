@@ -16,3 +16,11 @@ function Note(note) {
     if(this.note == "A") this.frequency = 440;
     if(this.note == "B") this.frequency = 493.9;
 }
+
+function deg(degree) { 
+    return degree*(Math.PI/180); 
+}
+
+function rand(min, max) {
+    return Math.random() * max + min;
+}

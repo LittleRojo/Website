@@ -27,9 +27,11 @@ Set.prototype.Stage = function(canvas, tojo) {
 	this.mouse.dynamicDampingFactor = 0.9;
 	this.mouse.addEventListener( 'change', this.UpdateScene );
 
+	/*this.tween = new TWEEN.Tween(this.camera.position)
+	App.tween.onComplete(function () {
+            App.tojo.cameraState = 0;
+	});*/
 
-	this.tween = new TWEEN.Tween(this.camera.position)
-	
 	this.tojo = tojo;
 	this.tojo.SetupScene(); 
     this.tojo.AnimateScene();
