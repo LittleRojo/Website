@@ -80,7 +80,7 @@ tojo11.prototype.SetupScene = function() {
     //this.scene.add( sky );
 
     //STARS
-    /*var stars = 1000;
+    var stars = 1000;
     var counter = 0;
     var pixels = new Pixel({
         position: new Float32Array( stars * 3 ),
@@ -115,7 +115,7 @@ tojo11.prototype.SetupScene = function() {
     
     var particleSystem = new THREE.Points(geometry, material);
     particleSystem.shading = THREE.FlatShading;
-    this.scene.add(particleSystem);*/
+    this.scene.add(particleSystem);
 
     //LOGO
     this.all = new THREE.Group();
@@ -184,9 +184,9 @@ tojo11.prototype.SetupScene = function() {
     this.orangeRight.receiveShadow = true;
     this.logoGroup.add(this.orangeRight);
 
-    this.logoGroup.translateX(28.4);
-    this.logoGroup.translateY(43.9);
-    this.logoGroup.translateZ(0.6);
+    this.logoGroup.translateX(-4.4);
+    this.logoGroup.translateY(23.9);
+    this.logoGroup.translateZ(40.6);
   
     //NAME
     /*var loader = new THREE.FontLoader();
@@ -344,7 +344,7 @@ tojo11.prototype.SetupScene = function() {
         App.tojo.all.add( App.tojo.logoGroup );
         //App.tojo.all.add( this.groupName );
         
-        App.tojo.all.translateY(16);
+        //App.tojo.all.translateY(16);
         //App.tojo.sightLine.y += 65; 
         //App.tojo.all.lookAt(App.tojo.sightLine);
         //App.tojo.sightLine.y -= 65;
@@ -352,7 +352,7 @@ tojo11.prototype.SetupScene = function() {
                
         App.tojo.scene.add(App.tojo.all);
 
-        App.mouse.target = new THREE.Vector3(App.tojo.sightLine.x, App.tojo.sightLine.y, App.tojo.sightLine.z);
+        //App.mouse.target = new THREE.Vector3(App.tojo.sightLine.x, App.tojo.sightLine.y, App.tojo.sightLine.z);
 
 	    //App.renderer.render( App.tojo.scene, App.camera );
    // });       
@@ -376,12 +376,12 @@ tojo11.prototype.RedrawSceneFrame = function() {
     degree+=.01;
 }
   
-var skip = 8;
+var skip = 1;
 var counter = 0;
 tojo11.prototype.UpdateSceneCamera = function() {
     counter++;
     if(counter % skip != 0) return;    
-    //App.tojo.logoGroup.position.y += (Math.random() < .5 ? .1 : -.1);
+    App.tojo.logoGroup.position.y += (Math.random() < .5 ? .1 : -.1) / 5;
     //rotateCameraY(rotSpeed);
     //App.camera.position.x = x * Math.cos(rotSpeed) + z * Math.sin(rotSpeed);
     //App.camera.position.z = z * Math.cos(rotSpeed) - x * Math.sin(rotSpeed);
