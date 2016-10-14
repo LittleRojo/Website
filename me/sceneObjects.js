@@ -52,17 +52,25 @@ function sky() {
         topColor:    { value: new THREE.Color( 0x000000 ) },
         bottomColor: { value: new THREE.Color( 0x001C49 ) },
         offset:      { value: 33 },
-        exponent:    { value: 0.6 }
+        exponent:    { value: .4 }
     };
     
     var skyGeo = new THREE.SphereGeometry( 4000, 32, 15 );
-    var skyMat = new THREE.ShaderMaterial( { 
+    skyGeo.phiStart = 0;
+    skyGeo.phiLength = deg(100);
+    skyGeo.thetaStart = 0;
+    skyGeo.thetaLength = deg(100);
+    //var texture = new THREE.TextureLoader().load( "img/transperant.png" );
+    var skyMat = new THREE.ShaderMaterial( {
+    //var skyMat = new THREE.MeshPhongMaterial( { 
         vertexShader: vertexShader, 
         fragmentShader: fragmentShader, 
         uniforms: uniforms, 
-        side: THREE.BackSide,
+        color: 0x00FFFF,
+        side: THREE.FrontSide,
         //shading: THREE.FlatShading,
-        transperant: true
+        //transperant: true,        
+        //map: texture,
     });
 
     var sky = new THREE.Mesh( skyGeo, skyMat );
@@ -342,4 +350,41 @@ function capSpireName() {
 function clouds() {
     //App.tojo.scene.fog = new THREE.Fog( 0xffffff, 100, 5000 );
     //App.tojo.scene.fog = new THREE.FogExp2( 0Xffffff, 0.00025 );
+}
+
+function sun() {
+    //FULL CIRCLE
+    //var geometry = new THREE.CircleGeometry(20,250,0,6.282);
+
+    //CUSTOM
+    //var geometry = new THREE.CircleGeometry(5,100,6.282);
+    
+    //3D
+    var geometry = new THREE.SphereGeometry(1000, 10, 10);
+    var material = new THREE.MeshPhongMaterial( { 
+        //color: 0x945600, 
+        side: THREE.DoubleSide ,
+        map: THREE.ImageUtils.loadTexture("img/sun.png"),
+        bumpmap: THREE.ImageUtils.loadTexture("img/grass.png"),
+    });
+    var mesh = new THREE.Mesh(geometry, material);
+    mesh.position.x = -50;
+    mesh.position.y = 20000;
+    mesh.position.z = -50000;
+    App.tojo.scene.add(mesh);
+
+    //LIGHT FROM
+    var spotLight = new THREE.DirectionalLight( 0xffffff, .5 );
+    spotLight.position.set( 200,100,-200 );
+    App.tojo.scene.add(spotLight);
+
+    var spotLight2 = new THREE.PointLight( 0xffffff, .5 );
+    spotLight2.position.set( 200,10,200 );
+    App.tojo.scene.add(spotLight2);
+
+    //LIGHT TO
+    var directionalLight = new THREE.PointLight( 0xfeffad, 1.8 );
+    directionalLight.target = mesh;
+    directionalLight.position.set( -5,20000,-46000 );
+    App.tojo.scene.add(directionalLight);
 }

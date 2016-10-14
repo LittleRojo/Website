@@ -14,15 +14,16 @@ function tojo11() {
 tojo11.prototype.SetupScene = function() {
 
     //LIGHT
-    hemiLight();
-    directionalLight();
-    spotLight();
+    //hemiLight();
+    //directionalLight();
+    //spotLight();
     
     //WORLD
     ground();    
     stars();
-    clouds();
-    sky();
+    sun();
+    //clouds();
+    //sky();
 
     //capSpire
     this.all = new THREE.Group();
@@ -32,7 +33,7 @@ tojo11.prototype.SetupScene = function() {
           
     App.tojo.scene.add(App.tojo.all);
     
-    App.mouse.target = new THREE.Vector3( 0, 13.1,0 );
+    //App.mouse.target = new THREE.Vector3( 0, 13.1,0 );
     App.tojo.logoTween = new TWEEN.Tween(App.tojo.logoGroup.position);
             
     App.tojo.logoTween.onComplete(function () {
@@ -51,27 +52,28 @@ tojo11.prototype.RedrawScene = function() {
 }
 
 var counter = 0;
+var size = 100;
 tojo11.prototype.RedrawSceneFrame = function() {
 
-}
-  
-var skip = 1;
-var size = 20;
-tojo11.prototype.UpdateSceneCamera = function() {
-    if(App.tojo.cameraState == 10) {
-        App.tween.to( { x: rand(-size,size), y: rand(5,size/2), z : rand(-size,size) }, rand(500, size * 50));
-        App.tween.start();
-        App.tween.easing(TWEEN.Easing.Exponential.In)
-        App.tojo.cameraState = 1;        
-    }
     if(App.tojo.logoState == 0)
     {
-        App.tojo.logoTween.to( { x: rand(-size,size), y: rand(5,size/2), z : rand(-size,size) }, rand(1000, size * 50));
+        App.tojo.logoTween.to( { x: rand(-size,size), y: rand(5,size/2), z : rand(-size,size) }, rand(4000, 7000));
         App.tojo.logoTween.start();
         //App.tojo.logoTween.easing(TWEEN.Easing.Sinusoidal.Out);
         App.tojo.logoState = 1;
-        size += 10;
+        //size += 10;
     }
+}
+  
+var skip = 1;
+tojo11.prototype.UpdateSceneCamera = function() {
+
+    if(App.tojo.cameraState == 10) {
+        App.tween.to( { x: rand(-size,size), y: rand(5,size/2), z : rand(-size,size) }, rand(4000,7000));
+        App.tween.start();
+        App.tween.easing(TWEEN.Easing.Exponential.In)
+        App.tojo.cameraState = 1;        
+    }    
     App.mouse.target = App.tojo.logoGroup.position;
 }
 
