@@ -17,6 +17,7 @@ function Note(note) {
     if(this.note == "B") this.frequency = 493.9;
 }
 
+
 function deg(degree) { 
     return degree*(Math.PI/180); 
 }
