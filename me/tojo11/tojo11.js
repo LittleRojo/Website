@@ -6,6 +6,9 @@ function tojo11() {
 	this.previousRenderStamp;
 	this.scene = new THREE.Scene();
     this.clock = new THREE.Clock();
+    this.cameraState = 0;
+    this.logoState = 0;
+    this.logoTween;
 }
 
 tojo11.prototype.SetupScene = function() {
@@ -132,7 +135,7 @@ tojo11.prototype.SetupScene = function() {
     this.yellow.castShadow = true;
     this.yellow.receiveShadow = true;  
     this.logoGroup.add(this.yellow);
-
+    
     //GREEN BODY    
     var pts = [];
     pts.push( new THREE.Vector3( 7.1, -6.5,0 ));
@@ -184,10 +187,10 @@ tojo11.prototype.SetupScene = function() {
     this.orangeRight.receiveShadow = true;
     this.logoGroup.add(this.orangeRight);
 
-    this.logoGroup.translateX(-4.4);
-    this.logoGroup.translateY(23.9);
-    this.logoGroup.translateZ(40.6);
-  
+    //this.logoGroup.translateX(-4.4);
+    this.logoGroup.translateY(15);
+    //this.logoGroup.translateZ(40.6);
+    
     //NAME
     /*var loader = new THREE.FontLoader();
     loader.load( 'fonts/helvetiker.json', function ( font ) {
@@ -351,8 +354,17 @@ tojo11.prototype.SetupScene = function() {
         //App.tojo.all.rotateY(-.110);     
                
         App.tojo.scene.add(App.tojo.all);
+        
+        App.mouse.target = new THREE.Vector3( 0, 13.1,0 );
+        App.tojo.logoTween = new TWEEN.Tween(App.tojo.logoGroup.position);
+        TWEEN.add(App.tojo.logoTween);
 
-        //App.mouse.target = new THREE.Vector3(App.tojo.sightLine.x, App.tojo.sightLine.y, App.tojo.sightLine.z);
+        App.tween.onComplete(function () {
+            App.tojo.cameraState = 0;
+	    });
+        App.tojo.logoTween.onComplete(function () {
+            App.tojo.logoState = 0;
+        });
 
 	    //App.renderer.render( App.tojo.scene, App.camera );
    // });       
@@ -368,20 +380,32 @@ tojo11.prototype.RedrawScene = function() {
     //App.effect.render( this.scene, App.camera )
 }
 
-var degree = 0;
+var counter = 0;
 tojo11.prototype.RedrawSceneFrame = function() {
+    counter++;
+    if(counter % skip != 0) return;    
+    //App.tojo.logoGroup.position.y += (Math.random() < .5 ? .1 : -.1) / 13;
     //this.yellow.rotation.z = degree;
     //this.green.rotation.x = degree;
     //this.green.rotation.z = -degree;
-    degree+=.01;
+    //degree+=.01;
 }
   
 var skip = 1;
-var counter = 0;
 tojo11.prototype.UpdateSceneCamera = function() {
-    counter++;
-    if(counter % skip != 0) return;    
-    App.tojo.logoGroup.position.y += (Math.random() < .5 ? .1 : -.1) / 5;
+    if(App.tojo.cameraState == 0) {
+        App.tween.to( { x: (Math.random() - .5) * 100, y: (Math.random()) * 50, z : (Math.random() - .5) * 100 }, (Math.random() + .3) * 8000);
+        App.tween.start();
+        App.tojo.cameraState = 1;
+    }
+    if(App.tojo.logoState == 0)
+    {
+        App.tojo.logoTween.to( { x: (Math.random() - .5) * 100, y: (Math.random()) * 50, z : (Math.random() - .5) * 100 }, (Math.random() + .3) * 8000);
+        App.tojo.logoTween.start();
+        App.tojo.logoState = 1;
+    }
+    App.mouse.target = App.tojo.logoGroup.position;;
+
     //rotateCameraY(rotSpeed);
     //App.camera.position.x = x * Math.cos(rotSpeed) + z * Math.sin(rotSpeed);
     //App.camera.position.z = z * Math.cos(rotSpeed) - x * Math.sin(rotSpeed);
@@ -447,6 +471,8 @@ tojo11.prototype.AnimateScene = function(fps) {
     else {    
 	    App.vrDisplay.requestAnimationFrame(App.tojo.AnimateScene);
     }
+
+    TWEEN.update();
 }
 
 tojo11.prototype.StopAnimation = function() {

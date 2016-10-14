@@ -13,7 +13,7 @@ Set.prototype.Stage = function(canvas, tojo) {
     this.renderer.shadowMap.renderReverseSided = false;
 
     this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000000);
-    this.camera.position.set(0, 10, 90);
+    this.camera.position.set(0, 0, 70);
 	this.camera.up = new THREE.Vector3(0,1,0);    
     
 	this.mouse = new THREE.TrackballControls( this.camera );
@@ -27,6 +27,8 @@ Set.prototype.Stage = function(canvas, tojo) {
 	this.mouse.dynamicDampingFactor = 0.9;
 	this.mouse.addEventListener( 'change', this.UpdateScene );
 
+	this.tween = new TWEEN.Tween(this.camera.position)
+	
 	this.tojo = tojo;
 	this.tojo.SetupScene(); 
     this.tojo.AnimateScene();
