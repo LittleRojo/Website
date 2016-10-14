@@ -374,17 +374,13 @@ function sun() {
     App.tojo.scene.add(mesh);
 
     //LIGHT FROM
-    var spotLight = new THREE.DirectionalLight( 0xffffff, .5 );
-    spotLight.position.set( 200,100,-200 );
+    var spotLight = new THREE.AmbientLight( 0xffffff, .4 );
+    spotLight.position.set( 0,100,-200 );
     App.tojo.scene.add(spotLight);
-
-    var spotLight2 = new THREE.PointLight( 0xffffff, .5 );
-    spotLight2.position.set( 200,10,200 );
-    App.tojo.scene.add(spotLight2);
 
     //LIGHT TO
     var directionalLight = new THREE.PointLight( 0xfeffad, 1.8 );
     directionalLight.target = mesh;
-    directionalLight.position.set( -5,20000,-46000 );
+    directionalLight.position.set( -50,20000,-46000 );
     App.tojo.scene.add(directionalLight);
 }
