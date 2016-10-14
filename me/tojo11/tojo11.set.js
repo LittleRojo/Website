@@ -27,6 +27,7 @@ Set.prototype.Stage = function(canvas, tojo) {
 	this.mouse.dynamicDampingFactor = 0.9;
 	this.mouse.addEventListener( 'change', this.UpdateScene );
 
+
 	this.tween = new TWEEN.Tween(this.camera.position)
 	
 	this.tojo = tojo;
