@@ -77,34 +77,7 @@ found in the LICENSE file.
       // ===================================================
 
       // WebGL setup.
-      var webglCanvas = document.getElementById("webgl-canvas");
-      var glAttribs = {
-        // An alpha channel on the backbuffer is not necessary for many WebVR
-        // scenes. Disable it when unneeded to save memory/performance on some
-        // systems.
-        alpha: false,
-        // Disable antialiasing on mobile devices for performance reasons.
-        antialias: !VRSamplesUtil.isMobile()
-      };
-      var gl = webglCanvas.getContext("webgl", glAttribs);
-      if (!gl) {
-        gl = webglCanvas.getContext("experimental-webgl", glAttribs);
-        if (!gl) {
-          VRSamplesUtil.addError("Your browser does not support WebGL.");
-          return;
-        }
-      }
-
-      gl.clearColor(0.1, 0.2, 0.3, 1.0); // Non-black makes debugging easier.
-      gl.enable(gl.DEPTH_TEST);
-      gl.enable(gl.CULL_FACE);
-
-      // Load a simple scene consisting of a grid of floating cubes.
-      var textureLoader = new WGLUTextureLoader(gl);
-      var texture = textureLoader.loadTexture("img/grass.png");
-      var cubeSea = new VRCubeSea(gl, texture);
-
-      var stats = new WGLUStats(gl);
+      
 
       function onResize () {
         webglCanvas.width = webglCanvas.offsetWidth * window.devicePixelRatio;
