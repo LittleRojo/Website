@@ -7,14 +7,15 @@ found in the LICENSE file.
 <html>
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"> <!-- No pinch zoom on mobile -->
+    <meta name="mobile-web-app-capable" content="yes"> <!-- Launch fullscreen when added to home screen -->
     <meta name="apple-mobile-web-app-capable" content="yes"> <!-- Fullscreen Landscape on iOS -->
 
-    <title>02 - Stereo Rendering</title>
+    <title>01 - VR Input</title>
 
     <!--
-      This sample demonstrates how to properly render stereo views of a scene
-      using the VRDisplay's eye paramaters. Nothing is presented to the
+      This sample demonstrates how to use the pose information from a VRDisplay
+      to control the view of a WebGL scene. Nothing is presented to the
       VRDisplay.
     -->
 
@@ -65,17 +66,24 @@ found in the LICENSE file.
       /* global mat4, VRCubeSea, VRSamplesUtil, WGLUStats, WGLUTextureLoader */
       (function () {
       "use strict";
+
       var vrDisplay = null;
       var frameData = null;
       var projectionMat = mat4.create();
       var identityMat = mat4.create();
+
       // ===================================================
       // WebGL scene setup. This code is not WebVR specific.
       // ===================================================
+
       // WebGL setup.
       var webglCanvas = document.getElementById("webgl-canvas");
       var glAttribs = {
+        // An alpha channel on the backbuffer is not necessary for many WebVR
+        // scenes. Disable it when unneeded to save memory/performance on some
+        // systems.
         alpha: false,
+        // Disable antialiasing on mobile devices for performance reasons.
         antialias: !VRSamplesUtil.isMobile()
       };
       var gl = webglCanvas.getContext("webgl", glAttribs);
@@ -86,27 +94,53 @@ found in the LICENSE file.
           return;
         }
       }
-      gl.clearColor(0.1, 0.2, 0.3, 1.0);
+
+      gl.clearColor(0.1, 0.2, 0.3, 1.0); // Non-black makes debugging easier.
       gl.enable(gl.DEPTH_TEST);
       gl.enable(gl.CULL_FACE);
+
+      // Load a simple scene consisting of a grid of floating cubes.
       var textureLoader = new WGLUTextureLoader(gl);
-      var texture = textureLoader.loadTexture("/img/grass.png");
+      var texture = textureLoader.loadTexture("https://littlerojo.com/img/grass.png");
       var cubeSea = new VRCubeSea(gl, texture);
+
       var stats = new WGLUStats(gl);
+
       function onResize () {
         webglCanvas.width = webglCanvas.offsetWidth * window.devicePixelRatio;
         webglCanvas.height = webglCanvas.offsetHeight * window.devicePixelRatio;
+
+        // The viewport and projection matrix will change frequently when we
+        // begin rendering in stereo, but for now they only need to be updated
+        // when the window is resized.
+        gl.viewport(0, 0, webglCanvas.width, webglCanvas.height);
+        mat4.perspective(projectionMat, Math.PI*0.4, webglCanvas.width/webglCanvas.height, 0.1, 1024.0);
       }
       window.addEventListener("resize", onResize, false);
       onResize();
+
       // ================================
       // WebVR-specific code begins here.
       // ================================
+
+      // Since it's a new API not all browsers will have WebVR support. As such
+      // it's a good idea to check that the API is available before attempting
+      // to call it.
       if (navigator.getVRDisplays) {
+        // This object will be populated with the VRDisplay's pose and matricies
+        // every frame. We allocate it once here to avoid unnecessary garbage
+        // creation per frame.
         frameData = new VRFrameData();
+
         navigator.getVRDisplays().then(function (displays) {
+          // Use the first display in the array if one is available. If multiple
+          // displays are present you may want to present the user with a way to
+          // select which display they wish to use.
           if (displays.length > 0) {
             vrDisplay = displays[0];
+
+            // Being able to re-center your view is a useful thing in VR. It's
+            // good practice to provide your users with a simple way to do so.
             VRSamplesUtil.addButton("Reset Pose", "R", null, function () { vrDisplay.resetPose(); });
           } else {
             VRSamplesUtil.addInfo("WebVR supported, but no VRDisplays found.", 3000);
@@ -117,34 +151,32 @@ found in the LICENSE file.
       } else {
         VRSamplesUtil.addError("Your browser does not support WebVR. See <a href='http://webvr.info'>webvr.info</a> for assistance.");
       }
-      function onAnimationFrame (t) {
-        window.requestAnimationFrame(onAnimationFrame);
+
+      // Main rendering loop
+      function onAnimationFrame () {
         stats.begin();
+
+        // The normal requestAnimationFrame is used here because the scene is
+        // being not being presented to the VRDisplay, and so should run at the
+        // refresh rate of the users monitor instead of the headset.
+        window.requestAnimationFrame(onAnimationFrame);
+
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+
         if (vrDisplay) {
-          // When a VR display is available, render a stereo view of the scene
-          // based on the display's current matrices.
-          // VRFrameData contains the projection and view matrices each eye
-          // should be rendered with. These values change from frame to
-          // frame, so don't attempt to cache them.
+          // If a VRDisplay was found, query the matrices for it's current pose.
           vrDisplay.getFrameData(frameData);
-          // For each eye we'll adjust the viewport to only render to half the
-          // canvas, which will give us the "split screen" output that we want.
-          // Left eye.
-          gl.viewport(0, 0, webglCanvas.width * 0.5, webglCanvas.height);
-          cubeSea.render(frameData.leftProjectionMatrix, frameData.leftViewMatrix, stats);
-          // Right eye.
-          gl.viewport(webglCanvas.width * 0.5, 0, webglCanvas.width * 0.5, webglCanvas.height);
-          cubeSea.render(frameData.rightProjectionMatrix, frameData.rightViewMatrix, stats);
-          gl.viewport(0, 0, webglCanvas.width, webglCanvas.height);
-          stats.renderOrtho();
+
+          // Render the scene using the view matrix for one of the eyes.
+          cubeSea.render(projectionMat, frameData.leftViewMatrix, stats);
         } else {
-          // No VRDisplay found. Render a normal mono view to the entire canvas.
-          gl.viewport(0, 0, webglCanvas.width, webglCanvas.height);
-          mat4.perspective(projectionMat, Math.PI*0.4, webglCanvas.width/webglCanvas.height, 0.1, 1024.0);
+          // If no VRDisplay was found render the scene using an identity matrix.
           cubeSea.render(projectionMat, identityMat, stats);
-          stats.renderOrtho();
         }
+
+        // Render the FPS counter.
+        stats.renderOrtho();
+
         stats.end();
       }
       window.requestAnimationFrame(onAnimationFrame);
@@ -152,3 +184,4 @@ found in the LICENSE file.
     </script>
   </body>
 </html>
+
