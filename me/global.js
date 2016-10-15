@@ -73,6 +73,9 @@ function onload(pageNumber){
 	else if(page == "11") { 
 		var tojo = new tojo11();
 	}
+	else if(page == "12") {
+		var tojo = new tojo12();
+	}
 	App.Stage(main, tojo);
 
 	var mainCanvas = document.getElementById( 'mainCanvas' );
@@ -149,6 +152,11 @@ function onWindowResize(){
 	}
 	else if(page == "11") {
 		
+	}
+	else if(page == "12") {
+		App.camera.aspect = window.innerWidth / window.innerHeight;
+		App.camera.updateProjectionMatrix();
+		App.effect.setSize( window.innerWidth, window.innerHeight );
 	}
 
 	App.UpdateScene();
