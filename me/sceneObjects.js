@@ -388,7 +388,7 @@ function sun() {
 
 function desk() {    
 
-    var geometry = new THREE.BoxGeometry( 5, .5, 20 );
+    var geometry = new THREE.BoxGeometry( 5, .5, 8 );
     var material = new THREE.MeshBasicMaterial( {
         color: 0x8B4513,
         map: THREE.ImageUtils.loadTexture("img/wood.jpg"),
