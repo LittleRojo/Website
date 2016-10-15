@@ -21,10 +21,23 @@
 
 		<script src="js/three.min.js"></script>
 
+        <script>
+            // Prevents the polyfill from initializing automatically.
+            var WebVRConfig = { DEFER_INITIALIZATION: true }
+        </script>
+        <script src="js/webvr-polyfill.js"></script>
 		<script src="js/WebVR.js"></script>
 		<script src="js/VREffect.js"></script>
 		<script src="js/VRControls.js"></script>
-
+        <script>
+            // Dynamically turn the polyfill on if requested by the query args.
+            //if (WGLUUrl.getBool('polyfill', false)) {
+                InitializeWebVRPolyfill();
+            //} else {
+                // Shim for migration from older version of WebVR. Shouldn't be necessary for very long.
+              //  InitializeSpecShim();
+            //}
+        </script>
 		<script>
 
 			if ( WEBVR.isLatestAvailable() === false ) {
