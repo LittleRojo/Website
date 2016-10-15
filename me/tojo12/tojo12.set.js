@@ -12,29 +12,27 @@ Set.prototype.Stage = function(canvas, tojo) {
     this.renderer.shadowMap.enabled = true;
     this.renderer.shadowMap.renderReverseSided = false;
 	this.renderer.sortObjects = false;
-
-    this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000000);
-    this.camera.position.set(0, 10, 70);
-	this.camera.up = new THREE.Vector3(0,1,0);    
-    
-	this.mouse = new THREE.TrackballControls( this.camera );
-	this.mouse.rotateSpeed = 3;
-	this.mouse.zoomSpeed = 1.2;
-	this.mouse.panSpeed = 0.8;
-	this.mouse.noZoom = false;
-	this.mouse.noPan = false;
-	this.mouse.noRotate = false;
-	this.mouse.staticMoving = false;
-	this.mouse.dynamicDampingFactor = 0.9;
-	this.mouse.addEventListener( 'change', this.UpdateScene );
-
-	this.tween = new TWEEN.Tween(this.camera.position)
-	App.tween.onComplete(function () {
-            App.tojo.cameraState = 0;
-	});
 	
-	this.controls = new THREE.VRControls( this.camera );
+	this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000000);
+	//this.camera.position.set(0, 490, 70);
+	this.orbitControls = new THREE.OrbitControls(this.camera);
+	this.camera.position.x = -2;
+	this.camera.position.y = 10;
+	this.camera.position.z = -2;
+	this.orbitControls.target = new THREE.Vector3(-0, 10, -0);
+	this.fakeCamera = new THREE.Object3D();
+	this.vrControls = new THREE.VRControls(this.fakeCamera);
 	this.effect = new THREE.VREffect( this.renderer );
+
+    
+	//this.controls = new THREE.VRControls( this.camera );
+	//this.dolly = new THREE.Group();
+    //this.dolly.position.set( 0, -20, 0 );
+    	
+	//this.tween = new TWEEN.Tween(this.camera.position)
+	//App.tween.onComplete(function () {
+    //        App.tojo.cameraState = 0;
+	//});
 
 	if ( WEBVR.isAvailable() === true ) {
 		document.body.appendChild( WEBVR.getButton( this.effect ) );
@@ -43,16 +41,6 @@ Set.prototype.Stage = function(canvas, tojo) {
 	this.tojo = tojo;
 	this.tojo.SetupScene(); 
     this.tojo.AnimateScene();	
-}
-
-function setOrientationControls(e) {
-    if (!e.alpha) {
-        return;
-    }
-    this.mouse = new THREE.DeviceOrientationControls(App.camera, true);
-    this.mouse.connect();
-    this.mouse.update();
-    window.removeEventListener('deviceorientation', setOrientationControls, true);
 }
 
 Set.prototype.UpdateScene = function () {

@@ -16,63 +16,28 @@
 
 		<link rel="stylesheet" type="text/css" href="index.css">
 
-	<!--<script>
-			WebVRConfig = {
-				/**
-				* webvr-polyfill configuration
-				*/
-				// Forces availability of VR mode.
-				//FORCE_ENABLE_VR: true, // Default: false.
-				// Complementary filter coefficient. 0 for accelerometer, 1 for gyro.
-				//K_FILTER: 0.98, // Default: 0.98.
-				// How far into the future to predict during fast motion.
-				//PREDICTION_TIME_S: 0.040, // Default: 0.040 (in seconds).
-				// Flag to disable touch panner. In case you have your own touch controls
-				//TOUCH_PANNER_DISABLED: true, // Default: false.
-				// Enable yaw panning only, disabling roll and pitch. This can be useful for
-				// panoramas with nothing interesting above or below.
-				//YAW_ONLY: true, // Default: false.
-				// Enable the deprecated version of the API (navigator.getVRDevices).
-				//ENABLE_DEPRECATED_API: true, // Default: false.
-				// Scales the recommended buffer size reported by WebVR, which can improve
-				// performance. Making this very small can lower the effective resolution of
-				// your scene.
-				BUFFER_SCALE: 0.5, // default: 1.0
-				// Allow VRDisplay.submitFrame to change gl bindings, which is more
-				// efficient if the application code will re-bind it's resources on the
-				// next frame anyway.
-				// Dirty bindings include: gl.FRAMEBUFFER_BINDING, gl.CURRENT_PROGRAM,
-				// gl.ARRAY_BUFFER_BINDING, gl.ELEMENT_ARRAY_BUFFER_BINDING,
-				// and gl.TEXTURE_BINDING_2D for texture unit 0
-				// Warning: enabling this might lead to rendering issues.
-				//DIRTY_SUBMIT_FRAME_BINDINGS: true // default: false
-			};
-			// Prevents the polyfill from initializing automatically.
-			var WebVRConfig = { DEFER_INITIALIZATION: true }
-		</script>-->
-
 		<script>
 			var WebVRConfig = { DEFER_INITIALIZATION: true }
 		</script>
 
-		<script id="js" type="text/javascript" src="js/jquery-3.1.0.js"></script>
-		<script id="js" type="text/javascript" src="js/three.min.js"></script>
-		<script id="js" type="text/javascript" src="js/TrackballControls.js"></script>
-		<script id="js" type="text/javascript" src="js/Tween.js"></script>
+		<script type="text/javascript" src="js/jquery-3.1.0.js"></script>
+		<script type="text/javascript" src="js/three.min.js"></script>
+		<script type="text/javascript" src="js/OrbitControls.js"></script>
+		<script type="text/javascript" src="js/Tween.js"></script>
     <script type="text/javascript" src="js/WebVR.js"></script>
-		<script id="js" type="text/javascript" src="js/VRControls.js"></script>
-		<script id="js" type="text/javascript" src="js/VREffect.js"></script>
-		<script id="js" type="text/javascript" src="js/webvr-polyfill.js"></script>
+		<script type="text/javascript" src="js/VRControls.js"></script>
+		<script type="text/javascript" src="js/VREffect.js"></script>
+		<script type="text/javascript" src="js/webvr-polyfill.js"></script>
 
 		<script>
       InitializeWebVRPolyfill();			
 		</script>
 
-		<script id="js" type="text/javascript" src="me/global.js"></script>
-		<script id="js" type="text/javascript" src="me/tojo12/tojo12.set.js"></script>
-		<script id="js" type="text/javascript" src="me/tojo12/tojo12.js"></script>
-		<script id="js" type="text/javascript" src="me/utils.js"></script>
-		<script id="js" type="text/javascript" src="me/sceneObjects.js"></script>
+		<script type="text/javascript" src="me/global.js"></script>
+		<script type="text/javascript" src="me/tojo12/tojo12.set.js"></script>
+		<script type="text/javascript" src="me/tojo12/tojo12.js"></script>
+		<script type="text/javascript" src="me/utils.js"></script>
+		<script type="text/javascript" src="me/sceneObjects.js"></script>
 
 		<script type="x-shader/x-vertex" id="vertexShader">
 			varying vec3 vWorldPosition;

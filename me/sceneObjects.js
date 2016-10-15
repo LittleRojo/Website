@@ -7,7 +7,7 @@ function hemiLight() {
 
 function directionalLight() {
     dirLight = new THREE.DirectionalLight( 0xffffff, .6 );
-    dirLight.position.set( 0, 5, 0 );
+    dirLight.position.set( 0, 10, 10 );
     dirLight.castShadow = true;
     dirLight.shadowMapWidth = 2048;
     dirLight.shadowCameraRight = 100;
@@ -21,7 +21,7 @@ function directionalLight() {
 
 function spotLight() {
     spotLight = new THREE.SpotLight( 0xffffff, .8 );
-    spotLight.position.set( 0,100,0 );
+    spotLight.position.set( 0,15,-10 );
     spotLight.shadowMapWidth = 2048;
     spotLight.shadowMapWidth = 2048;
     App.tojo.scene.add(spotLight);
@@ -29,18 +29,19 @@ function spotLight() {
 
 function ground() {
     var groundGeo = new THREE.PlaneGeometry( 5000, 5000, 70, 70 );
-    for(var a = 0, b = groundGeo.vertices.length; a < b; a++ ){
+    /*for(var a = 0, b = groundGeo.vertices.length; a < b; a++ ){
         var factor = 25;
         if(groundGeo.vertices[a].x > 400 || groundGeo.vertices[a].x < -400 || groundGeo.vertices[a].z > 400 || groundGeo.vertices[a].z < -400) {
             factor = 100;
         }
         groundGeo.vertices[a].z = Math.random() * factor;
-    }
-    var groundMat = new THREE.MeshPhongMaterial( { color: 0x003300, specular: 0x050505 } );
+    }*/
+    var groundMat = new THREE.MeshPhongMaterial( { color: 0x696969, specular: 0x050505, side: THREE.DoubleSide } );
     
     var ground = new THREE.Mesh( groundGeo, groundMat );
     ground.rotation.x = -Math.PI/2;
-    ground.position.y = -33;
+    ground.rotation.z = -deg(45);
+    //ground.position.z = -10;
     ground.receiveShadow = true;
     App.tojo.scene.add( ground ); 
 }
@@ -383,4 +384,35 @@ function sun() {
     directionalLight.target = mesh;
     directionalLight.position.set( -50,20000,-46000 );
     App.tojo.scene.add(directionalLight);
+}
+
+function desk() {    
+
+    var geometry = new THREE.BoxGeometry( 5, .5, 20 );
+    var material = new THREE.MeshBasicMaterial( {
+        color: 0x8B4513,
+        map: THREE.ImageUtils.loadTexture("img/wood.jpg"),
+    } );
+    var mesh = new THREE.Mesh( geometry, material );
+    mesh.receiveShadow = true;
+    mesh.castShadow = true;
+    mesh.position.x = 0;
+    mesh.position.y = 8;
+    mesh.position.z = 0;
+    mesh.rotation.y = -deg(45);
+    App.tojo.scene.add( mesh );
+
+    /*var geometry = new THREE.SphereGeometry(1000, 10, 10);
+    var material = new THREE.MeshPhongMaterial( { 
+        color:0xFF0000, 
+    });
+    var mesh = new THREE.Mesh(geometry, material);
+    //mesh.position.x = -5;
+    //mesh.position.y = 10;
+    //mesh.position.z = -10;
+    App.tojo.scene.add(mesh);*/
+
+    //var spotLight = new THREE.AmbientLight( 0xffffff, 10.4 );
+    //spotLight.position.set( 0,0,0 );
+    //App.tojo.scene.add(spotLight);
 }
