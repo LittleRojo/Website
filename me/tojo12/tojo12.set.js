@@ -16,9 +16,9 @@ Set.prototype.Stage = function(canvas, tojo) {
 	this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000000);
 	//this.camera.position.set(0, 490, 70);
 	this.orbitControls = new THREE.OrbitControls(this.camera);
-	this.camera.position.x = -1.7;
+	this.camera.position.x = -1.8;
 	this.camera.position.y = 8.25;
-	this.camera.position.z = -1.7;
+	this.camera.position.z = -1.8;
 	this.orbitControls.target = new THREE.Vector3(12, 6, 12);
 	this.fakeCamera = new THREE.Object3D();
 	this.vrControls = new THREE.VRControls(this.fakeCamera);
