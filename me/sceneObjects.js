@@ -388,7 +388,7 @@ function sun() {
 
 function desk() {    
 
-    var geometry = new THREE.BoxGeometry( 8, 1, 20 );
+    var geometry = new THREE.BoxGeometry( 8, .1, 20 );
     var texture = THREE.ImageUtils.loadTexture("img/wood.jpg");
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
     texture.repeat.set( 1, 10 );
