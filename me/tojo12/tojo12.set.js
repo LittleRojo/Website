@@ -17,7 +17,7 @@ Set.prototype.Stage = function(canvas, tojo) {
 	//this.camera.position.set(0, 490, 70);
 	this.orbitControls = new THREE.OrbitControls(this.camera);
 	this.camera.position.x = -1.7;
-	this.camera.position.y = 8.75;
+	this.camera.position.y = 8.25;
 	this.camera.position.z = -1.7;
 	this.orbitControls.target = new THREE.Vector3(12, 6, 12);
 	this.fakeCamera = new THREE.Object3D();
