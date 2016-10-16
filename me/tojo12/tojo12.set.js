@@ -14,12 +14,13 @@ Set.prototype.Stage = function(canvas, tojo) {
 	this.renderer.sortObjects = false;
 	
 	this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000000);
-	//this.camera.position.set(0, 490, 70);
+	this.camera.position.set(-1, -1, 5);
 	this.orbitControls = new THREE.OrbitControls(this.camera);
-	this.camera.position.x = -4.8;
-	this.camera.position.y = 9.9;
-	this.camera.position.z = -4.8;
-	this.orbitControls.target = new THREE.Vector3(12000, 9.2, 12000);
+	this.orbitControls.zoomSpeed = 1;
+	this.orbitControls.rotateSpeed = .001;
+	this.orbitControls.keyPanSpeed = .001;
+	//this.orbitControls.auotRotateSpeed = .001;
+	//this.orbitControls.target = new THREE.Vector3(0, 0, 0);
 	this.fakeCamera = new THREE.Object3D();
 	this.vrControls = new THREE.VRControls(this.fakeCamera);
 	this.effect = new THREE.VREffect( this.renderer );

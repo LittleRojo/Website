@@ -386,26 +386,42 @@ function sun() {
     App.tojo.scene.add(directionalLight);
 }
 
+function carpet() {
+    var groundGeo = new THREE.PlaneGeometry( 25, 30, 10, 10 );    
+    var groundMat = new THREE.MeshPhongMaterial( { color: 0x696969, side: THREE.DoubleSide } );
+    
+    var ground = new THREE.Mesh( groundGeo, groundMat );
+    //ground.rotation.x = -Math.PI/2;
+    //ground.rotation.z = deg(25);
+    //ground.position.z = -10;
+    ground.receiveShadow = true;
+    App.tojo.scene.add( ground ); 
+}
+
 function desk() {    
 
-    var geometry = new THREE.BoxGeometry( 8, .1, 20 );
+    var geometry = new THREE.BoxGeometry( 4, .1, 4.5 );
     var texture = THREE.ImageUtils.loadTexture("img/wood.jpg");
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
-    texture.repeat.set( 1, 10 );
+    texture.repeat.set( 1, -10 );
 
     var material = new THREE.MeshBasicMaterial( {
         color: 0x8B4513,
         map: texture,
     } );
-    var mesh = new THREE.Mesh( geometry, material );
+    var mesh = new THREE.Mesh( geometry, material );    
     mesh.receiveShadow = true;
     mesh.castShadow = true;
-    mesh.position.x = 0;
-    mesh.position.y = 8;
-    mesh.position.z = 0;
-    mesh.rotation.y = -deg(45);
+    mesh.translateX(-5);
+    mesh.translateY(4);
+    mesh.translateZ(1.3);
+    mesh.updateMatrix();
+    mesh.rotateX(-deg(90));
+    mesh.rotateY(deg(85));
     App.tojo.scene.add( mesh );
+    
 
+    App.orbitControls.target = mesh.position;
     /*var geometry = new THREE.SphereGeometry(1000, 10, 10);
     var material = new THREE.MeshPhongMaterial( { 
         color:0xFF0000, 

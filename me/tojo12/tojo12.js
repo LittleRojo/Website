@@ -22,8 +22,8 @@ tojo12.prototype.SetupScene = function() {
     spotLight();
     
     //WORLD
-    ground();    
-    stars();
+    //ground();    
+    //stars();
     //sun();
     //clouds();
     //sky();
@@ -31,8 +31,11 @@ tojo12.prototype.SetupScene = function() {
     //capSpire    
     //capSpireLogo();
     //capSpireName();
+    carpet();
     desk();
-    
+        
+    App.camera.position.set(-6, 2, -6);
+    App.tojo.scene.rotation.x = -Math.PI/2;
     App.tojo.scene.add(App.tojo.all);
     
     //App.tojo.scene.add(App.camera);
@@ -108,10 +111,10 @@ tojo12.prototype.UpdateUserMouse = function() {
     App.camera.position.add(rotatedPosition);
     App.camera.quaternion.multiply(App.fakeCamera.quaternion);
     
-    console.log("Camera Position: (" + App.camera.position.x + ", " + App.camera.position.y + ", " + App.camera.position.z + ")")
+    //console.log("Camera Position: (" + App.camera.position.x + ", " + App.camera.position.y + ", " + App.camera.position.z + ")")
     //console.log("Orbit Controls Up (: " + App.orbitControls.up.x + "." + App.orbitControls.up.y + "." + App.orbitControls.up.z)
     //console.log("Orbit Controls Normal (: " + App.orbitControls.normal.x + "." + App.orbitControls.normal.y + "." + App.orbitControls.normal.z)
-    console.log("Orbit Controls Target: (" + App.orbitControls.target.x + ", " + App.orbitControls.target.y + ", " + App.orbitControls.target.z + ")")
+    //console.log("Orbit Controls Target: (" + App.orbitControls.target.x + ", " + App.orbitControls.target.y + ", " + App.orbitControls.target.z + ")")
     //vrEffect.render(scene, camera);
     
     // Restore the orbit position, so that the OrbitControls can
