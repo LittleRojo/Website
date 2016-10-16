@@ -302,10 +302,10 @@
             }
 
             return new Promise(function(resolve, reject) {
-                /*if (!self.capabilities.canPresent) {
+                if (!self.capabilities.canPresent) {
                     reject(new Error('VRDisplay is not capable of presenting.'));
                     return;
-                }*/
+                }
 
                 if (layers.length == 0 || layers.length > self.capabilities.maxLayers) {
                     reject(new Error('Invalid number of layers.'));
