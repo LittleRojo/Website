@@ -412,8 +412,8 @@ function desk() {
     var mesh = new THREE.Mesh( geometry, material );    
     mesh.receiveShadow = true;
     mesh.castShadow = true;
-    mesh.translateX(-5);
-    mesh.translateY(4);
+    mesh.translateX(-6);
+    mesh.translateY(2);
     mesh.translateZ(1.3);
     mesh.updateMatrix();
     mesh.rotateX(-deg(90));
