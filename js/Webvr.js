@@ -74,18 +74,20 @@ var WEBVR = {
 		button.style.position = 'absolute';
 		button.style.left = 'calc(50% - 50px)';
 		button.style.bottom = '20px';
-		button.style.width = '100px';
+		button.style.width = '64px';
+		button.style.height = '44px';
 		button.style.border = '0';
-		button.style.padding = '8px';
-		button.style.cursor = 'pointer';
-		button.style.backgroundColor = '#000';
-		button.style.color = '#fff';
+		button.style.padding = '0px';
+		button.style.cursor = 'pointer';		
+		button.style.background = '0x0000ff';
+		button.style.backgroundColor = '0x0000ff';
+		button.style.color = '#0000ff';
 		button.style.fontFamily = 'sans-serif';
 		button.style.fontSize = '13px';
 		button.style.fontStyle = 'normal';
 		button.style.textAlign = 'center';
 		button.style.zIndex = '999';
-		button.textContent = 'ENTER VR';
+		button.style.backgroundImage = 'url(\"img/vrLogoIcon.png/")';
 		button.onclick = function() {
 
 			effect.isPresenting ? effect.exitPresent() : effect.requestPresent();
@@ -94,7 +96,7 @@ var WEBVR = {
 
 		window.addEventListener( 'vrdisplaypresentchange', function ( event ) {
 
-			button.textContent = effect.isPresenting ? 'EXIT VR' : 'ENTER VR';
+			//button.textContent = effect.isPresenting ? 'EXIT VR' : 'ENTER VR';
 
 		}, false );
 
