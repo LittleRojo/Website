@@ -34,7 +34,7 @@ tojo12.prototype.SetupScene = function() {
     carpet();
     desk();
         
-    App.camera.position.set(-6, 2, -2);
+    App.camera.position.set(-6, 1.4, -1);
     App.tojo.scene.rotation.x = -Math.PI/2;
     App.tojo.scene.add(App.tojo.all);
     
