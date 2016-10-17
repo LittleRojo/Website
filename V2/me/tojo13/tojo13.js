@@ -20,6 +20,13 @@ tojo13.prototype.createModels = function() {
 
 	//App.ambientLight = App.Models.ambientLight( 0, 0, 0, 0x000000, 1 );    
 	//App.scene.add( App.ambientLight );
+    //this.orbitPos = App.camera.position.clone();
+    
+    // Apply the VR HMD camera position and rotation
+    // on top of the orbited camera.
+    var rotatedPosition = App.fakeCamera.position.applyQuaternion( App.camera.quaternion );
+    App.camera.position.add(rotatedPosition);
+    App.camera.quaternion.multiply(App.fakeCamera.quaternion);
 }
 
 tojo13.prototype.updateModels = function() {

@@ -109,8 +109,6 @@ App.prototype.createApp = function(fileName) {
 		}
 		App.effect.render( App.scene, App.camera );
 	}, false);
-
-	//App.effect.render( App.scene, App.camera );
 }
 
 App.prototype.updateFrame = function() {
