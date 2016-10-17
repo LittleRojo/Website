@@ -53,8 +53,8 @@ tojo12.prototype.RedrawScene = function() {
 	this.UpdateSceneLighting();
 	this.UpdateUserInput();
 
-    //App.renderer.render( this.scene, App.camera );
-    App.effect.render( this.scene, App.camera )
+    App.renderer.render( this.scene, App.camera );
+    //App.effect.render( this.scene, App.camera )
 
     App.camera.position.copy(App.tojo.orbitPos);
 }
