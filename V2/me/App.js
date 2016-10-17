@@ -128,7 +128,7 @@ App.prototype.updateFrame = function() {
     App.camera.quaternion.multiply(App.fakeCamera.quaternion);
 
     App.effect.render( App.scene, App.camera );
-	App.camera.position.copy(App.tojo.orbitPos);
+	App.camera.position.copy(App.orbitPos);
 }
 
 App.prototype.animate = function( delta ) {
