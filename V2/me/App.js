@@ -137,7 +137,7 @@ App.prototype.animate = function( delta ) {
         return;
     }
 	App.updateFrame();    
-    App.effect.requestAnimationFrame( App.animate );	
+    App.renderer.requestAnimationFrame( App.animate );	
 }
 
 App.prototype.stopAnimation = function() {
