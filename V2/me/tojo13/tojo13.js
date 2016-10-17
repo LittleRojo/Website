@@ -33,3 +33,8 @@ tojo13.prototype.updateCamera = function() {
 tojo13.prototype.updateLights = function() {
 	
 }
+
+tojo13.prototype.updateControls = function() {
+    App.orbitControls.update();
+    App.vrControls.update();
+}

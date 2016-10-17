@@ -1,12 +1,12 @@
 var appScript = document.getElementById("me/App.js");
 var WebVRConfig = { DEFER_INITIALIZATION: true }
-var polyfillScript  = loadScript( "js/webvr-polyfill.js", function() {
-    InitializeWebVRPolyfill();	
+var polyfillScript  = loadScript( "js/webvr-polyfill.js", function() {    
     var threeScript = loadScript( "js/three.min.js", function() {
         var orbitControlsScript = loadScript( "js/OrbitControls.js", function() {
             var webVRScript = loadScript( "js/Webvr.js", function() {
                 var vrControlsScript = loadScript( "js/VRControls.js", function() {
                     var vrEffectScript = loadScript( "js/VREffect.js", function() {	
+						InitializeWebVRPolyfill();	
 						App = new App();						
 						if( appScript.onLoadedCallback != null ) {
 							appScript.onLoadedCallback.call( self );							
@@ -47,6 +47,12 @@ App.prototype.load = function() {
 	}
 	else {	
 	}
+}
+
+App.prototype.runApp = function() {
+	App.createApp();
+	App.tojo.createModels();
+	App.animate();
 }
 
 App.prototype.createApp = function(fileName) {
@@ -106,24 +112,13 @@ App.prototype.createApp = function(fileName) {
 	App.effect.render( App.scene, App.camera );
 }
 
-App.prototype.runApp = function() {
-	App.createApp();
-	App.tojo.createModels();
-	App.animate();
-}
-
 App.prototype.updateFrame = function() {
 	App.tojo.updateModels();
 	App.tojo.updateCamera();
 	App.tojo.updateLights();
-	App.updateControls();
+	App.tojo.updateControls();
 
     App.effect.render( App.scene, App.camera );
-}
-
-App.prototype.updateControls = function() {
-    App.orbitControls.update();
-    App.vrControls.update();
 }
 
 App.prototype.animate = function( delta ) {
