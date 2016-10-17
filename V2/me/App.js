@@ -1,5 +1,9 @@
 var appScript = document.getElementById("me/App.js");
-var WebVRConfig = { DEFER_INITIALIZATION: true }
+var WebVRConfig = { 
+	DEFER_INITIALIZATION: true,
+	ROTATE_INSTRUCTIONS_DISABLED: true,
+ }
+
 var polyfillScript  = loadScript( "js/webvr-polyfill.js", function() {    
     var threeScript = loadScript( "js/three.min.js", function() {
         var orbitControlsScript = loadScript( "js/OrbitControls.js", function() {
