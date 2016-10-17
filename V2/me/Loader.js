@@ -17,7 +17,7 @@ var polyfillScript  = loadScript( "js/webvr-polyfill.js", function() {
     InitializeWebVRPolyfill();	
     var threeScript = loadScript( "js/three.min.js", function() {
         var orbitControlsScript = loadScript( "js/OrbitControls.js", function() {
-            var webVRScript = loadScript( "js/WebVR.js", function() {
+            var webVRScript = loadScript( "js/Webvr.js", function() {
                 var vrControlsScript = loadScript( "js/VRControls.js", function() {
                     var vrEffectScript = loadScript( "js/VREffect.js", function() {
                         //var tweenScript = loadScript( "me/Tween.js", function() {                            
