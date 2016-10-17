@@ -36,10 +36,5 @@ tojo13.prototype.updateLights = function() {
 }
 
 tojo13.prototype.updateControls = function() {
-    App.orbitControls.update();
-    App.vrControls.update();
-    
-    var rotatedPosition = App.fakeCamera.position.applyQuaternion( App.camera.quaternion );
-    App.camera.position.add(rotatedPosition);
-    App.camera.quaternion.multiply(App.fakeCamera.quaternion);
+
 }

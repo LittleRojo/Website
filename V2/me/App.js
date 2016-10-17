@@ -115,6 +115,13 @@ App.prototype.updateFrame = function() {
 	App.tojo.updateModels();
 	App.tojo.updateCamera();
 	App.tojo.updateLights();
+
+	App.orbitControls.update();
+    App.vrControls.update();
+    
+    var rotatedPosition = App.fakeCamera.position.applyQuaternion( App.camera.quaternion );
+    App.camera.position.add(rotatedPosition);
+    App.camera.quaternion.multiply(App.fakeCamera.quaternion);
 	App.tojo.updateControls();
 
     App.effect.render( App.scene, App.camera );
