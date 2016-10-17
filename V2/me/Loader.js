@@ -1,40 +1,24 @@
-function loadScript(url, onComplete) {
-    var callback = onComplete;
+function loadScript(url, onLoaded, onCompleted) {
     var script = document.createElement( "script" );
     script.setAttribute( 'type', "text/javascript" );
     script.setAttribute( 'src', url );
-    script.onload = script.onreadystatechange = function () {
-      if ( callback != null ) {
-          callback.call();          
-      }
+    script.setAttribute( 'id', url );
+    script.onLoadedCallback = onLoaded;
+    script.onCompletedCallback = onCompleted;
+    script.onload = function() {
+        if ( this.onLoadedCallback != null ) {
+            this.onLoadedCallback.call(this);   
+        }
     }
     document.head.appendChild( script );
     return script;
 }
 
-var WebVRConfig = { DEFER_INITIALIZATION: true }
-var polyfillScript  = loadScript( "js/webvr-polyfill.js", function() {
-    InitializeWebVRPolyfill();	
-    var threeScript = loadScript( "js/three.min.js", function() {
-        var orbitControlsScript = loadScript( "js/OrbitControls.js", function() {
-            var webVRScript = loadScript( "js/Webvr.js", function() {
-                var vrControlsScript = loadScript( "js/VRControls.js", function() {
-                    var vrEffectScript = loadScript( "js/VREffect.js", function() {
-                        //var tweenScript = loadScript( "me/Tween.js", function() {                            
-                            var appScript = loadScript( "me/App.js", function() {
-                                var modelScript = loadScript( "me/App.Models.js", function() {   
-                                    App.load(); 
-                                    App.runApp();            
-                                } );    
-                            } );
-                        //} );                      
-                    } );
-                } );
-            } );
-        } );        
-        var utilsScript = loadScript( "me/Utils.js" );
-    } );
-} );
+ loadScript( "me/tojo13/tojo13.js", function() {
+ }, function() {  
+    App.load(); 
+    App.runApp();
+} );  
 
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

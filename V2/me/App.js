@@ -1,3 +1,26 @@
+var appScript = document.getElementById("me/App.js");
+var WebVRConfig = { DEFER_INITIALIZATION: true }
+var polyfillScript  = loadScript( "js/webvr-polyfill.js", function() {
+    InitializeWebVRPolyfill();	
+    var threeScript = loadScript( "js/three.min.js", function() {
+        var orbitControlsScript = loadScript( "js/OrbitControls.js", function() {
+            var webVRScript = loadScript( "js/Webvr.js", function() {
+                var vrControlsScript = loadScript( "js/VRControls.js", function() {
+                    var vrEffectScript = loadScript( "js/VREffect.js", function() {	
+						App = new App();						
+						if( appScript.onLoadedCallback != null ) {
+							appScript.onLoadedCallback.call( self );							
+						}
+						if( appScript.onCompletedCallback != null ) {
+							appScript.onCompletedCallback.call( self );
+						}
+					} );   
+				} );                    
+			} );
+		} );
+	} );
+} ); 
+
 App = function() {
 }
 
@@ -24,12 +47,6 @@ App.prototype.load = function() {
 	}
 	else {	
 	}
-}
-
-App.prototype.runApp = function() {
-	App.createApp( "tojo13.js" );
-	App.createModels();
-	App.animate();
 }
 
 App.prototype.createApp = function(fileName) {
@@ -89,33 +106,19 @@ App.prototype.createApp = function(fileName) {
 	App.effect.render( App.scene, App.camera );
 }
 
-App.prototype.createModels = function() {
-    App.rojo = App.Models.rojo();
-	App.scene.add( App.rojo );
-
-	//App.ambientLight = App.Models.ambientLight( 0, 0, 0, 0x000000, 1 );    
-	//App.scene.add( App.ambientLight );
+App.prototype.runApp = function() {
+	App.createApp();
+	App.tojo.createModels();
+	App.animate();
 }
 
 App.prototype.updateFrame = function() {
-	App.updateModels();
-	App.updateCamera();
-	App.updateLights();
+	App.tojo.updateModels();
+	App.tojo.updateCamera();
+	App.tojo.updateLights();
 	App.updateControls();
 
     App.effect.render( App.scene, App.camera );
-}
-
-App.prototype.updateModels = function() {
-    
-}
-  
-App.prototype.updateCamera = function() {
- 
-}
-
-App.prototype.updateLights = function() {
-	
 }
 
 App.prototype.updateControls = function() {
@@ -135,5 +138,3 @@ App.prototype.animate = function( delta ) {
 App.prototype.stopAnimation = function() {
 	App.stopScene = true;
 }
-
-App = new App();

@@ -1,3 +1,15 @@
+var modelScript = document.getElementById("me/App.Models.js");
+loadScript( "me/App.js", function() {
+    if( modelScript.onLoadedCallback != null ) {
+        modelScript.onLoadedCallback.call( self );
+    }    
+}, function() {
+   if( modelScript.onCompletedCallback != null ) {
+        App.Models = new Models();
+        modelScript.onCompletedCallback.call( self );
+    } 
+} );
+
 Models = function() {
 }
 
@@ -16,6 +28,7 @@ Models.prototype.rojo = function() {
     return mesh;
 }
 
+/*
 Models.prototype.hemiLight = function( x, y, z, topColor, bottomColor, intensity ) {
     var hemiLight = new THREE.HemisphereLight( topColor, bottomColor, intensity );
     hemiLight.position.set( x, y, z );
@@ -53,13 +66,13 @@ function spotLight() {
 
 function ground() {
     var groundGeo = new THREE.PlaneGeometry( 5000, 5000, 70, 70 );
-    /*for(var a = 0, b = groundGeo.vertices.length; a < b; a++ ){
+    for(var a = 0, b = groundGeo.vertices.length; a < b; a++ ){
         var factor = 25;
         if(groundGeo.vertices[a].x > 400 || groundGeo.vertices[a].x < -400 || groundGeo.vertices[a].z > 400 || groundGeo.vertices[a].z < -400) {
             factor = 100;
         }
         groundGeo.vertices[a].z = Math.random() * factor;
-    }*/
+    }
     var groundMat = new THREE.MeshPhongMaterial( { color: 0x696969, specular: 0x050505, side: THREE.DoubleSide } );
     
     var ground = new THREE.Mesh( groundGeo, groundMat );
@@ -326,15 +339,6 @@ function capSpireName() {
         mesh.receiveShadow = true;
         App.tojo.groupName.add( mesh );       
         
-        /*var mesh = new THREE.Mesh( geometryI, material );
-        mesh.position.x = 78;
-        mesh.position.y = 18;
-        mesh.position.z = 0;
-        mesh.rotation.y = Math.PI * 2;
-        mesh.castShadow = true;
-        mesh.receiveShadow = true;
-        App.tojo.groupName.add( mesh );        
-        App.tojo.scene.add( App.tojo.groupName );*/
         var i = new THREE.BoxGeometry(2.2, 14.9, 2);
         var material2 = new THREE.MeshBasicMaterial( { color: 0x8B9B93 } );
         var mesh2 = new THREE.Mesh(i, material2);
@@ -446,19 +450,9 @@ function desk() {
     
 
     App.orbitControls.target = mesh.position;
-    /*var geometry = new THREE.SphereGeometry(1000, 10, 10);
-    var material = new THREE.MeshPhongMaterial( { 
-        color:0xFF0000, 
-    });
-    var mesh = new THREE.Mesh(geometry, material);
-    //mesh.position.x = -5;
-    //mesh.position.y = 10;
-    //mesh.position.z = -10;
-    App.tojo.scene.add(mesh);*/
 
     //var spotLight = new THREE.AmbientLight( 0xffffff, 10.4 );
     //spotLight.position.set( 0,0,0 );
     //App.tojo.scene.add(spotLight);
 }
-
-App.Models = new Models();
+*/
