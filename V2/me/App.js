@@ -135,9 +135,9 @@ App.prototype.animate = function( delta ) {
     if( App.stopScene ) {
         App.startScene = false;
         return;
-    }    
-    App.effect.requestAnimationFrame( App.animate );
-	App.updateFrame();
+    }
+	App.updateFrame();    
+    App.effect.requestAnimationFrame( App.animate );	
 }
 
 App.prototype.stopAnimation = function() {
