@@ -87,7 +87,7 @@ var WEBVR = {
 		button.style.fontStyle = 'normal';
 		button.style.textAlign = 'center';
 		button.style.zIndex = '999';
-		button.style.backgroundImage = "url('img/vrLogoIcon.png')";
+		//button.style.backgroundImage = "url('img/vrLogoIcon.png')";
 		button.onclick = function() {
 
 			effect.isPresenting ? effect.exitPresent() : effect.requestPresent();
@@ -96,7 +96,7 @@ var WEBVR = {
 
 		window.addEventListener( 'vrdisplaypresentchange', function ( event ) {
 
-			//button.textContent = effect.isPresenting ? 'EXIT VR' : 'ENTER VR';
+			button.textContent = effect.isPresenting ? 'EXIT VR' : 'ENTER VR';
 
 		}, false );
 
