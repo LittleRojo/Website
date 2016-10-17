@@ -111,7 +111,7 @@ App.prototype.createApp = function(fileName) {
 		}
 		else {	
 		}
-		App.renderer.render( App.scene, App.camera );
+		//App.renderer.render( App.scene, App.camera );
 	}, false);
 }
 
