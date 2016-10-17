@@ -122,13 +122,13 @@ App.prototype.updateFrame = function() {
 
 	App.orbitControls.update();
 	App.vrControls.update(); 
-	App.orbitPos = App.camera.position.clone();   
+	var orbitPos = App.camera.position.clone();   
     var rotatedPosition = App.fakeCamera.position.applyQuaternion( App.camera.quaternion );
     App.camera.position.add(rotatedPosition);
     App.camera.quaternion.multiply(App.fakeCamera.quaternion);
 
     App.effect.render( App.scene, App.camera );
-	App.camera.position.copy(App.orbitPos);
+	App.camera.position.copy(orbitPos);
 }
 
 App.prototype.animate = function( delta ) {
