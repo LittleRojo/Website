@@ -1,7 +1,7 @@
 var appScript = document.getElementById("me/App.js");
 var WebVRConfig = { 
 	DEFER_INITIALIZATION: true,
-	ROTATE_INSTRUCTIONS_DISABLED: true,
+	ROTATE_INSTRUCTIONS_DISABLED: false,
  }
 
 var polyfillScript  = loadScript( "js/webvr-polyfill.js", function() {    
