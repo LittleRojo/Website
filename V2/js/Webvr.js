@@ -88,7 +88,7 @@ var WEBVR = {
 		button.style.textAlign = 'center';
 		button.style.zIndex = '999';		
 		button.style.backgroundImage = 'url(img/vrLogoIcon.png)';
-		button.textContect = "VR"
+		button.textContent = "VR"
 		button.onclick = function() {
 
 			effect.isPresenting ? effect.exitPresent() : effect.requestPresent();
