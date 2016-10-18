@@ -11,34 +11,57 @@ loadScript( "me/3-App.Lighting.js", function() {
 } );
 
 Models = function() {
+    this.x = 0;
+    this.y = 0;
+    this.z = 0;
+    this.color = 0xFFFFFF;
+    this.specular = 0x000000;
+    this.width = 1;
+    this.height = 1;
 }
 
-Models.prototype.rojo = function( x, y, z, color ) {
-    var geometry = new THREE.SphereGeometry( x, y, z );
-    var material = new THREE.MeshBasicMaterial( { 
-        color: color, 
+Models.prototype.set = function(parameters) {
+    this.x = parameters.x;
+    this.y = parameters.y;
+    this.z = parameters.z;
+    this.color = parameters.color;
+    this.specular = parameters.specular;
+    this.width = parameters.width;
+    this.height = parameters.height;
+}
+
+Models.prototype.sphere = function( parameters ) {
+    this.set( parameters );
+    var sphereGeometry = new THREE.SphereGeometry( this.x, this.y, this.z );
+    var sphereMaterial = new THREE.MeshBasicMaterial( { 
+        color: this.color, 
     });
-    var mesh = new THREE.Mesh( geometry, material );
-    return mesh;
+    var sphere = new THREE.Mesh( sphereGeometry, sphereMaterial );
+    return sphere;
 }
 
-Models.prototype.ground = function() {
-    var groundGeo = new THREE.PlaneGeometry( 5000, 5000, 70, 70 );
-    for(var a = 0, b = groundGeo.vertices.length; a < b; a++ ){
+Models.prototype.plane = function( parameters ) {
+    this.set( parameters );
+    var planeGeometry = new THREE.PlaneGeometry( this.width, this.height, this.width / 2, this.width / 2 );
+    /*for(var a = 0, b = planeGeometry.vertices.length; a < b; a++ ){
         var factor = 25;
-        if(groundGeo.vertices[a].x > 400 || groundGeo.vertices[a].x < -400 || groundGeo.vertices[a].z > 400 || groundGeo.vertices[a].z < -400) {
+        if(planeGeometry.vertices[a].x > 400 || planeGeometry.vertices[a].x < -400 || planeGeometry.vertices[a].z > 400 || planeGeometry.vertices[a].z < -400) {
             factor = 100;
         }
-        groundGeo.vertices[a].z = Math.random() * factor;
-    }
-    var groundMat = new THREE.MeshPhongMaterial( { color: 0x696969, specular: 0x050505, side: THREE.DoubleSide } );
+        planeGeometry.vertices[a].z = Math.random() * factor;
+    }*/
+    var planeMaterial = new THREE.MeshBasicMaterial( { 
+        color: this.color, 
+        //specular: this.specular, 
+        //side: THREE.DoubleSide,
+    } );
     
-    var ground = new THREE.Mesh( groundGeo, groundMat );
-    ground.rotation.x = -Math.PI/2;
-    ground.rotation.z = -deg(45);
-    //ground.position.z = -10;
-    ground.receiveShadow = true;
-    return ground;
+    var plane = new THREE.Mesh( planeGeometry, planeMaterial );
+    //plane.rotation.x = -Math.PI/2;
+    //plane.rotation.z = -deg(45);
+    //plane.position.z = -10;
+    //plane.receiveShadow = true;
+    return plane;
 }
 
 Models.prototype.sky = function() {
