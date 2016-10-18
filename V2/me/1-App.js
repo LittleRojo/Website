@@ -110,7 +110,7 @@ App.prototype.createApp = function() {
 		}
 		else {	
 		}
-		App.renderer.render( App.scene, App.camera );
+		//App.renderer.render( App.scene, App.camera );
 	}
 	window.addEventListener( 'resize', App.resize, false);
 }
@@ -122,15 +122,15 @@ App.prototype.updateFrame = function() {
 
 	App.orbitControls.update();
 	App.vrControls.update(); 
-	
-	var orbitPos = App.camera.position.clone();   
-    var rotatedPosition = App.fakeCamera.position.applyQuaternion( App.camera.quaternion );
-    App.camera.position.add(rotatedPosition);
-    App.camera.quaternion.multiply(App.fakeCamera.quaternion);
+
+	//var orbitPos = App.camera.position.clone();   
+    //var rotatedPosition = App.fakeCamera.position.applyQuaternion( App.camera.quaternion );
+    //App.camera.position.add(rotatedPosition);
+    //App.camera.quaternion.multiply(App.fakeCamera.quaternion);
 
     App.effect.render( App.scene, App.camera );
 	
-	App.camera.position.copy(orbitPos);
+	//App.camera.position.copy(orbitPos);
 }
 
 App.prototype.animate = function( delta ) {
