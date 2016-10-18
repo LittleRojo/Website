@@ -18,6 +18,7 @@ Models = function() {
     this.specular = 0x000000;
     this.width = 1;
     this.height = 1;
+    this.depth = 1;    
 }
 
 Models.prototype.set = function(parameters) {
@@ -28,16 +29,7 @@ Models.prototype.set = function(parameters) {
     this.specular = parameters.specular;
     this.width = parameters.width;
     this.height = parameters.height;
-}
-
-Models.prototype.sphere = function( parameters ) {
-    this.set( parameters );
-    var sphereGeometry = new THREE.SphereGeometry( this.x, this.y, this.z );
-    var sphereMaterial = new THREE.MeshBasicMaterial( { 
-        color: this.color, 
-    });
-    var sphere = new THREE.Mesh( sphereGeometry, sphereMaterial );
-    return sphere;
+    this.depth = parameters.depth;
 }
 
 Models.prototype.plane = function( parameters ) {
@@ -53,7 +45,7 @@ Models.prototype.plane = function( parameters ) {
     var planeMaterial = new THREE.MeshBasicMaterial( { 
         color: this.color, 
         //specular: this.specular, 
-        //side: THREE.DoubleSide,
+        side: THREE.DoubleSide,
     } );
     
     var plane = new THREE.Mesh( planeGeometry, planeMaterial );
@@ -62,6 +54,27 @@ Models.prototype.plane = function( parameters ) {
     //plane.position.z = -10;
     //plane.receiveShadow = true;
     return plane;
+}
+
+Models.prototype.sphere = function( parameters ) {
+    this.set( parameters );
+    var sphereGeometry = new THREE.SphereGeometry( this.x, this.y, this.z );
+    var sphereMaterial = new THREE.MeshBasicMaterial( { 
+        color: this.color, 
+    });
+    var sphere = new THREE.Mesh( sphereGeometry, sphereMaterial );
+    return sphere;
+}
+
+Models.prototype.box = function( parameters ) {
+    this.set( parameters );
+    var boxGeometry = new THREE.BoxGeometry( this.width, this.height, this.depth );
+    var boxMaterial = new THREE.MeshBasicMaterial( {
+        color: this.color,
+    });
+    var box = new THREE.Mesh( boxGeometry, boxMaterial );
+    box.position.set( this.x, this.y, this.z );
+    return box;
 }
 
 Models.prototype.sky = function() {

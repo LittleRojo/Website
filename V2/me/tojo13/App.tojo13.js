@@ -15,24 +15,32 @@ var tojo13 = function() {
 }
 
 tojo13.prototype.createModels = function() {
-    App.tojo.rojo = App.Models.sphere( {
-        x: 2, 
-        y: 8, 
-        z: 8, 
-        color: 0x00FF00,
-    } );
-	App.scene.add( App.tojo.rojo );
-
-    App.tojo.ground = App.Models.plane( {
+    App.tojo.frontWall = App.Models.plane( {
         width: 10,
         height: 10, 
         color: 0xFF0000, 
         specular: 0x0000FF,
     });
-    App.scene.add( App.tojo.ground );
+    //App.scene.add( App.tojo.frontWall );
 
-    //App.tojo.sky = App.Models.sky();
-    //App.scene.add( App.tojo.sky );
+    App.tojo.rojo = App.Models.sphere( {
+        x: 0, 
+        y: 0, 
+        z: 0, 
+        color: 0xFF0000,
+    } );
+	App.scene.add( App.tojo.rojo );
+
+    App.tojo.room = App.Models.box( {
+        x: 0,
+        y: 0,
+        z: -40,
+        width: 25,
+        height: 25,
+        depth: 25,
+        color: 0xFFF00F,
+    } );
+    App.scene.add( App.tojo.room );
 }
 
 tojo13.prototype.updateLights = function( delta ) {
