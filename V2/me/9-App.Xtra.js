@@ -15,8 +15,5 @@ Xtra = function() {
 }
 
 Xtra.prototype.load = function() {
-    App.mainCanvas = App.renderer.domElement;
-    document.body.appendChild( App.mainCanvas );   
-         
     App.clock = new THREE.Clock();
 }

@@ -40,6 +40,9 @@ App.prototype.load = function() {
 	App.renderer.setPixelRatio( window.devicePixelRatio );
 	App.renderer.setSize( window.innerWidth, window.innerHeight );
 	App.renderer.setClearColor( 0x000000, 1 );	
+
+	App.mainCanvas = App.renderer.domElement;
+    document.body.appendChild( App.mainCanvas ); 
 	
 	App.scene = new THREE.Scene();
 }
