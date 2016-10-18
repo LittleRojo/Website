@@ -1,4 +1,4 @@
-var appScript = document.getElementById("me/App.js");
+var appScript = document.getElementById("me/1-App.js");
 var WebVRConfig = { 
 	DEFER_INITIALIZATION: true,
 	ROTATE_INSTRUCTIONS_DISABLED: true,
@@ -28,7 +28,7 @@ var polyfillScript  = loadScript( "js/webvr-polyfill.js", function() {
 App = function() {
 }
 
-App.prototype.load = function() {
+App.prototype.loadApp = function() {
 	if( ( navigator.userAgent.match( /iPhone/i ) ) || ( navigator.userAgent.match( /iPod/i )  ) ) {		
 		//IPHONE ORIENTATION - PROFILE
 		if( window.orientation === 90 || window.orientation === -90 ) {
@@ -59,7 +59,7 @@ App.prototype.runApp = function() {
 	App.animate();
 }
 
-App.prototype.createApp = function(fileName) {
+App.prototype.createApp = function() {
 	App.renderer = new THREE.WebGLRenderer({		
 		antilias: true, 
 		alpha: true, 
@@ -79,13 +79,12 @@ App.prototype.createApp = function(fileName) {
 	App.camera.position.set( 0, 0, 10 );
 
 	App.orbitControls = new THREE.OrbitControls( App.camera ) ;
-	//App.orbitControls.zoomSpeed = .1;
-	//App.orbitControls.rotateSpeed = .001;
-	//App.orbitControls.keyPanSpeed = .001;
+	//App.orbitControls.zoomSpeed = 1;
+	//App.orbitControls.rotateSpeed = 1;
+	//App.orbitControls.keyPanSpeed = 1;
 
 	App.fakeCamera = new THREE.Object3D();
 	App.vrControls = new THREE.VRControls( App.fakeCamera );
-
 	App.effect = new THREE.VREffect( App.renderer );
 
 	if ( WEBVR.isAvailable() === true ) {
@@ -117,12 +116,13 @@ App.prototype.createApp = function(fileName) {
 }
 
 App.prototype.updateFrame = function() {
-	App.tojo.updateModels();
-	App.tojo.updateCamera();
 	App.tojo.updateLights();
+	App.tojo.updateModels();
+	App.tojo.updateCamera();	
 
 	App.orbitControls.update();
 	App.vrControls.update(); 
+	
 	var orbitPos = App.camera.position.clone();   
     var rotatedPosition = App.fakeCamera.position.applyQuaternion( App.camera.quaternion );
     App.camera.position.add(rotatedPosition);

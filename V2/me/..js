@@ -1,3 +1,4 @@
+var script = document.getElementsByTagName("script");
 var loadedScripts = {};
 function loadScript(url, onLoaded, onCompleted) {
     if( url in loadedScripts ) {        
@@ -22,7 +23,7 @@ function loadScript(url, onLoaded, onCompleted) {
 
  loadScript( "me/tojo13/App.tojo13.js", function() {
  }, function() {  
-    App.load(); 
+    App.loadApp(); 
     App.runApp();
 } );  
 
@@ -32,3 +33,26 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 ga('create', 'UA-80236281-1', 'auto');
 ga('send', 'pageview');
+
+function Pixel(){
+    this.position = new THREE.Vector2();
+    this.color = [],
+    this.size = 1;
+}
+
+function deg(degree) { 
+    return degree*(Math.PI/180); 
+}
+
+function rand(min, max) {
+    return Math.random() * max + min;
+}
+
+function apply(object) {
+    object.updateMatrix();
+    object.geometry.applyMatrix( object.matrix );
+    object.position.set( 0, 0, 0 );
+    object.rotation.set( 0, 0, 0 );
+    object.scale.set( 1, 1, 1 );
+    object.updateMatrix();
+}

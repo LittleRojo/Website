@@ -1,5 +1,5 @@
-var lightingScript = document.getElementById("me/App.Lighting.js");
-loadScript( "me/App.Models.js", function() {
+var lightingScript = document.getElementById("me/3-App.Lighting.js");
+loadScript( "me/2-App.Shaders.js", function() {
     if( lightingScript.onLoadedCallback != null ) {
         lightingScript.onLoadedCallback.call( self );
     }    

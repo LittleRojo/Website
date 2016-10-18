@@ -1,5 +1,5 @@
-var motionScript = document.getElementById("me/App.Motion.js");
-loadScript( "me/App.Lighting.js", function() {
+var motionScript = document.getElementById("me/5-App.Motion.js");
+loadScript( "me/4-App.Models.js", function() {
     if( motionScript.onLoadedCallback != null ) {
         motionScript.onLoadedCallback.call( self );
     }   
@@ -14,6 +14,13 @@ Motion = function() {
 }
 
 Motion.prototype.randomMove = function(object) {
+}
 
-    return object;
+Motion.prototype.MoveX = function(object, units) {
+}
+
+Motion.prototype.MoveY = function(object, units) {
+}
+
+Motion.prototype.MoveZ = function(object, units) {
 }

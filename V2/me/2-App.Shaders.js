@@ -1,4 +1,14 @@
-var shaderScript = document.getElementById("me/App.Shaders.js");
+var shaderScript = document.getElementById("me/2-App.Shaders.js");
+loadScript( "me/1-App.js", function() {
+    if( shaderScript.onLoadedCallback != null ) {
+        shaderScript.onLoadedCallback.call( self );
+    }    
+}, function() {
+    if( shaderScript.onCompletedCallback != null ) {
+        App.Shaders = new Shaders();
+        shaderScript.onCompletedCallback.call( self );    
+    }
+} );
 
 Shaders = function() {
 }

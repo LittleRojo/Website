@@ -1,34 +1,24 @@
-var modelScript = document.getElementById("me/App.Models.js");
-loadScript( "me/App.Shaders.js", function() {
-    loadScript( "me/App.js", function() {
-        if( modelScript.onLoadedCallback != null ) {
-            modelScript.onLoadedCallback.call( self );
-        }    
-    }, function() {
-        if( modelScript.onCompletedCallback != null ) {
-            App.Models = new Models();
-            modelScript.onCompletedCallback.call( self );    
-        }
-    } );
+var modelScript = document.getElementById("me/4-App.Models.js");
+loadScript( "me/3-App.Lighting.js", function() {
+    if( modelScript.onLoadedCallback != null ) {
+        modelScript.onLoadedCallback.call( self );
+    }    
 }, function() {
-    App.Shaders = new Shaders();
+    if( modelScript.onCompletedCallback != null ) {
+        App.Models = new Models();
+        modelScript.onCompletedCallback.call( self );    
+    }
 } );
 
 Models = function() {
 }
 
-Models.prototype.rojo = function() {
-    var geometry = new THREE.SphereGeometry( 2, 8, 8 );
+Models.prototype.rojo = function( x, y, z, color ) {
+    var geometry = new THREE.SphereGeometry( x, y, z );
     var material = new THREE.MeshBasicMaterial( { 
-        color: 0xFF0000, 
+        color: color, 
     });
     var mesh = new THREE.Mesh( geometry, material );
-    //mesh.shading = true;
-    //mesh.castShadow = true;
-    //mesh.receiveShadow = true; 
-    //mesh.position.x = -50;
-    //mesh.position.y = 20000;
-    //mesh.position.z = -50000;
     return mesh;
 }
 
@@ -52,8 +42,8 @@ Models.prototype.ground = function() {
 }
 
 Models.prototype.sky = function() {
-    var vertexShader = document.getElementById( 'vertexShader' ).textContent;
-    var fragmentShader = document.getElementById( 'fragmentShader' ).textContent;
+    var vertexShader = App.Shaders.skyVertex();
+    var fragmentShader = App.Shaders.skyFragment();
     var uniforms = {
         topColor:    { value: new THREE.Color( 0x000000 ) },
         bottomColor: { value: new THREE.Color( 0x001C49 ) },
