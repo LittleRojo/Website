@@ -95,7 +95,7 @@ App.prototype.createApp = function(fileName) {
 	App.scene = new THREE.Scene();
 	App.clock = new THREE.Clock();
 
-	window.addEventListener( 'resize', function() { 
+	App.resize = function() { 
 		App.renderer.setSize( window.innerWidth, window.innerHeight );
 		App.camera.aspect = window.innerWidth / window.innerHeight;
 		App.camera.updateProjectionMatrix();	
@@ -112,7 +112,8 @@ App.prototype.createApp = function(fileName) {
 		else {	
 		}
 		App.renderer.render( App.scene, App.camera );
-	}, false);
+	}
+	window.addEventListener( 'resize', App.resize, false);
 }
 
 App.prototype.updateFrame = function() {
