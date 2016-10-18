@@ -15,21 +15,25 @@ Models = function() {
     this.y = 0;
     this.z = 0;
     this.color = 0xFFFFFF;
+    this.uniformTopColor = 0xFFFFFF;
+    this.uniformBottomColor = 0xFFFFFF;
     this.specular = 0x000000;
     this.width = 1;
     this.height = 1;
-    this.depth = 1;    
-}
+    this.depth = 1;
 
-Models.prototype.set = function(parameters) {
-    this.x = parameters.x;
-    this.y = parameters.y;
-    this.z = parameters.z;
-    this.color = parameters.color;
-    this.specular = parameters.specular;
-    this.width = parameters.width;
-    this.height = parameters.height;
-    this.depth = parameters.depth;
+    Models.prototype.set = function(parameters) {
+        this.x = parameters.x;
+        this.y = parameters.y;
+        this.z = parameters.z;
+        this.color = parameters.color;
+        this.uniformTopColor = parameters.uniformTopColor;
+        this.uniformBottomColor = parameters.uniformBottomColor;
+        this.specular = parameters.specular;
+        this.width = parameters.width;
+        this.height = parameters.height;
+        this.depth = parameters.depth;
+    }  
 }
 
 Models.prototype.plane = function( parameters ) {
@@ -44,7 +48,7 @@ Models.prototype.plane = function( parameters ) {
     }*/
     var planeMaterial = new THREE.MeshBasicMaterial( { 
         color: this.color, 
-        //specular: this.specular, 
+        specular: this.specular, 
         side: THREE.DoubleSide,
     } );
     
@@ -58,10 +62,33 @@ Models.prototype.plane = function( parameters ) {
 
 Models.prototype.sphere = function( parameters ) {
     this.set( parameters );
-    var sphereGeometry = new THREE.SphereGeometry( this.x, this.y, this.z );
-    var sphereMaterial = new THREE.MeshBasicMaterial( { 
-        color: this.color, 
+
+    var vertexShader = App.Shaders.skyVertex();
+    var fragmentShader = App.Shaders.skyFragment();
+    var uniforms = {
+        topColor:    { value: uniformTopColor },
+        bottomColor: { value: uniformBottomColor },
+        offset:      { value: 33 },
+        exponent:    { value: .4 }
+    };
+    
+    var sphereGeometry = new THREE.SphereGeometry( x, y, z );
+    sphereGeometry.phiStart = 0;
+    sphereGeometry.phiLength = deg(100);
+    sphereGeometry.thetaStart = 0;
+    sphereGeometry.thetaLength = deg(100);
+    //var texture = new THREE.TextureLoader().load( "img/transperant.png" );
+    var sphereMaterial = new THREE.ShaderMaterial( {
+        vertexShader: vertexShader, 
+        fragmentShader: fragmentShader, 
+        uniforms: uniforms, 
+        color: color,
+        side: THREE.FrontSide,
+        //shading: THREE.FlatShading,
+        //transperant: true,        
+        //map: texture,
     });
+
     var sphere = new THREE.Mesh( sphereGeometry, sphereMaterial );
     return sphere;
 }
@@ -77,7 +104,7 @@ Models.prototype.box = function( parameters ) {
     return box;
 }
 
-Models.prototype.sky = function() {
+Models.prototype.sphere = function() {
     var vertexShader = App.Shaders.skyVertex();
     var fragmentShader = App.Shaders.skyFragment();
     var uniforms = {
@@ -108,7 +135,7 @@ Models.prototype.sky = function() {
     var sky = new THREE.Mesh( skyGeo, skyMat );
     return sky;
 }
-
+/*
 Models.prototype.stars = function() {
     var stars = 1000;
     var counter = 0;
@@ -423,3 +450,4 @@ Models.prototype.desk = function() {
     mesh.rotateY(deg(85));
     return mesh;
 }
+*/
