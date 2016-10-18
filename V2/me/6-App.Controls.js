@@ -10,34 +10,50 @@ loadScript( "me/5-App.Motion.js", function() {
     }
 } );
 
-Controls = function() {    
-    console.log("touchscreen is", VirtualJoystick.touchScreenAvailable() ? "available" : "not available");
-	// 
-	var joystick	= new VirtualJoystick({
+Controls = function() { 
+    var offset = 70;   
+    //LEFT SIDE
+	App.leftJoystick	= new VirtualJoystick({
 		container	: document.body,
 		strokeStyle	: 'cyan',
 		limitStickTravel: true,
-		stickRadius	: 120		
+		stickRadius	: 120,
+        mouseSupport: true,	
+        //stickElement: new stick canvas,
+        //baseElement: new base canvas,
+        stationaryBase: true,
+        baseX: offset,
+        baseY: window.innerHeight - offset,        	
 	});
-	joystick.addEventListener('touchStartValidation', function(event){
+	App.leftJoystick.addEventListener('touchStartValidation', function(event){
 		var touch	= event.changedTouches[0];
 		if( touch.pageX < window.innerWidth/2 )	return false;
 		return true
 	});
-	// one on the right of the screen
-	var joystick	= new VirtualJoystick({
+    App.leftJoystick.addEventListener('touchStart', function(){
+		console.log('right')
+	})
+    
+    //RIGHT SIDE
+	App.rightJoystick	= new VirtualJoystick({
 		container	: document.body,
-		strokeStyle	: 'orange',
+		strokeStyle	: 'brown',
 		limitStickTravel: true,
-		stickRadius	: 0		
+		stickRadius	: 120,
+        mouseSupport: true,	
+        //stickElement: new stick canvas,
+        //baseElement: new base canvas,
+        stationaryBase: true,
+        baseX: window.innerWidth - offset,
+        baseY: window.innerHeight - offset,	
 	});
-	joystick.addEventListener('touchStartValidation', function(event){
+	App.rightJoystick.addEventListener('touchStartValidation', function(event){
 		var touch	= event.changedTouches[0];
 		if( touch.pageX >= window.innerWidth/2 )	return false;
 		return true
 	});
-	joystick.addEventListener('touchStart', function(){
-		console.log('fire')
+	App.rightJoystick.addEventListener('touchStart', function(){
+		console.log('right')
 	})
 }
 
