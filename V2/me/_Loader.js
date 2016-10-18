@@ -20,7 +20,7 @@ function loadScript(url, onLoaded, onCompleted) {
     return script;
 }
 
- loadScript( "me/tojo13/tojo13.js", function() {
+ loadScript( "me/tojo13/App.tojo13.js", function() {
  }, function() {  
     App.load(); 
     App.runApp();

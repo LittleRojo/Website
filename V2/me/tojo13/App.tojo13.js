@@ -1,5 +1,5 @@
-var tojoScript = document.getElementById("me/tojo13/tojo13.js");
-loadScript( "me/App.Models.js", function() {   
+var tojoScript = document.getElementById("me/tojo13/App.tojo13.js");
+loadScript( "me/App.Motion.js", function() {  
     if( tojoScript.onLoadedCallback != null ) {
         tojoScript.onLoadedCallback.call( self );
     }        
