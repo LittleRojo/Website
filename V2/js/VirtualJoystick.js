@@ -247,7 +247,7 @@ VirtualJoystick.prototype._onTouchStart	= function(event)
 
 	// notify event for validation
 	var isValid	= this.dispatchEvent('touchStartValidation', event);
-	if( isValid === false )	return;
+	//if( isValid === false )	return;
 	
 	// dispatch touchStart
 	this.dispatchEvent('touchStart', event);
@@ -300,7 +300,7 @@ VirtualJoystick.prototype._onTouchMove	= function(event)
 	if( i === touchList.length)	return;
 	var touch	= touchList[i];
 
-	//event.preventDefault();
+	event.preventDefault();
 
 	var x		= touch.pageX;
 	var y		= touch.pageY;
