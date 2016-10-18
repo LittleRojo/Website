@@ -18,9 +18,7 @@ tojo13.prototype.createModels = function() {
     App.tojo.rojo = App.Models.rojo();
 	App.scene.add( App.tojo.rojo );
 
-	//App.ambientLight = App.Models.ambientLight( 0, 0, 0, 0x000000, 1 );    
-	//App.scene.add( App.ambientLight );
-    //this.orbitPos = App.camera.position.clone();
+	App.Lighting.directionalLighting(0,10,5,0x00FF00, 1);
 }
 
 tojo13.prototype.updateModels = function() {
