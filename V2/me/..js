@@ -1,6 +1,6 @@
-var script = document.getElementsByTagName("script");
+var script = document.getElementsByTagName( "script" );
 var loadedScripts = {};
-function loadScript(url, onLoaded, onCompleted) {
+function loadScript( url, onLoaded, onCompleted ) {
     if( url in loadedScripts ) {        
         return;
     }
@@ -14,7 +14,7 @@ function loadScript(url, onLoaded, onCompleted) {
     script.onCompletedCallback = onCompleted;
     script.onload = function() {        
         if ( this.onLoadedCallback != null ) {
-            this.onLoadedCallback.call(this);   
+            this.onLoadedCallback.call( this );   
         }
     }
     document.head.appendChild( script );
@@ -40,15 +40,15 @@ function Pixel(){
     this.size = 1;
 }
 
-function deg(degree) { 
-    return degree*(Math.PI/180); 
+function deg( degree ) { 
+    return degree * ( Math.PI/180 ); 
 }
 
-function rand(min, max) {
+function rand( min, max ) {
     return Math.random() * max + min;
 }
 
-function apply(object) {
+function apply( object ) {
     object.updateMatrix();
     object.geometry.applyMatrix( object.matrix );
     object.position.set( 0, 0, 0 );
