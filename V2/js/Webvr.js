@@ -98,7 +98,8 @@ var WEBVR = {
 		window.addEventListener( 'vrdisplaypresentchange', function ( event ) {
 
 			button.textContent = effect.isPresenting ? 'NORMAL' : 'VR';
-
+			App.resize();
+			
 		}, false );
 
 		return button;
