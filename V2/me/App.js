@@ -116,7 +116,7 @@ App.prototype.createApp = function(fileName) {
     App.camera.position.add(rotatedPosition);
     App.camera.quaternion.multiply(App.fakeCamera.quaternion);
 
-    App.effect.render( App.scene, App.camera );
+    App.renderer.render( App.scene, App.camera );
 	
 	App.camera.position.copy(orbitPos);
 	}, false);
