@@ -110,7 +110,7 @@ App.prototype.createApp = function() {
 		}
 		else {	
 		}
-		//App.renderer.render( App.scene, App.camera );
+		App.renderer.render( App.scene, App.camera );
 	}
 	window.addEventListener( 'resize', App.resize, false);
 }
