@@ -133,7 +133,7 @@ App.prototype.updateFrame = function() {
 	App.camera.position.copy(orbitPos);
 }
 
-App.prototype.animate = function( delta ) {
+App.prototype.animate = function() {
     if( App.stopScene ) {
         App.startScene = false;
         return;
