@@ -23,8 +23,8 @@ function loadScript( url, onLoaded, onCompleted ) {
 
  loadScript( "me/tojo13/App.tojo13.js", function() {
  }, function() {  
-    App.loadApp(); 
-    App.runApp();
+    App.tojo.createModels();
+	App.startAnimation();
 } );  
 
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
