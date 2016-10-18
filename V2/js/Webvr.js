@@ -97,9 +97,8 @@ var WEBVR = {
 
 		window.addEventListener( 'vrdisplaypresentchange', function ( event ) {
 
-			button.textContent = effect.isPresenting ? 'NORMAL' : 'VR';
-			App.resize();
-			
+			button.textContent = effect.isPresenting ? '2D' : 'VR';
+
 		}, false );
 
 		return button;
