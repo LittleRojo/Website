@@ -1,11 +1,17 @@
+var loadedScripts = {};
 function loadScript(url, onLoaded, onCompleted) {
+    if( url in loadedScripts ) {        
+        return;
+    }
+    loadedScripts[url] = script;
+
     var script = document.createElement( "script" );
     script.setAttribute( 'type', "text/javascript" );
     script.setAttribute( 'src', url );
     script.setAttribute( 'id', url );
     script.onLoadedCallback = onLoaded;
     script.onCompletedCallback = onCompleted;
-    script.onload = function() {
+    script.onload = function() {        
         if ( this.onLoadedCallback != null ) {
             this.onLoadedCallback.call(this);   
         }

@@ -1,13 +1,17 @@
 var modelScript = document.getElementById("me/App.Models.js");
-loadScript( "me/App.js", function() {
-    if( modelScript.onLoadedCallback != null ) {
-        modelScript.onLoadedCallback.call( self );
-    }    
+loadScript( "me/App.Shaders.js", function() {
+    loadScript( "me/App.js", function() {
+        if( modelScript.onLoadedCallback != null ) {
+            modelScript.onLoadedCallback.call( self );
+        }    
+    }, function() {
+        if( modelScript.onCompletedCallback != null ) {
+            App.Models = new Models();
+            modelScript.onCompletedCallback.call( self );    
+        }
+    } );
 }, function() {
-   if( modelScript.onCompletedCallback != null ) {
-        App.Models = new Models();
-        modelScript.onCompletedCallback.call( self );
-    } 
+    App.Shaders = new Shaders();
 } );
 
 Models = function() {
@@ -28,43 +32,7 @@ Models.prototype.rojo = function() {
     return mesh;
 }
 
-/*
-Models.prototype.hemiLight = function( x, y, z, topColor, bottomColor, intensity ) {
-    var hemiLight = new THREE.HemisphereLight( topColor, bottomColor, intensity );
-    hemiLight.position.set( x, y, z );
-    hemiLight.castShadow = true;
-    return hemiLight;
-}
-
-Models.prototype.ambientLight = function( x, y, z, color, intensity ) {
-    var ambientLight = new THREE.AmbientLight( color, intensity );
-    ambientLight.position.set( x, y, z );
-    return ambientLight;
-}
-
-function directionalLight() {
-    dirLight = new THREE.DirectionalLight( 0xffffff, .6 );
-    dirLight.position.set( 0, 10, 10 );
-    dirLight.castShadow = true;
-    dirLight.shadowMapWidth = 2048;
-    dirLight.shadowCameraRight = 100;
-    dirLight.shadowCameraLeft = -100;
-    dirLight.shadowCameraTop = 100;
-    dirLight.shadowCameraBottom = -100;
-    dirLight.shadowMapHeight = 2048;
-    //dirLight.shadowDarkness = 0.5;
-    App.tojo.scene.add( dirLight );
-}
-
-function spotLight() {
-    spotLight = new THREE.SpotLight( 0xffffff, .8 );
-    spotLight.position.set( 0,15,-10 );
-    spotLight.shadowMapWidth = 2048;
-    spotLight.shadowMapWidth = 2048;
-    App.tojo.scene.add(spotLight);
-}
-
-function ground() {
+Models.prototype.ground = function() {
     var groundGeo = new THREE.PlaneGeometry( 5000, 5000, 70, 70 );
     for(var a = 0, b = groundGeo.vertices.length; a < b; a++ ){
         var factor = 25;
@@ -80,10 +48,10 @@ function ground() {
     ground.rotation.z = -deg(45);
     //ground.position.z = -10;
     ground.receiveShadow = true;
-    App.tojo.scene.add( ground ); 
+    return ground;
 }
 
-function sky() {
+Models.prototype.sky = function() {
     var vertexShader = document.getElementById( 'vertexShader' ).textContent;
     var fragmentShader = document.getElementById( 'fragmentShader' ).textContent;
     var uniforms = {
@@ -112,10 +80,10 @@ function sky() {
     });
 
     var sky = new THREE.Mesh( skyGeo, skyMat );
-    App.tojo.scene.add( sky );
+    return sky;
 }
 
-function stars() {
+Models.prototype.stars = function() {
     var stars = 1000;
     var counter = 0;
     var pixels = new Pixel({
@@ -151,10 +119,10 @@ function stars() {
     
     var particleSystem = new THREE.Points(geometry, material);
     particleSystem.shading = THREE.FlatShading;
-    App.tojo.scene.add(particleSystem);
+    return particleSystem;
 }
 
-function capSpireLogo() {
+Models.prototype.capSpireLogo = function() {
     App.tojo.logoGroup = new THREE.Group();
 
     //MIDDLE YELLO
@@ -227,7 +195,7 @@ function capSpireLogo() {
     App.tojo.all.add( App.tojo.logoGroup );
 }
 
-function capSpireName() {
+Models.prototype.capSpireName = function() {
     App.tojo.groupName = new THREE.Group();
     var loader = new THREE.FontLoader();
     loader.load( 'fonts/helvetiker.json', function ( font ) {
@@ -376,22 +344,16 @@ function capSpireName() {
     });
 }
 
-function clouds() {
-    //App.tojo.scene.fog = new THREE.Fog( 0xffffff, 100, 5000 );
-    //App.tojo.scene.fog = new THREE.FogExp2( 0Xffffff, 0.00025 );
+Models.prototype.clouds = function() {
+    var fog = new THREE.Fog( 0xffffff, 100, 5000 );
+    //var fog = new THREE.FogExp2( 0Xffffff, 0.00025 );
+    return fog;
 }
 
-function sun() {
-    //FULL CIRCLE
-    //var geometry = new THREE.CircleGeometry(20,250,0,6.282);
-
-    //CUSTOM
-    //var geometry = new THREE.CircleGeometry(5,100,6.282);
-    
-    //3D
+Models.prototype.sun = function() {
     var geometry = new THREE.SphereGeometry(1000, 10, 10);
     var material = new THREE.MeshPhongMaterial( { 
-        //color: 0x945600, 
+        color: 0x945600, 
         side: THREE.DoubleSide ,
         map: THREE.ImageUtils.loadTexture("img/sun.png"),
         bumpmap: THREE.ImageUtils.loadTexture("img/grass.png"),
@@ -400,34 +362,21 @@ function sun() {
     mesh.position.x = -50;
     mesh.position.y = 20000;
     mesh.position.z = -50000;
-    App.tojo.scene.add(mesh);
-
-    //LIGHT FROM
-    var spotLight = new THREE.AmbientLight( 0xffffff, .4 );
-    spotLight.position.set( 0,100,-200 );
-    App.tojo.scene.add(spotLight);
-
-    //LIGHT TO
-    var directionalLight = new THREE.PointLight( 0xfeffad, 1.8 );
-    directionalLight.target = mesh;
-    directionalLight.position.set( -50,20000,-46000 );
-    App.tojo.scene.add(directionalLight);
+    return mesh;
 }
 
-function carpet() {
+Models.prototype.carpet = function() {
     var groundGeo = new THREE.PlaneGeometry( 25, 30, 10, 10 );    
-    var groundMat = new THREE.MeshPhongMaterial( { color: 0x696969, side: THREE.DoubleSide } );
-    
+    var groundMat = new THREE.MeshPhongMaterial( { color: 0x696969, side: THREE.DoubleSide } );    
     var ground = new THREE.Mesh( groundGeo, groundMat );
     //ground.rotation.x = -Math.PI/2;
     //ground.rotation.z = deg(25);
     //ground.position.z = -10;
     ground.receiveShadow = true;
-    App.tojo.scene.add( ground ); 
+    return ground;
 }
 
-function desk() {    
-
+Models.prototype.desk = function() {
     var geometry = new THREE.BoxGeometry( 4, .1, 4.5 );
     var texture = THREE.ImageUtils.loadTexture("img/wood.jpg");
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
@@ -446,13 +395,5 @@ function desk() {
     mesh.updateMatrix();
     mesh.rotateX(-deg(90));
     mesh.rotateY(deg(85));
-    App.tojo.scene.add( mesh );
-    
-
-    App.orbitControls.target = mesh.position;
-
-    //var spotLight = new THREE.AmbientLight( 0xffffff, 10.4 );
-    //spotLight.position.set( 0,0,0 );
-    //App.tojo.scene.add(spotLight);
+    return mesh;
 }
-*/

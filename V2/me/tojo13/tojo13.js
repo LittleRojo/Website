@@ -1,14 +1,14 @@
 var tojoScript = document.getElementById("me/tojo13/tojo13.js");
-loadScript( "me/App.Models.js", function() {        
-        if( tojoScript.onLoadedCallback != null ) {
-            tojoScript.onLoadedCallback.call( self );
-        }        
-    }, function() {
+loadScript( "me/App.Models.js", function() {   
+    if( tojoScript.onLoadedCallback != null ) {
+        tojoScript.onLoadedCallback.call( self );
+    }        
+}, function() {
     if( tojoScript.onCompletedCallback != null ) {
         App.tojo = new tojo13();
         tojoScript.onCompletedCallback.call( self );
     }
-} ); 
+} );
 
 var tojo13 = function() {
 
