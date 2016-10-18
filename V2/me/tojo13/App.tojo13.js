@@ -6,6 +6,7 @@ loadScript( "me/7-App.Music.js", function() {
 }, function() {
     if( tojoScript.onCompletedCallback != null ) {
         App.tojo = new tojo13();
+        App.tojo.load();
         tojoScript.onCompletedCallback.call( self );
     }
 } );
@@ -14,7 +15,7 @@ var tojo13 = function() {
 
 }
 
-tojo13.prototype.createModels = function() {
+tojo13.prototype.load = function() {
     App.tojo.frontWall = App.Models.plane( {
         x: 0,
         y: 0,
@@ -29,7 +30,7 @@ tojo13.prototype.createModels = function() {
     App.tojo.rojo = App.Models.sphere( {
         x: 0, 
         y: 0, 
-        z: 10, 
+        z: -10, 
         color: 0xFF0000,
         uniformTopColor: 0x0F0F0F,
         uniformBottomColor: 0xF0F0F0,

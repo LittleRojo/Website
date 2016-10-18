@@ -31,7 +31,7 @@ var polyfillScript  = loadScript( "js/webvr-polyfill.js", function() {
 App = function() {
 }
 
-App.prototype.load() {
+App.prototype.load = function() {
 	App.renderer = new THREE.WebGLRenderer({		
 		antilias: true, 
 		alpha: true, 
