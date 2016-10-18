@@ -223,7 +223,7 @@ VirtualJoystick.prototype._onMouseUp	= function(event)
 
 VirtualJoystick.prototype._onMouseDown	= function(event)
 {
-	event.preventDefault();
+	//event.preventDefault();
 	var x	= event.clientX;
 	var y	= event.clientY;
 	return this._onDown(x, y);
@@ -252,7 +252,7 @@ VirtualJoystick.prototype._onTouchStart	= function(event)
 	// dispatch touchStart
 	this.dispatchEvent('touchStart', event);
 
-	event.preventDefault();
+	//event.preventDefault();
 	// get the first who changed
 	var touch	= event.changedTouches[0];
 	// set the touchIdx of this joystick
@@ -300,7 +300,7 @@ VirtualJoystick.prototype._onTouchMove	= function(event)
 	if( i === touchList.length)	return;
 	var touch	= touchList[i];
 
-	event.preventDefault();
+	//event.preventDefault();
 
 	var x		= touch.pageX;
 	var y		= touch.pageY;
@@ -320,6 +320,7 @@ VirtualJoystick.prototype._buildJoystickBase	= function()
 	var canvas	= document.createElement( 'canvas' );
 	canvas.width	= 126;
 	canvas.height	= 126;
+	canvas.style.bgColor = "white";
 	
 	var ctx		= canvas.getContext('2d');
 	ctx.beginPath(); 
