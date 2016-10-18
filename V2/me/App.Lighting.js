@@ -14,20 +14,20 @@ Lighting = function() {
 
 }
 
-Lighting.prototype.hemiLight = function( x, y, z, topColor, bottomColor, intensity ) {
+Lighting.prototype.hemiLighting = function( x, y, z, topColor, bottomColor, intensity ) {
     var hemiLight = new THREE.HemisphereLight( topColor, bottomColor, intensity );
     hemiLight.position.set( x, y, z );
     hemiLight.castShadow = true;
     return hemiLight;
 }
 
-Lighting.prototype.ambientLight = function( x, y, z, color, intensity ) {
+Lighting.prototype.ambientLighting = function( x, y, z, color, intensity ) {
     var ambientLight = new THREE.AmbientLight( color, intensity );
     ambientLight.position.set( x, y, z );
     return ambientLight;
 }
 
-Lighting.prototype.directionalLight = function( x, y, z, color, intensity ) {
+Lighting.prototype.directionalLighting = function( x, y, z, color, intensity ) {
     var dirLight = new THREE.DirectionalLight( color, intensity );
     dirLight.position.set( x, y, z );
     dirLight.castShadow = true;
