@@ -31,7 +31,7 @@ Controls.prototype.load = function() {
 	App.effect = new THREE.VREffect( App.renderer );
 
 	if ( WEBVR.isAvailable() === true ) {
-		document.body.appendChild( WEBVR.getButton( App.effect ) );
+		document.body.appendChild( App.Controls.getButton( App.effect ) );
 	}
 
     //JOYSTICKS
@@ -87,13 +87,28 @@ Controls.prototype.load = function() {
 		if( ( "standalone" in window.navigator ) && window.navigator.standalone ) {
 			//IPHONE ORIENTATION - PROFILE
 			if( window.orientation === 90 || window.orientation === -90 ) {	
+                App.leftJoystick._baseEl.style.left = 70;
+                App.leftJoystick._baseEl.style.bottom = window.innerHeight - 70;
+
+                App.rightJoystick._baseEl.style.left = window.innerWidth - 70;
+                App.rightJoystick._baseEl.style.bottom = window.innerHeight - 70;
 			}
 
 			//IPHONE ORIANTATION - LANDSCAPE
 			else {
+                App.leftJoystick._baseEl.style.right = 70;
+                App.leftJoystick._baseEl.style.bottom = window.innerHeight - 70;
+
+                App.rightJoystick._baseEl.style.right = window.innerWidth - 70;
+                App.rightJoystick._baseEl.style.bottom = window.innerHeight - 70;
 			} 		
 		}
 		else {	
+            App.leftJoystick._baseEl.style.left = 7;
+            App.leftJoystick._baseEl.style.bottom = window.innerHeight - 70;
+
+            App.rightJoystick._baseEl.style.left = window.innerWidth - 133;
+            App.rightJoystick._baseEl.style.bottom = window.innerHeight - 70;
 		}
 		App.renderer.render( App.scene, App.camera );
 	}
@@ -123,7 +138,32 @@ Controls.prototype.load = function() {
 	}
 }
 
-Controls.prototype.onLeftJoystickMove = function(url) {
+Controls.prototype.getButton = function( effect ) {
+    var button = document.createElement( 'button' );
+    button.style.position = 'absolute';
+    button.style.left = 'calc(50% - 50px)';
+    button.style.bottom = '20px';
+    button.style.width = '100px';
+    button.style.border = '0';
+    button.style.padding = '8px';
+    button.style.cursor = 'pointer';
+    button.style.backgroundColor = '#000';
+    button.style.color = '#fff';
+    button.style.fontFamily = 'sans-serif';
+    button.style.fontSize = '13px';
+    button.style.fontStyle = 'normal';
+    button.style.textAlign = 'center';
+    button.style.zIndex = '999';
+    button.textContent = 'ENTER VR';
+    button.onclick = function() {
+        effect.isPresenting ? effect.exitPresent() : effect.requestPresent();
+    };
+
+    window.addEventListener( 'vrdisplaypresentchange', function ( event ) {
+        button.textContent = effect.isPresenting ? 'EXIT VR' : 'ENTER VR';
+    }, false );
+
+    return button;
 }
 
 Controls.prototype.onRightJoystickMove = function(song) {
