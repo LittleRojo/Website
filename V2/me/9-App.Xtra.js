@@ -14,7 +14,7 @@ loadScript( "me/7-App.Music.js", function() {
 Xtra = function() {
 }
 
-Xtra.prototpye.load = function() {
+Xtra.prototype.load = function() {
     App.mainCanvas = App.renderer.domElement;
     document.body.appendChild( App.mainCanvas );   
          

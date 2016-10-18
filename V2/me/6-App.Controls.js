@@ -25,8 +25,17 @@ Controls.prototype.load = function() {
 	//App.orbitControls.rotateSpeed = 1;
 	//App.orbitControls.keyPanSpeed = 1;
 
+	//VR
+    App.fakeCamera = new THREE.Object3D();
+	App.vrControls = new THREE.VRControls( App.fakeCamera );
+	App.effect = new THREE.VREffect( App.renderer );
+
+	if ( WEBVR.isAvailable() === true ) {
+		document.body.appendChild( WEBVR.getButton( App.effect ) );
+	}
+
     //JOYSTICKS
-    /*var offset = 70;    
+    var offset = 70;    
 	App.leftJoystick	= new VirtualJoystick({
 		container	: document.body,
 		strokeStyle	: 'cyan',
@@ -67,16 +76,7 @@ Controls.prototype.load = function() {
 	});
 	App.rightJoystick.addEventListener('touchStart', function(){
 		console.log('right')
-	})*/
-
-    //VR
-    App.fakeCamera = new THREE.Object3D();
-	App.vrControls = new THREE.VRControls( App.fakeCamera );
-	App.effect = new THREE.VREffect( App.renderer );
-
-	if ( WEBVR.isAvailable() === true ) {
-		document.body.appendChild( WEBVR.getButton( App.effect ) );
-	}
+	})
     
     //DEVICE ORIENTATION
     App.resize = function() { 
