@@ -98,6 +98,7 @@ var WEBVR = {
 		window.addEventListener( 'vrdisplaypresentchange', function ( event ) {
 
 			button.textContent = effect.isPresenting ? '2D' : 'VR';
+			App.effect.render( App.scene, App.camera );
 
 		}, false );
 
