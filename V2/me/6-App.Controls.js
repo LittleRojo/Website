@@ -88,19 +88,19 @@ Controls.prototype.load = function() {
 			//IPHONE ORIENTATION - PROFILE
 			if( window.orientation === 90 || window.orientation === -90 ) {	
                 App.leftJoystick._baseEl.style.left = 7;
-                App.leftJoystick._baseEl.style.bottom = window.innerHeight - 70;
+                App.leftJoystick._baseEl.style.top = window.innerHeight - 70;
 
                 App.rightJoystick._baseEl.style.left = window.innerWidth - 133;
-                App.rightJoystick._baseEl.style.bottom = window.innerHeight - 70;
+                App.rightJoystick._baseEl.style.top = window.innerHeight - 70;
 			}
 
 			//IPHONE ORIANTATION - LANDSCAPE
 			else {
                 App.leftJoystick._baseEl.style.left = 7;
-                App.leftJoystick._baseEl.style.top = window.innerHeight - 170;
+                App.leftJoystick._baseEl.style.top = window.innerHeight - 140;
 
                 App.rightJoystick._baseEl.style.left = window.innerWidth - 133;
-                App.rightJoystick._baseEl.style.top = window.innerHeight - 170;
+                App.rightJoystick._baseEl.style.top = window.innerHeight - 140;
 			} 		
 		}
 		else {	
