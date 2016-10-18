@@ -1,5 +1,5 @@
 var tojoScript = document.getElementById("me/tojo13/App.tojo13.js");
-loadScript( "me/6-App.Music.js", function() {  
+loadScript( "me/7-App.Music.js", function() {  
     if( tojoScript.onLoadedCallback != null ) {
         tojoScript.onLoadedCallback.call( self );
     }        
@@ -31,6 +31,8 @@ tojo13.prototype.createModels = function() {
         y: 0, 
         z: 10, 
         color: 0xFF0000,
+        uniformTopColor: 0x0F0F0F,
+        uniformBottomColor: 0xF0F0F0,
     } );
 	App.scene.add( App.tojo.rojo );
 

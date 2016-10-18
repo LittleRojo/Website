@@ -66,13 +66,13 @@ Models.prototype.sphere = function( parameters ) {
     var vertexShader = App.Shaders.skyVertex();
     var fragmentShader = App.Shaders.skyFragment();
     var uniforms = {
-        topColor:    { value: uniformTopColor },
-        bottomColor: { value: uniformBottomColor },
+        //topColor:    { value: this.uniformTopColor },
+        //bottomColor: { value: this.uniformBottomColor },
         offset:      { value: 33 },
         exponent:    { value: .4 }
     };
     
-    var sphereGeometry = new THREE.SphereGeometry( x, y, z );
+    var sphereGeometry = new THREE.SphereGeometry( this.x, this.y, this.z );
     sphereGeometry.phiStart = 0;
     sphereGeometry.phiLength = deg(100);
     sphereGeometry.thetaStart = 0;
@@ -82,7 +82,7 @@ Models.prototype.sphere = function( parameters ) {
         vertexShader: vertexShader, 
         fragmentShader: fragmentShader, 
         uniforms: uniforms, 
-        color: color,
+        color: this.color,
         side: THREE.FrontSide,
         //shading: THREE.FlatShading,
         //transperant: true,        
@@ -104,37 +104,6 @@ Models.prototype.box = function( parameters ) {
     return box;
 }
 
-Models.prototype.sphere = function() {
-    var vertexShader = App.Shaders.skyVertex();
-    var fragmentShader = App.Shaders.skyFragment();
-    var uniforms = {
-        topColor:    { value: new THREE.Color( 0x000000 ) },
-        bottomColor: { value: new THREE.Color( 0x001C49 ) },
-        offset:      { value: 33 },
-        exponent:    { value: .4 }
-    };
-    
-    var skyGeo = new THREE.SphereGeometry( 4000, 32, 15 );
-    skyGeo.phiStart = 0;
-    skyGeo.phiLength = deg(100);
-    skyGeo.thetaStart = 0;
-    skyGeo.thetaLength = deg(100);
-    //var texture = new THREE.TextureLoader().load( "img/transperant.png" );
-    var skyMat = new THREE.ShaderMaterial( {
-    //var skyMat = new THREE.MeshPhongMaterial( { 
-        vertexShader: vertexShader, 
-        fragmentShader: fragmentShader, 
-        uniforms: uniforms, 
-        color: 0x00FFFF,
-        side: THREE.FrontSide,
-        //shading: THREE.FlatShading,
-        //transperant: true,        
-        //map: texture,
-    });
-
-    var sky = new THREE.Mesh( skyGeo, skyMat );
-    return sky;
-}
 /*
 Models.prototype.stars = function() {
     var stars = 1000;

@@ -10,14 +10,16 @@ var polyfillScript  = loadScript( "js/webvr-polyfill.js", function() {
             var webVRScript = loadScript( "js/Webvr.js", function() {
                 var vrControlsScript = loadScript( "js/VRControls.js", function() {
                     var vrEffectScript = loadScript( "js/VREffect.js", function() {
-						InitializeWebVRPolyfill();
-						App = new App();						
-						if( appScript.onLoadedCallback != null ) {
-							appScript.onLoadedCallback.call( self );							
-						}
-						if( appScript.onCompletedCallback != null ) {
-							appScript.onCompletedCallback.call( self );
-						}						
+						var vrEffectScript = loadScript( "js/VirtualJoystick.js", function() {
+							InitializeWebVRPolyfill();
+							App = new App();						
+							if( appScript.onLoadedCallback != null ) {
+								appScript.onLoadedCallback.call( self );							
+							}
+							if( appScript.onCompletedCallback != null ) {
+								appScript.onCompletedCallback.call( self );
+							}	
+						} );					
 					} );   
 				} );                    
 			} );

@@ -1,5 +1,5 @@
-var musicScript = document.getElementById("me/6-App.Music.js");
-loadScript( "me/5-App.Motion.js", function() {
+var musicScript = document.getElementById("me/7-App.Music.js");
+loadScript( "me/6-App.Controls.js", function() {
     if( musicScript.onLoadedCallback != null ) {
         musicScript.onLoadedCallback.call( self );
     }   
