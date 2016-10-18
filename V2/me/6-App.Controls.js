@@ -87,19 +87,19 @@ Controls.prototype.load = function() {
 		if( ( "standalone" in window.navigator ) && window.navigator.standalone ) {
 			//IPHONE ORIENTATION - PROFILE
 			if( window.orientation === 90 || window.orientation === -90 ) {	
-                App.leftJoystick._baseEl.style.left = 70;
+                App.leftJoystick._baseEl.style.left = 7;
                 App.leftJoystick._baseEl.style.bottom = window.innerHeight - 70;
 
-                App.rightJoystick._baseEl.style.left = window.innerWidth - 70;
+                App.rightJoystick._baseEl.style.left = window.innerWidth - 133;
                 App.rightJoystick._baseEl.style.bottom = window.innerHeight - 70;
 			}
 
 			//IPHONE ORIANTATION - LANDSCAPE
 			else {
-                App.leftJoystick._baseEl.style.right = 70;
+                App.leftJoystick._baseEl.style.right = 7;
                 App.leftJoystick._baseEl.style.bottom = window.innerHeight - 70;
 
-                App.rightJoystick._baseEl.style.right = window.innerWidth - 70;
+                App.rightJoystick._baseEl.style.right = window.innerWidth - 133;
                 App.rightJoystick._baseEl.style.bottom = window.innerHeight - 70;
 			} 		
 		}
