@@ -111,7 +111,14 @@ App.prototype.createApp = function(fileName) {
 		}
 		else {	
 		}
-		App.renderer.render( App.scene, App.camera );
+		var orbitPos = App.camera.position.clone();   
+    var rotatedPosition = App.fakeCamera.position.applyQuaternion( App.camera.quaternion );
+    App.camera.position.add(rotatedPosition);
+    App.camera.quaternion.multiply(App.fakeCamera.quaternion);
+
+    App.effect.render( App.scene, App.camera );
+	
+	App.camera.position.copy(orbitPos);
 	}, false);
 }
 
@@ -128,6 +135,7 @@ App.prototype.updateFrame = function() {
     App.camera.quaternion.multiply(App.fakeCamera.quaternion);
 
     App.effect.render( App.scene, App.camera );
+
 	App.camera.position.copy(orbitPos);
 }
 
