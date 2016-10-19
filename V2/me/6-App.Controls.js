@@ -21,9 +21,9 @@ Controls.prototype.load = function() {
 
     //MOUSE, KEYBOARD, AND DEVICE ORIENTATION
     App.orbitControls = new THREE.OrbitControls( App.camera );
-  	//App.orbitControls.zoomSpeed = 1;
-	//App.orbitControls.rotateSpeed = 1;
-	//App.orbitControls.keyPanSpeed = 1;
+  	App.orbitControls.zoomSpeed = 0;
+	App.orbitControls.rotateSpeed = 0;
+	App.orbitControls.keyPanSpeed = 0;
 
     //JOYSTICKS
     var offset = 90;    
@@ -31,7 +31,7 @@ Controls.prototype.load = function() {
 		container	: document.body,
 		strokeStyle	: 'cyan',
 		limitStickTravel: true,
-		stickRadius	: 160,
+		stickRadius	: 120,
         mouseSupport: true,	
         //stickElement: new stick canvas,
         //baseElement: new base canvas,
@@ -49,7 +49,7 @@ Controls.prototype.load = function() {
 		container	: document.body,
 		strokeStyle	: 'brown',
 		limitStickTravel: true,
-		stickRadius	: 160,
+		stickRadius	: 120,
         mouseSupport: true,	
         //stickElement: new stick canvas,
         //baseElement: new base canvas,
