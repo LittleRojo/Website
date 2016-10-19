@@ -80,16 +80,16 @@ tojo13.prototype.updateCamera = function( delta ) {
     var xStrength = App.rightJoystick._distanceX;
     var yStrength = App.rightJoystick._distanceY;
     if( App.rightJoystick.up() ){
-        App.camera.rotation.x += ( deg(factor * .4 * xStrength * delta) );
+        App.camera.rotation.x += ( deg(factor * .2 * delta) );
     }
     if( App.rightJoystick.down() ){
-        App.camera.rotation.x += ( -deg(factor * .4 * xStrength * delta) );
+        App.camera.rotation.x += ( -deg(factor * .2 * delta) );
     }
     if( App.rightJoystick.right() ){
-        App.camera.rotation.y += ( -deg(factor * .4 * yStrength * delta) );
+        App.camera.rotation.y += ( -deg(factor * .2 * delta) );
     }
     if( App.rightJoystick.left() ){
-        App.camera.rotation.y += ( deg(factor * .4 * yStrength * delta) );
+        App.camera.rotation.y += ( deg(factor * .2 * delta) );
     }
 
     if( App.mobileOrientation !== undefined ) {
