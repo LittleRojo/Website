@@ -266,7 +266,7 @@ THREE.OrbitControls = function ( object, domElement ) {
     radius = Math.max( this.minDistance, Math.min( this.maxDistance, radius ) );
 
     // move target to panned location
-    this.target.add( pan );
+    //this.target.add( pan );
 
     offset.x = radius * Math.sin( phi ) * Math.sin( theta );
     offset.y = radius * Math.cos( phi );
