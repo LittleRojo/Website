@@ -275,7 +275,7 @@ THREE.OrbitControls = function ( object, domElement ) {
     // rotate offset back to "camera-up-vector-is-up" space
     offset.applyQuaternion( quatInverse );
 
-    position.copy( this.target ).add( offset );
+    //position.copy( this.target ).add( offset );
 
     this.object.lookAt( this.target );
 

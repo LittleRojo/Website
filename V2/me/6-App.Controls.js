@@ -31,7 +31,7 @@ Controls.prototype.load = function() {
 		container	: document.body,
 		strokeStyle	: 'cyan',
 		limitStickTravel: true,
-		stickRadius	: 120,
+		stickRadius	: 80,
         mouseSupport: true,	
         //stickElement: new stick canvas,
         //baseElement: new base canvas,
