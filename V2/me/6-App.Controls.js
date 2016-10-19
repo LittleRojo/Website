@@ -26,7 +26,7 @@ Controls.prototype.load = function() {
 	//App.orbitControls.keyPanSpeed = 1;
 
     //JOYSTICKS
-    var offset = 120;    
+    var offset = 90;    
 	App.leftJoystick	= new VirtualJoystick({
 		container	: document.body,
 		strokeStyle	: 'cyan',
@@ -36,7 +36,7 @@ Controls.prototype.load = function() {
         //stickElement: new stick canvas,
         //baseElement: new base canvas,
         stationaryBase: true,
-        baseX: offset + offset * .2,
+        baseX: offset,
         baseY: window.innerHeight - offset,        	
 	});
 	App.leftJoystick.addEventListener('touchStartValidation', function(event){
@@ -60,7 +60,7 @@ Controls.prototype.load = function() {
         baseX: window.innerWidth - offset,
         baseY: window.innerHeight - offset,	
 	});
-	App.rightJoystick.addEventListener('touchStartValidation', function(event){
+	/*App.rightJoystick.addEventListener('touchStartValidation', function(event){
 		var touch	= event.changedTouches[0];
 		if( touch.pageX < window.innerWidth/2 )	return false;
 		return true

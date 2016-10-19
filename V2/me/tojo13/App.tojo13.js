@@ -19,7 +19,7 @@ tojo13.prototype.load = function() {
     App.tojo.frontWall = App.Models.plane( {
         x: 0,
         y: 0,
-        x: 0,
+        z: -5,
         width: 10,
         height: 10, 
         color: 0x0FF000, 
@@ -58,7 +58,7 @@ tojo13.prototype.updateModels = function( delta ) {
 }
   
 tojo13.prototype.updateCamera = function( delta ) {
-    var factor = 1;
+    var factor = 5;
     if( App.leftJoystick.right() ){
         App.camera.translateX(factor * delta);
     }
