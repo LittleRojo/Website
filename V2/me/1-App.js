@@ -70,7 +70,7 @@ App.prototype.updateFrame = function() {
 		App.orbitControls.update();
 		App.mobileOrientation = App.camera.rotation;
 		App.mobileMatrix = App.camera.matrix;
-		App.camera.matrix = new THREE.Matrix4();
+		App.camera.matrix = new THREE.Matrix();
 		App.camera.rotation.x = 0;
 		App.camera.rotation.y = 0;
 		App.camera.rotation.z = 0;
