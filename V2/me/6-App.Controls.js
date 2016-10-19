@@ -29,7 +29,7 @@ Controls.prototype.load = function() {
     App.leftJoystickColor = 'cyan';
     App.rightJoystickColor = 'gray';
     var offset = 90;    
-	App.leftJoystick	= new VirtualJoystick({
+	/*App.leftJoystick	= new VirtualJoystick({
 		container	: document.body,
 		strokeStyle	: App.leftJoystickColor,
 		limitStickTravel: true,
@@ -71,7 +71,7 @@ Controls.prototype.load = function() {
 	});
 	App.rightJoystick.addEventListener('touchStart', function(){
 		console.log('right')
-	})
+	})*/
     
     //VR
     App.fakeCamera = new THREE.Object3D();
