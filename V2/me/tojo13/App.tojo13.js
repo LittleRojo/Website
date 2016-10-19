@@ -37,16 +37,18 @@ tojo13.prototype.load = function() {
     } );
 	//App.scene.add( App.tojo.rojo );
 
-    App.tojo.room = App.Models.box( {
-        x: 0,
-        y: 0,
-        z: -30,
-        width: 25,
-        height: 25,
-        depth: 25,
-        color: 0xFFF00F,
-    } );
-    App.scene.add( App.tojo.room );
+    for(var i = 0; i < 100; i++ ){
+        App.tojo.room = App.Models.box( {
+            x: 5 * i,
+            y: 0,
+            z: -30,
+            width: 25,
+            height: 25,
+            depth: 25,
+            color: 0xFFF00F,
+        } );
+        App.scene.add( App.tojo.room );
+    }
 
     //App.orbitControls.target = App.sightLine;
 }
@@ -79,17 +81,18 @@ tojo13.prototype.updateCamera = function( delta ) {
     
     var xStrength = App.rightJoystick._distanceX;
     var yStrength = App.rightJoystick._distanceY;
-    if( App.rightJoystick.up() ) {
-        App.camera.rotation.x += ( deg(factor * .4 * xStrength * delta) );
+    var rotation = factor * .09 * xStrength * delta;
+    if( App.rightJoystick.up() && rotation < 10 ) {
+        App.camera.rotation.x += ( -deg(rotation) );
     }
-    if( App.rightJoystick.down() ){
-        App.camera.rotation.x += ( -deg(factor * .4 * xStrength * delta) );
+    if( App.rightJoystick.down() && rotation  < 15 ){
+        App.camera.rotation.x += ( deg( rotation ) );
     }
     if( App.rightJoystick.right() ){
-        App.camera.rotation.y += ( -deg(factor * .4 * yStrength * delta) );
+        App.camera.rotation.y += ( deg(factor * .09 * yStrength * delta) );
     }
     if( App.rightJoystick.left() ){
-        App.camera.rotation.y += ( deg(factor * .4 * yStrength * delta) );
+        App.camera.rotation.y += ( -deg(factor * .09 * yStrength * delta) );
     }
 
     if( App.mobileOrientation !== undefined ) {
