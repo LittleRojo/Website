@@ -26,7 +26,7 @@ Controls.prototype.load = function() {
 	//App.orbitControls.keyPanSpeed = 1;
 
     //JOYSTICKS
-    var offset = 70;    
+    /*var offset = 70;    
 	App.leftJoystick	= new VirtualJoystick({
 		container	: document.body,
 		strokeStyle	: 'cyan',
@@ -67,7 +67,7 @@ Controls.prototype.load = function() {
 	});
 	App.rightJoystick.addEventListener('touchStart', function(){
 		console.log('right')
-	})
+	})*/
     
     //VR
     App.fakeCamera = new THREE.Object3D();
