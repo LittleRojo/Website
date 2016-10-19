@@ -66,7 +66,7 @@ App.prototype.updateFrame = function() {
 	App.tojo.updateModels( delta );
 	App.tojo.updateCamera( delta );	
 
-	if(App.orbitControls !== undefined){
+	if(/Android/i.test(navigator.userAgent) || /iPhone|iPad|iPod/i.test(navigator.userAgent)) {
 		App.orbitControls.update();
 	}
 	App.vrControls.update(); 

@@ -25,7 +25,7 @@ tojo13.prototype.load = function() {
         color: 0x0FF000, 
         specular: 0x0000FF,
     });
-    App.scene.add( App.tojo.frontWall );
+    //App.scene.add( App.tojo.frontWall );
 
     App.tojo.rojo = App.Models.sphere( {
         x: 0, 
@@ -35,18 +35,18 @@ tojo13.prototype.load = function() {
         uniformTopColor: 0x0F0F0F,
         uniformBottomColor: 0xF0F0F0,
     } );
-	App.scene.add( App.tojo.rojo );
+	//App.scene.add( App.tojo.rojo );
 
     App.tojo.room = App.Models.box( {
         x: 0,
         y: 0,
-        z: -40,
-        width: 2500,
-        height: 2500,
-        depth: 2500,
+        z: -30,
+        width: 25,
+        height: 25,
+        depth: 25,
         color: 0xFFF00F,
     } );
-    //App.scene.add( App.tojo.room );
+    App.scene.add( App.tojo.room );
 
     //App.orbitControls.target = App.sightLine;
 }
