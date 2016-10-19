@@ -20,7 +20,7 @@ Controls.prototype.load = function() {
 	App.camera.position.set( 0, 0, 10 );
 
     //MOUSE, KEYBOARD, AND DEVICE ORIENTATION
-    //App.orbitControls = new THREE.OrbitControls( App.camera );
+    App.orbitControls = new THREE.OrbitControls( App.camera );
   	//App.orbitControls.zoomSpeed = 1;
 	//App.orbitControls.rotateSpeed = 1;
 	//App.orbitControls.keyPanSpeed = 1;

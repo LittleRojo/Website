@@ -65,9 +65,9 @@ App.prototype.updateFrame = function() {
 	App.tojo.updateModels();
 	App.tojo.updateCamera();	
 
-	//if(App.orbitControls !== undefined){
-	//	App.orbitControls.update();
-	//}
+	if(App.orbitControls !== undefined){
+		App.orbitControls.update();
+	}
 	App.vrControls.update(); 
 
 	var orbitPos = App.camera.position.clone();   
