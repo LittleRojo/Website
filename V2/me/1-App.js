@@ -67,8 +67,9 @@ App.prototype.updateFrame = function() {
 	App.tojo.updateCamera( delta );	
 
 	if(/Android/i.test(navigator.userAgent) || /iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+		var rotation = App.camera.rotation;
 		App.orbitControls.update();
-		apply( App.camera );
+		App.camera.rotation.negate();
 	}
 	App.vrControls.update(); 
 
