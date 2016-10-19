@@ -68,6 +68,7 @@ App.prototype.updateFrame = function() {
 
 	if(/Android/i.test(navigator.userAgent) || /iPhone|iPad|iPod/i.test(navigator.userAgent)) {
 		App.orbitControls.update();
+		apply( App.camera );
 	}
 	App.vrControls.update(); 
 
