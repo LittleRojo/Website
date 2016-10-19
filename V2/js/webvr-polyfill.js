@@ -5021,6 +5021,7 @@ TouchPanner.prototype.resetSensor = function() {
 };
 
 TouchPanner.prototype.onTouchStart_ = function(e) {
+  return;
   // Only respond if there is exactly one touch.
   if (e.touches.length != 1) {
     return;
@@ -5030,6 +5031,7 @@ TouchPanner.prototype.onTouchStart_ = function(e) {
 };
 
 TouchPanner.prototype.onTouchMove_ = function(e) {
+  return;
   if (!this.isTouching) {
     return;
   }
@@ -5047,6 +5049,7 @@ TouchPanner.prototype.onTouchMove_ = function(e) {
 };
 
 TouchPanner.prototype.onTouchEnd_ = function(e) {
+  return;
   this.isTouching = false;
 };
 
