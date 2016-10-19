@@ -26,7 +26,7 @@ Controls.prototype.load = function() {
 	App.orbitControls.keyPanSpeed = 0;
 
     //JOYSTICKS
-    App.leftJoystickColor = 'cyan';
+    /*App.leftJoystickColor = 'cyan';
     App.rightJoystickColor = 'gray';
     var offset = 90;    
 	App.leftJoystick	= new VirtualJoystick({
@@ -71,7 +71,7 @@ Controls.prototype.load = function() {
 	});
 	App.rightJoystick.addEventListener('touchStart', function(){
 		console.log('right')
-	})
+	})*/
     
     //VR
     App.fakeCamera = new THREE.Object3D();
@@ -147,7 +147,8 @@ Controls.prototype.getButton = function( effect ) {
     button.style.position = 'absolute';
     button.style.left = 'calc(50% - 50px)';
     button.style.bottom = '20px';
-    button.style.width = '100px';
+    button.style.width = '63px';
+    button.style.height = '44px';
     button.style.border = '0';
     button.style.padding = '8px';
     button.style.cursor = 'pointer';
@@ -158,13 +159,14 @@ Controls.prototype.getButton = function( effect ) {
     button.style.fontStyle = 'normal';
     button.style.textAlign = 'center';
     button.style.zIndex = '999';
-    button.textContent = 'ENTER VR';
+    button.textContent = 'VR';
+    button.style.backgroundImage = 'url(img/vrLogoIcon.png)';
     button.onclick = function() {
         effect.isPresenting ? effect.exitPresent() : effect.requestPresent();
     };
 
     window.addEventListener( 'vrdisplaypresentchange', function ( event ) {
-        button.textContent = effect.isPresenting ? 'EXIT VR' : 'ENTER VR';
+        button.textContent = effect.isPresenting ? 'FLAT' : 'VR';
     }, false );
 
     return button;

@@ -67,7 +67,6 @@ App.prototype.updateFrame = function() {
 	App.tojo.updateCamera( delta );	
 
 	if(/Android/i.test(navigator.userAgent) || /iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-		App.camera.autoUpdateMatrix = false;
 		App.orbitControls.update();
 		App.mobileOrientation = App.camera.rotation;
 		App.mobileMatrix = App.camera.matrix;
@@ -89,5 +88,4 @@ App.prototype.updateFrame = function() {
 	
 	App.camera.position.copy(orbitPos);
 	App.camera.rotation.copy(orbitRot);
-	App.camera.autoUpdateMatrix = true;
 }

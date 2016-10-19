@@ -85,7 +85,7 @@ var WEBVR = {
 		button.style.fontStyle = 'normal';
 		button.style.textAlign = 'center';
 		button.style.zIndex = '999';
-		button.textContent = 'ENTER VR';
+		button.textContent = 'VR';
 		button.onclick = function() {
 
 			effect.isPresenting ? effect.exitPresent() : effect.requestPresent();
@@ -94,7 +94,7 @@ var WEBVR = {
 
 		window.addEventListener( 'vrdisplaypresentchange', function ( event ) {
 
-			button.textContent = effect.isPresenting ? 'EXIT VR' : 'ENTER VR';
+			button.textContent = effect.isPresenting ? 'FLAT' : 'VR';
 
 		}, false );
 
