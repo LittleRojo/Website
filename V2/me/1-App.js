@@ -68,7 +68,7 @@ App.prototype.updateFrame = function() {
 	//if(App.orbitControls !== undefined){
 	//	App.orbitControls.update();
 	//}
-	//App.vrControls.update(); 
+	App.vrControls.update(); 
 
 	var orbitPos = App.camera.position.clone();   
     var rotatedPosition = App.fakeCamera.position.applyQuaternion( App.camera.quaternion );

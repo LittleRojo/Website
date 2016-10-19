@@ -71,7 +71,7 @@ Controls.prototype.load = function() {
     
     //VR
     App.fakeCamera = new THREE.Object3D();
-	//App.vrControls = new THREE.VRControls( App.fakeCamera );
+	App.vrControls = new THREE.VRControls( App.fakeCamera );
 	App.effect = new THREE.VREffect( App.renderer );
 
 	if ( WEBVR.isAvailable() === true ) {
