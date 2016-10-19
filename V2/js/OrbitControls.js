@@ -229,7 +229,7 @@ THREE.OrbitControls = function ( object, domElement ) {
   };
 
   this.update = function () {
-    return;
+    
     var position = this.object.position;
 
     offset.copy( position ).sub( this.target );
