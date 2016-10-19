@@ -44,9 +44,6 @@ Controls.prototype.load = function() {
 		if( touch.pageX >= window.innerWidth/2 )	return false;
 		return true
 	});
-    App.leftJoystick.addEventListener('touchStart', function(){
-		console.log('right')
-	})
     
 	/*App.rightJoystick	= new VirtualJoystick({
 		container	: document.body,

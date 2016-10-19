@@ -230,6 +230,8 @@ THREE.OrbitControls = function ( object, domElement ) {
 
   this.update = function () {
     
+    if( App.displayMode == 0 ) return;
+
     var position = this.object.position;
 
     offset.copy( position ).sub( this.target );

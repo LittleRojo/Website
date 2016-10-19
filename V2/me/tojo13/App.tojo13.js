@@ -67,12 +67,12 @@ tojo13.prototype.updateCamera = function( delta ) {
     if( App.leftJoystick.left() ){
         App.camera.translateX(-factor * delta);
     }
-    /*if( App.leftJoystick.up() ){
+    if( App.leftJoystick.up() ){
         App.camera.translateZ(-factor * delta);
     }
     if( App.leftJoystick.down() ){
         App.camera.translateZ(factor * delta);
-    }*/
+    }
 
     
     /*if( App.rightJoystick.right() ){
