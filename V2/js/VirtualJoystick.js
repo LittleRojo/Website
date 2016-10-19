@@ -206,8 +206,8 @@ VirtualJoystick.prototype._onMove	= function(x, y)
 			var deltaX	= this.deltaX();
 			var deltaY	= this.deltaY();
 
-			this._distanceX = deltaX;
-			this._distanceY = deltaY;
+			this._distanceX = Math.abs(deltaX);
+			this._distanceY = Math.abs(deltaY);
 
 			var stickDistance = Math.sqrt( (deltaX * deltaX) + (deltaY * deltaY) );
 			if(stickDistance > this._stickRadius){
