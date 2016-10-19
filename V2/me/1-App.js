@@ -77,6 +77,7 @@ App.prototype.updateFrame = function() {
 	App.vrControls.update(); 
 
 	var orbitPos = App.camera.position.clone();   
+	var orbitRot = App.camera.rotation.clone();
     var rotatedPosition = App.fakeCamera.position.applyQuaternion( App.camera.quaternion );
     App.camera.position.add(rotatedPosition);
     App.camera.quaternion.multiply(App.fakeCamera.quaternion);
@@ -84,4 +85,5 @@ App.prototype.updateFrame = function() {
     App.effect.render( App.scene, App.camera );
 	
 	App.camera.position.copy(orbitPos);
+	App.camera.rotation.copy(orbitRot);
 }
