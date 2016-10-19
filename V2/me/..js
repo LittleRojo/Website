@@ -48,6 +48,7 @@ function rand( min, max ) {
 }
 
 function apply( object ) {
+    return;
     object.updateMatrix();
     //object.geometry.applyMatrix( object.matrix );
     object.position.set( 0, 0, 0 );
