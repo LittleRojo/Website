@@ -58,6 +58,7 @@ tojo13.prototype.updateModels = function( delta ) {
 }
   
 tojo13.prototype.updateCamera = function( delta ) {
+    
     if( App.leftJoystick.right() ){
         App.camera.position.x = App.camera.position.x + 1 * delta;
     }
@@ -71,7 +72,7 @@ tojo13.prototype.updateCamera = function( delta ) {
         App.camera.position.z = App.camera.position.z + 1 * delta;
     }
 
-    if( App.rightJoystick.right() ){
+    /*if( App.rightJoystick.right() ){
         App.camera.position.x = App.camera.position.x + 1 * delta;
     }
     if( App.rightJoystick.left() ){
@@ -82,5 +83,5 @@ tojo13.prototype.updateCamera = function( delta ) {
     }
     if( App.rightJoystick.down() ){
         App.camera.position.z = App.camera.position.z + 1 * delta;
-    }
+    }*/
 }

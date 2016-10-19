@@ -229,7 +229,7 @@ THREE.OrbitControls = function ( object, domElement ) {
   };
 
   this.update = function () {
-    return;
+
     var position = this.object.position;
 
     offset.copy( position ).sub( this.target );
@@ -622,13 +622,13 @@ THREE.OrbitControls = function ( object, domElement ) {
   }
 
   this.domElement.addEventListener( 'contextmenu', function ( event ) { event.preventDefault(); }, false );
-  this.domElement.addEventListener( 'mousedown', onMouseDown, false );
-  this.domElement.addEventListener( 'mousewheel', onMouseWheel, false );
-  this.domElement.addEventListener( 'DOMMouseScroll', onMouseWheel, false ); // firefox
+  //this.domElement.addEventListener( 'mousedown', onMouseDown, false );
+  //this.domElement.addEventListener( 'mousewheel', onMouseWheel, false );
+  //this.domElement.addEventListener( 'DOMMouseScroll', onMouseWheel, false ); // firefox
 
-  this.domElement.addEventListener( 'touchstart', touchstart, false );
-  this.domElement.addEventListener( 'touchend', touchend, false );
-  this.domElement.addEventListener( 'touchmove', touchmove, false );
+  //this.domElement.addEventListener( 'touchstart', touchstart, false );
+  //this.domElement.addEventListener( 'touchend', touchend, false );
+  //this.domElement.addEventListener( 'touchmove', touchmove, false );
 
   window.addEventListener( 'keydown', onKeyDown, false );
 
@@ -638,4 +638,3 @@ THREE.OrbitControls = function ( object, domElement ) {
 };
 
 THREE.OrbitControls.prototype = Object.create( THREE.EventDispatcher.prototype );
-

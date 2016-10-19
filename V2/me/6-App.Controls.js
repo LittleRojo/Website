@@ -48,7 +48,7 @@ Controls.prototype.load = function() {
 		console.log('right')
 	})
     
-	App.rightJoystick	= new VirtualJoystick({
+	/*App.rightJoystick	= new VirtualJoystick({
 		container	: document.body,
 		strokeStyle	: 'brown',
 		limitStickTravel: true,
@@ -67,7 +67,7 @@ Controls.prototype.load = function() {
 	});
 	App.rightJoystick.addEventListener('touchStart', function(){
 		console.log('right')
-	})
+	})*/
     
     //VR
     App.fakeCamera = new THREE.Object3D();
