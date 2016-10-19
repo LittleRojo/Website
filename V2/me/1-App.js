@@ -61,12 +61,13 @@ App.prototype.stopAnimation = function() {
 }
 
 App.prototype.updateFrame = function() {
-	App.tojo.updateLights();
-	App.tojo.updateModels();
-	App.tojo.updateCamera();	
+	var delta = App.clock.getDelta();
+	App.tojo.updateLights( delta );
+	App.tojo.updateModels( delta );
+	App.tojo.updateCamera( delta );	
 
 	if(App.orbitControls !== undefined){
-		App.orbitControls.update();
+		//App.orbitControls.update();
 	}
 	App.vrControls.update(); 
 

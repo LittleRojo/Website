@@ -4325,12 +4325,14 @@ MouseKeyboardVRDisplay.prototype.animateKeyTransitions_ = function(angleName, ta
 };
 
 MouseKeyboardVRDisplay.prototype.onMouseDown_ = function(e) {
+  return;
   this.rotateStart_.set(e.clientX, e.clientY);
   this.isDragging_ = true;
 };
 
 // Very similar to https://gist.github.com/mrflix/8351020
 MouseKeyboardVRDisplay.prototype.onMouseMove_ = function(e) {
+  return;
   if (!this.isDragging_ && !this.isPointerLocked_()) {
     return;
   }
@@ -4355,6 +4357,7 @@ MouseKeyboardVRDisplay.prototype.onMouseMove_ = function(e) {
 };
 
 MouseKeyboardVRDisplay.prototype.onMouseUp_ = function(e) {
+  return;
   this.isDragging_ = false;
 };
 
