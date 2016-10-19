@@ -47,6 +47,8 @@ tojo13.prototype.load = function() {
         color: 0xFFF00F,
     } );
     //App.scene.add( App.tojo.room );
+
+    //App.orbitControls.target = App.sightLine;
 }
 
 tojo13.prototype.updateLights = function( delta ) {
@@ -58,7 +60,7 @@ tojo13.prototype.updateModels = function( delta ) {
 }
   
 tojo13.prototype.updateCamera = function( delta ) {
-    var factor = 5;
+    var factor = 10;
     if( App.leftJoystick.right() ){
         App.camera.translateX(factor * delta);
     }
@@ -72,6 +74,7 @@ tojo13.prototype.updateCamera = function( delta ) {
         App.camera.translateZ(factor * delta);
     }
 
+    
     /*if( App.rightJoystick.right() ){
         App.camera.position.x = App.camera.position.x + 1 * delta;
     }

@@ -23,7 +23,6 @@ function loadScript( url, onLoaded, onCompleted ) {
 
  loadScript( "me/tojo13/App.tojo13.js", function() {
  }, function() {  
-    App.tojo.load();
 	App.startAnimation();
 } );  
 

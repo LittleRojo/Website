@@ -16,4 +16,7 @@ Xtra = function() {
 
 Xtra.prototype.load = function() {
     App.clock = new THREE.Clock();
+
+    App.sightLine = new THREE.Object3D();
+    App.sightLine.position.set( 0, 0, 0 ); 
 }

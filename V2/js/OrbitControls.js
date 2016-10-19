@@ -229,7 +229,7 @@ THREE.OrbitControls = function ( object, domElement ) {
   };
 
   this.update = function () {
-
+    return;
     var position = this.object.position;
 
     offset.copy( position ).sub( this.target );
@@ -277,7 +277,7 @@ THREE.OrbitControls = function ( object, domElement ) {
 
     position.copy( this.target ).add( offset );
 
-    this.object.lookAt( this.target );
+    //this.object.lookAt( this.target );
 
     thetaDelta = 0;
     phiDelta = 0;
