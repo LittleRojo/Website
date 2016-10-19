@@ -80,7 +80,7 @@ tojo13.prototype.updateCamera = function( delta ) {
     var xStrength = App.rightJoystick._distanceX;
     var yStrength = App.rightJoystick._distanceY;
     if( App.rightJoystick.up() ){
-        App.camera.rotate.translateX( ( deg(factor * .4 * xStrength * delta) ) );
+        App.camera.translateX( ( deg(factor * .4 * xStrength * delta) ) );
     }
     if( App.rightJoystick.down() ){
         App.camera.rotation.x += ( -deg(factor * .4 * xStrength * delta) );
