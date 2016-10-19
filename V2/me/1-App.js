@@ -69,7 +69,10 @@ App.prototype.updateFrame = function() {
 	if(/Android/i.test(navigator.userAgent) || /iPhone|iPad|iPod/i.test(navigator.userAgent)) {
 		App.orbitControls.update();
 		App.mobileOrientation = App.camera.rotation;
-		App.mobile.rotation.set( 0, 0, 0 );
+		App.mobile.rotation.x = 0;
+		App.mobile.rotation.y = 0;
+		App.mobile.rotation.z = 0;
+		
 	}
 	App.vrControls.update(); 
 
