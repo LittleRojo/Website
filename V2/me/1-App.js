@@ -69,6 +69,7 @@ App.prototype.updateFrame = function() {
 	if(/Android/i.test(navigator.userAgent) || /iPhone|iPad|iPod/i.test(navigator.userAgent)) {
 		App.orbitControls.update();
 		App.mobileOrientation = App.camera.rotation;
+		App.mobileMatrix = App.camera.matrix;
 		App.camera.rotation.x = 0;
 		App.camera.rotation.y = 0;
 		App.camera.rotation.z = 0;

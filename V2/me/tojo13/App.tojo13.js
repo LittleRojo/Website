@@ -80,7 +80,8 @@ tojo13.prototype.updateCamera = function( delta ) {
     var xStrength = App.rightJoystick._distanceX;
     var yStrength = App.rightJoystick._distanceY;
     if( App.rightJoystick.up() ){
-        App.camera.rotation.x += ( deg(factor * .4 * xStrength * delta) );
+        App.camera.matrix = App.mobileMatrix.makeRotationX( deg(factor * .4 * xStrength * delta );
+        //App.camera.rotation.x += ( deg(factor * .4 * xStrength * delta) );
     }
     if( App.rightJoystick.down() ){
         App.camera.rotation.x += ( -deg(factor * .4 * xStrength * delta) );
@@ -93,9 +94,8 @@ tojo13.prototype.updateCamera = function( delta ) {
     }
 
     if( App.mobileOrientation !== undefined ) {
-        App.camera.rotation.setFromRotationMatrix( App.mobileOrientation.x, App.mobileOrientation.y, App.mobileOrientation.z );
-        //App.camera.rotation.x += App.mobileOrientation.x;
-        //App.camera.rotation.y += App.mobileOrientation.y;
-        //App.camera.rotation.z += App.mobileOrientation.z;
+        App.camera.rotation.x += App.mobileOrientation.x;
+        App.camera.rotation.y += App.mobileOrientation.y;
+        App.camera.rotation.z += App.mobileOrientation.z;
     }
 }
