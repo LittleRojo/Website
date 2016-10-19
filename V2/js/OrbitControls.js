@@ -277,7 +277,7 @@ THREE.OrbitControls = function ( object, domElement ) {
 
     position.copy( this.target ).add( offset );
 
-    //this.object.lookAt( this.target );
+    this.object.lookAt( this.target );
 
     thetaDelta = 0;
     phiDelta = 0;
