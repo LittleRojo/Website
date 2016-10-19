@@ -52,7 +52,10 @@ App.prototype.startAnimation = function() {
         App.startScene = false;
         return;
     }
-	App.updateFrame();    
+	
+	App.updateFrame();  
+	App.render();
+
     App.effect.requestAnimationFrame( App.startAnimation );	
 }
 
@@ -76,8 +79,10 @@ App.prototype.updateFrame = function() {
 		App.camera.rotation.z = 0;
 		
 	}
-	App.vrControls.update(); 
+	App.vrControls.update();
+}
 
+App.prototype.render = function() {
 	var orbitPos = App.camera.position.clone();   
 	var orbitRot = App.camera.rotation.clone();
     var rotatedPosition = App.fakeCamera.position.applyQuaternion( App.camera.quaternion );
