@@ -331,13 +331,13 @@ VirtualJoystick.prototype._buildJoystickBase	= function()
 	ctx.beginPath(); 
 	ctx.strokeStyle = this._strokeStyle; 
 	ctx.lineWidth	= 4; 
-	ctx.arc( canvas.width/2, canvas.width/2, 40, 0, Math.PI*2, true); 
+	ctx.arc( canvas.width/2, canvas.width/2, 30, 0, Math.PI*2, true); 
 	ctx.stroke();	
 
 	ctx.beginPath(); 
 	ctx.strokeStyle	= this._strokeStyle; 
-	ctx.lineWidth	= 50; 
-	ctx.arc( canvas.width/2, canvas.width/2, 10, 0, Math.PI*2, true); 
+	ctx.lineWidth	= 35; 
+	ctx.arc( canvas.width/2, canvas.width/2, 2, 0, Math.PI*2, true); 
 	ctx.stroke();
 	
 	return canvas;
@@ -354,8 +354,8 @@ VirtualJoystick.prototype._buildJoystickStick	= function()
 	var ctx		= canvas.getContext('2d');
 	ctx.beginPath(); 
 	ctx.strokeStyle	= this._strokeStyle; 
-	ctx.lineWidth	= 50; 
-	ctx.arc( canvas.width/2, canvas.width/2, 10, 0, Math.PI*2, true); 
+	ctx.lineWidth	= 35; 
+	ctx.arc( canvas.width/2, canvas.width/2, 2, 0, Math.PI*2, true); 
 	ctx.stroke();
 	return canvas;
 }

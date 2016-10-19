@@ -61,7 +61,7 @@ tojo13.prototype.updateModels = function( delta ) {
   
 var counter = 0;
 tojo13.prototype.updateCamera = function( delta ) {
-    var factor = 10;
+    var factor = 50;
     if( App.leftJoystick.right() ){
         App.camera.translateX(factor * delta);
     }
@@ -77,15 +77,15 @@ tojo13.prototype.updateCamera = function( delta ) {
     
     
     if( App.rightJoystick.up() ){
-        App.camera.rotateX( deg(factor * 2) * delta );
+        App.camera.rotateX( deg(factor * .4) * delta );
     }
     if( App.rightJoystick.down() ){
-        App.camera.rotateX( -deg(factor * 2) * delta );
+        App.camera.rotateX( -deg(factor * .4) * delta );
     }
     if( App.rightJoystick.right() ){
-        App.camera.rotateY( -deg(factor * 2) * delta );
+        App.camera.rotateY( -deg(factor * .4) * delta );
     }
     if( App.rightJoystick.left() ){
-        App.camera.rotateY( deg(factor * 2) * delta );
+        App.camera.rotateY( deg(factor * .4) * delta );
     }
 }
