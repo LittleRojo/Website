@@ -326,9 +326,9 @@ THREE.OrbitControls = function ( object, domElement ) {
     if ( event.button === 0 ) {
       if ( scope.noRotate === true ) return;
 
-      state = STATE.ROTATE;
+      state = STATE.PAN;
 
-      rotateStart.set( event.clientX, event.clientY );
+      panStart.set( event.clientX, event.clientY );      
 
     } else if ( event.button === 1 ) {
       if ( scope.noZoom === true ) return;
@@ -336,13 +336,6 @@ THREE.OrbitControls = function ( object, domElement ) {
       state = STATE.DOLLY;
 
       dollyStart.set( event.clientX, event.clientY );
-
-    } else if ( event.button === 2 ) {
-      if ( scope.noPan === true ) return;
-
-      state = STATE.PAN;
-
-      panStart.set( event.clientX, event.clientY );
 
     }
 
