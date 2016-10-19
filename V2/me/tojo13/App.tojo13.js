@@ -58,18 +58,18 @@ tojo13.prototype.updateModels = function( delta ) {
 }
   
 tojo13.prototype.updateCamera = function( delta ) {
-    
+    var factor = 1;
     if( App.leftJoystick.right() ){
-        App.camera.position.x = App.camera.position.x + 1 * delta;
+        App.camera.translateX(factor * delta);
     }
     if( App.leftJoystick.left() ){
-        App.camera.position.x = App.camera.position.x - 1 * delta;
+        App.camera.translateX(-factor * delta);
     }
     if( App.leftJoystick.up() ){
-        App.camera.position.z = App.camera.position.z - 1 * delta;
+        App.camera.translateZ(-factor * delta);
     }
     if( App.leftJoystick.down() ){
-        App.camera.position.z = App.camera.position.z + 1 * delta;
+        App.camera.translateZ(factor * delta);
     }
 
     /*if( App.rightJoystick.right() ){
