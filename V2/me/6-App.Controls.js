@@ -26,10 +26,12 @@ Controls.prototype.load = function() {
 	App.orbitControls.keyPanSpeed = 0;
 
     //JOYSTICKS
+    App.leftJoystickColor = 'cyan';
+    App.rightJoystickColor = 'gray';
     var offset = 90;    
 	App.leftJoystick	= new VirtualJoystick({
 		container	: document.body,
-		strokeStyle	: 'cyan',
+		strokeStyle	: App.leftJoystickColor,
 		limitStickTravel: true,
 		stickRadius	: 120,
         mouseSupport: true,	
@@ -47,7 +49,7 @@ Controls.prototype.load = function() {
     
 	App.rightJoystick	= new VirtualJoystick({
 		container	: document.body,
-		strokeStyle	: 'brown',
+		strokeStyle	: App.rightJoystickColor,
 		limitStickTravel: true,
 		stickRadius	: 120,
         mouseSupport: true,	
