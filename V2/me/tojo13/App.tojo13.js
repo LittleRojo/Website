@@ -97,6 +97,4 @@ tojo13.prototype.updateCamera = function( delta ) {
         App.camera.rotation.y += App.mobileOrientation.y;
         App.camera.rotation.z += App.mobileOrientation.z;
     }
-
-    App.camera.matrix.updateMatrix();
 }
