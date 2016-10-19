@@ -252,7 +252,7 @@ VirtualJoystick.prototype._onTouchStart	= function(event)
 	// dispatch touchStart
 	this.dispatchEvent('touchStart', event);
 
-	//event.preventDefault();
+	event.preventDefault();
 	// get the first who changed
 	var touch	= event.changedTouches[0];
 	// set the touchIdx of this joystick
@@ -300,7 +300,7 @@ VirtualJoystick.prototype._onTouchMove	= function(event)
 	if( i === touchList.length)	return;
 	var touch	= touchList[i];
 
-	//event.preventDefault();
+	event.preventDefault();
 
 	var x		= touch.pageX;
 	var y		= touch.pageY;
