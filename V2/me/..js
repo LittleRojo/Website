@@ -48,5 +48,5 @@ function rand( min, max ) {
 }
 
 function apply( object ) {
-    object.updateMatrix();
+    object.updateProjectionMatrix();
 }
