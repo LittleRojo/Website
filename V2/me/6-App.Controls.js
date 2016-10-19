@@ -31,7 +31,7 @@ Controls.prototype.load = function() {
 		container	: document.body,
 		strokeStyle	: 'cyan',
 		limitStickTravel: true,
-		stickRadius	: 80,
+		stickRadius	: 160,
         mouseSupport: true,	
         //stickElement: new stick canvas,
         //baseElement: new base canvas,
@@ -45,11 +45,11 @@ Controls.prototype.load = function() {
 		return true
 	});
     
-	/*App.rightJoystick	= new VirtualJoystick({
+	App.rightJoystick	= new VirtualJoystick({
 		container	: document.body,
 		strokeStyle	: 'brown',
 		limitStickTravel: true,
-		stickRadius	: 120,
+		stickRadius	: 160,
         mouseSupport: true,	
         //stickElement: new stick canvas,
         //baseElement: new base canvas,
@@ -57,14 +57,14 @@ Controls.prototype.load = function() {
         baseX: window.innerWidth - offset,
         baseY: window.innerHeight - offset,	
 	});
-	/*App.rightJoystick.addEventListener('touchStartValidation', function(event){
+	App.rightJoystick.addEventListener('touchStartValidation', function(event){
 		var touch	= event.changedTouches[0];
 		if( touch.pageX < window.innerWidth/2 )	return false;
 		return true
 	});
 	App.rightJoystick.addEventListener('touchStart', function(){
 		console.log('right')
-	})*/
+	})
     
     //VR
     App.fakeCamera = new THREE.Object3D();

@@ -75,16 +75,16 @@ tojo13.prototype.updateCamera = function( delta ) {
     }
 
     
-    /*if( App.rightJoystick.right() ){
-        App.camera.position.x = App.camera.position.x + 1 * delta;
+    if( App.rightJoystick.right() ){
+        App.tojo.frontWall.rotateY( deg(factor * 7) * delta );
     }
     if( App.rightJoystick.left() ){
-        App.camera.position.x = App.camera.position.x - 1 * delta;
+        App.tojo.frontWall.rotateY( -deg(factor * 7) * delta );
     }
     if( App.rightJoystick.up() ){
-        App.camera.position.z = App.camera.position.z - 1 * delta;
+        App.tojo.frontWall.rotateX( -deg(factor * 7) * delta );
     }
     if( App.rightJoystick.down() ){
-        App.camera.position.z = App.camera.position.z + 1 * delta;
-    }*/
+        App.tojo.frontWall.rotateX( deg(factor * 7) * delta );
+    }
 }
