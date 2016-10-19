@@ -20,7 +20,7 @@ Controls.prototype.load = function() {
 	App.camera.position.set( 0, 0, 10 );
 
     //MOUSE, KEYBOARD, AND DEVICE ORIENTATION
-    App.orbitControls = new THREE.OrbitControls( App.camera );
+    //App.orbitControls = new THREE.OrbitControls( App.camera );
   	//App.orbitControls.zoomSpeed = 1;
 	//App.orbitControls.rotateSpeed = 1;
 	//App.orbitControls.keyPanSpeed = 1;
@@ -71,7 +71,7 @@ Controls.prototype.load = function() {
     
     //VR
     App.fakeCamera = new THREE.Object3D();
-	App.vrControls = new THREE.VRControls( App.fakeCamera );
+	//App.vrControls = new THREE.VRControls( App.fakeCamera );
 	App.effect = new THREE.VREffect( App.renderer );
 
 	if ( WEBVR.isAvailable() === true ) {

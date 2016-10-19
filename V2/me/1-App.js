@@ -65,10 +65,10 @@ App.prototype.updateFrame = function() {
 	App.tojo.updateModels();
 	App.tojo.updateCamera();	
 
-	if(App.orbitControls !== undefined){
-		App.orbitControls.update();
-	}
-	App.vrControls.update(); 
+	//if(App.orbitControls !== undefined){
+	//	App.orbitControls.update();
+	//}
+	//App.vrControls.update(); 
 
 	var orbitPos = App.camera.position.clone();   
     var rotatedPosition = App.fakeCamera.position.applyQuaternion( App.camera.quaternion );
