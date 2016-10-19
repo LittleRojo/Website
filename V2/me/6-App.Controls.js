@@ -41,7 +41,7 @@ Controls.prototype.load = function() {
 	});
 	App.leftJoystick.addEventListener('touchStartValidation', function(event){
 		var touch	= event.changedTouches[0];
-		if( touch.pageX >= window.innerWidth/2 - 10 )	return false;
+		if( touch.pageX >= window.innerWidth/2 )	return false;
 		return true
 	});
     
@@ -59,7 +59,7 @@ Controls.prototype.load = function() {
 	});
 	App.rightJoystick.addEventListener('touchStartValidation', function(event){
 		var touch	= event.changedTouches[0];
-		if( touch.pageX < window.innerWidth/2 + 10 )	return false;
+		if( touch.pageX < window.innerWidth/2 )	return false;
 		return true
 	});
 	App.rightJoystick.addEventListener('touchStart', function(){
