@@ -83,8 +83,7 @@ tojo13.prototype.updateCamera = function( delta ) {
     var yStrength = App.rightJoystick._distanceY;
     var rotation = factor * .09 * xStrength * delta;
     if( App.rightJoystick.up() && rotation < 10 ) {
-        App.camera.quaternion.multiply(App.orbitcontrols.quanternion);
-        App.camera.rotation.x += ( -deg(rotation * 100) );
+        App.camera.rotation.x += ( -deg(rotation ) );
     }
     if( App.rightJoystick.down() && rotation  < 15 ){
         App.camera.rotation.x += ( deg( rotation ) );
