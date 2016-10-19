@@ -20,13 +20,13 @@ Controls.prototype.load = function() {
 	App.camera.position.set( 0, 0, 10 );
 
     //MOUSE, KEYBOARD, AND DEVICE ORIENTATION
-    //App.orbitControls = new THREE.OrbitControls( App.camera );
+    App.orbitControls = new THREE.OrbitControls( App.camera );
   	//App.orbitControls.zoomSpeed = 1;
 	//App.orbitControls.rotateSpeed = 1;
 	//App.orbitControls.keyPanSpeed = 1;
 
     //JOYSTICKS
-    /*var offset = 70;    
+    var offset = 70;    
 	App.leftJoystick	= new VirtualJoystick({
 		container	: document.body,
 		strokeStyle	: 'cyan',
@@ -67,7 +67,7 @@ Controls.prototype.load = function() {
 	});
 	App.rightJoystick.addEventListener('touchStart', function(){
 		console.log('right')
-	})*/
+	})
     
     //VR
     App.fakeCamera = new THREE.Object3D();
