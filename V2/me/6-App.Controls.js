@@ -93,11 +93,11 @@ Controls.prototype.load = function() {
 
 			//IPHONE ORIANTATION - LANDSCAPE
 			else {
-                App.leftJoystick._baseEl.style.left = 7;
-                App.leftJoystick._baseEl.style.top = window.innerHeight - 140;
+                App.leftJoystick._baseEl.style.left = 25;
+                App.leftJoystick._baseEl.style.top = window.innerHeight - 160;
 
-                App.rightJoystick._baseEl.style.left = window.innerWidth - 133;
-                App.rightJoystick._baseEl.style.top = window.innerHeight - 140;
+                App.rightJoystick._baseEl.style.left = window.innerWidth - 153;
+                App.rightJoystick._baseEl.style.top = window.innerHeight - 160;
 			} 		
 		}
 		else {	
