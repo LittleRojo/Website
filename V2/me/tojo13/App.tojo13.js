@@ -62,30 +62,33 @@ tojo13.prototype.updateModels = function( delta ) {
 var counter = 0;
 tojo13.prototype.updateCamera = function( delta ) {
     var factor = 50;
+    var xStrength = App.leftJoystick._distanceX * .01;
+    var yStrength = App.leftJoystick._distanceY * .01;
     if( App.leftJoystick.right() ){
-        App.camera.translateX(factor * delta);
+        App.camera.translateX(factor * delta * xStrength);
     }
     if( App.leftJoystick.left() ){
-        App.camera.translateX(-factor * delta);
+        App.camera.translateX(-factor * delta * xStrength);
     }
     if( App.leftJoystick.up() ){
-        App.camera.translateZ(-factor * delta);
+        App.camera.translateZ(-factor * delta * yStrength);
     }
     if( App.leftJoystick.down() ){
-        App.camera.translateZ(factor * delta);
+        App.camera.translateZ(factor * delta * yStrength);
     }
     
-    
+    var xStrength = App.rightJoystick._distanceX;
+    var yStrength = App.rightJoystick._distanceY;
     if( App.rightJoystick.up() ){
-        App.camera.rotateX( deg(factor * .4) * delta );
+        App.camera.rotateX( deg(factor * .4 * xStrength * delta) );
     }
     if( App.rightJoystick.down() ){
-        App.camera.rotateX( -deg(factor * .4) * delta );
+        App.camera.rotateX( -deg(factor * .4 * xStrength * delta) );
     }
     if( App.rightJoystick.right() ){
-        App.camera.rotateY( -deg(factor * .4) * delta );
+        App.camera.rotateY( -deg(factor * .4 * yStrength * delta) );
     }
     if( App.rightJoystick.left() ){
-        App.camera.rotateY( deg(factor * .4) * delta );
+        App.camera.rotateY( deg(factor * .4 * yStrength * delta) );
     }
 }

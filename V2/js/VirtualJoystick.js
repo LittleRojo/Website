@@ -14,7 +14,8 @@ var VirtualJoystick	= function(opts)
 	this._useCssTransform	= opts.useCssTransform !== undefined ? opts.useCssTransform : false
 	this._joystickType = opts.joystickType !== undefined ? opts.joystickType : "left";
 	this._joystickBoundary = opts._joystickBoundary !== undefined ? opts._joystickBoundary : 10;
-	this._distance = 0; 
+	this._distanceX = 0;
+	this._distanceY = 0;
 
 	this._container.style.position	= "relative"
 
@@ -180,6 +181,7 @@ VirtualJoystick.prototype._onDown	= function(x, y)
 	if(this._limitStickTravel === true){
 		var deltaX	= this.deltaX();
 		var deltaY	= this.deltaY();
+
 		var stickDistance = Math.sqrt( (deltaX * deltaX) + (deltaY * deltaY) );
 		if(stickDistance > this._stickRadius){
 			var stickNormalizedX = deltaX / stickDistance;
@@ -203,6 +205,10 @@ VirtualJoystick.prototype._onMove	= function(x, y)
 		if(this._limitStickTravel === true){
 			var deltaX	= this.deltaX();
 			var deltaY	= this.deltaY();
+
+			this._distanceX = deltaX;
+			this._distanceY = deltaY;
+
 			var stickDistance = Math.sqrt( (deltaX * deltaX) + (deltaY * deltaY) );
 			if(stickDistance > this._stickRadius){
 				var stickNormalizedX = deltaX / stickDistance;
