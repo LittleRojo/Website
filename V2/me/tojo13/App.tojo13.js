@@ -59,6 +59,7 @@ tojo13.prototype.updateModels = function( delta ) {
     
 }
   
+var counter = 0;
 tojo13.prototype.updateCamera = function( delta ) {
     var factor = 10;
     if( App.leftJoystick.right() ){
@@ -73,18 +74,18 @@ tojo13.prototype.updateCamera = function( delta ) {
     if( App.leftJoystick.down() ){
         App.camera.translateZ(factor * delta);
     }
-
     
-    if( App.rightJoystick.right() ){
-        App.tojo.frontWall.rotateY( deg(factor * 7) * delta );
-    }
-    if( App.rightJoystick.left() ){
-        App.tojo.frontWall.rotateY( -deg(factor * 7) * delta );
-    }
+    
     if( App.rightJoystick.up() ){
-        App.tojo.frontWall.rotateX( -deg(factor * 7) * delta );
+        App.camera.rotateX( deg(factor * 2) * delta );
     }
     if( App.rightJoystick.down() ){
-        App.tojo.frontWall.rotateX( deg(factor * 7) * delta );
+        App.camera.rotateX( -deg(factor * 2) * delta );
+    }
+    if( App.rightJoystick.right() ){
+        App.camera.rotateY( -deg(factor * 2) * delta );
+    }
+    if( App.rightJoystick.left() ){
+        App.camera.rotateY( deg(factor * 2) * delta );
     }
 }
