@@ -41,7 +41,7 @@ Controls.prototype.load = function() {
         baseX: offset,
         baseY: window.innerHeight - offset,   
         joystickType: "left",
-        joystickBoundary: 75,
+        joystickBoundary: 50,
         
 	});
 	App.leftJoystick.addEventListener('touchStartValidation', function(event){
@@ -62,7 +62,7 @@ Controls.prototype.load = function() {
         baseX: window.innerWidth - offset,
         baseY: window.innerHeight - offset,	
         joystickType: "right",
-        joystickBoundary: 75,
+        joystickBoundary: 50,
 	});
 	App.rightJoystick.addEventListener('touchStartValidation', function(event){
 		var touch	= event.changedTouches[0];

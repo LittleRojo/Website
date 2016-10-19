@@ -13,7 +13,7 @@ var VirtualJoystick	= function(opts)
 	this._stickRadius	= opts.stickRadius !== undefined ? opts.stickRadius : 100
 	this._useCssTransform	= opts.useCssTransform !== undefined ? opts.useCssTransform : false
 	this._joystickType = opts.joystickType !== undefined ? opts.joystickType : "left";
-	this._joystickBoundary = opts._joystickBoundary !== undefined ? opts._joystickBoundary : 10;
+	this._joystickBoundary = opts.joystickBoundary !== undefined ? opts.joystickBoundary : 10;
 	this._distanceX = 0;
 	this._distanceY = 0;
 
