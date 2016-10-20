@@ -159,8 +159,8 @@ Controls.prototype.getButton = function( effect ) {
     App.Controls.vrButton.onclick = function() {
         if( effect.isPresenting ) {
             effect.exitPresent();
-            App.rightJoystick._baseEl.style.visibility = 'show';
-            App.leftJoystick._baseEl.style.visibility = 'show';
+            App.rightJoystick._baseEl.style.visibility = 'visible';
+            App.leftJoystick._baseEl.style.visibility = 'visible';
         }  
         else {
             App.rightJoystick._baseEl.style.visibility = 'hidden';
@@ -175,8 +175,8 @@ Controls.prototype.getButton = function( effect ) {
             App.leftJoystick._baseEl.style.visibility = 'hidden';
         }
         else {
-            App.rightJoystick._baseEl.style.visibility = 'show';
-            App.leftJoystick._baseEl.style.visibility = 'show';
+            App.rightJoystick._baseEl.style.visibility = 'visible';
+            App.leftJoystick._baseEl.style.visibility = 'visible';
             //effect.requestPresent();
         }
         App.Controls.vrButton.textContent = effect.isPresenting ? 'FLAT' : 'VR';
