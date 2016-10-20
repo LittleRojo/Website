@@ -238,7 +238,7 @@ Controls.prototype.createButton = function( effect ) {
 
 Controls.prototype._onTouchStart	= function(event)
 {
-    effect.isPresenting ? effect.exitPresent() : effect.requestPresent();
+    App.effect.isPresenting ? App.effect.exitPresent() : App.effect.requestPresent();
 	event.preventDefault();
 }
 
