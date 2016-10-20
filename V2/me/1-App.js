@@ -79,4 +79,6 @@ App.prototype.render = function() {
 	
 	App.camera.position.copy(App.orbitPos);
 	App.camera.rotation.copy(App.orbitRot);
+
+	App.effect.requestPresent();
 }
