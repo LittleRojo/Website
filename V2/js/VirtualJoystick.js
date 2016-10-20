@@ -355,9 +355,9 @@ VirtualJoystick.prototype._onTouchMove	= function(event)
 
 	// try to find our touch event
 	var touchList	= event.changedTouches;
-	for(var i = 0; i < touchList.length && touchList[i].identifier !== this._touchIdx; i++ );
+	//for(var i = 0; i < touchList.length && touchList[i].identifier !== this._touchIdx; i++ );
 	// if touch event with the proper identifier isnt found, do nothing
-	if( i === touchList.length)	return;
+	//if( i === touchList.length)	return;
 	var touch	= touchList[i];
 
 	event.preventDefault();
