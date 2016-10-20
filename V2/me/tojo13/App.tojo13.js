@@ -65,8 +65,8 @@ tojo13.prototype.updateModels = function( delta ) {
 var counter = 0;
 tojo13.prototype.updateCamera = function( delta ) {
     var factor = 50;
-    var xStrength = App.leftJoystick._distanceX * .01;
-    var yStrength = App.leftJoystick._distanceY * .01;
+    var xStrength = App.leftJoystick._distanceX * .009;
+    var yStrength = App.leftJoystick._distanceY * .009;
     if( App.leftJoystick.right() ){
         App.camera.translateX(factor * delta * xStrength);
     }
@@ -82,17 +82,17 @@ tojo13.prototype.updateCamera = function( delta ) {
     
     var xStrength = App.rightJoystick._distanceX;
     var yStrength = App.rightJoystick._distanceY;
-    var rotation = factor * .09 * xStrength * delta;
-    if( App.rightJoystick.up() && rotation < 10 ) {
-        App.camera.rotation.x += ( -deg(rotation ) );
-    }
-    if( App.rightJoystick.down() && rotation  < 15 ){
-        App.camera.rotation.x += ( deg( rotation ) );
-    }
+    var rotation = factor * .009 * xStrength * delta;
     if( App.rightJoystick.right() ){
-        App.camera.rotation.y += ( deg(factor * .09 * yStrength * delta) );
+        App.camera.rotation.y += ( deg( rotation ) );
     }
     if( App.rightJoystick.left() ){
-        App.camera.rotation.y += ( -deg(factor * .09 * yStrength * delta) );
+        App.camera.rotation.y += ( -deg( rotation ) );
+    }
+    if( App.rightJoystick.up() && rotation < 10 ) {
+        App.camera.rotation.x += ( deg( rotation ) );
+    }
+    if( App.rightJoystick.down() && rotation  < 15 ){
+        App.camera.rotation.x += ( deg( -rotation ) );
     }
 }
