@@ -238,9 +238,15 @@ Controls.prototype.createButton = function( effect ) {
 
 Controls.prototype._onTouchStart	= function(event)
 {
-    var canvasButton = document.getElementsByTagName('button');
-	var X = event.clientX;
-	var Y = event.clientY;
+    var touchList	= event.changedTouches;
+	//for(var i = 0; i < touchList.length && touchList[i].identifier !== this._touchIdx; i++ );
+	// if touch event with the proper identifier isnt found, do nothing
+	//if( i === touchList.length)	return;
+	var touch	= touchList[0];
+	
+	var canvasButton = document.getElementsByTagName('button');
+	var X = touch.pageX;
+	var Y = touch.pageY;
 	if ( X > canvasButton.offsetLeft ) {
 		if ( X < canvasButton.offsetLeft + canvasButton.clientWidth ) {
 			if ( Y > canvasButton.offsetTop ) {
