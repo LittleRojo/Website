@@ -156,6 +156,8 @@ Controls.prototype.getButton = function( effect ) {
     App.Controls.vrButton.onclick = function() {
         if( effect.isPresenting ) {
             effect.exitPresent();
+            App.rightJoystick._baseEl.style.display = 'show';
+            App.leftJoystick._baseEl.style.display = 'show';
         }  
         else {
             App.rightJoystick._baseEl.style.display = 'none';
@@ -170,8 +172,9 @@ Controls.prototype.getButton = function( effect ) {
             App.leftJoystick._baseEl.style.display = 'none';
         }
         else {
-            App.rightJoystick._baseEl.style.display = 'none';
-            App.leftJoystick._baseEl.style.display = 'none';
+            App.rightJoystick._baseEl.style.display = 'show';
+            App.leftJoystick._baseEl.style.display = 'show';
+            effect.requestPresent();
         }
         //button.textContent = effect.isPresenting ? 'FLAT' : 'VR';
     }, false );
