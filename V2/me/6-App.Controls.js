@@ -177,9 +177,9 @@ Controls.prototype.getButton = function( effect ) {
         else {
             App.rightJoystick._baseEl.style.display = 'show';
             App.leftJoystick._baseEl.style.display = 'show';
-            effect.requestPresent();
+            //effect.requestPresent();
         }
-        //button.textContent = effect.isPresenting ? 'FLAT' : 'VR';
+        button.textContent = effect.isPresenting ? 'FLAT' : 'VR';
     }, false );
 
     return App.Controls.vrButton;

@@ -35,7 +35,10 @@ App.prototype.load = function() {
 	});
 	App.renderer.setPixelRatio( window.devicePixelRatio );
 	App.renderer.setSize( window.innerWidth, window.innerHeight );
-	App.renderer.setClearColor( 0x000000, 1 );	
+	App.renderer.setClearColor( 0x000000, 1 );
+	App.renderer.shadowMap.enabled = true;
+    App.renderer.shadowMap.renderReverseSided = false;
+	App.renderer.sortObjects = false;	
 
 	App.mainCanvas = App.renderer.domElement;
     document.body.appendChild( App.mainCanvas ); 
