@@ -452,3 +452,4 @@ THREE.VREffect = function ( renderer, onError ) {
 
 };
 
+
