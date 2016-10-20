@@ -29,8 +29,8 @@ Controls.prototype.load = function() {
 		limitStickTravel: true,
 		stickRadius	: 58,
         mouseSupport: true,	
-        //stickElement: new stick canvas,
-        //baseElement: new base canvas,
+        //stickElement: new stick App.Controls.vrButtonCanvas,
+        //baseElement: new base App.Controls.vrButtonCanvas,
         stationaryBase: true,
         baseX: offset,
         baseY: window.innerHeight - offset,   
@@ -50,8 +50,8 @@ Controls.prototype.load = function() {
 		limitStickTravel: true,
 		stickRadius	: 58,
         mouseSupport: true,	
-        //stickElement: new stick canvas,
-        //baseElement: new base canvas,
+        //stickElement: new stick App.Controls.vrButtonCanvas,
+        //baseElement: new base App.Controls.vrButtonCanvas,
         stationaryBase: true,
         baseX: window.innerWidth - offset,
         baseY: window.innerHeight - offset,	
@@ -162,24 +162,24 @@ Controls.prototype.createButton = function( effect ) {
     } ); 
     scene.add( vrLogo ); 
 
-    var canvas = renderer.domElement;
-    canvas.style.position = 'absolute';
-    canvas.style.left = 'calc(50% - 33px)';
-    canvas.style.bottom = '20px';
-    canvas.style.width = '63px';
-    canvas.style.height = '44px';
-    canvas.style.border = '0';
-    canvas.style.padding = '0px';
-    canvas.style.cursor = 'pointer';
-    //canvas.style.
-    //canvas.onclick = function() {
+    App.Controls.vrButtonCanvas = renderer.domElement;
+    App.Controls.vrButtonCanvas.id = 'vrButtonCanvas';
+    App.Controls.vrButtonCanvas.style.position = 'absolute';
+    App.Controls.vrButtonCanvas.style.left = 'calc(50% - 33px)';
+    App.Controls.vrButtonCanvas.style.bottom = '20px';
+    App.Controls.vrButtonCanvas.style.width = '63px';
+    App.Controls.vrButtonCanvas.style.height = '44px';
+    App.Controls.vrButtonCanvas.style.border = '0';
+    App.Controls.vrButtonCanvas.style.padding = '0px';
+    App.Controls.vrButtonCanvas.style.cursor = 'pointer';
+    //App.Controls.vrButtonCanvas.onclick = function() {
     //    effect.isPresenting ? effect.exitPresent() : effect.requestPresent();
     //};
 
     window.addEventListener( 'vrdisplaypresentchange', function ( event ) {
-        canvas.textContent = effect.isPresenting ? 'FLAT' : 'VR';
+        App.Controls.vrButtonCanvas.textContent = effect.isPresenting ? 'FLAT' : 'VR';
     }, false );
 
-    document.body.appendChild( canvas );
+    document.body.appendChild( App.Controls.vrButtonCanvas );
     renderer.render( scene, camera );
 }

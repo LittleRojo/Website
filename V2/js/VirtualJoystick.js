@@ -238,6 +238,10 @@ VirtualJoystick.prototype._onMouseDown	= function(event)
 	event.preventDefault();
 	var x	= event.clientX;
 	var y	= event.clientY;
+	var inButton = this._canvasButtonClick(event);
+	if(inButton) {
+		App.effect.isPresenting ? App.effect.exitPresent() : App.effect.requestPresent();
+	}
 	return this._onDown(x, y);
 }
 
@@ -246,6 +250,23 @@ VirtualJoystick.prototype._onMouseMove	= function(event)
 	var x	= event.clientX;
 	var y	= event.clientY;
 	return this._onMove(x, y);
+}
+
+VirtualJoystick.prototype._canvasButtonClick = function(event)
+{
+	var canvasButton = document.getElementById('vrButtonCanvas');
+	var X = event.clientX;
+	var Y = event.clientY;
+	if ( X > canvasButton.offsetLeft ) {
+		if ( X < canvasButton.offsetLeft + canvasButton.clientWidth ) {
+			if ( Y > canvasButton.offsetTop ) {
+				if ( Y < canvasButton.offsetTop + canvasButton.clientHeight ) {
+					return true;
+				}
+			}
+		}		
+	}
+	return false;
 }
 
 //////////////////////////////////////////////////////////////////////////////////
