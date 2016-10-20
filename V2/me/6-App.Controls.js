@@ -71,7 +71,7 @@ Controls.prototype.load = function() {
     App.fakeCamera = new THREE.Object3D();
 	App.vrControls = new THREE.VRControls( App.fakeCamera );
 	App.effect = new THREE.VREffect( App.renderer );
-    //document.body.appendChild( App.Controls.getButton( App.effect ) );
+    document.body.appendChild( App.Controls.getButton( App.effect ) );
 	//App.Controls.createButton( App.effect );
 
     //DEVICE ORIENTATION
@@ -135,25 +135,25 @@ Controls.prototype.load = function() {
 }
 
 Controls.prototype.getButton = function( effect ) {
-    var button = document.createElement( 'button' );
-    button.style.position = 'absolute';
-    button.style.left = 'calc(50% - 33px)';
-    button.style.bottom = '20px';
-    button.style.width = '63px';
-    button.style.height = '44px';
-    button.style.border = '0';
-    button.style.padding = '8px';
-    button.style.cursor = 'pointer';
-    button.style.backgroundColor = '#000';
-    button.style.color = '#fff';
-    button.style.fontFamily = 'sans-serif';
-    button.style.fontSize = '13px';
-    button.style.fontStyle = 'normal';
-    button.style.textAlign = 'center';
-    button.style.zIndex = '999';
-    button.textContent = 'VR';
-    button.style.backgroundImage = 'url(img/vrLogoIcon.png)';
-    button.onclick = function() {
+    App.Controls.vrButton = document.createElement( 'button' );
+    App.Controls.vrButton.style.position = 'absolute';
+    App.Controls.vrButton.style.left = 'calc(50% - 33px)';
+    App.Controls.vrButton.style.bottom = '20px';
+    App.Controls.vrButton.style.width = '63px';
+    App.Controls.vrButton.style.height = '44px';
+    App.Controls.vrButton.style.border = '0';
+    App.Controls.vrButton.style.padding = '8px';
+    App.Controls.vrButton.style.cursor = 'pointer';
+    App.Controls.vrButton.style.backgroundColor = '#000';
+    App.Controls.vrButton.style.color = '#fff';
+    App.Controls.vrButton.style.fontFamily = 'sans-serif';
+    App.Controls.vrButton.style.fontSize = '13px';
+    App.Controls.vrButton.style.fontStyle = 'normal';
+    App.Controls.vrButton.style.textAlign = 'center';
+    App.Controls.vrButton.style.zIndex = '999';
+    App.Controls.vrButton.textContent = 'VR';
+    App.Controls.vrButton.style.backgroundImage = 'url(img/vrLogoIcon.png)';
+    App.Controls.vrButton.onclick = function() {
         if( effect.isPresenting ) {
             effect.exitPresent();
         }  
