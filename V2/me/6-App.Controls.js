@@ -71,8 +71,8 @@ Controls.prototype.load = function() {
     App.fakeCamera = new THREE.Object3D();
 	App.vrControls = new THREE.VRControls( App.fakeCamera );
 	App.effect = new THREE.VREffect( App.renderer );
-    document.body.appendChild( App.Controls.getButton( App.effect ) );
-	//App.Controls.createButton( App.effect );
+    //document.body.appendChild( App.Controls.getButton( App.effect ) );
+	App.Controls.createButton( App.effect );
 
     //DEVICE ORIENTATION
     App.resize = function() { 
