@@ -1750,9 +1750,9 @@
                 this.cardboardUI_ = null;
             }
 
-            if (this.rotateInstructions_) {
-                this.rotateInstructions_.hide();
-            }
+            //if (this.rotateInstructions_) {
+            //    this.rotateInstructions_.hide();
+            //}
             this.viewerSelector_.hide();
 
             window.removeEventListener('orientationchange', this.orientationHandler);
