@@ -298,7 +298,7 @@ VirtualJoystick.prototype._canvasButtonTouch = function(event)
 VirtualJoystick.prototype._onTouchStart	= function(event)
 {
 	// if there is already a touch inprogress do nothing
-	if( this._touchIdx !== null )	return;
+	//if( this._touchIdx !== null )	return;
 
 	var inButton = this._canvasButtonTouch(event);
 	if(inButton) {
@@ -327,7 +327,7 @@ VirtualJoystick.prototype._onTouchStart	= function(event)
 VirtualJoystick.prototype._onTouchEnd	= function(event)
 {
 	// if there is no touch in progress, do nothing
-	if( this._touchIdx === null )	return;
+	//if( this._touchIdx === null )	return;
 
 	// dispatch touchEnd
 	this.dispatchEvent('touchEnd', event);
@@ -351,7 +351,7 @@ event.preventDefault();
 VirtualJoystick.prototype._onTouchMove	= function(event)
 {
 	// if there is no touch in progress, do nothing
-	if( this._touchIdx === null )	return;
+	//if( this._touchIdx === null )	return;
 
 	// try to find our touch event
 	var touchList	= event.changedTouches;
