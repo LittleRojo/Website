@@ -238,6 +238,7 @@ Controls.prototype.createButton = function( effect ) {
 
 Controls.prototype._onTouchStart	= function(event)
 {
+    App.Controls.vrButtonCanvas.onclick();
 	event.preventDefault();
 }
 
