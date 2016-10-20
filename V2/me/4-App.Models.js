@@ -21,6 +21,7 @@ Models = function() {
     this.width = 1;
     this.height = 1;
     this.depth = 1;
+    this.texture;
 
     Models.prototype.set = function(parameters) {
         this.x = parameters.x;
@@ -33,6 +34,8 @@ Models = function() {
         this.width = parameters.width;
         this.height = parameters.height;
         this.depth = parameters.depth;
+        this.url = parameters.url;
+        this.texture = parameters.texture;
     }  
 }
 
@@ -46,16 +49,17 @@ Models.prototype.plane = function( parameters ) {
         }
         planeGeometry.vertices[a].z = Math.random() * factor;
     }*/
-    var planeMaterial = new THREE.MeshBasicMaterial( { 
-        color: this.color, 
-        specular: this.specular, 
-        side: THREE.DoubleSide,
+    var planeMaterial = new THREE.MeshBasicMaterial( {      
+        color: this.color != undefined ? this.color : undefined,   
+        specular: this.specular != undefined ? this.specular : undefined, 
+        side: THREE.DoubleSide, 
+        map: this.texture !== undefined ? this.texture : undefined,       
     } );
     
     var plane = new THREE.Mesh( planeGeometry, planeMaterial );
-    //plane.rotation.x = -Math.PI/2;
-    //plane.rotation.z = -deg(45);
-    //plane.position.z = -10;
+    plane.position.x = this.x;
+    plane.position.y = this.y;
+    plane.position.z = this.z;
     //plane.receiveShadow = true;
     return plane;
 }

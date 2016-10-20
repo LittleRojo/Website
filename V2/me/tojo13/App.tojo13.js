@@ -83,16 +83,16 @@ tojo13.prototype.updateCamera = function( delta ) {
     var xStrength = App.rightJoystick._distanceX;
     var yStrength = App.rightJoystick._distanceY;
     var rotation = factor * .009 * xStrength * delta;
-    if( App.rightJoystick.right() ){
-        App.camera.rotation.y += ( deg( rotation ) );
-    }
-    if( App.rightJoystick.left() ){
-        App.camera.rotation.y += ( -deg( rotation ) );
-    }
     if( App.rightJoystick.up() && rotation < 10 ) {
-        App.camera.rotation.x += ( deg( rotation ) );
+        App.camera.translateY( rotation );
     }
     if( App.rightJoystick.down() && rotation  < 15 ){
-        App.camera.rotation.x += ( deg( -rotation ) );
+        App.camera.translateY( -rotation );
+    }
+    if( App.rightJoystick.right() ){
+        App.camera.rotation.y += ( -deg( rotation ) );
+    }
+    if( App.rightJoystick.left() ){
+        App.camera.rotation.y += ( deg( rotation ) );
     }
 }

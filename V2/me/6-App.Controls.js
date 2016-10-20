@@ -71,7 +71,7 @@ Controls.prototype.load = function() {
     App.fakeCamera = new THREE.Object3D();
 	App.vrControls = new THREE.VRControls( App.fakeCamera );
 	App.effect = new THREE.VREffect( App.renderer );
-	document.body.appendChild( App.Controls.getButton( App.effect ) );
+	App.Controls.createButton( App.effect );
 
     //DEVICE ORIENTATION
     App.resize = function() { 
@@ -133,35 +133,53 @@ Controls.prototype.load = function() {
 	}
 }
 
-Controls.prototype.getButton = function( effect ) {
-    var button = document.createElement( 'button' );
-    button.style.position = 'absolute';
-    button.style.left = 'calc(50% - 33px)';
-    button.style.bottom = '20px';
-    button.style.width = '63px';
-    button.style.height = '44px';
-    button.style.border = '0';
-    button.style.padding = '8px';
-    button.style.cursor = 'pointer';
-    button.style.backgroundColor = '#000';
-    button.style.color = '#fff';
-    button.style.fontFamily = 'sans-serif';
-    button.style.fontSize = '13px';
-    button.style.fontStyle = 'normal';
-    button.style.textAlign = 'center';
-    button.style.zIndex = '999';
-    button.textContent = 'VR';
-    button.style.backgroundImage = 'url(img/vrLogoIcon.png)';
-    button.onclick = function() {
-        effect.isPresenting ? effect.exitPresent() : effect.requestPresent();
-    };
+Controls.prototype.createButton = function( effect ) {
+    var renderer = new THREE.WebGLRenderer({		
+		antilias: true, 
+		alpha: true, 
+		clearAlpha: 1
+	});
+    renderer.setPixelRatio( window.devicePixelRatio );
+	renderer.setSize( 63, 44 );
+	renderer.setClearColor( 0x000000, 0 );	
+	
+	var scene = new THREE.Scene();
+    var camera = new THREE.PerspectiveCamera( 75, 63 / 44 , 0.1, 1000 );
+	camera.position.set( 0, 5, 10 );
+
+    var loader = new THREE.TextureLoader();
+    var light = new THREE.AmbientLight( 0xF000FF, .5 );
+    scene.add( light );
+
+    var vrLogo = App.Models.plane( {
+        x: 0,
+        y: 0,
+        z: 0,
+        width: 12,
+        height: 25,
+        color: 0x000000,
+        //texture: loader.load('img/vrLogoIcon.png'),
+    } ); 
+    scene.add( vrLogo ); 
+
+    var canvas = renderer.domElement;
+    canvas.style.position = 'absolute';
+    canvas.style.left = 'calc(50% - 33px)';
+    canvas.style.bottom = '20px';
+    canvas.style.width = '63px';
+    canvas.style.height = '44px';
+    canvas.style.border = '0';
+    canvas.style.padding = '0px';
+    canvas.style.cursor = 'pointer';
+    //canvas.style.
+    //canvas.onclick = function() {
+    //    effect.isPresenting ? effect.exitPresent() : effect.requestPresent();
+    //};
 
     window.addEventListener( 'vrdisplaypresentchange', function ( event ) {
-        button.textContent = effect.isPresenting ? 'FLAT' : 'VR';
+        canvas.textContent = effect.isPresenting ? 'FLAT' : 'VR';
     }, false );
 
-    return button;
-}
-
-Controls.prototype.onRightJoystickMove = function(song) {
+    document.body.appendChild( canvas );
+    renderer.render( scene, camera );
 }
