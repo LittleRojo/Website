@@ -235,13 +235,13 @@ VirtualJoystick.prototype._onMouseUp	= function(event)
 
 VirtualJoystick.prototype._onMouseDown	= function(event)
 {
-	event.preventDefault();
+	//event.preventDefault();
 	var x	= event.clientX;
 	var y	= event.clientY;
-	var inButton = this._canvasButtonClick(event);
+	/*var inButton = this._canvasButtonClick(event);
 	if(inButton) {
 		App.effect.isPresenting ? App.effect.exitPresent() : App.effect.requestPresent();
-	}
+	}*/
 	return this._onDown(x, y);
 }
 
@@ -254,7 +254,6 @@ VirtualJoystick.prototype._onMouseMove	= function(event)
 
 VirtualJoystick.prototype._canvasButtonClick = function(event)
 {
-	return true;
 	var canvasButton = document.getElementById('vrButtonCanvas');
 	var X = event.clientX;
 	var Y = event.clientY;
@@ -272,7 +271,6 @@ VirtualJoystick.prototype._canvasButtonClick = function(event)
 
 VirtualJoystick.prototype._canvasButtonTouch = function(event)
 {
-	return true;
 	var touchList	= event.changedTouches;
 	//for(var i = 0; i < touchList.length && touchList[i].identifier !== this._touchIdx; i++ );
 	// if touch event with the proper identifier isnt found, do nothing
@@ -302,10 +300,10 @@ VirtualJoystick.prototype._onTouchStart	= function(event)
 	// if there is already a touch inprogress do nothing
 	//if( this._touchIdx !== null )	return;
 
-	var inButton = this._canvasButtonTouch(event);
+	/*var inButton = this._canvasButtonTouch(event);
 	if(inButton) {
 		App.effect.isPresenting ? App.effect.exitPresent() : App.effect.requestPresent();
-	}
+	}*/
 
 	// notify event for validation
 	var isValid	= this.dispatchEvent('touchStartValidation', event);
@@ -314,7 +312,7 @@ VirtualJoystick.prototype._onTouchStart	= function(event)
 	// dispatch touchStart
 	this.dispatchEvent('touchStart', event);
 
-	event.preventDefault();
+	//event.preventDefault();
 	// get the first who changed
 	var touch	= event.changedTouches[0];
 	// set the touchIdx of this joystick
