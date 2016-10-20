@@ -158,14 +158,22 @@ Controls.prototype.getButton = function( effect ) {
             effect.exitPresent();
         }  
         else {
-            App.leftJoystick.style.visibility = 'hidden';
-            App.rightJoystick.style.visibility = 'hidden';
+            App.rightJoystick._baseEl.style.display = 'none';
+            App.leftJoystick._baseEl.style.display = 'none';
             effect.requestPresent();
         }
     };
 
     window.addEventListener( 'vrdisplaypresentchange', function ( event ) {
-        button.textContent = effect.isPresenting ? 'FLAT' : 'VR';
+        if( effect.isPresenting ) {
+            App.rightJoystick._baseEl.style.display = 'none';
+            App.leftJoystick._baseEl.style.display = 'none';
+        }
+        else {
+            App.rightJoystick._baseEl.style.display = 'none';
+            App.leftJoystick._baseEl.style.display = 'none';
+        }
+        //button.textContent = effect.isPresenting ? 'FLAT' : 'VR';
     }, false );
 
     return button;
