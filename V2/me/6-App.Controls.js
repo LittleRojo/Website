@@ -20,7 +20,7 @@ Controls.prototype.load = function() {
 	App.camera.position.set( 0, 5, 10 );
 
     //JOYSTICKS
-    /*App.leftJoystickColor = 'cyan';
+    App.leftJoystickColor = 'cyan';
     App.rightJoystickColor = 'gray';
     var offset = 90;    
 	App.leftJoystick	= new VirtualJoystick({
@@ -65,7 +65,7 @@ Controls.prototype.load = function() {
 	});
 	App.rightJoystick.addEventListener('touchStart', function(){
 		console.log('right')
-	})*/
+	})
     document.body.addEventListener( 'touchstart'	, this._onTouchStart	, false );
 	document.body.addEventListener( 'touchend'	, this._onTouchEnd	, false );
 	document.body.addEventListener( 'touchmove'	, this._onTouchMove	, false );
@@ -83,7 +83,7 @@ Controls.prototype.load = function() {
 		App.camera.aspect = window.innerWidth / window.innerHeight;
 		App.camera.updateProjectionMatrix();	
 
-		/*if( ( "standalone" in window.navigator ) && window.navigator.standalone ) {
+		if( ( "standalone" in window.navigator ) && window.navigator.standalone ) {
 			//IPHONE ORIENTATION - PROFILE
 			if( window.orientation === 90 || window.orientation === -90 ) {	
                 App.leftJoystick._baseEl.style.left = 7;
@@ -108,7 +108,7 @@ Controls.prototype.load = function() {
 
             App.rightJoystick._baseEl.style.left = window.innerWidth - 133;
             App.rightJoystick._baseEl.style.bottom = window.innerHeight - 70;
-		}*/
+		}
 		App.renderer.render( App.scene, App.camera );
 	}
 	window.addEventListener( 'resize', App.resize, false);
@@ -159,25 +159,25 @@ Controls.prototype.getButton = function( effect ) {
     App.Controls.vrButton.onclick = function() {
         if( effect.isPresenting ) {
             effect.exitPresent();
-            //App.rightJoystick._baseEl.style.visibility = 'visible';
-            //App.leftJoystick._baseEl.style.visibility = 'visible';
+            App.rightJoystick._baseEl.style.visibility = 'visible';
+            App.leftJoystick._baseEl.style.visibility = 'visible';
         }  
         else {
-            //App.rightJoystick._baseEl.style.visibility = 'hidden';
-            //App.leftJoystick._baseEl.style.visibility = 'hidden';
+            App.rightJoystick._baseEl.style.visibility = 'hidden';
+            App.leftJoystick._baseEl.style.visibility = 'hidden';
             effect.requestPresent();
         }
     };
 
     window.addEventListener( 'vrdisplaypresentchange', function ( event ) {
-        /*if( effect.isPresenting ) {
+        if( effect.isPresenting ) {
             App.rightJoystick._baseEl.style.visibility = 'hidden';
             App.leftJoystick._baseEl.style.visibility = 'hidden';
         }
         else {
             App.rightJoystick._baseEl.style.visibility = 'visible';
             App.leftJoystick._baseEl.style.visibility = 'visible';
-        }*/
+        }
         App.Controls.vrButton.textContent = effect.isPresenting ? 'FLAT' : 'VR';
     }, false );
 

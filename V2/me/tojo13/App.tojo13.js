@@ -64,7 +64,7 @@ tojo13.prototype.updateModels = function( delta ) {
   
 var counter = 0;
 tojo13.prototype.updateCamera = function( delta ) {
-    /*var factor = 50;
+    var factor = 50;
     var xStrength = App.leftJoystick._distanceX * .009;
     var yStrength = App.leftJoystick._distanceY * .009;
     if( App.leftJoystick.right() ){
@@ -94,5 +94,5 @@ tojo13.prototype.updateCamera = function( delta ) {
     }
     if( App.rightJoystick.left() ){
         App.camera.rotation.y += ( deg( rotation ) );
-    }*/
+    }
 }
