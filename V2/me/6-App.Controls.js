@@ -236,7 +236,7 @@ Controls.prototype.createButton = function( effect ) {
     renderer.render( scene, camera );
 }
 
-Controls.prototype._onTouchStart	= function(event)
+Controls.prototype._onTouchStart = function(event)
 {
     var touchList	= event.changedTouches;
 	//for(var i = 0; i < touchList.length && touchList[i].identifier !== this._touchIdx; i++ );
