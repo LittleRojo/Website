@@ -244,7 +244,7 @@ Controls.prototype._onTouchStart	= function(event)
 	//if( i === touchList.length)	return;
 	var touch	= touchList[0];
 	
-	var canvasButton = document.getElementsByTagName('button');
+	var canvasButton = document.getElementsByTagName('button')[0];
 	var X = touch.pageX;
 	var Y = touch.pageY;
 	if ( X > canvasButton.offsetLeft ) {
