@@ -238,7 +238,18 @@ Controls.prototype.createButton = function( effect ) {
 
 Controls.prototype._onTouchStart	= function(event)
 {
-    App.effect.isPresenting ? App.effect.exitPresent() : App.effect.requestPresent();
+    var canvasButton = document.getElementsByTagName('button');
+	var X = event.clientX;
+	var Y = event.clientY;
+	if ( X > canvasButton.offsetLeft ) {
+		if ( X < canvasButton.offsetLeft + canvasButton.clientWidth ) {
+			if ( Y > canvasButton.offsetTop ) {
+				if ( Y < canvasButton.offsetTop + canvasButton.clientHeight ) {
+                    App.effect.isPresenting ? App.effect.exitPresent() : App.effect.requestPresent();
+				}
+			}
+		}		
+	}    
 	event.preventDefault();
 }
 
