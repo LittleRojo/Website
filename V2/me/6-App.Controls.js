@@ -17,13 +17,13 @@ Controls = function() {
 Controls.prototype.load = function() {
     //CAMERA
     App.camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000000 );
-	App.camera.position.set( 0, 0, 10 );
+	App.camera.position.set( 0, 5, 10 );
 
     //MOUSE, KEYBOARD, AND DEVICE ORIENTATION
-    App.orbitControls = new THREE.OrbitControls( App.camera );
+    /*App.orbitControls = new THREE.OrbitControls( App.camera );
   	App.orbitControls.zoomSpeed = 0;
 	App.orbitControls.rotateSpeed = 0;
-	App.orbitControls.keyPanSpeed = 0;
+	App.orbitControls.keyPanSpeed = 0;*/
 
     //JOYSTICKS
     App.leftJoystickColor = 'cyan';

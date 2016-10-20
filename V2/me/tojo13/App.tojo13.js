@@ -19,13 +19,14 @@ tojo13.prototype.load = function() {
     App.tojo.frontWall = App.Models.plane( {
         x: 0,
         y: 0,
-        z: -5,
-        width: 10,
-        height: 10, 
+        z: 15,
+        width: 100,
+        height: 100, 
         color: 0x0FF000, 
         specular: 0x0000FF,
     });
-    //App.scene.add( App.tojo.frontWall );
+    App.tojo.frontWall.rotateX( -deg( 90 ) );
+    App.scene.add( App.tojo.frontWall );
 
     App.tojo.rojo = App.Models.sphere( {
         x: 0, 
