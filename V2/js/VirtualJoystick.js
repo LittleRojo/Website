@@ -238,10 +238,10 @@ VirtualJoystick.prototype._onMouseDown	= function(event)
 	event.preventDefault();
 	var x	= event.clientX;
 	var y	= event.clientY;
-	var inButton = this._canvasButtonClick(event);
+	/*var inButton = this._canvasButtonClick(event);
 	if(inButton) {
 		App.effect.isPresenting ? App.effect.exitPresent() : App.effect.requestPresent();
-	}
+	}*/
 	return this._onDown(x, y);
 }
 
@@ -300,10 +300,10 @@ VirtualJoystick.prototype._onTouchStart	= function(event)
 	// if there is already a touch inprogress do nothing
 	//if( this._touchIdx !== null )	return;
 
-	var inButton = this._canvasButtonTouch(event);
+	/*var inButton = this._canvasButtonTouch(event);
 	if(inButton) {
 		App.effect.isPresenting ? App.effect.exitPresent() : App.effect.requestPresent();
-	}
+	}*/
 
 	// notify event for validation
 	var isValid	= this.dispatchEvent('touchStartValidation', event);
