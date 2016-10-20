@@ -176,7 +176,7 @@ Controls.prototype.getButton = function( effect ) {
         //button.textContent = effect.isPresenting ? 'FLAT' : 'VR';
     }, false );
 
-    return button;
+    return App.Controls.vrButton;
 }
 
 Controls.prototype.createButton = function( effect ) {
