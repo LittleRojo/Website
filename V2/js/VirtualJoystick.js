@@ -254,7 +254,7 @@ VirtualJoystick.prototype._onMouseMove	= function(event)
 
 VirtualJoystick.prototype._canvasButtonClick = function(event)
 {
-	var canvasButton = document.getElementById('vrButtonCanvas');
+	var canvasButton = document.getElementsByTagName('button');
 	var X = event.clientX;
 	var Y = event.clientY;
 	if ( X > canvasButton.offsetLeft ) {
@@ -277,7 +277,7 @@ VirtualJoystick.prototype._canvasButtonTouch = function(event)
 	//if( i === touchList.length)	return;
 	var touch	= touchList[0];
 	
-	var canvasButton = document.getElementById('vrButtonCanvas');
+	var canvasButton = document.getElementsByTagName('button');
 	var X = touch.pageX;
 	var Y = touch.pageY;
 	if ( X > canvasButton.offsetLeft ) {

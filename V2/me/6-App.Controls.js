@@ -66,6 +66,9 @@ Controls.prototype.load = function() {
 	App.rightJoystick.addEventListener('touchStart', function(){
 		console.log('right')
 	})
+    document.body.addEventListener( 'touchstart'	, this._onTouchStart	, false );
+	document.body.addEventListener( 'touchend'	, this._onTouchEnd	, false );
+	document.body.addEventListener( 'touchmove'	, this._onTouchMove	, false );
     
     //VR
     App.fakeCamera = new THREE.Object3D();
@@ -231,4 +234,19 @@ Controls.prototype.createButton = function( effect ) {
 
     document.body.appendChild( App.Controls.vrButtonCanvas );
     renderer.render( scene, camera );
+}
+
+Controls.prototype._onTouchStart	= function(event)
+{
+	event.preventDefault();
+}
+
+Controls.prototype._onTouchEnd	= function(event)
+{
+    event.preventDefault();
+}
+
+Controls.prototype._onTouchMove	= function(event)
+{
+	event.preventDefault();
 }
