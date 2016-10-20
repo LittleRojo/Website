@@ -70,7 +70,7 @@ App.prototype.updateFrame = function() {
 	App.tojo.updateCamera( delta );	
 
 	if(/Android/i.test(navigator.userAgent) || /iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-		App.orbitControls.update();
+		//App.orbitControls.update();
 		App.mobileOrientation = App.camera.rotation;
 		App.mobileMatrix = App.camera.matrix;
 		App.camera.matrix = new THREE.Matrix4();
