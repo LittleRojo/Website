@@ -218,9 +218,9 @@ Controls.prototype.createButton = function( effect ) {
     App.Controls.vrButtonCanvas.style.border = '0';
     App.Controls.vrButtonCanvas.style.padding = '0px';
     App.Controls.vrButtonCanvas.style.cursor = 'pointer';
-    //App.Controls.vrButtonCanvas.onclick = function() {
-    //    effect.isPresenting ? effect.exitPresent() : effect.requestPresent();
-    //};
+    App.Controls.vrButtonCanvas.onclick = function() {
+        effect.isPresenting ? effect.exitPresent() : effect.requestPresent();
+    };
 
     window.addEventListener( 'vrdisplaypresentchange', function ( event ) {
         App.Controls.vrButtonCanvas.textContent = effect.isPresenting ? 'FLAT' : 'VR';
