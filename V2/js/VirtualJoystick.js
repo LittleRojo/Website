@@ -271,7 +271,7 @@ VirtualJoystick.prototype._canvasButtonClick = function(event)
 
 VirtualJoystick.prototype._canvasButtonTouch = function(event)
 {
-	//var touchList	= event.changedTouches;
+	var touchList	= event.changedTouches;
 	//for(var i = 0; i < touchList.length && touchList[i].identifier !== this._touchIdx; i++ );
 	// if touch event with the proper identifier isnt found, do nothing
 	//if( i === touchList.length)	return;
