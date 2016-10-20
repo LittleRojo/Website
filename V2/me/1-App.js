@@ -6,7 +6,7 @@ var WebVRConfig = {
 
 var polyfillScript  = loadScript( "js/webvr-polyfill.js", function() {    
     var threeScript = loadScript( "js/three.min.js", function() {
-		var webVRScript = loadScript( "js/Webvr.js", function() {
+		//var webVRScript = loadScript( "js/Webvr.js", function() {
 			var vrControlsScript = loadScript( "js/VRControls.js", function() {
 				var vrEffectScript = loadScript( "js/VREffect.js", function() {
 					var vrEffectScript = loadScript( "js/VirtualJoystick.js", function() {
@@ -22,7 +22,7 @@ var polyfillScript  = loadScript( "js/webvr-polyfill.js", function() {
 					} );					
 				} );   
 			} );                    
-		} );
+		//} );
 	} );
 } ); 
 
