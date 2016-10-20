@@ -6,24 +6,22 @@ var WebVRConfig = {
 
 var polyfillScript  = loadScript( "js/webvr-polyfill.js", function() {    
     var threeScript = loadScript( "js/three.min.js", function() {
-        var orbitControlsScript = loadScript( "js/OrbitControls.js", function() {
-            var webVRScript = loadScript( "js/Webvr.js", function() {
-                var vrControlsScript = loadScript( "js/VRControls.js", function() {
-                    var vrEffectScript = loadScript( "js/VREffect.js", function() {
-						var vrEffectScript = loadScript( "js/VirtualJoystick.js", function() {
-							InitializeWebVRPolyfill();
-							App = new App();
-							App.load();				
-							if( appScript.onLoadedCallback != null ) {
-								appScript.onLoadedCallback.call( self );							
-							}
-							if( appScript.onCompletedCallback != null ) {
-								appScript.onCompletedCallback.call( self );
-							}	
-						} );					
-					} );   
-				} );                    
-			} );
+		var webVRScript = loadScript( "js/Webvr.js", function() {
+			var vrControlsScript = loadScript( "js/VRControls.js", function() {
+				var vrEffectScript = loadScript( "js/VREffect.js", function() {
+					var vrEffectScript = loadScript( "js/VirtualJoystick.js", function() {
+						InitializeWebVRPolyfill();
+						App = new App();
+						App.load();				
+						if( appScript.onLoadedCallback != null ) {
+							appScript.onLoadedCallback.call( self );							
+						}
+						if( appScript.onCompletedCallback != null ) {
+							appScript.onCompletedCallback.call( self );
+						}	
+					} );					
+				} );   
+			} );                    
 		} );
 	} );
 } ); 
@@ -69,28 +67,18 @@ App.prototype.updateFrame = function() {
 	App.tojo.updateModels( delta );
 	App.tojo.updateCamera( delta );	
 
-	if(/Android/i.test(navigator.userAgent) || /iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-		//App.orbitControls.update();
-		App.mobileOrientation = App.camera.rotation;
-		App.mobileMatrix = App.camera.matrix;
-		App.camera.matrix = new THREE.Matrix4();
-		App.camera.rotation.x = 0;
-		App.camera.rotation.y = 0;
-		App.camera.rotation.z = 0;
-		
-	}
 	App.vrControls.update();
-}
 
-App.prototype.render = function() {
-	var orbitPos = App.camera.position.clone();   
-	var orbitRot = App.camera.rotation.clone();
+	App.orbitPos = App.camera.position.clone();   
+	App.orbitRot = App.camera.rotation.clone();
     var rotatedPosition = App.fakeCamera.position.applyQuaternion( App.camera.quaternion );
     App.camera.position.add(rotatedPosition);
     App.camera.quaternion.multiply(App.fakeCamera.quaternion);
+}
 
+App.prototype.render = function() {
     App.effect.render( App.scene, App.camera );
 	
-	App.camera.position.copy(orbitPos);
-	App.camera.rotation.copy(orbitRot);
+	App.camera.position.copy(App.orbitPos);
+	App.camera.rotation.copy(App.orbitRot);
 }

@@ -95,10 +95,4 @@ tojo13.prototype.updateCamera = function( delta ) {
     if( App.rightJoystick.left() ){
         App.camera.rotation.y += ( -deg(factor * .09 * yStrength * delta) );
     }
-
-    /*if( App.mobileOrientation !== undefined ) {
-        App.camera.rotation.x += App.mobileOrientation.x;
-        App.camera.rotation.y += App.mobileOrientation.y;
-        App.camera.rotation.z += App.mobileOrientation.z;
-    }*/
 }
