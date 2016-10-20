@@ -300,10 +300,10 @@ VirtualJoystick.prototype._onTouchStart	= function(event)
 	// if there is already a touch inprogress do nothing
 	//if( this._touchIdx !== null )	return;
 
-	/*var inButton = this._canvasButtonTouch(event);
+	var inButton = this._canvasButtonTouch(event);
 	if(inButton) {
 		App.effect.isPresenting ? App.effect.exitPresent() : App.effect.requestPresent();
-	}*/
+	}
 
 	// notify event for validation
 	var isValid	= this.dispatchEvent('touchStartValidation', event);
@@ -327,7 +327,7 @@ VirtualJoystick.prototype._onTouchStart	= function(event)
 VirtualJoystick.prototype._onTouchEnd	= function(event)
 {
 	// if there is no touch in progress, do nothing
-	//if( this._touchIdx === null )	return;
+	if( this._touchIdx === null )	return;
 
 	// dispatch touchEnd
 	this.dispatchEvent('touchEnd', event);
@@ -351,16 +351,16 @@ event.preventDefault();
 VirtualJoystick.prototype._onTouchMove	= function(event)
 {
 	// if there is no touch in progress, do nothing
-	//if( this._touchIdx === null )	return;
+	if( this._touchIdx === null )	return;
 
 	// try to find our touch event
 	var touchList	= event.changedTouches;
 	for(var i = 0; i < touchList.length && touchList[i].identifier !== this._touchIdx; i++ );
 	// if touch event with the proper identifier isnt found, do nothing
-	//if( i === touchList.length)	return;
+	if( i === touchList.length)	return;
 	var touch	= touchList[i];
 
-	//event.preventDefault();
+	event.preventDefault();
 
 	var x		= touch.pageX;
 	var y		= touch.pageY;
