@@ -154,7 +154,14 @@ Controls.prototype.getButton = function( effect ) {
     button.textContent = 'VR';
     button.style.backgroundImage = 'url(img/vrLogoIcon.png)';
     button.onclick = function() {
-        effect.isPresenting ? effect.exitPresent() : effect.requestPresent();
+        if( effect.isPresenting ) {
+            effect.exitPresent();
+        }  
+        else {
+            App.leftJoystick.style.visibility = 'hidden';
+            App.rightJoystick.style.visibility = 'hidden';
+            effect.requestPresent();
+        }
     };
 
     window.addEventListener( 'vrdisplaypresentchange', function ( event ) {
