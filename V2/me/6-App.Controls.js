@@ -71,7 +71,8 @@ Controls.prototype.load = function() {
     App.fakeCamera = new THREE.Object3D();
 	App.vrControls = new THREE.VRControls( App.fakeCamera );
 	App.effect = new THREE.VREffect( App.renderer );
-	App.Controls.createButton( App.effect );
+    document.body.appendChild( App.Controls.getButton( App.effect ) );
+	//App.Controls.createButton( App.effect );
 
     //DEVICE ORIENTATION
     App.resize = function() { 
@@ -131,6 +132,36 @@ Controls.prototype.load = function() {
 	}
 	else {	
 	}
+}
+
+Controls.prototype.getButton = function( effect ) {
+    var button = document.createElement( 'button' );
+    button.style.position = 'absolute';
+    button.style.left = 'calc(50% - 33px)';
+    button.style.bottom = '20px';
+    button.style.width = '63px';
+    button.style.height = '44px';
+    button.style.border = '0';
+    button.style.padding = '8px';
+    button.style.cursor = 'pointer';
+    button.style.backgroundColor = '#000';
+    button.style.color = '#fff';
+    button.style.fontFamily = 'sans-serif';
+    button.style.fontSize = '13px';
+    button.style.fontStyle = 'normal';
+    button.style.textAlign = 'center';
+    button.style.zIndex = '999';
+    button.textContent = 'VR';
+    button.style.backgroundImage = 'url(img/vrLogoIcon.png)';
+    button.onclick = function() {
+        effect.isPresenting ? effect.exitPresent() : effect.requestPresent();
+    };
+
+    window.addEventListener( 'vrdisplaypresentchange', function ( event ) {
+        button.textContent = effect.isPresenting ? 'FLAT' : 'VR';
+    }, false );
+
+    return button;
 }
 
 Controls.prototype.createButton = function( effect ) {
