@@ -4755,9 +4755,9 @@ calls being made, such as tooling or effect injectors.
 
             // Attach to mouse and keyboard events.
             window.addEventListener('keydown', this.onKeyDown_.bind(this));
-            //window.addEventListener('mousemove', this.onMouseMove_.bind(this));
-            //window.addEventListener('mousedown', this.onMouseDown_.bind(this));
-            //window.addEventListener('mouseup', this.onMouseUp_.bind(this));
+            window.addEventListener('mousemove', this.onMouseMove_.bind(this));
+            window.addEventListener('mousedown', this.onMouseDown_.bind(this));
+            window.addEventListener('mouseup', this.onMouseUp_.bind(this));
 
             // "Private" members.
             this.phi_ = 0;
@@ -5544,9 +5544,9 @@ calls being made, such as tooling or effect injectors.
  * transformations due to device sensors.
  */
         function TouchPanner() {
-            //window.addEventListener('touchstart', this.onTouchStart_.bind(this));
-            //window.addEventListener('touchmove', this.onTouchMove_.bind(this));
-            //window.addEventListener('touchend', this.onTouchEnd_.bind(this));
+            window.addEventListener('touchstart', this.onTouchStart_.bind(this));
+            window.addEventListener('touchmove', this.onTouchMove_.bind(this));
+            window.addEventListener('touchend', this.onTouchEnd_.bind(this));
 
             this.isTouching = false;
             this.rotateStart = new MathUtil.Vector2();
@@ -6553,3 +6553,5 @@ calls being made, such as tooling or effect injectors.
         "./util.js": 22
     }]
 }, {}, [13]);
+
+
