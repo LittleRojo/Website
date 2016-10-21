@@ -60,6 +60,8 @@ function getBox( _ ) {
     });
     var box = new THREE.Mesh( boxGeometry, boxMaterial );
     box.position.set( _.x, _.y, _.z );
+    box.rotateX(-deg(90));
+    box.rotateY(deg(85));
     scene.add( box );
 }
 

@@ -52,7 +52,7 @@ function onload(pageNumber){
     carpet();
     desk();*/
 
-	this.getPlane( {
+	/*this.getPlane( {
         x: 0,
         y: 0,
         z: 15,
@@ -60,13 +60,13 @@ function onload(pageNumber){
         height: 5, 
         color: 0x0FF000, 
         specular: 0x0000FF,
-    });
+    });*/
     //frontWall.rotateX( -deg( 90 ) );
     //scene.add( frontWall );
 
-    for(var i = 0; i < 100; i++ ){
+    //for(var i = 0; i < 100; i++ ){
         this.getBox( {
-            x: -5 * i,
+            x: -5,
             y: 2,
             z: 1.6,
             width: 5,
@@ -74,7 +74,7 @@ function onload(pageNumber){
             depth: 5,
             color: 0xFFF00F,
         } );
-    }
+    //}
 
         
     camera.position.set(-6, 1.4, -1);
