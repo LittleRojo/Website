@@ -4936,13 +4936,13 @@ calls being made, such as tooling or effect injectors.
             // Force this to be above the fullscreen canvas, which is at zIndex: 999999.
             s.zIndex = 1000000;
 
-            /*var img = document.createElement('img');
-            img.src = this.icon;
+            var img = document.createElement('img');
+            //img.src = this.icon;
             var s = img.style;
             s.marginLeft = '25%';
             s.marginTop = '25%';
             s.width = '50%';
-            overlay.appendChild(img);*/
+            overlay.appendChild(img);
 
             var text = document.createElement('div');
             var s = text.style;
