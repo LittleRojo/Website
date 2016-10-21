@@ -46,10 +46,10 @@ function onload(pageNumber){
 	logoGroup = new THREE.Group();
     all = new THREE.Group();
 
-    /*hemiLight();
+    hemiLight();
     directionalLight();
     spotLight();
-    carpet();
+    /*carpet();
     desk();*/
 
 	/*this.getPlane( {
