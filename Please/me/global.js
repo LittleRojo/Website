@@ -50,7 +50,7 @@ function onload(pageNumber){
     directionalLight();
     spotLight();
     carpet();
-    desk();
+    //desk();
 
 	/*this.getPlane( {
         x: 0,
