@@ -48,7 +48,7 @@ tojo12.prototype.UpdateUserKeyboard = function() {
 }
 
 tojo12.prototype.UpdateUserMouse = function() {
-	//App.orbitControls.update();
+	App.orbitControls.update();
     App.vrControls.update();
 
     this.orbitPos = App.camera.position.clone();
