@@ -53,6 +53,11 @@ App.prototype.load = function() {
     this.clock = new THREE.Clock();
     this.renderer = new Renderer();
     this.renderer.load(); 
+
+    this.vrRenderer = new THREE.VREffect( this.renderer );
+    this.vrRenderer.setSize( window.innerWidth, window.innerHeight );
+    document.body.appendChild( this.getButton( this.vrRenderer ) );
+
     this.camera = new Camera( 75, window.innerWidth / window.innerHeight, 0.1, 100 );
     this.camera.load();   
     this.scene = new Scene();
@@ -98,6 +103,44 @@ App.prototype.stopAnimation = function() {
 	App.stopScene = true;
 }
 
+App.prototype.getButton = function( effect ) {
+    this.vrButton = document.createElement( 'button' );
+    this.vrButton.style.position = 'absolute';
+    this.vrButton.style.left = 'calc(50% - 33px)';
+    this.vrButton.style.bottom = '20px';
+    this.vrButton.style.width = '63px';
+    this.vrButton.style.height = '44px';
+    this.vrButton.style.border = '0';
+    this.vrButton.style.padding = '8px';
+    this.vrButton.style.cursor = 'pointer';
+    this.vrButton.style.backgroundColor = '#000';
+    this.vrButton.style.color = '#fff';
+    this.vrButton.style.fontFamily = 'sans-serif';
+    this.vrButton.style.fontSize = '13px';
+    this.vrButton.style.fontStyle = 'normal';
+    this.vrButton.style.textAlign = 'center';
+    this.vrButton.style.zIndex = '999';
+    this.vrButton.textContent = 'VR';
+    this.vrButton.style.backgroundImage = 'url(img/vrLogoIcon.png)';
+    this.vrButton.onclick = function() {
+        if( effect.isPresenting ) {
+            effect.exitPresent();
+        }  
+        else {
+            effect.requestPresent();
+        }
+    };
+
+    window.addEventListener( 'vrdisplaypresentchange', function ( event ) {
+        if( effect.isPresenting ) {
+        }
+        else {
+        }
+        this.vrButton.textContent = effect.isPresenting ? 'FLAT' : 'VR';
+    }, false );
+
+    return this.vrButton;
+}
 function Pixel(){
     this.position = new THREE.Vector2();
     this.color = [],
