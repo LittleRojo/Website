@@ -37,7 +37,8 @@ function onload(pageNumber){
 	effect = new THREE.VREffect( renderer );
 
 	if ( WEBVR.isAvailable() === true ) {
-		document.body.appendChild( WEBVR.getButton( effect ) );
+		vrButton = WEBVR.getButton( effect );
+		document.body.appendChild( vrButton );
 	}
 
 	scene = new THREE.Scene();
@@ -62,19 +63,24 @@ function AnimateScene(delta) {
     camera.position.add(rotatedPosition);
     camera.quaternion.multiply(fakeCamera.quaternion);  
     
-    effect.render( scene, camera )
+    effect.render( scene, camera );
     effect.requestAnimationFrame( AnimateScene );
 
 	camera.position.copy(orbitPos);
 }
 
 function onWindowResize(){
+	if(vrButton !== undefined) {
+		vrButton.style.left = window.innerWidth / 2 - 32 + 'px';
+		vrButton.style.top = window.innerHeight - 68 + 'px';
+	}
+
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
 	renderer.setSize( window.innerWidth, window.innerHeight );
 	effect.setSize( window.innerWidth, window.innerHeight );
 
-	UpdateScene();
+	effect.render( scene, camera )
 }
 
 function onMouseDown() {
