@@ -95,7 +95,7 @@ function onWindowResize(){
 	renderer.setSize( window.innerWidth, window.innerHeight );
 	effect.setSize( window.innerWidth, window.innerHeight );
 
-	UpdateScene();
+	effect.render( scene, camera )
 }
 
 function onMouseDown() {

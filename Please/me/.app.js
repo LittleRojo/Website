@@ -62,7 +62,7 @@ function AnimateScene(delta) {
     camera.position.add(rotatedPosition);
     camera.quaternion.multiply(fakeCamera.quaternion);  
     
-    effect.render( scene, camera )
+    effect.render( scene, camera );
     effect.requestAnimationFrame( AnimateScene );
 
 	camera.position.copy(orbitPos);
@@ -74,7 +74,7 @@ function onWindowResize(){
 	renderer.setSize( window.innerWidth, window.innerHeight );
 	effect.setSize( window.innerWidth, window.innerHeight );
 
-	UpdateScene();
+	effect.render( scene, camera )
 }
 
 function onMouseDown() {
