@@ -46,11 +46,11 @@ function onload(pageNumber){
 	logoGroup = new THREE.Group();
     all = new THREE.Group();
 
-    /*hemiLight();
+    hemiLight();
     directionalLight();
     spotLight();
     carpet();
-    desk();*/
+    desk();
 
 	/*this.getPlane( {
         x: 0,
@@ -64,7 +64,7 @@ function onload(pageNumber){
     //frontWall.rotateX( -deg( 90 ) );
     //scene.add( frontWall );
 
-    //for(var i = 0; i < 100; i++ ){
+    /*for(var i = 0; i < 100; i++ ){
         this.getBox( {
             x: -5,
             y: 2,
@@ -74,7 +74,7 @@ function onload(pageNumber){
             depth: 5,
             color: 0xFFF00F,
         } );
-    //}
+    }*/
 
         
     camera.position.set(-6, 1.4, -1);
