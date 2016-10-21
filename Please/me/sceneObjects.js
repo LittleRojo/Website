@@ -63,7 +63,9 @@ function getBox( _ ) {
     box.rotateX(-deg(90));
     box.rotateY(deg(85));
     box.updateMatrix();
-    
+    box.rotateX(-deg(90));
+    box.rotateY(deg(85));
+
     scene.add( box );
 }
 
