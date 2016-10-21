@@ -4977,7 +4977,7 @@ calls being made, such as tooling or effect injectors.
             snackbar.appendChild(snackbarButton);*/
 
             this.overlay = overlay;
-            this.text = text;
+            //this.text = text;
 
             this.hide();
         }
