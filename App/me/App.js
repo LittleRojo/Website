@@ -28,7 +28,7 @@ var WebVRConfig = {
 loadScript( "js/three.min.js", function() {
     loadScript( "js/webvr-polyfill.js", function() { 
         InitializeWebVRPolyfill();      
-        loadScript( "js/WebVR.js", function() {  
+        loadScript( "js/WebVR2.js", function() {  
             loadScript( "js/VREffect.js", function() {  
                 loadScript( "me/App.Renderer.js", function() {
                     loadScript( "js/VRControls.js", function() {
