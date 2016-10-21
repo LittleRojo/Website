@@ -55,7 +55,7 @@ App.prototype.load = function() {
     this.clock = new THREE.Clock();
     this.renderer = new Renderer();
     this.renderer.load();
-    this.camera = new Camera( 75, window.innerWidth / window.innerHeight, 0.1, 100 );
+    this.camera = new Camera( 75, window.innerWidth / window.innerHeight, 0.1, 100000 );
     this.camera.load();
     this.fakeCamera = new THREE.Object3D();
 	this.vrCamera = new THREE.VRControls( this.fakeCamera );
@@ -75,7 +75,7 @@ App.prototype.load = function() {
 App.prototype.updateFrame = function() {
 	var delta = App.clock.getDelta();
 
-	App.vrCamera.update();
+	//App.vrCamera.update();
     App.experience.updateFrame( delta );
 }
 
