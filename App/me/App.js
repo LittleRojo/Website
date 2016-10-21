@@ -135,7 +135,7 @@ App.prototype.getButton = function( effect ) {
         }
         else {
         }
-        this.vrButton.textContent = effect.isPresenting ? 'FLAT' : 'VR';
+        App.vrButton.textContent = effect.isPresenting ? 'FLAT' : 'VR';
     }, false );
 
     return this.vrButton;
