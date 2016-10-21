@@ -2,84 +2,15 @@ window.addEventListener( 'resize', onWindowResize, false );
 
 var page;
 function onload(pageNumber){
-	page = pageNumber;
-	if((navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i))) {
-		
-		//IPHONE ORIENTATION - PROFILE
-		if(window.orientation === 90 || window.orientation === -90) {
-		}
-
-		//IPHONE ORIANTATION - LANDSCAPE
-		else {  		
-		}
-	}
-
-	//WEB APP LINKING	
-	if(("standalone" in window.navigator) && window.navigator.standalone) {
-		//IPHONE ORIENTATION - PROFILE
-		if(window.orientation === 90 || window.orientation === -90) {
-			var title = document.getElementById( 'navigation' );
-			//title.style.left = window.innerWidth / 2 - 50;
-			//title.style.top = "4px";
-			//title.style.visibility = "visible";
-
-			var main = document.getElementById( 'mainCanvas' );
-			//main.style.top = "20px";			
-		}
-
-		//IPHONE ORIANTATION - LANDSCAPE
-		else {  
-			var title = document.getElementById( 'navigation' );
-			//title.style.left = window.innerWidth / 2 - 50;
-			//title.style.top = "18px";
-			//title.style.visibility = "visible";
-
-			var main = document.getElementById( 'mainCanvas' );
-			//main.style.top = "38px";
-		} 	    
-	}
-	else {
-		/*var title = document.getElementById( 'navigation' );
-		title.style.left = window.innerWidth / 2 - 50;
-		title.style.top = "1px";
-		title.style.visibility = "visible";*/
-
-		var main = document.getElementById( 'mainCanvas' );
-		//main.style.top = "20px";
-	}
-
-	App = new Set();
-	if(page == "10") { 
-		var tojo = new tojo10(); 
-
-		var speed = document.getElementById( 'speed' );
-		speed.style.width = ((window.innerWidth - 0) / 3);
-		speed.style.left = 0;
-		speed.style.top = window.innerHeight - 25;
-		speed.style.visibility = "visible";
-
-		var camera = document.getElementById( 'camera' );
-		camera.style.width = ((window.innerWidth - 0) / 3);
-		camera.style.left = ((window.innerWidth - 0) / 3);
-		camera.style.top = window.innerHeight - 25;
-		camera.style.visibility = "visible";
-
-		var oddball = document.getElementById( 'oddball' );
-		oddball.style.width = ((window.innerWidth - 0) / 3);
-		oddball.style.left = ((window.innerWidth - 0) / 3) * 2;
-		oddball.style.top = window.innerHeight - 25;
-		oddball.style.visibility = "visible";
-	}
-	else if(page == "11") { 
-		var tojo = new tojo11();
-	}
-	else if(page == "12") {
-		var tojo = new tojo12();
-	}
-	App.Stage(main, tojo);
 
 	var mainCanvas = document.getElementById( 'mainCanvas' );
 	mainCanvas.style.visibility = 'visible';
+
+	App = new Set();
+	var tojo = new tojo12();	
+	App.Stage(mainCanvas, tojo);
+
+	
 }
 
 var xRoot = .00386699;
