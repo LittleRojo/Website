@@ -96,7 +96,7 @@ App.prototype.startAnimation = function() {
 	App.updateFrame();  
 	App.render();
 
-    App.renderer.vrRenderer.requestAnimationFrame( App.startAnimation );	
+    App.vrRenderer.requestAnimationFrame( App.startAnimation );	
 }
 
 App.prototype.stopAnimation = function() {
