@@ -71,26 +71,20 @@ function AnimateScene(delta) {
 
     orbitPos = camera.position.clone();
     
-    // Apply the VR HMD camera position and rotation
-    // on top of the orbited camera.
     var rotatedPosition = fakeCamera.position.applyQuaternion( camera.quaternion );
     camera.position.add(rotatedPosition);
     camera.quaternion.multiply(fakeCamera.quaternion);  
     
     effect.render( scene, camera )
-
-    camera.position.copy(orbitPos);
-
     effect.requestAnimationFrame( AnimateScene );
+
+	camera.position.copy(orbitPos);
 }
 
 function onWindowResize(){
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
 	renderer.setSize( window.innerWidth, window.innerHeight );
-	
-	camera.aspect = window.innerWidth / window.innerHeight;
-	camera.updateProjectionMatrix();
 	effect.setSize( window.innerWidth, window.innerHeight );
 
 	UpdateScene();
