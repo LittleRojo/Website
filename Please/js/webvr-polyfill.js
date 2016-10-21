@@ -4942,19 +4942,9 @@ calls being made, such as tooling or effect injectors.
             s.marginLeft = '25%';
             s.marginTop = '25%';
             s.width = '50%';
-            overlay.appendChild(img);
+            overlay.appendChild(img);         
 
-            var text = document.createElement('div');
-            var s = text.style;
-            s.textAlign = 'center';
-            s.fontSize = '16px';
-            s.lineHeight = '24px';
-            s.margin = '24px 25%';
-            s.width = '50%';
-            text.innerHTML = 'Place your phone into your Cardboard viewer.';
-            overlay.appendChild(text);
-
-            var snackbar = document.createElement('div');
+            /*var snackbar = document.createElement('div');
             var s = snackbar.style;
             s.backgroundColor = '#CFD8DC';
             s.position = 'fixed';
@@ -4984,7 +4974,7 @@ calls being made, such as tooling or effect injectors.
             s.color = '#656A6B';
 
             snackbar.appendChild(snackbarText);
-            snackbar.appendChild(snackbarButton);
+            snackbar.appendChild(snackbarButton);*/
 
             this.overlay = overlay;
             this.text = text;
