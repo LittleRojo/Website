@@ -177,6 +177,7 @@ Controls.prototype.getButton = function( effect ) {
         else {
             App.rightJoystick._baseEl.style.visibility = 'visible';
             App.leftJoystick._baseEl.style.visibility = 'visible';
+            effect.
         }
         App.Controls.vrButton.textContent = effect.isPresenting ? 'FLAT' : 'VR';
     }, false );

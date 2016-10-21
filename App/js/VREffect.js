@@ -423,7 +423,7 @@ THREE.VREffect = function ( renderer, onError ) {
 		m[ 2 * 4 + 2 ] = zFar / ( zNear - zFar ) * - handednessScale;
 		m[ 2 * 4 + 3 ] = ( zFar * zNear ) / ( zNear - zFar );
 
-		// W result (ml= Z in)
+		// W result (= Z in)
 		m[ 3 * 4 + 0 ] = 0.0;
 		m[ 3 * 4 + 1 ] = 0.0;
 		m[ 3 * 4 + 2 ] = handednessScale;
@@ -451,5 +451,4 @@ THREE.VREffect = function ( renderer, onError ) {
 	}
 
 };
-
 
