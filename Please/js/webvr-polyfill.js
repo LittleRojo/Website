@@ -4933,7 +4933,6 @@ calls being made, such as tooling or effect injectors.
             s.left = 0;
             s.backgroundColor = 'gray';
             s.fontFamily = 'sans-serif';
-            // Force this to be above the fullscreen canvas, which is at zIndex: 999999.
             s.zIndex = 1000000;
 
             var img = document.createElement('img');
