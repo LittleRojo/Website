@@ -69,16 +69,16 @@ function AnimateScene(delta) {
 	orbitControls.update();
     vrControls.update();
 
-    orbitPos = camera.position.clone();
+    //orbitPos = camera.position.clone();
     
-    var rotatedPosition = fakeCamera.position.applyQuaternion( camera.quaternion );
-    camera.position.add(rotatedPosition);
-    camera.quaternion.multiply(fakeCamera.quaternion);  
+    //var rotatedPosition = fakeCamera.position.applyQuaternion( camera.quaternion );
+    //camera.position.add(rotatedPosition);
+    //camera.quaternion.multiply(fakeCamera.quaternion);  
     
     effect.render( scene, camera )
     effect.requestAnimationFrame( AnimateScene );
 
-	camera.position.copy(orbitPos);
+	//camera.position.copy(orbitPos);
 }
 
 function onWindowResize(){
