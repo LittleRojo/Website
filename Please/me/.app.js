@@ -43,27 +43,6 @@ function onload(pageNumber){
 	scene = new THREE.Scene();
     clock = new THREE.Clock();
 
-	logoGroup = new THREE.Group();
-    all = new THREE.Group();
-
-    hemiLight();
-    directionalLight();
-    spotLight();
-    carpet();
-	getBox( {
-		x: -5,
-		y: 2,
-		z: 1.6,
-		width: 5,
-		height: .1,
-		depth: 5,
-		color: 0xFFF00F,
-	} );
-        
-    camera.position.set(-6, 1.4, -1);
-    scene.rotation.x = -Math.PI/2;
-    scene.add(all);
-
     AnimateScene();	
 }
 
@@ -128,12 +107,4 @@ function onTouchEnd() {
 
 function onKeyDown() {
 	
-}
-
-function deg(degree) { 
-    return degree*(Math.PI/180); 
-}
-
-function rand(min, max) {
-    return Math.random() * max + min;
 }

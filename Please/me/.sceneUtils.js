@@ -507,3 +507,11 @@ function desk() {
     //spotLight.position.set( 0,0,0 );
     //scene.add(spotLight);
 }
+
+function deg(degree) { 
+    return degree*(Math.PI/180); 
+}
+
+function rand(min, max) {
+    return Math.random() * max + min;
+}
