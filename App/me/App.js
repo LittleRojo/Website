@@ -76,7 +76,7 @@ App.prototype.render = function() {
     App.camera.position.add(rotatedPosition);
     App.camera.quaternion.multiply(App.camera.fakeCamera.quaternion);
 
-    App.renderer.render( App.experience, App.camera );
+    App.renderer.vrRenderer.render( App.experience, App.camera );
   
     App.camera.position.copy(App.camera.orbitPos);
 	App.camera.rotation.copy(App.camera.orbitRot);
