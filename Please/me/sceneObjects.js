@@ -2,7 +2,7 @@ function hemiLight() {
     hemiLight = new THREE.HemisphereLight( 0xffffff, 0xffffff, .4 );
     hemiLight.position.set( -1, 0, 0 );
     //hemiLight.castShadow = true;
-    App.tojo.scene.add( hemiLight );
+    scene.add( hemiLight );
 }
 
 function directionalLight() {
@@ -16,7 +16,7 @@ function directionalLight() {
     dirLight.shadowCameraBottom = -100;
     dirLight.shadowMapHeight = 2048;
     //dirLight.shadowDarkness = 0.5;
-    App.tojo.scene.add( dirLight );
+    scene.add( dirLight );
 }
 
 function spotLight() {
@@ -24,7 +24,7 @@ function spotLight() {
     spotLight.position.set( 0,15,-10 );
     spotLight.shadowMapWidth = 2048;
     spotLight.shadowMapWidth = 2048;
-    App.tojo.scene.add(spotLight);
+    scene.add(spotLight);
 }
 
 function ground() {
@@ -43,7 +43,7 @@ function ground() {
     ground.rotation.z = -deg(45);
     //ground.position.z = -10;
     ground.receiveShadow = true;
-    App.tojo.scene.add( ground ); 
+    scene.add( ground ); 
 }
 
 function sky() {
@@ -75,7 +75,7 @@ function sky() {
     });
 
     var sky = new THREE.Mesh( skyGeo, skyMat );
-    App.tojo.scene.add( sky );
+    scene.add( sky );
 }
 
 function stars() {
@@ -114,7 +114,7 @@ function stars() {
     
     var particleSystem = new THREE.Points(geometry, material);
     particleSystem.shading = THREE.FlatShading;
-    App.tojo.scene.add(particleSystem);
+    scene.add(particleSystem);
 }
 
 function capSpireLogo() {
@@ -310,7 +310,7 @@ function capSpireName() {
         mesh.castShadow = true;
         mesh.receiveShadow = true;
         App.tojo.groupName.add( mesh );        
-        App.tojo.scene.add( App.tojo.groupName );*/
+        scene.add( App.tojo.groupName );*/
         var i = new THREE.BoxGeometry(2.2, 14.9, 2);
         var material2 = new THREE.MeshBasicMaterial( { color: 0x8B9B93 } );
         var mesh2 = new THREE.Mesh(i, material2);
@@ -349,8 +349,8 @@ function capSpireName() {
 }
 
 function clouds() {
-    //App.tojo.scene.fog = new THREE.Fog( 0xffffff, 100, 5000 );
-    //App.tojo.scene.fog = new THREE.FogExp2( 0Xffffff, 0.00025 );
+    //scene.fog = new THREE.Fog( 0xffffff, 100, 5000 );
+    //scene.fog = new THREE.FogExp2( 0Xffffff, 0.00025 );
 }
 
 function sun() {
@@ -372,18 +372,18 @@ function sun() {
     mesh.position.x = -50;
     mesh.position.y = 20000;
     mesh.position.z = -50000;
-    App.tojo.scene.add(mesh);
+    scene.add(mesh);
 
     //LIGHT FROM
     var spotLight = new THREE.AmbientLight( 0xffffff, .4 );
     spotLight.position.set( 0,100,-200 );
-    App.tojo.scene.add(spotLight);
+    scene.add(spotLight);
 
     //LIGHT TO
     var directionalLight = new THREE.PointLight( 0xfeffad, 1.8 );
     directionalLight.target = mesh;
     directionalLight.position.set( -50,20000,-46000 );
-    App.tojo.scene.add(directionalLight);
+    scene.add(directionalLight);
 }
 
 function carpet() {
@@ -395,7 +395,7 @@ function carpet() {
     //ground.rotation.z = deg(25);
     //ground.position.z = -10;
     ground.receiveShadow = true;
-    App.tojo.scene.add( ground ); 
+    scene.add( ground ); 
 }
 
 function desk() {    
@@ -418,7 +418,7 @@ function desk() {
     mesh.updateMatrix();
     mesh.rotateX(-deg(90));
     mesh.rotateY(deg(85));
-    App.tojo.scene.add( mesh );
+    scene.add( mesh );
     
 
     //App.orbitControls.target = mesh.position;
@@ -430,9 +430,9 @@ function desk() {
     //mesh.position.x = -5;
     //mesh.position.y = 10;
     //mesh.position.z = -10;
-    App.tojo.scene.add(mesh);*/
+    scene.add(mesh);*/
 
     //var spotLight = new THREE.AmbientLight( 0xffffff, 10.4 );
     //spotLight.position.set( 0,0,0 );
-    //App.tojo.scene.add(spotLight);
+    //scene.add(spotLight);
 }
