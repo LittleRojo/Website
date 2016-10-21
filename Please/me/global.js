@@ -46,11 +46,37 @@ function onload(pageNumber){
 	logoGroup = new THREE.Group();
     all = new THREE.Group();
 
-    hemiLight();
+    /*hemiLight();
     directionalLight();
     spotLight();
     carpet();
-    desk();
+    desk();*/
+
+	var frontWall = this.getPlane( {
+        x: 0,
+        y: 0,
+        z: 15,
+        width: 100,
+        height: 100, 
+        color: 0x0FF000, 
+        specular: 0x0000FF,
+    });
+    frontWall.rotateX( -deg( 90 ) );
+    scene.add( frontWall );
+
+    for(var i = 0; i < 100; i++ ){
+        var room = this.getBox( {
+            x: 5 * i,
+            y: 0,
+            z: -30,
+            width: 25,
+            height: 25,
+            depth: 25,
+            color: 0xFFF00F,
+        } );
+        scene.add( room );
+    }
+
         
     camera.position.set(-6, 1.4, -1);
     scene.rotation.x = -Math.PI/2;
@@ -69,16 +95,16 @@ function AnimateScene(delta) {
 	orbitControls.update();
     vrControls.update();
 
-    //orbitPos = camera.position.clone();
+    orbitPos = camera.position.clone();
     
-    //var rotatedPosition = fakeCamera.position.applyQuaternion( camera.quaternion );
-    //camera.position.add(rotatedPosition);
-    //camera.quaternion.multiply(fakeCamera.quaternion);  
+    var rotatedPosition = fakeCamera.position.applyQuaternion( camera.quaternion );
+    camera.position.add(rotatedPosition);
+    camera.quaternion.multiply(fakeCamera.quaternion);  
     
     effect.render( scene, camera )
     effect.requestAnimationFrame( AnimateScene );
 
-	//camera.position.copy(orbitPos);
+	camera.position.copy(orbitPos);
 }
 
 function onWindowResize(){
