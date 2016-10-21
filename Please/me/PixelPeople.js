@@ -44,6 +44,11 @@ function onload(pageNumber){
 	scene = new THREE.Scene();
     clock = new THREE.Clock();
 
+	/*hemiLight();*/
+    directionalLight();
+    spotLight();
+    carpet();
+
     AnimateScene();	
 }
 
