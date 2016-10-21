@@ -18,6 +18,8 @@ Controls.prototype.load = function() {
     //CAMERA
     App.camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000000 );
 	App.camera.position.set( 0, 5, 10 );
+    App.camera.aspect = window.innerWidth / window.innerHeight;
+    App.camera.updateProjectionMatrix();
 
     //JOYSTICKS
     App.leftJoystickColor = 'cyan';
@@ -74,6 +76,7 @@ Controls.prototype.load = function() {
     App.fakeCamera = new THREE.Object3D();
 	App.vrControls = new THREE.VRControls( App.fakeCamera );
 	App.effect = new THREE.VREffect( App.renderer );
+    App.effect.setSize( window.innerWidth, window.innerHeight );
     document.body.appendChild( App.Controls.getButton( App.effect ) );
 	//App.Controls.createButton( App.effect );
 
@@ -177,7 +180,6 @@ Controls.prototype.getButton = function( effect ) {
         else {
             App.rightJoystick._baseEl.style.visibility = 'visible';
             App.leftJoystick._baseEl.style.visibility = 'visible';
-            effect.
         }
         App.Controls.vrButton.textContent = effect.isPresenting ? 'FLAT' : 'VR';
     }, false );
