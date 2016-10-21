@@ -20,10 +20,6 @@ loadScript = function( url, onLoaded, onCompleted ) {
     return script;
 }
 
-var WebVRConfig = { 
-        DEFER_INITIALIZATION: true,
-        //ROTATE_INSTRUCTIONS_DISABLED: true,
-    }
 /*
 loadScript( "js/three.min.js", function() {
     loadScript( "js/webvr-polyfill.js", function() { 
@@ -75,7 +71,7 @@ App.prototype.load = function() {
 App.prototype.updateFrame = function() {
 	var delta = App.clock.getDelta();
 
-	//App.vrCamera.update();
+	App.vrCamera.update();
     App.experience.updateFrame( delta );
 }
 
