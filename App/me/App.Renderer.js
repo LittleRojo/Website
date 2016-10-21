@@ -17,8 +17,6 @@ Renderer.prototype.load = function() {
     this.shadowMap.renderReverseSided = false;
 	this.sortObjects = false;
 
-
-
 	this.mainCanvas = this.domElement;
     document.body.appendChild( this.mainCanvas );
 }

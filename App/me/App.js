@@ -52,16 +52,14 @@ App = function() {
 App.prototype.load = function() {
     this.clock = new THREE.Clock();
     this.renderer = new Renderer();
-    this.renderer.load(); 
-
+    this.renderer.load();
+    this.camera = new Camera( 75, window.innerWidth / window.innerHeight, 0.1, 100 );
+    this.camera.load();
+    this.scene = new Scene();
+    this.scene.load();
     this.vrRenderer = new THREE.VREffect( this.renderer );
     this.vrRenderer.setSize( window.innerWidth, window.innerHeight );
     document.body.appendChild( this.getButton( this.vrRenderer ) );
-
-    this.camera = new Camera( 75, window.innerWidth / window.innerHeight, 0.1, 100 );
-    this.camera.load();   
-    this.scene = new Scene();
-    this.scene.load();
     this.experience = new tojo13();
     this.experience.load();
 }
