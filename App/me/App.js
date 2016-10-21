@@ -1,22 +1,88 @@
-var App = App || { };
-
-App.event = {
-    addListener: function(el, type, fn) {
-    },
-    removeListener: function(el, type, fn) {
-    },
-    getEvent: function(e) {
+loadedScripts = {};
+loadScript = function( url, onLoaded, onCompleted ) {
+    if( url in loadedScripts ) {        
+        return;
     }
+    loadedScripts[url] = script;
+
+    var script = document.createElement( "script" );
+    script.setAttribute( 'type', "text/javascript" );
+    script.setAttribute( 'src', url );
+    script.setAttribute( 'id', url );
+    script.onLoadedCallback = onLoaded;
+    script.onCompletedCallback = onCompleted;
+    script.onload = function() {        
+        if ( this.onLoadedCallback != null ) {
+            this.onLoadedCallback.call( this );   
+        }
+    }
+    document.head.appendChild( script );
+    return script;
 }
 
-App.camera = new Camera( 75, window.innerWidth / window.innerHeight, 0.1, 100 );
-App.renderer = new Renderer();
-App.scene = new Scene();
+var WebVRConfig = { 
+        DEFER_INITIALIZATION: true,
+        //ROTATE_INSTRUCTIONS_DISABLED: true,
+    }
 
-App.mainCanvas = App.renderer.domElement;
-document.body.appendChild( App.mainCanvas ); 
+loadScript( "js/three.min.js", function() {
+    loadScript( "js/webvr-polyfill.js", function() { 
+        InitializeWebVRPolyfill       
+        loadScript( "js/VREffect.js", function() {  
+            loadScript( "me/App.Renderer.js", function() {
+                loadScript( "js/VRControls.js", function() {
+                    loadScript( "me/App.Camera.js", function() {
+                        loadScript( "me/App.Scene.js", function() {   
+                            loadScript( "me/App.tojo13.js", function() {                              
+                                App = new App();   		
+                                App.load();
+                                App.startAnimation();
+                            } );
+                        } );
+                    } );
+                } );
+            } ); 
+        } );
+    } );  
+} );
 
-App.startAnimation = function() {
+App = function() { 
+}
+
+App.prototype.load = function() {
+    this.clock = new THREE.Clock();
+    this.renderer = new Renderer();
+    this.renderer.load(); 
+    this.camera = new Camera( 75, window.innerWidth / window.innerHeight, 0.1, 100 );
+    this.camera.load();   
+    this.scene = new Scene();
+    this.scene.load();
+    this.experience = new tojo13();
+    this.experience.load();
+}
+
+App.prototype.updateFrame = function() {
+	var delta = App.clock.getDelta();
+
+	App.camera.updateFrame( delta );
+	App.scene.updateFrame( delta );
+    App.experience.updateFrame( delta );
+}
+
+App.prototype.render = function() {
+    App.camera.orbitPos = App.camera.position.clone();   
+	App.camera.orbitRot = App.camera.rotation.clone();
+    var rotatedPosition = App.camera.position.applyQuaternion( App.camera.quaternion );
+    App.camera.position.add(rotatedPosition);
+    App.camera.quaternion.multiply(App.camera.fakeCamera.quaternion);
+
+    App.renderer.render( App.experience, App.camera );
+  
+    App.camera.position.copy(App.camera.orbitPos);
+	App.camera.rotation.copy(App.camera.orbitRot);
+}
+
+App.prototype.startAnimation = function() {
     if( App.stopScene ) {
         App.startScene = false;
         return;
@@ -25,31 +91,26 @@ App.startAnimation = function() {
 	App.updateFrame();  
 	App.render();
 
-    App.effect.requestAnimationFrame( App.startAnimation );	
+    App.renderer.vrRenderer.requestAnimationFrame( App.startAnimation );	
 }
 
-App.stopAnimation = function() {
+App.prototype.stopAnimation = function() {
 	App.stopScene = true;
 }
 
-App.updateFrame = function() {
-	var delta = App.clock.getDelta();
-	App.updateLights( delta );
-	App.updateModels( delta );
-	App.updateCamera( delta );	
-
-	App.vrControls.update();
-
-	App.orbitPos = App.camera.position.clone();   
-	App.orbitRot = App.camera.rotation.clone();
-    var rotatedPosition = App.fakeCamera.position.applyQuaternion( App.camera.quaternion );
-    App.camera.position.add(rotatedPosition);
-    App.camera.quaternion.multiply(App.fakeCamera.quaternion);
+function Pixel(){
+    this.position = new THREE.Vector2();
+    this.color = [],
+    this.size = 1;
 }
 
-App.render = function() {
-    App.effect.render( App.scene, App.camera );
-	
-	App.camera.position.copy(App.orbitPos);
-	App.camera.rotation.copy(App.orbitRot);
+function deg( degree ) { 
+    return degree * ( Math.PI/180 ); 
+}
+
+function rand( min, max ) {
+    return Math.random() * max + min;
+}
+
+function apply( object ) {
 }
