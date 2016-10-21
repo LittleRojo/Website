@@ -4950,7 +4950,7 @@ calls being made, such as tooling or effect injectors.
             s.fontSize = '18px';
             s.lineHeight = '24px';
             s.margin = '24px 25%';
-            s.width = '80%';
+            s.width = '50%';
             text.innerHTML = 'Turn your phone sideways to use VR';
             overlay.appendChild(text);
 
