@@ -52,7 +52,7 @@ function onload(pageNumber){
     carpet();
     desk();*/
 
-	var frontWall = this.getPlane( {
+	this.getPlane( {
         x: 0,
         y: 0,
         z: 15,
@@ -61,11 +61,11 @@ function onload(pageNumber){
         color: 0x0FF000, 
         specular: 0x0000FF,
     });
-    frontWall.rotateX( -deg( 90 ) );
-    scene.add( frontWall );
+    //frontWall.rotateX( -deg( 90 ) );
+    //scene.add( frontWall );
 
     for(var i = 0; i < 100; i++ ){
-        var room = this.getBox( {
+        this.getBox( {
             x: -5 * i,
             y: 2,
             z: 1.6,
@@ -74,7 +74,6 @@ function onload(pageNumber){
             depth: 5,
             color: 0xFFF00F,
         } );
-        scene.add( room );
     }
 
         

@@ -19,7 +19,7 @@ function getPlane( _ ) {
     plane.position.y = _.y;
     plane.position.z = _.z;
     //plane.receiveShadow = true;
-    return plane;
+    scene.add( plane );
 }
 
 function getSphere( _ ) {
@@ -60,7 +60,7 @@ function getBox( _ ) {
     });
     var box = new THREE.Mesh( boxGeometry, boxMaterial );
     box.position.set( _.x, _.y, _.z );
-    return box;
+    scene.add( box );
 }
 
 function hemiLight() {
