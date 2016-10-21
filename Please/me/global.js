@@ -56,8 +56,8 @@ function onload(pageNumber){
         x: 0,
         y: 0,
         z: 15,
-        width: 100,
-        height: 100, 
+        width: 5,
+        height: 5, 
         color: 0x0FF000, 
         specular: 0x0000FF,
     });
@@ -66,12 +66,12 @@ function onload(pageNumber){
 
     for(var i = 0; i < 100; i++ ){
         var room = this.getBox( {
-            x: 5 * i,
-            y: 0,
-            z: -30,
-            width: 25,
-            height: 25,
-            depth: 25,
+            x: -5 * i,
+            y: 2,
+            z: 1.6,
+            width: 5,
+            height: .1,
+            depth: 5,
             color: 0xFFF00F,
         } );
         scene.add( room );
