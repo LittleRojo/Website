@@ -6,6 +6,8 @@ Camera.prototype = Object.create( THREE.PerspectiveCamera.prototype );
 Camera.prototype.constructor = Camera;
 
 Camera.prototype.load = function() {
+    this.aspect = window.innerWidth / window.innerHeight;
+    this.camera.updateProjectionMatrix();
     this.fakeCamera = new THREE.Object3D();
 	this.vrCamera = new THREE.VRControls( this.fakeCamera );
 }

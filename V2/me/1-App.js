@@ -10,6 +10,7 @@ var polyfillScript  = loadScript( "js/webvr-polyfill.js", function() {
 			var vrEffectScript = loadScript( "js/VREffect.js", function() {
 				var vrEffectScript = loadScript( "js/VirtualJoystick.js", function() {
 					InitializeWebVRPolyfill();
+					App = new App();
 					App.load();				
 					if( appScript.onLoadedCallback != null ) {
 						appScript.onLoadedCallback.call( self );							

@@ -17,7 +17,7 @@ Renderer.prototype.load = function() {
     this.shadowMap.renderReverseSided = false;
 	this.sortObjects = false;
 
-	this.vrRenderer = new THREE.VREffect( this );
+	this.vrRenderer = new THREE.VREffect( App.renderer );
     this.vrRenderer.setSize( window.innerWidth, window.innerHeight );
     document.body.appendChild( this.getButton( this.vrRenderer ) );
 
