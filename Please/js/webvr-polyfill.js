@@ -4931,7 +4931,7 @@ calls being made, such as tooling or effect injectors.
             s.right = 0;
             s.bottom = 0;
             s.left = 0;
-            s.backgroundColor = 'transperant';
+            s.backgroundColor = 'gray';
             s.fontFamily = 'sans-serif';
             // Force this to be above the fullscreen canvas, which is at zIndex: 999999.
             s.zIndex = 1000000;
