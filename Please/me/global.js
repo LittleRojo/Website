@@ -50,32 +50,15 @@ function onload(pageNumber){
     directionalLight();
     spotLight();
     carpet();
-    //desk();
-
-	/*this.getPlane( {
-        x: 0,
-        y: 0,
-        z: 15,
-        width: 5,
-        height: 5, 
-        color: 0x0FF000, 
-        specular: 0x0000FF,
-    });*/
-    //frontWall.rotateX( -deg( 90 ) );
-    //scene.add( frontWall );
-
-    for(var i = 0; i < 100; i++ ){
-        getBox( {
-            x: -5,
-            y: 2,
-            z: 1.6,
-            width: 5,
-            height: .1,
-            depth: 5,
-            color: 0xFFF00F,
-        } );
-    }
-
+	getBox( {
+		x: -5,
+		y: 2,
+		z: 1.6,
+		width: 5,
+		height: .1,
+		depth: 5,
+		color: 0xFFF00F,
+	} );
         
     camera.position.set(-6, 1.4, -1);
     scene.rotation.x = -Math.PI/2;
@@ -145,4 +128,12 @@ function onTouchEnd() {
 
 function onKeyDown() {
 	
+}
+
+function deg(degree) { 
+    return degree*(Math.PI/180); 
+}
+
+function rand(min, max) {
+    return Math.random() * max + min;
 }
