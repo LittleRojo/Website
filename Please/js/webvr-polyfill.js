@@ -4936,21 +4936,21 @@ calls being made, such as tooling or effect injectors.
             // Force this to be above the fullscreen canvas, which is at zIndex: 999999.
             s.zIndex = 1000000;
 
-            var img = document.createElement('img');
+            /*var img = document.createElement('img');
             img.src = this.icon;
             var s = img.style;
             s.marginLeft = '25%';
             s.marginTop = '25%';
             s.width = '50%';
-            overlay.appendChild(img);
+            overlay.appendChild(img);*/
 
             var text = document.createElement('div');
             var s = text.style;
             s.textAlign = 'center';
-            s.fontSize = '16px';
+            s.fontSize = '18px';
             s.lineHeight = '24px';
             s.margin = '24px 25%';
-            s.width = '50%';
+            s.width = '80%';
             text.innerHTML = 'Turn your phone sideways to use VR';
             overlay.appendChild(text);
 
