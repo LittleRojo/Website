@@ -8,4 +8,5 @@ Camera.prototype.constructor = Camera;
 Camera.prototype.load = function() {
     this.aspect = window.innerWidth / window.innerHeight;
     this.updateProjectionMatrix();    
+    this.orbitControls = new THREE.OrbitControls(this);
 }

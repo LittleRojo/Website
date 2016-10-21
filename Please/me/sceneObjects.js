@@ -421,7 +421,7 @@ function desk() {
     App.tojo.scene.add( mesh );
     
 
-    App.orbitControls.target = mesh.position;
+    //App.orbitControls.target = mesh.position;
     /*var geometry = new THREE.SphereGeometry(1000, 10, 10);
     var material = new THREE.MeshPhongMaterial( { 
         color:0xFF0000, 

@@ -71,6 +71,7 @@ App.prototype.load = function() {
 App.prototype.updateFrame = function() {
 	var delta = App.clock.getDelta();
 
+    App.camera.orbitControls.update();
 	App.vrCamera.update();
     App.experience.updateFrame( delta );
 }
