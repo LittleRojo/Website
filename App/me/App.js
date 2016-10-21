@@ -24,7 +24,7 @@ var WebVRConfig = {
         DEFER_INITIALIZATION: true,
         //ROTATE_INSTRUCTIONS_DISABLED: true,
     }
-
+/*
 loadScript( "js/three.min.js", function() {
     loadScript( "js/webvr-polyfill.js", function() { 
         InitializeWebVRPolyfill();      
@@ -46,7 +46,7 @@ loadScript( "js/three.min.js", function() {
             } ); 
         } );
     } );  
-} );
+} );*/
 
 App = function() { 
 }
@@ -161,4 +161,10 @@ function rand( min, max ) {
 }
 
 function apply( object ) {
+}
+
+function go() {
+    App = new App();   		
+    App.load();
+    App.startAnimation();
 }
