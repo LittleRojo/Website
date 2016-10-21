@@ -59,9 +59,9 @@ function getBox( _ ) {
         color: _.color,
     });
     var box = new THREE.Mesh( boxGeometry, boxMaterial );
-    box.position.set( _.x, _.y, _.z );
-    box.rotateX(-deg(90));
-    box.rotateY(deg(85));
+    box.translateX(-6);
+    box.translateY(2);
+    box.translateZ(1.3);
     box.updateMatrix();
     box.rotateX(-deg(90));
     box.rotateY(deg(85));
