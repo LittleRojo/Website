@@ -55,6 +55,8 @@ App.prototype.load = function() {
     this.renderer.load();
     this.camera = new Camera( 75, window.innerWidth / window.innerHeight, 0.1, 100 );
     this.camera.load();
+    this.fakeCamera = new THREE.Object3D();
+	this.vrCamera = new THREE.VRControls( this.fakeCamera );
     this.scene = new Scene();
     this.scene.load();
     this.vrRenderer = new THREE.VREffect( this.renderer );
@@ -67,8 +69,7 @@ App.prototype.load = function() {
 App.prototype.updateFrame = function() {
 	var delta = App.clock.getDelta();
 
-	App.camera.updateFrame( delta );
-	App.scene.updateFrame( delta );
+	App.vrCamera.update();
     App.experience.updateFrame( delta );
 }
 
@@ -77,7 +78,7 @@ App.prototype.render = function() {
 	App.camera.orbitRot = App.camera.rotation.clone();
     var rotatedPosition = App.camera.position.applyQuaternion( App.camera.quaternion );
     App.camera.position.add(rotatedPosition);
-    App.camera.quaternion.multiply(App.camera.fakeCamera.quaternion);
+    App.camera.quaternion.multiply(App.fakeCamera.quaternion);
 
     App.vrRenderer.render( App.experience, App.camera );
   

@@ -7,11 +7,5 @@ Camera.prototype.constructor = Camera;
 
 Camera.prototype.load = function() {
     this.aspect = window.innerWidth / window.innerHeight;
-    this.updateProjectionMatrix();
-    this.fakeCamera = new THREE.Object3D();
-	this.vrCamera = new THREE.VRControls( this.fakeCamera );
-}
-
-Camera.prototype.updateFrame = function( delta ) {
-    this.vrCamera.update();
+    this.updateProjectionMatrix();    
 }
