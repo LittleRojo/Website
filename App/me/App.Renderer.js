@@ -1,7 +1,5 @@
-Renderer = function() {
-	var canvas = document.getElementById( "mainCanvas" );    
+Renderer = function() {    
     THREE.WebGLRenderer.call( this, {		
-		canvas: canvas,
 		antilias: true, 
 		alpha: true, 
 		clearAlpha: 1
@@ -18,4 +16,7 @@ Renderer.prototype.load = function() {
 	this.shadowMap.enabled = true;
     this.shadowMap.renderReverseSided = false;
 	this.sortObjects = false;
+
+	this.mainCanvas = this.domElement;
+    document.body.appendChild( this.mainCanvas );
 }

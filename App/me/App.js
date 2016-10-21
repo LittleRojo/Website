@@ -28,15 +28,17 @@ var WebVRConfig = {
 loadScript( "js/three.min.js", function() {
     loadScript( "js/webvr-polyfill.js", function() { 
         InitializeWebVRPolyfill();      
-        loadScript( "js/VREffect.js", function() {  
-            loadScript( "me/App.Renderer.js", function() {
-                loadScript( "js/VRControls.js", function() {
-                    loadScript( "me/App.Camera.js", function() {
-                        loadScript( "me/App.Scene.js", function() {   
-                            loadScript( "me/App.tojo13.js", function() {                              
-                                App = new App();   		
-                                App.load();
-                                App.startAnimation();
+        loadScript( "js/WebVR.js", function() {  
+            loadScript( "js/VREffect.js", function() {  
+                loadScript( "me/App.Renderer.js", function() {
+                    loadScript( "js/VRControls.js", function() {
+                        loadScript( "me/App.Camera.js", function() {
+                            loadScript( "me/App.Scene.js", function() {   
+                                loadScript( "me/App.tojo13.js", function() {                              
+                                    App = new App();   		
+                                    App.load();
+                                    App.startAnimation();
+                                } );
                             } );
                         } );
                     } );
@@ -61,7 +63,11 @@ App.prototype.load = function() {
     this.scene.load();
     this.vrRenderer = new THREE.VREffect( this.renderer );
     this.vrRenderer.setSize( window.innerWidth, window.innerHeight );
-    document.body.appendChild( this.getButton( this.vrRenderer ) );
+    
+    if ( WEBVR.isAvailable() === true ) {
+		document.body.appendChild( WEBVR.getButton( this.vrRenderer ) );
+	}
+
     this.experience = new tojo13();
     this.experience.load();
 }
