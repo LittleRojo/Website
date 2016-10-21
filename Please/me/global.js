@@ -49,8 +49,8 @@ function onload(pageNumber){
     hemiLight();
     directionalLight();
     spotLight();
-    /*carpet();
-    desk();*/
+    carpet();
+    desk();
 
 	/*this.getPlane( {
         x: 0,
