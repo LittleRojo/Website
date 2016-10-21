@@ -92,7 +92,7 @@ var WEBVR = {
 
 		window.addEventListener( 'vrdisplaypresentchange', function ( event ) {
 
-			//button.textContent = effect.isPresenting ? 'FLAT' : 'VR';
+			button.style.backgroundImage = effect.isPresenting ? "url('img/flatLogoIcon.png')" : "url('img/vrLogoIcon2.png')" ;
 
 		}, false );
 
