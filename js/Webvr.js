@@ -72,31 +72,30 @@ var WEBVR = {
 
 		var button = document.createElement( 'button' );
 		button.style.position = 'absolute';
-		button.style.left = 'calc(50% - 50px)';
-		button.style.bottom = '88px';
-		button.style.width = '64px';
-		button.style.height = '44px';
+		button.style.left = window.innerWidth / 2 - 32 + 'px';
+		button.style.top = window.innerHeight - 58 + 'px';
+		button.style.width = '70px';
+		button.style.height = '74px';
 		button.style.border = '0';
 		button.style.padding = '0px';
 		button.style.cursor = 'pointer';		
-		button.style.background = '0x0000ff';
-		button.style.backgroundColor = '0x0000ff';
-		button.style.color = '#0000ff';
+		button.style.background = 'none';
+		button.style.backgroundColor = 'transperant';
+		button.style.color = 'yellow';
 		button.style.fontFamily = 'sans-serif';
-		button.style.fontSize = '13px';
-		button.style.fontStyle = 'normal';
+		button.style.fontSize = '16px';
+		button.style.fontWeight = 'bold';
 		button.style.textAlign = 'center';
 		button.style.zIndex = '999';
-		//button.style.backgroundImage = "url('img/vrLogoIcon.png')";
+		button.textContent = "VR";
+		button.style.backgroundImage = "url('img/vrLogoIcon18.png')";
 		button.onclick = function() {
-
 			effect.isPresenting ? effect.exitPresent() : effect.requestPresent();
-
 		};
 
 		window.addEventListener( 'vrdisplaypresentchange', function ( event ) {
 
-			button.textContent = effect.isPresenting ? 'EXIT VR' : 'ENTER VR';
+			button.textContent = effect.isPresenting ? "2D" : "VR" ;
 
 		}, false );
 
