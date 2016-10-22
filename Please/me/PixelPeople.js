@@ -7,7 +7,6 @@ window.addEventListener( 'DOMMouseScroll', onMouseWheel, false );
 window.addEventListener( 'touchstart', onTouchStart, false );
 window.addEventListener( 'touchmove', onTouchMove, false );
 window.addEventListener( 'touchend', onTouchEnd, false );
-window.addEventListener( 'orientationchange', onOrientationChange, false );
 
 window.addEventListener( 'keydown', onKeyDown, false );
 
@@ -84,7 +83,15 @@ function onWindowResize( event ){
 	renderer.setSize( window.innerWidth, window.innerHeight );
 	effect.setSize( window.innerWidth, window.innerHeight );
 
-	renderer.render( scene, camera );
+	switch(window.orientation) 
+    {  
+        case -90: case 90:
+            orientation = 'landscape';
+            break; 
+        default:
+            orientation = 'portraite';
+    }
+
 	effect.render( scene, camera );
 }
 
@@ -114,17 +121,6 @@ function onTouchMove( event ) {
 
 function onTouchEnd( event ) {
 	
-}
-
-function onOrientationChange( event ) {
-	switch(window.orientation) 
-    {  
-        case -90: case 90:
-            orientation = 'landscape';
-            break; 
-        default:
-            orientation = 'portraite';
-    }	
 }
 
 function onKeyDown( event ) {
