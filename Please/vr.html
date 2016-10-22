@@ -29,11 +29,6 @@
 		<script type="text/javascript" src="js/VRControls.js" async></script>
 		<script type="text/javascript" src="js/VREffect.js" async></script>
 		<script type="text/javascript" src="js/webvr-polyfill.js" async></script>
-
-		<script>
-      		//InitializeWebVRPolyfill();			
-		</script>
-
 		<script type="text/javascript" src="me/PixelPeople.js" async></script>
 		<script type="text/javascript" src="me/.sceneUtils.js" async></script>
 
@@ -54,11 +49,6 @@
 			void main() {
 				float h = normalize( vWorldPosition + offset ).y;
 				gl_FragColor = vec4( mix( bottomColor, topColor, max( pow( max( h , 0.0), exponent ), 0.0 ) ), .1 );
-				//if(tex2.a - percent < 0.0) {
-                //gl_FragColor.a = 0.4;
-                //or without transparent = true
-                //discard; 
-            	//}
 			}
 		</script>
 
@@ -72,9 +62,6 @@
 		</script>
 
 	</head>	
-	<body style="margin:0px" bgcolor="black" id="body" onload="onload(12)" >
-		<div id="wrapper">			
-			<canvas id="mainCanvas" style="visibility:hidden;"></canvas>
-		</div>
+	<body style="margin:0px" bgcolor="black">
 	</body>
 </html>

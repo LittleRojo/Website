@@ -1,3 +1,5 @@
+window.addEventListener( 'load', onLoad, false );
+
 window.addEventListener( 'resize', onWindowResize, false );
 
 window.addEventListener( 'mousedown', onMouseDown, false );
@@ -13,12 +15,11 @@ window.addEventListener( 'orientationchange', onOrientationChange, false );
 
 window.addEventListener( 'keydown', onKeyDown, false );
 
-function onload(pageNumber){
+function onLoad( event ){
+	InitializeWebVRPolyfill();
 
-	InitializeWebVRPolyfill();	
-	mainCanvas = document.getElementById( 'mainCanvas' );
-	mainCanvas.style.visibility = 'visible';
-
+	mainCanvas = document.createElement( 'canvas' );
+	
 	renderer = new THREE.WebGLRenderer({ canvas:mainCanvas, antilias: true, alpha: true, clearAlpha: 1});
 	renderer.setPixelRatio( window.devicePixelRatio );
 	renderer.setSize( window.innerWidth, window.innerHeight );
@@ -52,11 +53,12 @@ function onload(pageNumber){
     spotLight();
     carpet();
 
+	document.body.appendChild( mainCanvas );
     AnimateScene();	
 }
 
 var stopScene = false;
-function AnimateScene(delta) {
+function AnimateScene( delta ) {
     if(stopScene) {
         startScene = false;
         return;
