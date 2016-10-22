@@ -62,23 +62,6 @@
 	</head>	
 	<body style="margin:0px" bgcolor="black">
 		<script>
-			window.addEventListener( 'load', onLoad, false );
-
-			window.addEventListener( 'resize', onWindowResize, false );
-
-			window.addEventListener( 'mousedown', onMouseDown, false );
-			window.addEventListener( 'mousemove', onMouseMove, false );
-			window.addEventListener( 'mouseup', onMouseUp, false );
-
-			window.addEventListener( 'DOMMouseScroll', onMouseWheel, false ); 
-
-			window.addEventListener( 'touchstart', onTouchStart, false );
-			window.addEventListener( 'touchmove', onTouchMove, false );
-			window.addEventListener( 'touchend', onTouchEnd, false );
-			window.addEventListener( 'orientationchange', onOrientationChange, false );
-
-			window.addEventListener( 'keydown', onKeyDown, false );
-
 			var stopScene = false;
 			function AnimateScene( delta ) {
 				if(stopScene) {
@@ -193,6 +176,23 @@
 			function rand(min, max) {
 				return Math.random() * max + min;
 			}
+
+			window.addEventListener( 'load', onLoad, false );
+
+			window.addEventListener( 'resize', onWindowResize, false );
+
+			window.addEventListener( 'mousedown', onMouseDown, false );
+			window.addEventListener( 'mousemove', onMouseMove, false );
+			window.addEventListener( 'mouseup', onMouseUp, false );
+
+			window.addEventListener( 'DOMMouseScroll', onMouseWheel, false ); 
+
+			window.addEventListener( 'touchstart', onTouchStart, false );
+			window.addEventListener( 'touchmove', onTouchMove, false );
+			window.addEventListener( 'touchend', onTouchEnd, false );
+			window.addEventListener( 'orientationchange', onOrientationChange, false );
+
+			window.addEventListener( 'keydown', onKeyDown, false );
 
 			InitializeWebVRPolyfill();
 
