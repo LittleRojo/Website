@@ -79,15 +79,13 @@ function onWindowResize( event ){
 		vrButton.style.top = window.innerHeight - 58 + 'px';
 	}
 
-	if( !Util.isMobile() ) {
-	    camera.aspect = window.innerWidth / window.innerHeight;
-		camera.updateProjectionMatrix();
-		renderer.setSize( window.innerWidth, window.innerHeight );
-		effect.setSize( window.innerWidth, window.innerHeight );
+	camera.aspect = window.innerWidth / window.innerHeight;
+	camera.updateProjectionMatrix();
+	renderer.setSize( window.innerWidth, window.innerHeight );
+	effect.setSize( window.innerWidth, window.innerHeight );
 
-		renderer.render( scene, camera );
-		effect.render( scene, camera );
-	}
+	renderer.render( scene, camera );
+	effect.render( scene, camera );
 }
 
 function onMouseDown( event ) {
