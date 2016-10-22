@@ -84,10 +84,9 @@ function onWindowResize(){
     camera.updateProjectionMatrix();
 	renderer.setSize( window.innerWidth, window.innerHeight );
 	effect.setSize( window.innerWidth, window.innerHeight );
-	mainCanvas.width = window.innerWidth;
-	mainCanvas.height = window.innerHeight;
 
-	effect.render( scene, camera )
+	renderer.render( scene, camera );
+	effect.render( scene, camera );
 }
 
 function onMouseDown() {
