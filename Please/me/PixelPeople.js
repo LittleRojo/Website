@@ -77,7 +77,7 @@ function AnimateScene(delta) {
 function onWindowResize(){
 	if(vrButton !== undefined) {
 		vrButton.style.left = window.innerWidth / 2 - 32 + 'px';
-		vrButton.style.top = window.innerHeight - 44 + 'px';
+		vrButton.style.top = window.innerHeight - 58 + 'px';
 	}
 
     camera.aspect = window.innerWidth / window.innerHeight;
