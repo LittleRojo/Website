@@ -1,3 +1,5 @@
+window.addEventListener( 'resize', onWindowResize, false );
+
 window.addEventListener( 'mousedown', onMouseDown, false );
 window.addEventListener( 'mousemove', onMouseMove, false );
 window.addEventListener( 'mouseup', onMouseUp, false );
@@ -7,6 +9,7 @@ window.addEventListener( 'DOMMouseScroll', onMouseWheel, false );
 window.addEventListener( 'touchstart', onTouchStart, false );
 window.addEventListener( 'touchmove', onTouchMove, false );
 window.addEventListener( 'touchend', onTouchEnd, false );
+window.addEventListener( 'orientationchange', onOrientationChange, false );
 
 window.addEventListener( 'keydown', onKeyDown, false );
 
@@ -83,11 +86,7 @@ function onWindowResize( event ){
 	renderer.setSize( window.innerWidth, window.innerHeight );
 	effect.setSize( window.innerWidth, window.innerHeight );
 
-	switch(window.orientation) {  
-        case -90: case 90: orientation = 'landscape';
-        default: orientation = 'portraite';
-    }
-
+	renderer.render( scene, camera );
 	effect.render( scene, camera );
 }
 
@@ -117,6 +116,10 @@ function onTouchMove( event ) {
 
 function onTouchEnd( event ) {
 	
+}
+
+function onOrientationChange( event ) {
+		
 }
 
 function onKeyDown( event ) {
