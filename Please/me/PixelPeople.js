@@ -9,6 +9,7 @@ window.addEventListener( 'DOMMouseScroll', onMouseWheel, false );
 window.addEventListener( 'touchstart', onTouchStart, false );
 window.addEventListener( 'touchmove', onTouchMove, false );
 window.addEventListener( 'touchend', onTouchEnd, false );
+window.addEventListener( 'orientationchange', onOrientationChange, false );
 
 window.addEventListener( 'keydown', onKeyDown, false );
 
@@ -74,49 +75,62 @@ function AnimateScene(delta) {
 	camera.position.copy(orbitPos);
 }
 
-function onWindowResize(){
+function onWindowResize( event ){
 	if(vrButton !== undefined) {
 		vrButton.style.left = window.innerWidth / 2 - 32 + 'px';
 		vrButton.style.top = window.innerHeight - 58 + 'px';
 	}
 
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-	renderer.setSize( window.innerWidth, window.innerHeight );
-	effect.setSize( window.innerWidth, window.innerHeight );
+	if( !Util.isMobile() ) {
+	    camera.aspect = window.innerWidth / window.innerHeight;
+		camera.updateProjectionMatrix();
+		renderer.setSize( window.innerWidth, window.innerHeight );
+		effect.setSize( window.innerWidth, window.innerHeight );
 
-	renderer.render( scene, camera );
-	effect.render( scene, camera );
+		renderer.render( scene, camera );
+		effect.render( scene, camera );
+	}
 }
 
-function onMouseDown() {
+function onMouseDown( event ) {
 
 }
 
-function onMouseMove() {
+function onMouseMove( event ) {
 
 }
 
-function onMouseUp() {
+function onMouseUp( event ) {
 	
 }
 
-function onMouseWheel() {
+function onMouseWheel( event ) {
 
 }
 
-function onTouchStart() {
+function onTouchStart( event ) {
 
 }
 
-function onTouchMove() {
+function onTouchMove( event ) {
 	
 }
 
-function onTouchEnd() {
+function onTouchEnd( event ) {
 	
 }
 
-function onKeyDown() {
+function onOrientationChange( event ) {
+	switch(window.orientation) 
+    {  
+        case -90: case 90:
+            App.orientation = 'landscape';
+            break; 
+        default:
+            App.orientation = 'portraite';
+    }	
+}
+
+function onKeyDown( event ) {
 	
 }
