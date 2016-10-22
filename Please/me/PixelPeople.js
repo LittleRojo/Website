@@ -83,13 +83,9 @@ function onWindowResize( event ){
 	renderer.setSize( window.innerWidth, window.innerHeight );
 	effect.setSize( window.innerWidth, window.innerHeight );
 
-	switch(window.orientation) 
-    {  
-        case -90: case 90:
-            orientation = 'landscape';
-            break; 
-        default:
-            orientation = 'portraite';
+	switch(window.orientation) {  
+        case -90: case 90: orientation = 'landscape';
+        default: orientation = 'portraite';
     }
 
 	effect.render( scene, camera );
