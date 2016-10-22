@@ -14,6 +14,8 @@ window.addEventListener( 'orientationchange', onOrientationChange, false );
 window.addEventListener( 'keydown', onKeyDown, false );
 
 function onload(pageNumber){
+
+	InitializeWebVRPolyfill();	
 	mainCanvas = document.getElementById( 'mainCanvas' );
 	mainCanvas.style.visibility = 'visible';
 
