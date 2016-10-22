@@ -1,5 +1,3 @@
-window.addEventListener( 'resize', onWindowResize, false );
-
 window.addEventListener( 'mousedown', onMouseDown, false );
 window.addEventListener( 'mousemove', onMouseMove, false );
 window.addEventListener( 'mouseup', onMouseUp, false );
@@ -124,10 +122,10 @@ function onOrientationChange( event ) {
 	switch(window.orientation) 
     {  
         case -90: case 90:
-            App.orientation = 'landscape';
+            orientation = 'landscape';
             break; 
         default:
-            App.orientation = 'portraite';
+            orientation = 'portraite';
     }	
 }
 
