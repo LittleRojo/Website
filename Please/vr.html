@@ -14,10 +14,20 @@
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale = 1.0, minimum-scale=1.0, maximum-scale=1.0"/>
 
+		<style>
+			button {				
+				transition: all .1s linear;
+				}
+				button:active {
+				transform: translateZ(3px);
+			}
+
+		</style>
+
 		<script>
 			var WebVRConfig = { 
 				DEFER_INITIALIZATION: true, 
-				//ROTATE_INSTRUCTIONS_DISABLED: true,
+				ROTATE_INSTRUCTIONS_DISABLED: true,
 				CARDBOARD_UI_DISABLED: true, 
 			}
 		</script>

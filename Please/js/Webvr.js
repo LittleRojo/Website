@@ -90,9 +90,7 @@ var WEBVR = {
 		button.textContent = "VR";
 		button.style.backgroundImage = "url('img/vrLogoIcon18.png')";
 		button.onclick = function() {
-
 			effect.isPresenting ? effect.exitPresent() : effect.requestPresent();
-
 		};
 
 		window.addEventListener( 'vrdisplaypresentchange', function ( event ) {
