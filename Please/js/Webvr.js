@@ -81,9 +81,14 @@ var WEBVR = {
 		button.style.cursor = 'pointer';		
 		button.style.background = 'none';
 		button.style.backgroundColor = 'transperant';
-		//button.style.color = '#0000ff';
+		button.style.color = '#ff0000';
+		button.style.fontFamily = 'sans-serif';
+		button.style.fontSize = '16px';
+		//button.style.fontStyle = 'bold';
+		button.style.textAlign = 'center';
 		button.style.zIndex = '999';
-		button.style.backgroundImage = "url('img/vrLogoIcon2.png')";
+		button.textContent = "VR";
+		button.style.backgroundImage = "url('img/vrLogoIcon18.png')";
 		button.onclick = function() {
 
 			effect.isPresenting ? effect.exitPresent() : effect.requestPresent();
@@ -92,7 +97,7 @@ var WEBVR = {
 
 		window.addEventListener( 'vrdisplaypresentchange', function ( event ) {
 
-			button.style.backgroundImage = effect.isPresenting ? "url('img/2dLogoIcon.png')" : "url('img/vrLogoIcon2.png')" ;
+			button.textContent = effect.isPresenting ? "2D" : "VR" ;
 
 		}, false );
 
