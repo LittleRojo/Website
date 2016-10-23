@@ -78,25 +78,24 @@
 			}
 
 			function getDirectionalLight( _ ) {
-				directionalLight = new THREE.DirectionalLight( _.color, _.intensity );
+				var directionalLight = new THREE.DirectionalLight( _.color, _.intensity );
 				directionalLight.position.set( _.x, _.y, _.z );
 				directionalLight.castShadow = _.shadow;
-				scene.add( directionalLight );
+				return directionalLight;
 			}
 
 			function getSpotLight( _ ) {
-				spotLight = new THREE.SpotLight( _.color, _.intensity );
+				var spotLight = new THREE.SpotLight( _.color, _.intensity );
 				spotLight.position.set( _.x, _.y, -_.z );
-				scene.add( spotLight );
+				return spotLight;
 			}
 
 			function getPlane( _ ) {
 				var planeGeometry = new THREE.PlaneGeometry( _.width, _.height, 10, 10 );    
-				var planeMaterial = new THREE.MeshPhongMaterial( { color: _.color, side: THREE.DoubleSide } );
-				
+				var planeMaterial = new THREE.MeshPhongMaterial( { color: _.color, side: THREE.DoubleSide } );				
 				var planeMesh = new THREE.Mesh( planeGeometry, planeMaterial );
 				planeMesh.receiveShadow = true;
-				scene.add( planeMesh ); 
+				return planeMesh; 
 			}
 
 			function deg( degree ) { 
