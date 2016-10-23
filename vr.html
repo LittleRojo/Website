@@ -1,6 +1,5 @@
 <html>
 	<head>
-
 		<title>VR-Setup</title>
 		<meta name="description" content="This is 0% personal code.  Just an organization of others work.">
 		<meta name="keywords" content="#InformationExplosion">
@@ -43,8 +42,7 @@
 		<script>
 			var stopScene = false;
 			function AnimateScene( delta ) {
-				if(stopScene) {
-					startScene = false;
+				if( stopScene) {
 					return;
 				}
 				
@@ -54,17 +52,17 @@
 				orbitPos = camera.position.clone();
 				
 				var rotatedPosition = fakeCamera.position.applyQuaternion( camera.quaternion );
-				camera.position.add(rotatedPosition);
-				camera.quaternion.multiply(fakeCamera.quaternion);  
+				camera.position.add( rotatedPosition );
+				camera.quaternion.multiply( fakeCamera.quaternion );  
 				
 				effect.render( scene, camera );
 				effect.requestAnimationFrame( AnimateScene );
 
-				camera.position.copy(orbitPos);
+				camera.position.copy( orbitPos );
 			}
 
 			function onWindowResize( event ){
-				if(vrButton !== undefined) {
+				if( vrButton !== undefined ) {
 					vrButton.style.left = window.innerWidth / 2 - 32 + 'px'; //Needs work
 					vrButton.style.top = window.innerHeight - 58 + 'px'; //Needs work
 				}
@@ -89,7 +87,7 @@
 			function getSpotLight( _ ) {
 				spotLight = new THREE.SpotLight( _.color, _.intensity );
 				spotLight.position.set( _.x, _.y, -_.z );
-				scene.add(spotLight);
+				scene.add( spotLight );
 			}
 
 			function getPlane( _ ) {
@@ -137,16 +135,16 @@
 			renderer.shadowMap.renderReverseSided = false;
 			renderer.sortObjects = false;
 			
-			camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-			camera.position.set(-1, -1, 5);
+			camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+			camera.position.set( -1, -1, 5 );
 
-			orbitControls = new THREE.OrbitControls(camera);
+			orbitControls = new THREE.OrbitControls( camera );
 			orbitControls.zoomSpeed = .7;
 			orbitControls.rotateSpeed = .001;
 			orbitControls.keyPanSpeed = .001;
 			
 			fakeCamera = new THREE.Object3D();
-			vrControls = new THREE.VRControls(fakeCamera);
+			vrControls = new THREE.VRControls( fakeCamera );
 
 			effect = new THREE.VREffect( renderer );
 			if ( WEBVR.isAvailable() === true ) {
@@ -155,27 +153,33 @@
 			}
 
 			scene = new THREE.Scene();
-			scene.add( getDirectionalLight( {
+
+			var directionalLight = getDirectionalLight( {
 				color: 0xFFFFFF,
 				intensity: .6,
 				x: 0,
 				y: 10,
 				z: 10,
 				shadow: true,
-			} ) );
-			scene.add( getSpotLight( {
+			} );
+			scene.add( directionalLight );
+
+			var spotLight = getSpotLight( {
 				color: 0xFFFFFF,
 				intensity: .8,
 				x: 0,
 				y: 15,
 				z: -10,
-			} ) );
-			scene.add( getPlane( {
+			} );
+			scene.add( spotLight );
+
+			var plane = getPlane( {
 				color: 0x696969,
 				intensity: .8,
 				width: 25,
 				height: 30,
-			} ) );
+			} );
+			scene.add( plane );
 
 			document.body.appendChild( mainCanvas );
 			AnimateScene();	
