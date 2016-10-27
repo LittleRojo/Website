@@ -36,8 +36,6 @@
 					return;
 				}
 				
-				orbitControls.update();
-				
 				renderer.render( scene, camera );
 				requestAnimationFrame( AnimateScene );
 			}
@@ -73,7 +71,6 @@
 				var planeMaterial = new THREE.MeshPhongMaterial( { 
 					color: _.color, 
 					side: THREE.DoubleSide,
-					map: THREE.ImageUtils.loadTexture( _.map ), 
 				} );				
 				var planeMesh = new THREE.Mesh( planeGeometry, planeMaterial );
 				planeMesh.receiveShadow = true;
@@ -125,15 +122,8 @@
 			renderer.sortObjects = false;
 			
 			camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
-			camera.position.set( 0, 0, -1 );
+			camera.position.set( 0, 0, 1 );
 
-			orbitControls = new THREE.OrbitControls( camera );
-			orbitControls.zoomSpeed = .7;
-			orbitControls.rotateSpeed = .001;
-			orbitControls.keyPanSpeed = .001;
-			//orbitControls.position0 = camera.position;
-			//orbitControls.target = new THREE.Vector3( 0, 0, 0 );
-		
 			scene = new THREE.Scene();
 			clock = new THREE.Clock();
 			cameraTween = new TWEEN.Tween( camera.position );
@@ -159,8 +149,7 @@
 				z: 0,
 				width: 1,
 				height: 2,	
-				color: 0xFFFFFF,//696969,	
-				map: 'img/lawson.jpg',					
+				color: 0xFFFFFF,					
 			} );
 			scene.add( plane );			
 
