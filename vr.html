@@ -164,6 +164,16 @@
 				return boxMesh;
 			}
 
+			function addMusic() {
+				music = document.createElement( 'audio' );
+				music.src = 'media/Kansas_-_Carry_On_My_Wayward_Son.mp3';
+				music.type = "audio/mpeg";
+				music.autoplay = true;
+				music.controls = true;
+				music.loop = true;
+				document.body.appendChild( music );
+			}
+
 			function deg( degree ) { 
 				return degree * ( Math.PI / 180 ); 
 			}
@@ -296,6 +306,8 @@
 				} );
 				scene.add( building );			
 			}
+
+			addMusic();
 
 			document.body.appendChild( mainCanvas );
 			AnimateScene();	
