@@ -56,31 +56,14 @@
 				var rotatedPosition = fakeCamera.position.applyQuaternion( camera.quaternion );
 				camera.position.add( rotatedPosition );
 				camera.quaternion.multiply( fakeCamera.quaternion );  
+								
 				
-				var elapsedTime = clock.getDelta();
-				
-				var angle = deg( 5 );
-				var radius = 5;
-				var origin = new THREE.Vector3( 0, 0, 0 );
-				var x = origin.x + radius * Math.cos( angle );
-				var y = origin.y + radius * Math.sin( angle );
 
-				
-             	/*cameraTween.to( { 
-					 x: x, 
-					 y: camera.position.y,
-					 z: y,
-				}, 1000);
-				cameraTween.Start();
-        
-				App.tojo.logoTween.onComplete(function () {
-					App.tojo.logoState = 0;
-				});*/
-
-				orbitControls.target = plane.position;
+				orbitControls.target = new THREE.Vector3( 0, 0, -1000 );
 
 				effect.render( scene, camera );
 				effect.requestAnimationFrame( AnimateScene );
+				TWEEN.update( delta );
 
 				camera.position.copy( orbitPos );
 			}
@@ -102,9 +85,17 @@
 			}
 
 			function getDirectionalLight( _ ) {
-				var directionalLight = new THREE.DirectionalLight( _.color, _.intensity );
-				directionalLight.position.set( _.x, _.y, _.z );
+				var directionalLight = new THREE.DirectionalLight( _.color, _.intensity );				
 				directionalLight.castShadow = _.shadow;
+				if( _.x ) {				
+					directionalLight.translateX( _.x );
+				}
+				if( _.y ) {
+					directionalLight.translateY( _.y );
+				}	
+				if( _.z ) {
+					directionalLight.translateZ( _.z );
+				}	
 				return directionalLight;
 			}
 
@@ -115,7 +106,15 @@
 
 			function getSpotLight( _ ) {
 				var spotLight = new THREE.SpotLight( _.color, _.intensity );
-				spotLight.position.set( _.x, _.y, -_.z );
+				if( _.x ) {				
+					spotLight.translateX( _.x );
+				}
+				if( _.y ) {
+					spotLight.translateY( _.y );
+				}	
+				if( _.z ) {
+					spotLight.translateZ( _.z );
+				}	
 				return spotLight;
 			}
 
@@ -124,14 +123,67 @@
 				var planeMaterial = new THREE.MeshPhongMaterial( { 
 					color: _.color, 
 					side: THREE.DoubleSide,
-					map: THREE.ImageUtils.loadTexture( _.map ), 
-				} );				
+				} );		
+				if( _.map ) {
+					planeMaterial.map = THREE.ImageUtils.loadTexture( _.map );
+				}		
 				var planeMesh = new THREE.Mesh( planeGeometry, planeMaterial );
 				planeMesh.receiveShadow = true;
-				if( _.x ) {
-					planeMesh.position.set( _.x, _.y, _.z );
-				}				
+				if( _.layout == 'flat' ) {
+					planeMesh.rotateX( deg( 90 ) );
+				}
+				if( _.x ) {				
+					planeMesh.translateX( _.x );
+				}
+				if( _.y ) {
+					planeMesh.translateY( _.y );
+				}	
+				if( _.z ) {
+					planeMesh.translateZ( _.z );
+				}			
 				return planeMesh; 
+			}
+
+			function getBox( _ ) {
+				var boxGeometry = new THREE.BoxGeometry( _.width, _.height, _.depth );
+				var boxMaterial = new THREE.MeshPhongMaterial( {
+					color: new THREE.Color( "rgb(" + Math.floor( rand( 0, 255 ) ) + ", " + Math.floor( rand( 0, 255 ) ) + ", " + Math.floor( rand( 0, 255 ) ) + ")" ),
+				});
+				if( _.map ) {
+					boxMaterial.map = THREE.ImageUtils.loadTexture( _.map );
+				}	
+				var boxMesh = new THREE.Mesh( boxGeometry, boxMaterial );
+				boxMesh.receiveShadow = true;
+				if( _.x ) {				
+					boxMesh.translateX( _.x );
+				}
+				if( _.y ) {
+					boxMesh.translateY( _.y );
+				}	
+				if( _.z ) {
+					boxMesh.translateZ( _.z );
+				}
+				return boxMesh;
+			}
+
+			function setCameraTween() {
+				var angle = deg( 5 );
+				var radius = 50;
+				var origin = new THREE.Vector3( 0, 0, 0 );
+				var x = origin.x + radius * Math.cos( angle );
+				var y = origin.y + radius * Math.sin( angle );
+
+				cameraTween = new TWEEN.Tween( camera.position )
+				.to( { 
+					 x: rand( -500, 500 ), 
+					 y: rand( 10, 100 ),
+					 z: rand( -500, 500 ),
+				}, 10000 )
+				.onUpdate( function () {
+					orbitControls.position.set( this.x, this.y, this.z );
+				} )
+				.onComplete( setCameraTween )
+				.start();
 			}
 
 			function deg( degree ) { 
@@ -142,6 +194,9 @@
 				return Math.random() * max + min;
 			}
 			
+			function randColor() {
+				return Math.floor(Math.random()*16777215).toString(16);
+			}
 			$( '.no-zoom' ).bind( 'touchend' , function( e ) {
 				e.preventDefault();
 			});
@@ -178,10 +233,13 @@
 			renderer.sortObjects = false;
 			
 			camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
-			camera.position.set( 0, 0, -1 );
+			camera.translateX( 0 );
+			camera.translateY( 10 );
+			camera.translateZ( 0 );
+			setCameraTween();
 
 			orbitControls = new THREE.OrbitControls( camera );
-			orbitControls.zoomSpeed = .7;
+			orbitControls.zoomSpeed = .09;
 			orbitControls.rotateSpeed = .001;
 			orbitControls.keyPanSpeed = .001;
 			//orbitControls.position0 = camera.position;
@@ -198,33 +256,45 @@
 
 			scene = new THREE.Scene();
 			clock = new THREE.Clock();
-			cameraTween = new TWEEN.Tween( camera.position );
-
+			
 			var ambientLight = getAmbientLight( {
 				color: 0xFFFFFF,
-				intensity: .8,
+				intensity: 1,
 			} );
 			scene.add( ambientLight );
 
 			var spotLight = getSpotLight( {
 				x: 0,
-				y: 1,
+				y: 50,
 				z: 0,
-				color: 0xFF0000,//CE0FA,
-				intensity: 100,				
+				color: 0xFFFFFF,//CE0FA,
+				intensity: 3.75,				
 			} );
 			//scene.add( spotLight );
-
-			var plane = getPlane( {
+			
+			var ground = getPlane( {
 				x: 0,
 				y: 0,
 				z: 0,
-				width: 1,
-				height: 2,	
-				color: 0xFFFFFF,//696969,	
-				map: 'img/lawson.jpg',					
-			} );
-			scene.add( plane );			
+				width: 1000,
+				height: 1000,
+				color: 0x00FF00,
+				layout: 'flat',				
+			})			
+			scene.add( ground );
+
+			for(var a = 0; a < 100; a++ ) {
+				var building = getBox( {
+					x: rand( -450, 900),
+					//y: rand( -100, 100),
+					z: rand( -450, 900),
+					width: rand( 10, 100),
+					height:  rand( 10, 500),
+					depth:  rand( 10, 100),	
+					color: randColor(),										
+				} );
+				scene.add( building );			
+			}
 
 			document.body.appendChild( mainCanvas );
 			AnimateScene();	
