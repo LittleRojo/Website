@@ -55,15 +55,13 @@
 				
 				var rotatedPosition = fakeCamera.position.applyQuaternion( camera.quaternion );
 				camera.position.add( rotatedPosition );
-				camera.quaternion.multiply( fakeCamera.quaternion );  
-								
-				
+				camera.quaternion.multiply( fakeCamera.quaternion );  		
 
-				orbitControls.target = new THREE.Vector3( 0, 0, -1000 );
 
+
+				TWEEN.update();
 				effect.render( scene, camera );
-				effect.requestAnimationFrame( AnimateScene );
-				TWEEN.update( delta );
+				effect.requestAnimationFrame( AnimateScene );				
 
 				camera.position.copy( orbitPos );
 			}
@@ -166,26 +164,6 @@
 				return boxMesh;
 			}
 
-			function setCameraTween() {
-				var angle = deg( 5 );
-				var radius = 50;
-				var origin = new THREE.Vector3( 0, 0, 0 );
-				var x = origin.x + radius * Math.cos( angle );
-				var y = origin.y + radius * Math.sin( angle );
-
-				cameraTween = new TWEEN.Tween( camera.position )
-				.to( { 
-					 x: rand( -500, 500 ), 
-					 y: rand( 10, 100 ),
-					 z: rand( -500, 500 ),
-				}, 10000 )
-				.onUpdate( function () {
-					orbitControls.position.set( this.x, this.y, this.z );
-				} )
-				.onComplete( setCameraTween )
-				.start();
-			}
-
 			function deg( degree ) { 
 				return degree * ( Math.PI / 180 ); 
 			}
@@ -236,14 +214,37 @@
 			camera.translateX( 0 );
 			camera.translateY( 10 );
 			camera.translateZ( 0 );
-			setCameraTween();
 
 			orbitControls = new THREE.OrbitControls( camera );
 			orbitControls.zoomSpeed = .09;
 			orbitControls.rotateSpeed = .001;
 			orbitControls.keyPanSpeed = .001;
-			//orbitControls.position0 = camera.position;
-			//orbitControls.target = new THREE.Vector3( 0, 0, 0 );
+			orbitControls.target = new THREE.Vector3( 0, 10, 0 );
+
+			cameraTween = new TWEEN.Tween( camera.position );
+			cameraTween.to( {
+				x: rand( -150, 150 ), 
+				y: rand( 10, 60 ), 
+				z: rand( -150, 150 ), 
+			}, 5000 );
+			cameraTween.onComplete( function() {
+				cameraTween.to( {
+				x: rand( -150, 150 ), 
+				y: rand( 10, 60 ), 
+				z: rand( -150, 150 ), 
+			}, 5000 );
+			cameraTween.start();
+			} );
+			cameraTween.onUpdate( function() {
+				camera.position.setX( this.x );
+				camera.position.setY( this.y );
+				camera.position.setZ( this.z );
+				orbitControls.target.setX( this.x );
+				orbitControls.target.setY( this.y );
+				orbitControls.target.setZ( this.z );
+			} );
+			cameraTween.start();
+			cameraState = 1;
 
 			fakeCamera = new THREE.Object3D();
 			vrControls = new THREE.VRControls( fakeCamera );
