@@ -5,7 +5,7 @@ function click( event ) {
     }
     var y = event.y;
     if( event.pageY ) {
-        y = event.pageY + 150;
+        y = event.pageY + 135;
     }
     if( experiencePlayer ){
         //PLAY
