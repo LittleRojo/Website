@@ -1,4 +1,4 @@
-window.addEventListener( 'mousedown', function( event ) {
+function click( event ) {
     if( experiencePlayer ){
         //PLAY
         if( event.x >= 10 && event.x <= 35 && event.y >= 765 && event.y <= 780 ) {
@@ -33,11 +33,9 @@ window.addEventListener( 'mousedown', function( event ) {
             experiencePlayer.timelineCanvas.fillRect( event.x - (window.innerWidth / 2 + 75), 50, 20, 50 );
         }
     }
-}, false);
-
-window.addEventListener( 'touchstart', function( event ) {
-    
-}, false );
+}
+window.addEventListener( 'mousedown', click, false);
+window.addEventListener( 'touchstart', click, false );
 
 function experiencePlayer() {
     this.objects = [];
