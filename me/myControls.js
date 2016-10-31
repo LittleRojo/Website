@@ -1,7 +1,7 @@
 function click( event ) {
     var x = event.x;
     if( event.pageX ) {
-        x = event.pageX + 150;
+        x = event.pageX;
     }
     var y = event.y;
     if( event.pageY ) {
