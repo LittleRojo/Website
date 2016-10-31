@@ -1,11 +1,11 @@
 function click( event ) {
     var x = event.x;
     if( event.pageX ) {
-        x = event.pageX;
+        x = event.pageX + 150;
     }
     var y = event.y;
     if( event.pageY ) {
-        y = event.pageY;
+        y = event.pageY + 150;
     }
     if( experiencePlayer ){
         //PLAY
