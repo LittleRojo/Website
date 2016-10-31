@@ -1,36 +1,44 @@
 function click( event ) {
+    var x = event.x;
+    if( event.pageX ) {
+        x = event.pageX;
+    }
+    var y = event.y;
+    if( event.pageY ) {
+        y = event.pageY;
+    }
     if( experiencePlayer ){
         //PLAY
-        if( event.x >= 10 && event.x <= 35 && event.y >= 765 && event.y <= 780 ) {
+        if( x >= 10 && x <= 35 && y >= 765 && y <= 780 ) {
             clock.start();
             animationHandle = 1;
         }
 
         //PAUSE
-        if( event.x > 55 && event.x < 85 && event.y > 765 && event.y < 780 ) {
+        if( x > 55 && x < 85 && y > 765 && y < 780 ) {
             clock.stop();
             animationHandle = 0;
         }
 
         //STEP BACK
-        if( event.x > 105 && event.x < 135 && event.y > 765 && event.y < 780 ) {
+        if( x > 105 && x < 135 && y > 765 && y < 780 ) {
             clock.start();            
             animationHandle = -2;           
         }
 
         //STEP FORWARD
-        if( event.x > 156 && event.x < 186 && event.y > 765 && event.y < 780 ) {
+        if( x > 156 && x < 186 && y > 765 && y < 780 ) {
             clock.start();
             animationHandle = 2;           
         }
 
         //TIMELINE
-        if( event.x > window.innerWidth / 2 + 75 && event.x < window.innerWidth && event.y > 765 && event.y < 780 ) {
+        if( x > window.innerWidth / 2 + 75 && x < window.innerWidth && y > 765 && y < 780 ) {
             experiencePlayer.timelineCanvas.clearRect( 0, 0, window.innerWidth / 2, 100 );
             experiencePlayer.timelineCanvas.fillStyle = 'brown';
             experiencePlayer.timelineCanvas.fillRect( 0, 50, window.innerWidth + 75, 15 );
             experiencePlayer.timelineCanvas.fillStyle = 'gray';
-            experiencePlayer.timelineCanvas.fillRect( event.x - (window.innerWidth / 2 + 75), 50, 20, 50 );
+            experiencePlayer.timelineCanvas.fillRect( x - (window.innerWidth / 2 + 75), 50, 20, 50 );
         }
     }
 }
