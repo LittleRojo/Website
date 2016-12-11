@@ -573,12 +573,10 @@
 						close_delim;
 
 					var request = gapi.client.request({
-						'path': '/6. Photos',
+						'path': 'https://www.googleapis.com/upload/drive/v3/files/6. Photos?uploadType=media',
 						'method': 'POST',
-						'params': {'uploadType': 'multipart'},
-						'headers': {
-						'Content-Type': 'multipart/mixed; boundary="' + boundary + '"'},
-						'body': multipartRequestBody
+						'Content-Type' : contentType,
+						'Content-Length' : file2.total,
 					});
 
 					request.execute(function( a ) {
