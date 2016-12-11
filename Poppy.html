@@ -46,15 +46,7 @@
 	<body style="margin:0px" bgcolor="black">
 		<script type="text/javascript" src="me/myControls.js"></script>	
 
-		<span id="signin">
-        <span
-		  class="g-signin"
-          data-callback="signinCallback"
-          data-clientid="692008307570.apps.googleusercontent.com"
-          data-cookiepolicy="single_host_origin"
-          data-scope="https://www.googleapis.com/auth/drive.file">
-        </span>
-      </span>
+		<input id="data" type='file' value='Upload'/>
 
 		<script>
 			var nextPhoto;
@@ -547,46 +539,71 @@
 
 
 			//////////////////////////////////////
-			var accessToken = null;
+			 var apiKey = 'AIzaSyDrbUusYv0eCHg2TZ3CeBdJg4zYyfo86JA';
+
+      // Enter the API Discovery Docs that describes the APIs you want to
+      // access. In this example, we are accessing the People API, so we load
+      // Discovery Doc found here: https://developers.google.com/people/api/rest/
+      var discoveryDocs = ["https://www.googleapis.com/discovery/v1/apis/drive/v3/rest"];
+
+      // Enter a client ID for a web application from the Google API Console:
+      //   https://console.developers.google.com/apis/credentials?project=_
+      // In your API Console project, add a JavaScript origin that corresponds
+      //   to the domain where you will be running the script.
+      var clientId = '692008307570.apps.googleusercontent.com';
+
+      // Enter one or more authorization scopes. Refer to the documentation for
+      // the API or https://developers.google.com/people/v1/how-tos/authorizing
+      // for details.
+      var scopes = 'https://www.googleapis.com/auth/drive.file';
        
        /**
         * Callback for G+ Sign-in. Swaps views if login successful.
         */
-       function signinCallback(result) {
-           if(result.access_token) {
-               accessToken = result.access_token;
-           }
-       }
- 
+
+		function handleClientLoad() {
+        // Load the API client and auth2 library
+        //gapi.load('client:auth2', initClient);
+		   gapi.client.setApiKey(apiKey);
+    	window.setTimeout(checkAuth,1);
+      }
+
+	  function initClient() {
+        request = gapi.client.init({
+            apiKey: apiKey,
+            discoveryDocs: discoveryDocs,
+            clientId: clientId,
+            scope: scopes
+        });
+      }
+	   function checkAuth() {
+			gapi.auth.authorize({client_id: clientId, scope: scopes, immediate: true}, makeApiCall);
+		}
        /**
         * Called when files are dropped on to the drop target. For each file,
         * uploads the content to Drive & displays the results when complete.
         */
-       function handleFileSelect(evt) {
-			evt.stopPropagation();
-			evt.preventDefault();
-			var files = evt.dataTransfer.files; // FileList object.
-			
-			var output = [];
-			for (var i = 0, f; f = files[i]; i++) {
-				var uploader = new MediaUploader({
-					file: f,
-					token: accessToken,
-					onComplete: function(data) {
-						var element = 1;
-					}
-				});
-				uploader.upload();
-			}
+       function makeApiCall (evt) {
+			// Step 4: Load the Google+ API
+			//gapi.client.load('plus', 'v1').then(function() {
+			// Step 5: Assemble the API request
+			var request = gapi.client.plus.people.get({
+				'userId': 'me'
+			});
+			// Step 6: Execute the API request
+			request.then(function(resp) {
+				var heading = document.createElement('h4');
+				var image = document.createElement('img');
+				image.src = resp.result.image.url;
+				heading.appendChild(image);
+				heading.appendChild(document.createTextNode(resp.result.displayName));
+
+			}, 
+			function(reason) {
+				console.log('Error: ' + reason.result.error.message);
+			});
 		}
 		</script>	
-		<script src="https://apis.google.com/js/client:plusone.js"></script>
-		 <script type="text/javascript">
-			(function() {
-				var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-				po.src = 'https://apis.google.com/js/platform.js';
-				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-			})();
-		</script>
+		   <script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
 	</body>
 </html>
