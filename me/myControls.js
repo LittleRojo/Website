@@ -84,7 +84,7 @@ function experiencePlayer() {
     this.pauseCanvas.fillRect( 140, 40, 30, 60 );
     
     //STEP BACK
-    experiencePlayer.stepBackCanvas = document.createElement( 'canvas' );
+    /*experiencePlayer.stepBackCanvas = document.createElement( 'canvas' );
     experiencePlayer.stepBackCanvas.id = 'stepBackCanvas';
     experiencePlayer.stepBackCanvas.style.position = 'absolute';
     experiencePlayer.stepBackCanvas.style.left = 110;
@@ -140,7 +140,7 @@ function experiencePlayer() {
     this.timelineCanvas.fillStyle = 'brown';
     this.timelineCanvas.fillRect( 0, 50, window.innerWidth + 75, 15 );
     this.timelineCanvas.fillStyle = 'gray';
-    this.timelineCanvas.fillRect( 0, 50, 20, 50 );
+    this.timelineCanvas.fillRect( 0, 50, 20, 50 );*/
 }
 
 experiencePlayer.prototype.add = function( object3d ) {

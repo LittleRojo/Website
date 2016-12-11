@@ -84,10 +84,15 @@
 							//camera.position.set ( tweens[a].destinationX, tweens[a].destinationY, tweens[a].destinationZ );
 						}
 						if(a == tweens.length - 1) {
-							experience.rendering.material.map = THREE.ImageUtils.loadTexture( "img/Poppy/_" + padLeft(photoIndex, 5) + ".JPG" );
-							experience.rendering.material.needsUpdate = true;
-							clock = new THREE.Clock( true );
-							photoIndex++;
+							var loader = new THREE.TextureLoader();
+							loader.load( "img/Poppy/_" + padLeft(photoIndex, 5) + ".JPG", function( texture ) {
+								experience.rendering.material.map = texture;
+								experience.rendering.material.needsUpdate = true;
+								clock = new THREE.Clock( true );
+								photoIndex++;
+								animationHandle = 1;
+							});	
+							animationHandle = 0;						
 						}
 					}
 					if( animationHandle >= 2 ) {
@@ -204,10 +209,10 @@
 			function getBox( _ ) {
 				var boxGeometry = new THREE.BoxGeometry( _.width, _.height, _.depth );
 				var boxMaterial = new THREE.MeshPhongMaterial( {
-					color: new THREE.Color( "rgb(" + Math.floor( rand( 0, 255 ) ) + ", " + Math.floor( rand( 0, 255 ) ) + ", " + Math.floor( rand( 0, 255 ) ) + ")" ),
+					color: _.color,//new THREE.Color( "rgb(" + Math.floor( rand( 0, 255 ) ) + ", " + Math.floor( rand( 0, 255 ) ) + ", " + Math.floor( rand( 0, 255 ) ) + ")" ),
 				});
-				if( _.map ) {
-					boxMaterial.map = THREE.ImageUtils.loadTexture( _.map );
+				if( _.imageUrl ) {
+					boxMaterial.map = THREE.ImageUtils.loadTexture( _.imageUrl );
 				}	
 				var boxMesh = new THREE.Mesh( boxGeometry, boxMaterial );
 				boxMesh.receiveShadow = true;
@@ -349,15 +354,15 @@
 			//camera.name = 'camera';
 			//camera.setFov( 100 );
 			camera.translateX( 0 );
-			camera.translateY( 500 );
-			camera.translateZ( 2000 );
+			camera.translateY( 300 );
+			camera.translateZ( 800 );
 			experiencePlayer.add( camera );
 
 			orbitControls = new THREE.OrbitControls( camera );
-			orbitControls.zoomSpeed = .09;
+			orbitControls.zoomSpeed = .25;
 			orbitControls.rotateSpeed = .001;
 			orbitControls.keyPanSpeed = .001;
-			orbitControls.target = new THREE.Vector3( 0, 10, 0 );
+			orbitControls.target = new THREE.Vector3( 10000, 1000, 0 );
 
 			/*cameraTween = new TWEEN.Tween( camera.position );
 			cameraTween.to( {
@@ -400,13 +405,13 @@
 					originX: camera.position.x,
 					originY: camera.position.y,
 					originZ: camera.position.z,
-					destinationX: -1900,
+					destinationX: -900,
 					destinationY: 300,
 					destinationZ: 200,
 					time: 4000,
 				},
 				{
-					originX: -1900,
+					originX: -900,
 					originY: 300,
 					originZ: 200,
 					destinationX: -900,
@@ -419,13 +424,13 @@
 					originY: 410,
 					originZ: -800,
 					destinationX: 700,
-					destinationY: 710,
+					destinationY: 110,
 					destinationZ: -200,
 					time: 4000,
 				},			
 				{
 					originX: 700,
-					originY: 710,
+					originY: 110,
 					originZ: -200,
 					destinationX: camera.position.x,
 					destinationY: camera.position.y,
@@ -454,9 +459,9 @@
 				x: 0,
 				y: 0,
 				z: 0,
-				width: 4000,
-				height: 4000,
-				color: 0x00FF00,
+				width: 10000,
+				height: 10000,
+				color: 0x1A1515,
 				layout: 'flat',				
 			})			
 			scene.add( ground );
@@ -469,17 +474,21 @@
 				url: 'img/puddler1.jpg',
 			} );
 					
-			experience.rendering = getPlane( {
+			experience.rendering = getBox( {
 				x: experience.position.x,
 				y: experience.position.y + experience.height / 2,
 				z: experience.position.z,
 				width: experience.width,
 				height: experience.height,
+				depth: 50,
+				color: 0xFFFFFF,
 				imageUrl: experience.url,										
 			} );
 			scene.add( experience.rendering );
 									
-			orbitControls.target = experience.position;
+			orbitControls.target.setX( experience.position.x );
+			orbitControls.target.setY( 250 );
+			orbitControls.target.setZ( experience.position.z );
 
 			//addMusic();
 
