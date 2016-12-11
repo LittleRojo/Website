@@ -29,6 +29,8 @@
 		<script type="text/javascript" src="js/Webvr.js" ></script>
 		<script type="text/javascript" src="js/jquery-3.1.0.js" ></script>		
 		<script type="text/javascript" src="js/combinedCamera.js"></script>	
+		<script type="text/javascript" src="js/TWEEN.js"></script>	
+		<script type="text/javascript" src="js/Tree.js"></script>	
 		<script type="text/javascript" src="me/Clock.js"></script>	
 		
 		<script>
@@ -53,6 +55,7 @@
 			function stopAnimation() {				
 			}
 
+			var photoIndex = 0;
 			function stepAnimation( delta ) {
 				orbitControls.update();
 				vrControls.update();
@@ -80,6 +83,12 @@
 							timeTotal += tweens[a].time;
 							//camera.position.set ( tweens[a].destinationX, tweens[a].destinationY, tweens[a].destinationZ );
 						}
+						if(a == tweens.length - 1) {
+							experience.rendering.material.map = THREE.ImageUtils.loadTexture( "img/Poppy/_" + padLeft(photoIndex, 5) + ".JPG" );
+							experience.rendering.material.needsUpdate = true;
+							clock = new THREE.Clock( true );
+							photoIndex++;
+						}
 					}
 					if( animationHandle >= 2 ) {
 						animationHandle++;
@@ -97,7 +106,8 @@
 					}
 				}	
 
-				experience.rendering.lookAt( camera.position );			
+				TWEEN.update();
+				//experience.rendering.lookAt( camera.position );			
 
 				orbitPos = camera.position.clone();
 				
@@ -213,12 +223,51 @@
 				return boxMesh;
 			}
 
-			function rendering() {
-				this.position = new THREE.Vector3( 0, 0, 0 ),
-				this.width = 858, 
-				this.height = 588,
-				this.depth = 858, 
-				this.url = 'img/1982_1983_Ryans_1st_Yr_Xmas_017.JPG',
+			function getTree( _ ) {
+				var tree = new THREE.Tree( {
+					generations: _.generations,
+					length : _.length,
+					uvLength : _.uvLength,
+					radius : _.radius,
+					radiusSegments : _.radiusSegments,
+					heightSegments : _.heightSegments,
+				});
+
+				var geometry = THREE.TreeGeometry.build( tree );
+
+				var material = new THREE.MeshPhongMaterial( [
+
+				]);
+				if( _.map ) {
+					material.map = THREE.ImageUtils.loadTexture( _.map );
+				}	
+
+				var mesh = new THREE.Mesh(
+					geometry,
+					new THREE.MeshPhongMaterial({
+						color : _.color,
+					})
+				);
+
+				if( _.x ) {				
+					mesh.translateX( _.x );
+				}
+				if( _.y ) {
+					mesh.translateY( _.y );
+				}	
+				if( _.z ) {
+					mesh.translateZ( _.z );
+				}
+
+				return mesh;
+			}
+
+			function rendering( _ ) {
+				this.position = _.position,
+				this.width =_.width, 
+				this.height = _.height,
+				this.depth = _.depth, 
+				this.url = _.url,
 				this.tweenTree = []; 
 			}
 
@@ -242,6 +291,14 @@
 			
 			function randColor() {
 				return Math.floor(Math.random()*16777215).toString(16);
+			}
+			function padLeft( number, size ) {
+				/*var txt = number;
+				while( txt.length < size ) {
+					txt = "0" + txt;
+				}
+				return txt;*/
+				return ("00000" + number).slice(-'00000'.length);
 			}
 
 			/*function cameraLookDir( camera ) {
@@ -338,42 +395,6 @@
 
 			scene = new THREE.Scene();
 			clock = new THREE.Clock( false );
-			
-			var ambientLight = getAmbientLight( {
-				color: 0xFFFFFF,
-				intensity: 1,
-			} );
-			scene.add( ambientLight );
-
-			var spotLight = getSpotLight( {
-				x: 0,
-				y: 1000,
-				z: 0,
-				color: 0xFFFFFF,//CE0FA,
-				intensity: 3.75,				
-			} );
-			//scene.add( spotLight );
-			
-			var ground = getPlane( {
-				name: 'ground',
-				x: 0,
-				y: 0,
-				z: 0,
-				width: 4000,
-				height: 4000,
-				color: 0x00FF00,
-				layout: 'flat',				
-			})			
-			scene.add( ground );
-			
-			var experience = new rendering( {
-				position: new THREE.Vector3( 0, 0, -10 ),
-				width: 858, 
-				height: 588,
-				depth: 858, 
-				url: 'img/map.png',
-			} );
-			
 			tweens = [
 				{
 					originX: camera.position.x,
@@ -412,9 +433,43 @@
 					time: 4000,
 				},
 			]
+
+			var ambientLight = getAmbientLight( {
+				color: 0xFFFFFF,
+				intensity: 1,
+			} );
+			scene.add( ambientLight );
+
+			var spotLight = getSpotLight( {
+				x: 0,
+				y: 1000,
+				z: 0,
+				color: 0xFFFFFF,//CE0FA,
+				intensity: 3.75,				
+			} );
+			//scene.add( spotLight );
 			
-			var imageSize = 10;			
-			var photo = getPlane( {
+			var ground = getPlane( {
+				name: 'ground',
+				x: 0,
+				y: 0,
+				z: 0,
+				width: 4000,
+				height: 4000,
+				color: 0x00FF00,
+				layout: 'flat',				
+			})			
+			scene.add( ground );
+			
+			var experience = new rendering( {
+				position: new THREE.Vector3( 0, 0, -10 ),
+				width: 858, 
+				height: 588,
+				depth: 858, 
+				url: 'img/puddler1.jpg',
+			} );
+					
+			experience.rendering = getPlane( {
 				x: experience.position.x,
 				y: experience.position.y + experience.height / 2,
 				z: experience.position.z,
@@ -422,10 +477,8 @@
 				height: experience.height,
 				imageUrl: experience.url,										
 			} );
-			experience.rendering = photo;
-			scene.add( photo );
-			//coordinateHelper.add( building );
-
+			scene.add( experience.rendering );
+									
 			orbitControls.target = experience.position;
 
 			//addMusic();
