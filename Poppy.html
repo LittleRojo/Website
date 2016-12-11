@@ -45,6 +45,7 @@
 	<body style="margin:0px" bgcolor="black">
 		<script type="text/javascript" src="me/myControls.js"></script>	
 		<script>
+			var nextPhoto;
 			var animationHandle = 0;
 			function startAnimation( delta ) {								
 				stepAnimation( delta );
@@ -82,16 +83,16 @@
 							timeTotal += tweens[a].time;
 							//camera.position.set ( tweens[a].destinationX, tweens[a].destinationY, tweens[a].destinationZ );
 						}
-						if(a == tweens.length - 1) {
+						if(a == tweens.length - 1) {							
+							clock = new THREE.Clock( true );
+							photoIndex++;
+							animationHandle = 1;
 							var loader = new THREE.TextureLoader();
 							loader.load( "img/Poppy/_" + padLeft(photoIndex, 5) + ".JPG", function( texture ) {
-								experience.rendering.material.map = texture;
-								experience.rendering.material.needsUpdate = true;
-								clock = new THREE.Clock( true );
-								photoIndex++;
-								animationHandle = 1;
+								nextPhoto = texture;
 							});	
-							animationHandle = 0;						
+							experience.rendering.material.map = nextPhoto;
+							experience.rendering.material.needsUpdate = true;						
 						}
 					}
 					if( animationHandle >= 2 ) {
@@ -483,7 +484,13 @@
 				imageUrl: experience.url,										
 			} );
 			scene.add( experience.rendering );
-									
+
+			var loader = new THREE.TextureLoader();
+			loader.load( "img/Poppy/_" + padLeft(photoIndex, 5) + ".JPG", function( texture ) {
+					nextPhoto = texture;
+					photoIndex++;
+				});
+							
 			orbitControls.target.setX( experience.position.x );
 			orbitControls.target.setY( 250 );
 			orbitControls.target.setZ( experience.position.z );
