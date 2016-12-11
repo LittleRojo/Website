@@ -581,7 +581,9 @@
 						'body': multipartRequestBody
 					});
 
-					//request.execute(callback);
+					request.execute(function( a ) {
+						var a = 1;
+					});
 				};
 				reader.readAsDataURL(file);
 			}
