@@ -5,35 +5,35 @@ function click( event ) {
     }
     var y = event.y;
     if( event.pageY ) {
-        y = event.pageY + 135;
+        y = event.pageY;
     }
     if( experiencePlayer ){
         //PLAY
-        if( x >= 10 && x <= 35 && y >= 765 && y <= 780 ) {
+        if( x >= 10 && x <= 35 && y >= window.innerHeight - 25 && y <= window.innerHeight ) {
             clock.start();
             animationHandle = 1;
         }
 
         //PAUSE
-        if( x > 55 && x < 85 && y > 765 && y < 780 ) {
+        if( x > 55 && x < 85 && y > window.innerHeight - 25 && y <= window.innerHeight ) {
             clock.stop();
             animationHandle = 0;
         }
 
         //STEP BACK
-        if( x > 105 && x < 135 && y > 765 && y < 780 ) {
+        if( x > 105 && x < 135 && y > window.innerHeight - 25 && y <= window.innerHeight ) {
             clock.start();            
             animationHandle = -2;           
         }
 
         //STEP FORWARD
-        if( x > 156 && x < 186 && y > 765 && y < 780 ) {
+        if( x > 156 && x < 186 && y > window.innerHeight - 25 && y <= window.innerHeight ) {
             clock.start();
             animationHandle = 2;           
         }
 
         //TIMELINE
-        if( x > window.innerWidth / 2 + 75 && x < window.innerWidth && y > 765 && y < 780 ) {
+        if( x > window.innerWidth / 2 + 75 && x < window.innerWidth && y > window.innerHeight - 25 && y <= window.innerHeight ) {
             experiencePlayer.timelineCanvas.clearRect( 0, 0, window.innerWidth / 2, 100 );
             experiencePlayer.timelineCanvas.fillStyle = 'brown';
             experiencePlayer.timelineCanvas.fillRect( 0, 50, window.innerWidth + 75, 15 );
@@ -84,25 +84,25 @@ function experiencePlayer() {
     this.pauseCanvas.fillRect( 140, 40, 30, 60 );
     
     //STEP BACK
-    experiencePlayer.stepForwardCanvas = document.createElement( 'canvas' );
-    experiencePlayer.stepForwardCanvas.id = 'stepBackCanvas';
-    experiencePlayer.stepForwardCanvas.style.position = 'absolute';
-    experiencePlayer.stepForwardCanvas.style.left = 110;
-    experiencePlayer.stepForwardCanvas.style.top = window.innerHeight * .95;
-    experiencePlayer.stepForwardCanvas.style.width = 50;
-    experiencePlayer.stepForwardCanvas.style.height = 50;
-    experiencePlayer.stepForwardCanvas.style.zIndex = 150;
-    document.body.appendChild( experiencePlayer.stepForwardCanvas );
+    experiencePlayer.stepBackCanvas = document.createElement( 'canvas' );
+    experiencePlayer.stepBackCanvas.id = 'stepBackCanvas';
+    experiencePlayer.stepBackCanvas.style.position = 'absolute';
+    experiencePlayer.stepBackCanvas.style.left = 110;
+    experiencePlayer.stepBackCanvas.style.top = window.innerHeight * .95;
+    experiencePlayer.stepBackCanvas.style.width = 50;
+    experiencePlayer.stepBackCanvas.style.height = 50;
+    experiencePlayer.stepBackCanvas.style.zIndex = 150;
+    document.body.appendChild( experiencePlayer.stepBackCanvas );
 
-    this.stepForwardCanvas = experiencePlayer.stepForwardCanvas.getContext( '2d' );
-    this.stepForwardCanvas.fillStyle = 'purple';
-    this.stepForwardCanvas.fillRect( 50, 60, 100, 20 );     
-    this.stepForwardCanvas.fillStyle = 'purple';
-    this.stepForwardCanvas.beginPath();
-    this.stepForwardCanvas.moveTo( 60, 35 );   
-    this.stepForwardCanvas.lineTo( 0, 70 );     
-    this.stepForwardCanvas.lineTo( 60, 105 );
-    this.stepForwardCanvas.fill();
+    this.stepBackCanvas = experiencePlayer.stepBackCanvas.getContext( '2d' );
+    this.stepBackCanvas.fillStyle = 'purple';
+    this.stepBackCanvas.fillRect( 50, 60, 100, 20 );     
+    this.stepBackCanvas.fillStyle = 'purple';
+    this.stepBackCanvas.beginPath();
+    this.stepBackCanvas.moveTo( 60, 35 );   
+    this.stepBackCanvas.lineTo( 0, 70 );     
+    this.stepBackCanvas.lineTo( 60, 105 );
+    this.stepBackCanvas.fill();
 
     //STEP FORWARD
     experiencePlayer.stepForwardCanvas = document.createElement( 'canvas' );
@@ -125,18 +125,18 @@ function experiencePlayer() {
     this.stepForwardCanvas.lineTo( 145, 105 );
     this.stepForwardCanvas.fill();
 
-    //POSITION - FORWARD
-    experiencePlayer.stepForwardCanvas = document.createElement( 'canvas' );
-    experiencePlayer.stepForwardCanvas.id = 'positionCanvas';
-    experiencePlayer.stepForwardCanvas.style.position = 'absolute';
-    experiencePlayer.stepForwardCanvas.style.left = window.innerWidth / 2 + 75;
-    experiencePlayer.stepForwardCanvas.style.top = window.innerHeight * .95;
-    experiencePlayer.stepForwardCanvas.style.width = window.innerWidth / 2 - 110;
-    experiencePlayer.stepForwardCanvas.style.height = 50;
-    experiencePlayer.stepForwardCanvas.style.zIndex = 150;
-    document.body.appendChild( experiencePlayer.stepForwardCanvas );
+    //TIMELINE
+    experiencePlayer.timelineCanvas = document.createElement( 'canvas' );
+    experiencePlayer.timelineCanvas.id = 'positionCanvas';
+    experiencePlayer.timelineCanvas.style.position = 'absolute';
+    experiencePlayer.timelineCanvas.style.left = window.innerWidth / 2 + 75;
+    experiencePlayer.timelineCanvas.style.top = window.innerHeight * .95;
+    experiencePlayer.timelineCanvas.style.width = window.innerWidth / 2 - 110;
+    experiencePlayer.timelineCanvas.style.height = 50;
+    experiencePlayer.timelineCanvas.style.zIndex = 150;
+    document.body.appendChild( experiencePlayer.timelineCanvas );
     
-    this.timelineCanvas = experiencePlayer.stepForwardCanvas.getContext( '2d' );
+    this.timelineCanvas = experiencePlayer.timelineCanvas.getContext( '2d' );
     this.timelineCanvas.fillStyle = 'brown';
     this.timelineCanvas.fillRect( 0, 50, window.innerWidth + 75, 15 );
     this.timelineCanvas.fillStyle = 'gray';
@@ -144,9 +144,8 @@ function experiencePlayer() {
 }
 
 experiencePlayer.prototype.add = function( object3d ) {
-    return;
-
     this.objects.push( object3d );
+    return;
     for( var a = 0; a < this.objects.length; a++ ) {
         this.context.font = "12px serif";
         this.context.textBaseline = "hanging";
