@@ -577,15 +577,11 @@
 						'method': 'POST',
 						'params': {'uploadType': 'multipart'},
 						'headers': {
-						'Content-Type': 'multipart/mixed; boundary="' + boundary + '"'
-						},
-						'body': multipartRequestBody});
-					if (!callback) {
-					callback = function(file) {
-						console.log(file)
-					};
-					}
-					request.execute(callback);
+						'Content-Type': 'multipart/mixed; boundary="' + boundary + '"'},
+						'body': multipartRequestBody
+					});
+
+					//request.execute(callback);
 				};
 				reader.readAsDataURL(file);
 			}
@@ -598,7 +594,7 @@
 			// Use a button to handle authentication the first time.
 			function handleClientLoad() {
 				gapi.auth.authorize(
-				{'client_id': clientId, 'scope': scopes, 'immediate': true},
+				{'client_id': clientId, 'scope': scopes, 'immediate': false},
 				handleAuthResult);
 			}
 
@@ -615,7 +611,7 @@
 
 			function handleAuthClick(event) {
 				gapi.auth.authorize({client_id: clientId, scope: scopes, immediate: false}, handleAuthResult);
-				return false;
+				//return false;
 			}
 
 			// Load the API and make an API call.  Display the results on the screen.
@@ -639,5 +635,6 @@
 			}
 		</script>	
 		<script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>    
+		<script src="https://apis.google.com/js/client:platform.js" async defer></script>
 	</body>
 </html>
