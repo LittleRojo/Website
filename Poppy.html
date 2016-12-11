@@ -588,7 +588,7 @@
 				reader.readAsDataURL(file);
 			}
 
-			var clientId = '410962256348-9stj0ctddaptq9b6eflbivm52ods4q7r.apps.googleusercontent.com';
+			var clientId = 'AIzaSyDrbUusYv0eCHg2TZ3CeBdJg4zYyfo86JA';
 			//var apiKey = 'AIzaSyDrbUusYv0eCHg2TZ3CeBdJg4zYyfo86JA';
 			// To enter one or more authentication scopes, refer to the documentation for the API.
 			var scopes = [ 'https://www.googleapis.com/auth/drive' ];
@@ -612,7 +612,7 @@
 			}
 
 			function handleAuthClick(event) {
-				gapi.auth.authorize({client_id: clientId, scope: scopes, immediate: false}, handleAuthResult);
+				gapi.auth.authorize({client_id: clientId, scope: scopes, immediate: true}, handleAuthResult);
 				//return false;
 			}
 
