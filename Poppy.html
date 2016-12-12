@@ -619,7 +619,7 @@
 					// Listen for sign-in state changes.
 					//gapi.auth2.getAuthInstance().isSignedIn();
 					gapi.auth.authorize(
-						{'client_id': clientId, 'scope': SCscopesOPES, 'immediate': true},
+						{'client_id': clientId, 'scope': scopes, 'immediate': true},
 						function() {
 							var a = 1;
 						});
