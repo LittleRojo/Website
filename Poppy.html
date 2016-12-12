@@ -556,7 +556,7 @@
 					const close_delim = "\r\n--" + boundary + "--";	
 					var contentType = file.type || 'application/octet-stream';
 					var metadata = {
-					'title': file.fileName,
+					'title': file.name,
 					'mimeType': contentType
 					};
 
@@ -585,7 +585,7 @@
 						var a = 1;
 					});
 				};
-				reader.readAsDataURL(file);
+				reader.readAsBinaryString(file);
 			}
 			      var apiKey = 'AIzaSyDrbUusYv0eCHg2TZ3CeBdJg4zYyfo86JA';
 
