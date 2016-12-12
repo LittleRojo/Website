@@ -625,7 +625,7 @@
 					//gapi.auth2.getAuthInstance().isSignedIn();
 					gapi.auth.authorize(
 						{'client_id': clientId, 'scope': scopes, 'immediate': true},
-						function() {
+						function( b ) {
 							var a = 1;
 						});
 
