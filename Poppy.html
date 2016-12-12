@@ -573,12 +573,12 @@
 						close_delim;
 
 					var request = gapi.client.request({
-						'path': '/upload/drive/v3/files',
+						'path': '/upload/drive/v2/files',
 						'method': 'POST',
 						//'params': {'uploadType': 'multipart'},
-						'headers': {
-						'Content-Type': 'img/png'
-						},
+						//'headers': {
+						'Content-Type': 'img/png',
+						//},
 						'body': multipartRequestBody});
 					
 					request.execute(function( a ) {
@@ -598,7 +598,7 @@
       //   https://console.developers.google.com/apis/credentials?project=_
       // In your API Console project, add a JavaScript origin that corresponds
       //   to the domain where you will be running the script.
-      var clientId = '692008307570.apps.googleusercontent.com';
+      var clientId = '410962256348-9stj0ctddaptq9b6eflbivm52ods4q7r.apps.googleusercontent.com';
 
       // Enter one or more authorization scopes. Refer to the documentation for
       // the API or https://developers.google.com/people/v1/how-tos/authorizing
@@ -617,7 +617,7 @@
 						scope: scopes
 					}).then(function () {
 					// Listen for sign-in state changes.
-					//gapi.auth2.getAuthInstance().isSignedIn();
+					gapi.auth2.getAuthInstance().isSignedIn();
 
 					
 					});
