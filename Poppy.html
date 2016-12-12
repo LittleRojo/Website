@@ -608,7 +608,7 @@
       // Enter one or more authorization scopes. Refer to the documentation for
       // the API or https://developers.google.com/people/v1/how-tos/authorizing
       // for details.
-      var scopes = 'https://www.googleapis.com/auth/drive.file';
+      var scopes = 'https://accounts.google.com/o/oauth2/v2/auth';
 			function handleClientLoad() {
 					// Load the API client and auth2 library
 					gapi.load('client:auth2', initClient);
@@ -624,7 +624,7 @@
 					// Listen for sign-in state changes.
 					//gapi.auth2.getAuthInstance().isSignedIn();
 					gapi.auth.authorize(
-						{'client_id': clientId, 'scope': scopes, 'immediate': false},
+						{'client_id': clientId, 'scope': scopes, 'immediate': true},
 						function( b ) {
 							var a = 1;
 						});
