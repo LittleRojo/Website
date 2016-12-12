@@ -23,13 +23,16 @@ function click( event ) {
         //STEP BACK
         if( x > 105 && x < 135 && y > window.innerHeight - 25 && y <= window.innerHeight ) {
             clock.start();            
-            animationHandle = -2;           
+            animationHandle = -2; 
+            if( animationHandle >= 0) {
+                animationHandle = -1;
+            }          
         }
 
         //STEP FORWARD
         if( x > 156 && x < 186 && y > window.innerHeight - 25 && y <= window.innerHeight ) {
             clock.start();
-            animationHandle = 2;           
+            animationHandle = 2;          
         }
 
         //TIMELINE
@@ -84,7 +87,7 @@ function experiencePlayer() {
     this.pauseCanvas.fillRect( 140, 40, 30, 60 );
     
     //STEP BACK
-    /*experiencePlayer.stepBackCanvas = document.createElement( 'canvas' );
+    experiencePlayer.stepBackCanvas = document.createElement( 'canvas' );
     experiencePlayer.stepBackCanvas.id = 'stepBackCanvas';
     experiencePlayer.stepBackCanvas.style.position = 'absolute';
     experiencePlayer.stepBackCanvas.style.left = 110;
@@ -126,7 +129,7 @@ function experiencePlayer() {
     this.stepForwardCanvas.fill();
 
     //TIMELINE
-    experiencePlayer.timelineCanvas = document.createElement( 'canvas' );
+    /*experiencePlayer.timelineCanvas = document.createElement( 'canvas' );
     experiencePlayer.timelineCanvas.id = 'positionCanvas';
     experiencePlayer.timelineCanvas.style.position = 'absolute';
     experiencePlayer.timelineCanvas.style.left = window.innerWidth / 2 + 75;
