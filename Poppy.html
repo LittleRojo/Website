@@ -573,12 +573,12 @@
 						close_delim;
 
 					var request = gapi.client.request({
-						'path': '/upload/drive/v3/files',
+						'path': '/upload/drive/v2/files',
 						'method': 'POST',
-						//'params': {'uploadType': 'multipart'},
-						//'headers': {
-							'Content-Type': 'img/png',
-						//},
+						'params': {'uploadType': 'multipart'},
+						'headers': {
+						'Content-Type': 'multipart/mixed; boundary="' + boundary + '"'
+						},
 						'body': multipartRequestBody});
 					
 					request.execute(function( a ) {
