@@ -56,7 +56,7 @@ function click( event ) {
             }
             
 
-            experiencePlayer.timelineCanvas.clearRect( 0, 0, window.innerWidth / 2, 100 );
+            experiencePlayer.timelineCanvas.clearRect( 0, 0, window.innerWidth / 2 + 300, 100 );
             experiencePlayer.timelineCanvas.fillStyle = 'brown';
             experiencePlayer.timelineCanvas.fillRect( 0, 50, window.innerWidth + 75, 15 );
             experiencePlayer.timelineCanvas.fillStyle = 'gray';
