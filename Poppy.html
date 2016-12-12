@@ -581,7 +581,12 @@
 						},
 						'body': multipartRequestBody});
 					
-					request.execute(function( a ) {
+					gapi.auth.authorize(
+						{'client_id': clientId, 'scope': scopes, 'immediate': true},
+						function() {
+							request.execute(function( a ) {
+						});
+					
 						var a = 1;
 					});
 				};
