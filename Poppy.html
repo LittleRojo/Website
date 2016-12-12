@@ -86,13 +86,25 @@
 						if(a == tweens.length - 1) {							
 							clock = new THREE.Clock( true );
 							photoIndex++;
+							if(photoIndex > 87) {
+								photoIndex = 0;
+							}
 							animationHandle = 1;
 							var loader = new THREE.TextureLoader();
 							loader.load( "img/Poppy/_" + padLeft(photoIndex, 5) + ".JPG", function( texture ) {
 								nextPhoto = texture;
 							});	
 							experience.rendering.material.map = nextPhoto;
-							experience.rendering.material.needsUpdate = true;						
+							experience.rendering.material.needsUpdate = true;	
+
+							var segment = ((window.innerWidth - 35) - (window.innerWidth / 2 + 75)) / 87;
+							var offset = photoIndex * segment;
+							var factor = 1200 / window.innerWidth;
+							experiencePlayer.timelineCanvas.clearRect( 0, 0, window.innerWidth / 2, 100 );
+							experiencePlayer.timelineCanvas.fillStyle = 'brown';
+							experiencePlayer.timelineCanvas.fillRect( 0, 50, window.innerWidth + 75, 15 );
+							experiencePlayer.timelineCanvas.fillStyle = 'gray';
+							experiencePlayer.timelineCanvas.fillRect( offset*factor, 50, 20, 50 );					
 						}
 					}
 					if( animationHandle >= 2 ) {

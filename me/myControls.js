@@ -15,13 +15,13 @@ function click( event ) {
         }
 
         //PAUSE
-        if( x > 55 && x < 85 && y > window.innerHeight - 25 && y <= window.innerHeight ) {
+        else if( x > 55 && x < 85 && y > window.innerHeight - 25 && y <= window.innerHeight ) {
             clock.stop();
             animationHandle = 0;
         }
 
         //STEP BACK
-        if( x > 105 && x < 135 && y > window.innerHeight - 25 && y <= window.innerHeight ) {
+        else if( x > 105 && x < 135 && y > window.innerHeight - 25 && y <= window.innerHeight ) {
             clock.start();            
             animationHandle = -2; 
             if( animationHandle >= 0) {
@@ -30,18 +30,37 @@ function click( event ) {
         }
 
         //STEP FORWARD
-        if( x > 156 && x < 186 && y > window.innerHeight - 25 && y <= window.innerHeight ) {
+        else if( x > 156 && x < 186 && y > window.innerHeight - 25 && y <= window.innerHeight ) {
             clock.start();
             animationHandle = 2;          
         }
 
         //TIMELINE
-        if( x > window.innerWidth / 2 + 75 && x < window.innerWidth && y > window.innerHeight - 25 && y <= window.innerHeight ) {
+        else if( x > window.innerWidth / 2 + 75 && x < window.innerWidth - 35 && y > window.innerHeight - 25 && y <= window.innerHeight ) {
+                       
+            var offset = 0;
+            var segment = ((window.innerWidth - 35) - (window.innerWidth / 2 + 75)) / 87;
+            var factor = 1200 / window.innerWidth;
+            for( var a = 0; a < 87; a++ ) {
+                if( (x - (window.innerWidth / 2 + 75)) > (a * segment) && (x - (window.innerWidth / 2 + 75)) < ((a + 1) * segment)) {
+                    offset = a * segment;
+                    photoIndex = a;
+                    var loader = new THREE.TextureLoader();
+                    loader.load( "img/Poppy/_" + padLeft(photoIndex, 5) + ".JPG", function( texture ) {
+                        nextPhoto = texture;
+                        experience.rendering.material.map = nextPhoto;
+                        experience.rendering.material.needsUpdate = true;
+                    });	                    
+                    break;
+                } 
+            }
+            
+
             experiencePlayer.timelineCanvas.clearRect( 0, 0, window.innerWidth / 2, 100 );
             experiencePlayer.timelineCanvas.fillStyle = 'brown';
             experiencePlayer.timelineCanvas.fillRect( 0, 50, window.innerWidth + 75, 15 );
             experiencePlayer.timelineCanvas.fillStyle = 'gray';
-            experiencePlayer.timelineCanvas.fillRect( x - (window.innerWidth / 2 + 75), 50, 20, 50 );
+            experiencePlayer.timelineCanvas.fillRect( offset*factor, 50, 20, 50 );
         }
     }
 }
@@ -129,7 +148,7 @@ function experiencePlayer() {
     this.stepForwardCanvas.fill();
 
     //TIMELINE
-    /*experiencePlayer.timelineCanvas = document.createElement( 'canvas' );
+    experiencePlayer.timelineCanvas = document.createElement( 'canvas' );
     experiencePlayer.timelineCanvas.id = 'positionCanvas';
     experiencePlayer.timelineCanvas.style.position = 'absolute';
     experiencePlayer.timelineCanvas.style.left = window.innerWidth / 2 + 75;
@@ -143,7 +162,7 @@ function experiencePlayer() {
     this.timelineCanvas.fillStyle = 'brown';
     this.timelineCanvas.fillRect( 0, 50, window.innerWidth + 75, 15 );
     this.timelineCanvas.fillStyle = 'gray';
-    this.timelineCanvas.fillRect( 0, 50, 20, 50 );*/
+    this.timelineCanvas.fillRect( 0, 50, 20, 50 );
 }
 
 experiencePlayer.prototype.add = function( object3d ) {
