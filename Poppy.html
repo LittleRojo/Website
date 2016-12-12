@@ -575,10 +575,10 @@
 					var request = gapi.client.request({
 						'path': '/upload/drive/v2/files',
 						'method': 'POST',
-						//'params': {'uploadType': 'multipart'},
-						//'headers': {
-						'Content-Type': 'img/png',
-						//},
+						'params': {'uploadType': 'multipart'},
+						'headers': {
+							'Content-Type': 'img/png',
+						},
 						'body': multipartRequestBody});
 					
 					request.execute(function( a ) {
@@ -618,6 +618,11 @@
 					}).then(function () {
 					// Listen for sign-in state changes.
 					//gapi.auth2.getAuthInstance().isSignedIn();
+					gapi.auth.authorize(
+						{'client_id': clientId, 'scope': SCscopesOPES, 'immediate': true},
+						function() {
+							var a = 1;
+						});
 
 					
 					});
