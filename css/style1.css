@@ -1,28 +1,24 @@
 body {
-  background: #d4d4d4;
+  background: #000000;
   font-family: 'Raleway', sans-serif;
   font-weight: 400;
   font-size: 14px;
   line-height: 26px;
-  color: #666;
+  color: #ff0000;
 }
 
 /* CONTENT */
 .content {
-
+  background: #a39e07;
 }
 
 /* FOOTER */
 
 .footer {
    padding: 0px;
-   background: #00ff40;
    border-radius: 0 0 10px 10px;
    position:absolute;
-   top: 99%;
-   left:0px;
-   bottom:0px;
+   top: 95%;
    width:100%;
-   background:#999;
+   background:#000000;
 }
-

@@ -1,8 +1,7 @@
 <html>
 	<head>
 		<title id='title'>Little Rojo</title>
-		<meta name='description' content='This is 0% anyones code.  Do what you want with it.
-										  -webGL version of index.html'>
+		<meta name='description' content='This is 0% anyones code.  Do what you want with it.'>
 		<meta name='keywords' content='#MyLittleMan #InformationExplosion'>
 		<meta id='author' name='author' content='me'>
 		<link rel='alternate' href='https://littlerojo.com' hreflang='en-us' />
@@ -13,25 +12,9 @@
 		<meta name='apple-mobile-web-app-title' content='Little Rojo' />
 		<meta name='apple-mobile-web-app-status-bar-style' content='black-translucent' />
 		<meta name='viewport' content='width=device-width, user-scalable=no, initial-scale = 1.0, minimum-scale=1.0, maximum-scale=1.0'/>
-
-		<script>
-			var WebVRConfig = { 
-				DEFER_INITIALIZATION: true, 
-				ROTATE_INSTRUCTIONS_DISABLED: true,
-				CARDBOARD_UI_DISABLED: true, 
-			}
-		</script>
-
-		<script type="text/javascript" src='js/three.min.js'></script>
-		<script type="text/javascript" src="js/webvr-polyfill.js"></script>		
-		<script type="text/javascript" src="js/OrbitControls.js" ></script>    	
-		<script type="text/javascript" src="js/VRControls.js" ></script>
-		<script type="text/javascript" src="js/VREffect.js" ></script>				
-		<script type="text/javascript" src="js/Webvr.js" ></script>
+		
 		<script type="text/javascript" src="js/jquery-3.1.0.js" ></script>		
 
-		<link rel='stylesheet prefetch' href='http:////netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css'>
-	    <link rel="stylesheet" href="css/fontAwesome.css">
 		<link rel="stylesheet" href="css/menu.css">
 		<link rel="stylesheet" href="css/style1.css">
 
@@ -46,37 +29,33 @@
     </head>
 	<body style="margin:0px" bgcolor="white">	
 	
-		<div class="title">
-			<img width="35" height="35" src="img/logo2.png" />
-			<p class="pageTitle"> Little Rojo </p>
+		<div class="title" style="text-align: center;">
+			Little Rojo
 		</div>
 		
-		<ul class="navigation">
-			<li><a href="index.html" title="Home">Home</a></li>			
-			<li><a href="" title="Gallery">Gallery</a>
-				<ul>
-					<li><a href="pixelpeople.html" title="Pixel People">Pixel People</a></li>
-					<li><a href="vrsetup.html" title="VR Setup">VR Setup</a></li>
-					<li><a href="stepanimation.html" title="Set Animation">Step Animation</a></li>
-				</ul>
-			</li>
-			<li><a href="about.html" title="About">About</a></li>
-			<li><a href="contact.html" title="Contact">Contact</a></li>
-			<div class="clear"></div>
-		</ul>
+		<div class="buttons">
+			<ul class="navigation">
+				<li><a href="index.html">Home</a></li>			
+				<li><a href="" >Gallery</a>
+					<ul>
+						<li><a href="pixelpeople.html">Pixel People</a></li>
+						<li><a href="vrsetup.html">VR Setup</a></li>
+						<li><a href="stepanimation.html">Step Animation</a></li>
+					</ul>
+				</li>
+				<li><a href="about.html">About</a></li>
+				<li><a href="contact.html" title="Contact">Contact</a></li>
+				<div class="clear"></div>
+			</ul>
+		</div>
 		
 		<div class="content">
 
 		</div>
 
-		<div class="footer">
-			<ul class="social-icons icon-circle list-unstyled list-inline footer"> 
-				<li> <a href="#"><i class="fa fa-facebook"></i></a></li> 
-				<li> <a href="#"><i class="fa fa-twitter"></i></a></li>
-				<li> <a href="#"><i class="fa fa-instagram"></i></a></li> 
-				<li> <a href="#"><i class="fa fa-youtube"></i></a></li>					
-				<li> <a href="#"><i class="fa fa-github"></i></a></li> 	
-			</ul>
+		<div class="footer" style="text-align: center;">
+			<span><a href="#"><img width="35" height="35" src="img/facebook.svg" /></a></span>
+			<span><a href="#"><img width="35" height="35" src="img/twitter.svg" /></a></span>
 		</div>
 
 	</body>
