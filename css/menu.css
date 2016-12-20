@@ -10,7 +10,7 @@
   font-weight: 700;
   margin: 0px;
   background: #000000;
-  border-radius: 10px 10px 0 0;
+  border-radius: 10px 10px 10px 10px;
 }
 
 .pageTitle {
@@ -33,6 +33,9 @@
       list-style:none;
     position:relative;
     left:50%;
+
+      -webkit-border-radius: 10px 10px 10px 10px;
+  border-radius: 10px 10px 10px 10px;
 }
 
 .buttons {
@@ -47,12 +50,18 @@
 }
 
 .navigation li:hover {
-  background: #928701;
+  background: #008080;
+ 
 }
 
 .navigation li:first-child {
-  -webkit-border-radius: 5px 5px 0 0;
-  border-radius: 5px 0 0 5px;
+  -webkit-border-radius: 10px 0px 0px 10px;
+  border-radius: 10px 0px 0px 10px;
+}
+
+.navigation li:hover li:last-child {
+  -webkit-border-radius: 0px 10px 10px 0px;
+  border-radius: 0px 10px 10px 0px;
 }
 
 .navigation li a {
@@ -82,24 +91,16 @@
   border: solid 3px #fff;
   border-top: 0;
   
-  -webkit-border-radius: 0 0 8px 8px;
-  border-radius: 0 0 8px 8px;
-  
-  -webkit-box-shadow:  0px 3px 3px 0px rgba(0, 0, 0, 0.25);
-  box-shadow:  0px 3px 3px 0px rgba(0, 0, 0, 0.25);
-}
-
-.navigation li:hover > ul li:hover {
-  -webkit-border-radius: 0 0 5px 5px;
-  border-radius: 0 0 5px 5px;
+  -webkit-border-radius: 0 0 10px 10px;
+  border-radius: 0 0 10px 10px;
 }
 
 .navigation li li a:hover {
-  background: #928701;
+  background: #008080;
 }
 
 .navigation ul li:last-child a,
 .navigation ul li:last-child a:hover {
-  -webkit-border-radius: 0 0 5px 5px;
-  border-radius: 0 0 5px 5px;
+  -webkit-border-radius: 0px 0px 10px 10px;
+  border-radius: 0px 0px 10px 10px;
 }
