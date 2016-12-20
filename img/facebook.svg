@@ -23,7 +23,7 @@
        inkscape:collect="always"
        id="linearGradient3761">
       <stop
-         style="stop-color:#5f5fd3;stop-opacity:1;"
+         style="stop-color:#8194ff;stop-opacity:0.73731345"
          offset="0"
          id="stop3763" />
       <stop
@@ -67,12 +67,12 @@
        inkscape:collect="always"
        xlink:href="#linearGradient3761"
        id="radialGradient3767"
-       cx="311.42856"
-       cy="667.06805"
-       fx="311.42856"
-       fy="667.06805"
+       cx="312.99982"
+       cy="667.07928"
+       fx="312.99982"
+       fy="667.07928"
        r="82.85714"
-       gradientTransform="matrix(1.595571,0.07162788,-0.06002714,0.97279158,-378.93317,-592.88487)"
+       gradientTransform="matrix(1.2858607,-0.00849316,-0.01168019,1.187183,-314.73123,-710.9466)"
        gradientUnits="userSpaceOnUse" />
   </defs>
   <sodipodi:namedview
@@ -84,9 +84,9 @@
      showgrid="false"
      inkscape:current-layer="svg2"
      inkscape:document-units="px"
-     inkscape:cy="-392.48998"
-     inkscape:cx="58.933824"
-     inkscape:zoom="0.7"
+     inkscape:cy="95.992756"
+     inkscape:cx="132.84"
+     inkscape:zoom="3.959798"
      inkscape:pageshadow="2"
      inkscape:pageopacity="0.0"
      borderopacity="1.0"
@@ -109,7 +109,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -148,7 +148,7 @@
          x="268.57144"
          y="588.07648"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:125%;font-family:'Facebook Letter Faces';-inkscape-font-specification:'Facebook Letter Faces, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;fill-opacity:1" /></flowRegion><flowPara
-       id="flowPara4167"></flowPara></flowRoot>  <text
+       id="flowPara4167" /></flowRoot>  <text
      xml:space="preserve"
      style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
      x="290.85712"
@@ -169,7 +169,7 @@
        sodipodi:role="line"
        id="tspan4177"
        x="299.42859"
-       y="649.42853"></tspan></text>
+       y="649.42853" /></text>
   <text
      xml:space="preserve"
      style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:200.92500305px;line-height:300%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
