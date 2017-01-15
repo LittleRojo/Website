@@ -4,12 +4,46 @@ body {
   font-weight: 400;
   font-size: 14px;
   line-height: 26px;
-  color: #ff0000;
+  color: #ff0000
 }
 
 /* CONTENT */
+@-webkit-keyframes color_change {
+		  from { color: blue; }
+		  to { color: ##3B1260; }
+		}
+		@-moz-keyframes color_change {
+		  from { color: blue; }
+		  to { color: #3B1260; }
+		}
+		@-ms-keyframes color_change {
+		  from { color: blue; }
+		  to { color: #3B1260; }
+		}
+		@-o-keyframes color_change {
+		  from { color: blue; }
+		  to { color: #3B1260; }
+		}
+		@keyframes color_change {
+		  from { color: blue; }
+		  to { color: #3B1260; }
+		}
+
 .content {
-  background: #a39e07;
+  background: #000000;
+  color: #3B1260;
+  text-align: center;
+  margin: 0px;
+  line-height: 5px;
+}
+
+.text {
+  color: blue;
+	-webkit-animation: color_change 5s infinite alternate;
+	-moz-animation: color_change 5s infinite alternate;
+	-ms-animation: color_change 5s infinite alternate;
+	-o-animation: color_change 5s infinite alternate;
+	animation: color_change 5s infinite alternate;
 }
 
 /* FOOTER */
