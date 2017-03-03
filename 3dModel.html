@@ -302,7 +302,16 @@
 		
 			var ambientLight = getAmbientLight( {
 				color: 0xFFFFFF,
+				intensity: .2,
+			} );
+			scene.add( ambientLight );
+
+			var ambientLight = getSpotLight( {
+				color: 0xF00FFF,
 				intensity: 1,
+				x: 0,
+				y: 10,
+				z: -10,
 			} );
 			scene.add( ambientLight );
 
@@ -322,8 +331,8 @@
 
 			var loader = new THREE.PLYLoader();
 			loader.load( '/media/head.ply', function ( geometry ) {
-				scene.add( new THREE.Mesh( geometry ) );
-				/*geometry.computeVertexNormals();
+				//scene.add( new THREE.Mesh( geometry ) );
+				geometry.computeVertexNormals();
 				var material = new THREE.MeshStandardMaterial( { color: 0x0055ff, shading: THREE.FlatShading } );
 				var mesh = new THREE.Mesh( geometry, material );
 				mesh.position.y = - 0.2;
@@ -332,7 +341,7 @@
 				mesh.scale.multiplyScalar( 0.001 );
 				mesh.castShadow = true;
 				mesh.receiveShadow = true;
-				scene.add( mesh );*/
+				scene.add( mesh );
 			
 				clock.start();
 				startAnimation();
