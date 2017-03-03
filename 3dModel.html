@@ -129,7 +129,7 @@
 					planeMaterial.map = THREE.ImageUtils.loadTexture( _.imageUrl );
 				}		
 				var planeMesh = new THREE.Mesh( planeGeometry, planeMaterial );
-				planeMesh.receiveShadow = true;
+				planeMesh.receiveShadow = false;
 				if( _.layout == 'flat' ) {
 					planeMesh.rotateX( deg( 90 ) );
 				}
