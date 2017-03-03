@@ -321,7 +321,7 @@
 			document.body.appendChild( mainCanvas );
 
 			var loader = new THREE.PLYLoader();
-			loader.load( 'https://littlerojo.com/media/head.ply', function ( geometry ) {
+			loader.load( '/media/head.ply', function ( geometry ) {
 				scene.add( new THREE.Mesh( geometry ) );
 				/*geometry.computeVertexNormals();
 				var material = new THREE.MeshStandardMaterial( { color: 0x0055ff, shading: THREE.FlatShading } );
