@@ -28,7 +28,7 @@
 		<script type="text/javascript" src="js/VRControls.js" ></script>
 		<script type="text/javascript" src="js/VREffect.js" ></script>				
 		<script type="text/javascript" src="js/Webvr.js" ></script>
-		<script type="text/javascript" src="js/ColladaLoader.js" ></script>
+		<script type="text/javascript" src="js/PLYLoader.js" ></script>
 		<script type="text/javascript" src="js/jquery-3.1.0.js" ></script>		
 
 		<script>
@@ -320,13 +320,9 @@
 	
 			document.body.appendChild( mainCanvas );
 
-			var loader = new THREE.ColladaLoader();
-			loader.options.convertUpAxis = true;
-			loader.load( '/media/head.dae', function ( collada ) {
-				dae = collada.scene;
-				dae.scale.x = dae.scale.y = dae.scale.z = 0.002;
-				dae.updateMatrix();
-
+			var loader = new THREE.ThreeMFLoader();
+			loader.load( './media/head.ply', function ( object ) {
+				scene.add( object );
 				clock.start();
 				startAnimation();
 			} );
