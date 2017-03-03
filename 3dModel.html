@@ -306,14 +306,14 @@
 			} );
 			scene.add( ambientLight );
 
-			var ambientLight = getSpotLight( {
+			var spotLight = getSpotLight( {
 				color: 0xFFFFFF,
-				intensity: 10,
+				intensity: 100,
 				x: 0,
-				y: 10,
+				y: 1000,
 				z: -3,
 			} );
-			scene.add( ambientLight );
+			scene.add( spotLight );
 
 			var ground = getPlane( {
 				name: 'ground',
