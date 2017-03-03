@@ -281,7 +281,7 @@
 			camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 10000 );
 			camera.translateX( 0 );
 			camera.translateY( 0 );
-			camera.translateZ( -2000 );
+			camera.translateZ( -1000 );
 		
 			orbitControls = new THREE.OrbitControls( camera );
 			orbitControls.zoomSpeed = .25;
@@ -311,7 +311,7 @@
 				color: 0xFFFFFF,
 				intensity: 100,
 				x: 0,
-				y: 1000,
+				y: 10000,
 				z: -500,
 			} );
 			scene.add( spotLight );
