@@ -279,9 +279,9 @@
 			renderer.sortObjects = false;
 			
 			camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 10000 );
-			camera.translateX( 100 );
+			camera.translateX( 0 );
 			camera.translateY( 300 );
-			camera.translateZ( 800 );
+			camera.translateZ( -800 );
 		
 			orbitControls = new THREE.OrbitControls( camera );
 			orbitControls.zoomSpeed = .25;
@@ -335,9 +335,10 @@
 				geometry.computeVertexNormals();
 				var material = new THREE.MeshStandardMaterial( { color: 0x000000, shading: THREE.FlatShading } );
 				var mesh = new THREE.Mesh( geometry, material );
+				mesh.scale.multiplyScalar( 5 );
 				mesh.rotation.x = - Math.PI / 2;
 				mesh.position.y = 0;
-				mesh.position.z = 1000;				
+				mesh.position.z = 0;				
 				mesh.castShadow = true;
 				mesh.receiveShadow = true;
 				scene.add( mesh );
