@@ -287,7 +287,7 @@
 			orbitControls.zoomSpeed = .25;
 			orbitControls.rotateSpeed = .001;
 			orbitControls.keyPanSpeed = .001;
-			orbitControls.target = new THREE.Vector3( 10000, 1000, 0 );
+			orbitControls.target = new THREE.Vector3( 100, 100, 0 );
 
 			fakeCamera = new THREE.Object3D();
 			vrControls = new THREE.VRControls( fakeCamera );
@@ -335,7 +335,7 @@
 				geometry.computeVertexNormals();
 				var material = new THREE.MeshStandardMaterial( { color: 0x000000, shading: THREE.FlatShading } );
 				var mesh = new THREE.Mesh( geometry, material );
-				mesh.scale.multiplyScalar( 10 );
+				mesh.scale.multiplyScalar( 2 );
 				mesh.rotation.x = - Math.PI / 2;
 				mesh.position.y = 0;
 				mesh.position.z = 0;				
