@@ -320,9 +320,19 @@
 	
 			document.body.appendChild( mainCanvas );
 
-			var loader = new THREE.ThreeMFLoader();
-			loader.load( './media/head.ply', function ( object ) {
-				scene.add( object );
+			var loader = new THREE.PLYLoader();
+			loader.load( './media/head.ply', function ( geometry ) {
+				geometry.computeVertexNormals();
+				var material = new THREE.MeshStandardMaterial( { color: 0x0055ff, shading: THREE.FlatShading } );
+				var mesh = new THREE.Mesh( geometry, material );
+				mesh.position.y = - 0.2;
+				mesh.position.z =   0.3;
+				mesh.rotation.x = - Math.PI / 2;
+				mesh.scale.multiplyScalar( 0.001 );
+				mesh.castShadow = true;
+				mesh.receiveShadow = true;
+				scene.add( mesh );
+			
 				clock.start();
 				startAnimation();
 			} );
