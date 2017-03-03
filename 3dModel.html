@@ -129,7 +129,7 @@
 					planeMaterial.map = THREE.ImageUtils.loadTexture( _.imageUrl );
 				}		
 				var planeMesh = new THREE.Mesh( planeGeometry, planeMaterial );
-				planeMesh.receiveShadow = false;
+				planeMesh.receiveShadow = true;
 				if( _.layout == 'flat' ) {
 					planeMesh.rotateX( deg( 90 ) );
 				}
@@ -278,7 +278,7 @@
 			renderer.sortObjects = false;
 			
 			camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 10000 );
-			camera.translateX( 0 );
+			camera.translateX( -100 );
 			camera.translateY( 300 );
 			camera.translateZ( 800 );
 		
@@ -325,7 +325,7 @@
 				color: 0x1A1515,
 				layout: 'flat',				
 			})			
-			scene.add( ground );
+			//scene.add( ground );
 	
 			document.body.appendChild( mainCanvas );
 
