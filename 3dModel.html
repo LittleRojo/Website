@@ -279,7 +279,7 @@
 			renderer.sortObjects = false;
 			
 			camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 10000 );
-			camera.translateX( 100 );
+			camera.translateX( -100 );
 			camera.translateY( 300 );
 			camera.translateZ( 800 );
 		
@@ -335,7 +335,7 @@
 				geometry.computeVertexNormals();
 				var material = new THREE.MeshStandardMaterial( { color: 0x000000, shading: THREE.FlatShading } );
 				var mesh = new THREE.Mesh( geometry, material );
-				mesh.scale.multiplyScalar( 5 );
+				mesh.scale.multiplyScalar( 10 );
 				mesh.rotation.x = - Math.PI / 2;
 				mesh.position.y = 0;
 				mesh.position.z = 0;				
