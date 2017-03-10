@@ -1,0 +1,3 @@
+[submodule "daydream-controller.js"]
+	path = daydream-controller.js
+	url = https://github.com/mrdoob/daydream-controller.js
