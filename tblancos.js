@@ -1,0 +1,1 @@
+if (addthis && addthis.layers) { addthis.layers({ 'share': { 'mobile': false } }); }
