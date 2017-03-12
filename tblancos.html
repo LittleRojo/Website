@@ -13,15 +13,16 @@
         <meta property="og:title" content="Home">
         <meta property="og:site_name" content="T. Blanco's Mexican Cafe">
         <meta property="og:url" content="http://tblancos.com/home.html">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
 		
 		<!--CSS-->
-		<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Fredericka+the+Great|Allura|Amatic+SC|Arizonia|Averia+Sans+Libre|Cabin+Sketch|Francois+One|Jacques+Francois+Shadow|Josefin+Slab|Kaushan+Script|Love+Ya+Like+A+Sister|Merriweather|Offside|Open+Sans|Open+Sans+Condensed|Oswald|Over+the+Rainbow|Pacifico|Romanesco|Sacramento|Seaweed+Script|Special+Elite"> 
+		<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Josefin+Slab"> 
 		<link rel="stylesheet" type="text/css" href="tblancos.css">
 		
-		<!--JS
+		<!--JS-->
 		<script type="text/javascript" src="tblancos.js">
-		</script>-->
+		</script>
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDrbUusYv0eCHg2TZ3CeBdJg4zYyfo86JA&callback=initMap"
+    async defer></script>
 
 	</head>
 	<body style="height:900px;">
@@ -108,7 +109,8 @@
 									<td>
 										<!--T.Blanco's Mexican Cafe Map-->	
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										<img src="tblancos/TBLancosMexicanCafeMap.png" style="vertical-align:middle;width:417px;height:217px;">
+										<!--<img src="tblancos/TBLancosMexicanCafeMap.png" style="vertical-align:middle;width:417px;height:217px;">-->
+										<div id="map"></div>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									</td>
 									<td>
