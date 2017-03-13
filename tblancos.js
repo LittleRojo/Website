@@ -8,13 +8,12 @@ window.onresize = function(event) {
 	candinaMapElement.style.height = ((window.innerHeight / 2) * .75) + "px";
 }
 
-function start() {
-	window.onresize();
+function onLoad() {
 }
 
 function initMap() {
 	window.onresize();
-	//cafeMapElement = document.getElementById('cafeMap');
+	
 	var cafeMap = new google.maps.Map(cafeMapElement, {	  
 	  center: { lat: 32.407716, lng: -94.716789 },
 	  scrollwheel: true,
@@ -28,7 +27,6 @@ function initMap() {
 	  title: 'T.Blanco\'s Cafe'
 	});
 	
-	//candinaMapElement = document.getElementById('cantinaMap');
 	var cantinaMap = new google.maps.Map(candinaMapElement, {
 		center: { lat: 32.956175, lng: -96.830576 },
 		scrollwheel: true,

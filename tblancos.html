@@ -19,90 +19,95 @@
 		<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Josefin+Slab"> 
 		<link rel="stylesheet" type="text/css" href="tblancos.css">
 		
-		<!--JS-->
-		<script type="text/javascript" src="tblancos.js">
-		</script>
+		<!--JS-->		
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2feAMwsOzlA0QjjXay81plW4LsB7JKYs&callback=initMap" async defer></script>
+		<script type="text/javascript" src="tblancos.js"></script>
 
 	</head>
-	<body id="body" onload="start();">
-	
-		<!--Menu-->
-		<div id="menuTable" style="display: table; width: 100%; text-align: center; background-color:#999;">			
-			<ul style="">
-			  <li><div style=""><a class="menuItem" href="#cafe">Cafe</a></div></li>
-			  <li><div style=""><a class="menuItem" href="#cantina">Cantina</a></div></li>
-			  <li><div style=""><a class="menuItem" href="#cantina">Catering</a></div></li>
-			  <li><div style=""><a class="menuItem" href="#cantina">Happy Hour</a></div></li>
-			  <li><div style=""><a class="menuItem" href="#cantina">Locations</a></div></li>
-			</ul>			
-		</div>
+	<body id="body" onload="onLoad();">	
+		<div id="container" style="width:100%; height:100%;">
 		
-		<br/>
-		<br/>
-		
-		<!--Logos-->
-		<div id="logoTable" style="display: table; width: 100%;">
-			<div id="logoRow" style="display: table-row; width: 100%;">
-				<div id="cafeLogoCell" style="display: table-cell; width: 50%; vertical-align:middle; text-align:center;">					
-					<img style="width: 50%;" src="tblancos/TBlancosMexicanCafeLogo.png">
-				</div>
-				<div id="cantinaLogoCell" style="display: table-cell; width: 50%; vertical-align:middle; text-align:center; margin: 0 auto;">				
-					<img style="width: 50%;" src="tblancos/TBlancosMexicanCantinaLogo.png">		
+			<!--Menu-->
+			<div id="menuTable" style="display: table; width: 100%; text-align: center; background-color:#999;">			
+				<ul style="">
+				  <li><div style=""><a class="menuItem" href="#cafe">Cafe</a></div></li>
+				  <li><div style=""><a class="menuItem" href="#cantina">Cantina</a></div></li>
+				  <li><div style=""><a class="menuItem" href="#cantina">Catering</a></div></li>
+				  <li><div style=""><a class="menuItem" href="#cantina">Happy Hour</a></div></li>
+				  <li><div style=""><a class="menuItem" href="#cantina">Locations</a></div></li>
+				</ul>			
+			</div>
+			
+			<br/>
+			<br/>
+			
+			<!--Logos-->
+			<div id="logoTable" style="display: table; width: 100%;">
+				<div id="logoRow" style="display: table-row; width: 100%;">
+					<div id="cafeLogoCell" style="display: table-cell; width: 50%; vertical-align:middle; text-align:center;">					
+						<img style="width: 90%;" src="tblancos/TBlancosMexicanCafeLogo.png">
+					</div>
+					<div id="cantinaLogoCell" style="display: table-cell; width: 50%; vertical-align:middle; text-align:center; margin: 0 auto;">				
+						<img style="width: 90%;" src="tblancos/TBlancosMexicanCantinaLogo.png">		
+					</div>
 				</div>
 			</div>
-		</div>
-		
-		<!--Contact Info-->
-		<div id="infoTable" style="display: table; width: 100%;">
-			<div id="infoRow" style="display: table-row; width: 100%;">
-				<div id="cafeInfoCell"style="display: table-cell; width: 50%;">
-					<p class="menuItem" style="width: 100%; text-align: center; font-family:josefin slab; font-size: 1.35em;">
-						<strong>
-							<br/>
-							1045 Gardiner Mitchell Parkway
-							<br>
-							Lakeport, Texas 75662
-							<br>
-							903.643.0100
-							<br/>
-						</strong>
-					</p>
-				</div>
-				<div id="cantinaInfoCell" style="display: table-cell; width: 50%;">
-					<p class="menuItem" style="width: 100%; text-align: center; font-family:josefin slab; font-size: 1.35em;">
-						<strong>
-							<br/>
-						    15207 Addison Road
-							<br>
-							Addison, Texas 75001
-							<br>
-							469.677.8778
-							<br/>
-						</strong>
-					</p>
-				</div>
-			</div>
-		</div>
-		
-		<!--Maps-->
-		<div id="mapTable" style="display: table; width: 100%;">
-			<div id="mapRow" style="display: table-row; width: 100%;">
-				<div id="cafeMapCell" style="display: table-cell; width: 50%; text-align: center;">
-					<div id="cafeMap" style="display: inline-block; border:5px solid #1a0000; border-radius:100; vertical-align:middle;"></div>
-				</div>
-				<div id="cantinaMapCell" style="display: table-cell; width: 50%; text-align: center;">
-					<div id="cantinaMap" style="display: inline-block; border:5px solid #1a0000; border-radius:100; vertical-align:middle; "></div>
+			
+			<!--Contact Info-->
+			<div id="infoTable" style="display: table; width: 100%;">
+				<div id="infoRow" style="display: table-row; width: 100%;">
+					<div id="cafeInfoCell"style="display: table-cell; width: 50%;">
+						<p style="width: 100%; text-align: center; font-family:josefin slab; font-size: 1.35em;">
+							<strong>
+								<br/>
+								1045 Gardiner Mitchell Parkway
+								<br>
+								Lakeport, Texas 75662
+								<br>
+								903.643.0100
+								<br/>
+							</strong>
+						</p>
+					</div>
+					<div id="cantinaInfoCell" style="display: table-cell; width: 50%;">
+						<p style="width: 100%; text-align: center; font-family:josefin slab; font-size: 1.35em;">
+							<strong>
+								<br/>
+								15207 Addison Road
+								<br>
+								Addison, Texas 75001
+								<br>
+								469.677.8778
+								<br/>
+							</strong>
+						</p>
+					</div>
 				</div>
 			</div>
-		</div>
-		
-		<!--Footer-->
-		<div id="footerTable" style="display: table; width: 100%;">			
-			<p style="text-align: center; color:#000000; font-family:josefin slab; font-size: 12px;">
-				Copyright© 2016, T. Blanco's Mexican Cafe. All rights reserved.
-			</p>			
-		</div>
-		
+			
+			<!--Maps-->
+			<div id="mapTable" style="display: table; width: 100%;">
+				<div id="mapRow" style="display: table-row; width: 100%;">
+					<div id="cafeMapCell" style="display: table-cell; width: 50%; text-align: center;">
+						<div id="cafeMap" style="display: inline-block; border:5px solid #1a0000; border-radius:100; vertical-align:middle;"></div>
+					</div>
+					<div id="cantinaMapCell" style="display: table-cell; width: 50%; text-align: center;">
+						<div id="cantinaMap" style="display: inline-block; border:5px solid #1a0000; border-radius:100; vertical-align:middle; "></div>
+					</div>
+				</div>
+			</div>
+			
+			<!--Footer-->
+			<div id="footerTable" style="position: absolute; bottom: 0px; display: table; width: 100%;">	
+				<div id="footerRow" style="display: table-row; width: 100%">
+					<div id="footercell" style="display: table-cell; width: 100%;">
+						<p style="text-align: center; color:#000000; font-family:josefin slab; font-size: 12px;">
+							Copyright© 2016, T. Blanco's Mexican Cafe. All rights reserved.
+						</p>	
+					<div>
+				</div>
+			</div>
+			
+		</div>		
 	</body>
 </html>
