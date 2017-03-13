@@ -1,12 +1,17 @@
+window.onresize = function(event) {
+	cafeMapElement.style.width = ((window.innerWidth / 2) * .75) + "px";
+	cafeMapElement.style.height = ((window.innerHeight / 2) * .75) + "px";
+	
+	candinaMapElement.style.width = ((window.innerWidth / 2) * .75) + "px";
+	candinaMapElement.style.height = ((window.innerHeight / 2) * .75) + "px";
+}
+
 function start() {
-	//var element = document.getElementById("body");
-	//element.style.height = window.innerHeight + "px";
-	//element.style.width = window.innerWidth + "px";
 }
 
 function initMap() {
-	// Create a map object and specify the DOM element for display.
-	var cafeMap = new google.maps.Map(document.getElementById('cafeMap'), {	  
+	cafeMapElement = document.getElementById('cafeMap');
+	var cafeMap = new google.maps.Map(cafeMapElement, {	  
 	  center: { lat: 32.407716, lng: -94.716789 },
 	  scrollwheel: true,
 	  zoom: 10
@@ -18,8 +23,9 @@ function initMap() {
 	  map: cafeMap,
 	  title: 'T.Blanco\'s Cafe'
 	});
-		
-	var cantinaMap = new google.maps.Map(document.getElementById('cantinaMap'), {
+	
+	candinaMapElement = document.getElementById('cantinaMap');
+	var cantinaMap = new google.maps.Map(candinaMapElement, {
 		center: { lat: 32.956175, lng: -96.830576 },
 		scrollwheel: true,
 		zoom: 10

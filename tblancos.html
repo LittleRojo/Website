@@ -28,24 +28,27 @@
 	<body id="body" onload="start();">
 	
 		<!--Menu-->
-		<div id="menuTable" style="inline-block; vertical-align: middle; width: 100%; text-align: center; background-color:#999;">			
+		<div id="menuTable" style="display: table; width: 100%; text-align: center; background-color:#999;">			
 			<ul style="">
-			  <li><div style="display: inline-block; vertical-align: middle;"><a href="#cafe">Cafe</a></div></li>
-			  <li><div style=""><a href="#cantina">Cantina</a></div></li>
-			  <li><div style=""><a href="#cantina">Catering</a></div></li>
-			  <li><div style=""><a href="#cantina">Happy Hour</a></div></li>
-			  <li><div style=""><a href="#cantina">Locations</a></div></li>
+			  <li><div style=""><a class="menuItem" href="#cafe">Cafe</a></div></li>
+			  <li><div style=""><a class="menuItem" href="#cantina">Cantina</a></div></li>
+			  <li><div style=""><a class="menuItem" href="#cantina">Catering</a></div></li>
+			  <li><div style=""><a class="menuItem" href="#cantina">Happy Hour</a></div></li>
+			  <li><div style=""><a class="menuItem" href="#cantina">Locations</a></div></li>
 			</ul>			
 		</div>
+		
+		<br/>
+		<br/>
 		
 		<!--Logos-->
 		<div id="logoTable" style="display: table; width: 100%;">
 			<div id="logoRow" style="display: table-row; width: 100%;">
 				<div id="cafeLogoCell" style="display: table-cell; width: 50%; vertical-align:middle; text-align:center;">					
-					<img src="tblancos/TBlancosMexicanCafeLogo.png">
+					<img style="width: 50%;" src="tblancos/TBlancosMexicanCafeLogo.png">
 				</div>
 				<div id="cantinaLogoCell" style="display: table-cell; width: 50%; vertical-align:middle; text-align:center; margin: 0 auto;">				
-					<img src="tblancos/TBlancosMexicanCantinaLogo.png">		
+					<img style="width: 50%;" src="tblancos/TBlancosMexicanCantinaLogo.png">		
 				</div>
 			</div>
 		</div>
@@ -54,7 +57,7 @@
 		<div id="infoTable" style="display: table; width: 100%;">
 			<div id="infoRow" style="display: table-row; width: 100%;">
 				<div id="cafeInfoCell"style="display: table-cell; width: 50%;">
-					<p style="text-align: center; font-family:josefin slab; font-size: 1.35em;">
+					<p class="menuItem" style="width: 100%; text-align: center; font-family:josefin slab; font-size: 1.35em;">
 						<strong>
 							<br/>
 							1045 Gardiner Mitchell Parkway
@@ -67,7 +70,7 @@
 					</p>
 				</div>
 				<div id="cantinaInfoCell" style="display: table-cell; width: 50%;">
-					<p style="text-align: center; font-family:josefin slab; font-size: 1.35em;">
+					<p class="menuItem" style="width: 100%; text-align: center; font-family:josefin slab; font-size: 1.35em;">
 						<strong>
 							<br/>
 						    15207 Addison Road
@@ -86,10 +89,10 @@
 		<div id="mapTable" style="display: table; width: 100%;">
 			<div id="mapRow" style="display: table-row; width: 100%;">
 				<div id="cafeMapCell" style="display: table-cell; width: 50%; text-align: center;">
-					<div id="cafeMap" style="display: inline-block; border:5px solid #1a0000; vertical-align:middle; border-radius:100; width:417px;height:217px;"></div>
+					<div id="cafeMap" style="display: inline-block; border:5px solid #1a0000; border-radius:100; vertical-align:middle;"></div>
 				</div>
 				<div id="cantinaMapCell" style="display: table-cell; width: 50%; text-align: center;">
-					<div id="cantinaMap" style="display: inline-block; border:5px solid #1a0000; border-radius:100; vertical-align:middle; width:417px;height:217px;"></div>
+					<div id="cantinaMap" style="display: inline-block; border:5px solid #1a0000; border-radius:100; vertical-align:middle; "></div>
 				</div>
 			</div>
 		</div>
