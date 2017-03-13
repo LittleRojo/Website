@@ -1,6 +1,7 @@
 function start() {
-	//var element = document.getElementById("buffer");
+	//var element = document.getElementById("body");
 	//element.style.height = window.innerHeight + "px";
+	//element.style.width = window.innerWidth + "px";
 }
 
 function initMap() {
