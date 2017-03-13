@@ -10,11 +10,13 @@ window.onresize = function(event) {
 	footerTableElement = document.getElementById('footerTable');
 	footerTableElement.style.top = (window.innerHeight - 35) + "px";
 	
-	cafeInfoElement = document.getElementById('cafeInfo');
-	cafeInfoElement.style.fontSize = (window.innerWidth / 32) + "px";
-	
-	cantinaInfoElement = document.getElementById('cantinaInfo');
-	cantinaInfoElement.style.fontSize = (window.innerWidth / 32) + "px";
+	if(window.innerWidth < 	960) {	
+		cafeInfoElement = document.getElementById('cafeInfo');
+		cafeInfoElement.style.fontSize = (window.innerWidth / 32) + "px";
+		
+		cantinaInfoElement = document.getElementById('cantinaInfo');
+		cantinaInfoElement.style.fontSize = (window.innerWidth / 32) + "px";
+	}
 }
 
 function onLoad() {
