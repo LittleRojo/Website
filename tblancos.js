@@ -1,11 +1,11 @@
 window.onresize = function(event) {
 	cafeMapElement = document.getElementById('cafeMap');
 	//cafeMapElement.style.width = ((window.innerWidth / 2) * .85) + "px";
-	cafeMapElement.style.height = ((window.innerHeight / 2) * .85) + "px";
-	
+	cafeMapElement.style.height = ((window.innerHeight / 2) * .5) + "px";
+6
 	candinaMapElement = document.getElementById('cantinaMap');
 	//candinaMapElement.style.width = ((window.innerWidth / 2) * .85) + "px";
-	candinaMapElement.style.height = ((window.innerHeight / 2) * .85) + "px";
+	candinaMapElement.style.height = ((window.innerHeight / 2) * .5) + "px";
 	
 	footerTableElement = document.getElementById('footerTable');
 	footerTableElement.style.top = (window.innerHeight * .95) + "px";
