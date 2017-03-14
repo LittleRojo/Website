@@ -24,7 +24,7 @@ function onLoad() {
 	window.onresize();
 }
 
-function initMap() {
+function initMap() {	
 	window.onresize();
 	
 	var cafeBoundary = new google.maps.LatLngBounds();
@@ -82,6 +82,8 @@ function initMap() {
 	  // Browser doesn't support Geolocation
 	  //handleLocationError(false, infoWindow, cafeMap.getCenter());
 	}
+	
+	window.onresize();
 }
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
