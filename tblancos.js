@@ -27,19 +27,22 @@ function onLoad() {
 function initMap() {
 	window.onresize();
 	
-	/*var cafeMap = new google.maps.Map(cafeMapElement, {	  
+	/*var cafeBoundary = new google.maps.LatLngBounds();
+	var cafeMap = new google.maps.Map(cafeMapElement, {	  
 	  center: { lat: 32.407716, lng: -94.716789 },
 	  scrollwheel: true,
 	  zoom: 10
-	});	
+	});		
 	var cafeMapTraffic = new google.maps.TrafficLayer();
         cafeMapTraffic.setMap(cafeMap);		
 	var cafeMarker = new google.maps.Marker({
 	  position: { lat: 32.407716, lng: -94.716789 },
 	  map: cafeMap,
 	  title: 'T.Blanco\'s Cafe'
-	});
+	});	
+	var cafeGPS = new google.maps.LatLng(cafeMarker.position.lat(), marker.position.lng());
 	
+	var cantinaBoundary = new google.maps.LatLngBounds();
 	var cantinaMap = new google.maps.Map(candinaMapElement, {
 		center: { lat: 32.956175, lng: -96.830576 },
 		scrollwheel: true,
@@ -51,7 +54,8 @@ function initMap() {
 	  position: { lat: 32.956175, lng: -96.830576 },
 	  map: cantinaMap,
 	  title: 'T.Blanco\'s Cantina'
-	});*/
+	});
+	var cantinaGPS = new google.maps.LatLng(cantinaMarker.position.lat(), cantinaMarker.position.lng());
 	
 	var infoWindow = new google.maps.InfoWindow({map: cafeMap});
 
@@ -75,7 +79,7 @@ function initMap() {
 	} else {
 	  // Browser doesn't support Geolocation
 	  //handleLocationError(false, infoWindow, cafeMap.getCenter());
-	}
+	}*/
 }
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
