@@ -21,6 +21,7 @@ window.onresize = function(event) {
 }
 
 function onLoad() {
+	window.onresize();
 }
 
 function initMap() {
