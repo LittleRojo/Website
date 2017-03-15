@@ -78,7 +78,8 @@ function onLoad() {
 
 function initMap() {	
 	window.onresize();
-
+	
+	var cafeMapElement = document.getElementById('cafeMap');
 	var cafeBoundary = new google.maps.LatLngBounds();
 	var cafeMap = new google.maps.Map(cafeMapElement, {	  
 	  center: { lat: 32.407716, lng: -94.716789 },
@@ -94,6 +95,7 @@ function initMap() {
 	});	
 	var cafeGPS = new google.maps.LatLng(cafeMarker.position.lat(), cafeMarker.position.lng());
 	
+	var cantinaMapElement = document.getElementById('cantinaMap');
 	var cantinaBoundary = new google.maps.LatLngBounds();
 	var cantinaMap = new google.maps.Map(candinaMapElement, {
 		center: { lat: 32.956175, lng: -96.830576 },
