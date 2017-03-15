@@ -78,7 +78,7 @@ function onLoad() {
 
 function initMap() {	
 	window.onresize();
-	return;
+
 	var cafeBoundary = new google.maps.LatLngBounds();
 	var cafeMap = new google.maps.Map(cafeMapElement, {	  
 	  center: { lat: 32.407716, lng: -94.716789 },
