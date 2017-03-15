@@ -1,26 +1,72 @@
-window.onresize = function(event) {	
-	cafeMapElement = document.getElementById('cafeMap');
-	cafeMapElement.style.height = ((window.innerHeight / 2) * .75) + "px";
+var isMobile = {
+    Android: function() {
+        return navigator.userAgent.match(/Android/i);
+    },
+    BlackBerry: function() {
+        return navigator.userAgent.match(/BlackBerry/i);
+    },
+    iOS: function() {
+        return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+    },
+    Opera: function() {
+        return navigator.userAgent.match(/Opera Mini/i);
+    },
+    Windows: function() {
+        return navigator.userAgent.match(/IEMobile/i);
+    },
+    any: function() {
+        return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+    }
+};
 
-	cantinaMapElement = document.getElementById('cantinaMap');
-	cantinaMapElement.style.height = ((window.innerHeight / 2) * .75) + "px";
-	
-	footerTableElement = document.getElementById('footerTable');
-	footerTableElement.style.top = (window.innerHeight - 45) + "px";
-	
+window.onresize = function(event) {	
 	if(window.innerWidth < 	960) {	
-		cafeInfoElement = document.getElementById('cafeInfo');
+		var cafeInfoElement = document.getElementById('cafeInfo');
 		cafeInfoElement.style.fontSize = (window.innerWidth / 32) + "px";
 		
-		cantinaInfoElement = document.getElementById('cantinaInfo');
+		var cantinaInfoElement = document.getElementById('cantinaInfo');
 		cantinaInfoElement.style.fontSize = (window.innerWidth / 32) + "px";
 	}
 	
-	var menuTableElement = document.getElementById('menuTable');
-	menuTableElement.style.height = (window.innerWidth / 25) + "px"
+	if(isMobile.any()) {
+		var menuCellElement = document.getElementById('menuCell');
+		menuCellElement.style.visibility = "visible";
+		menuCellElement.style.width = (window.innerWidth * .15) + "px";
+		
+		var listCellElement = document.getElementById('listCell');
+		listCellElement.style.width = "0%";
+		
+		var locationCellElement = document.getElementById('locationCell');
+		locationCellElement.style.visibility = "visible";
+		locationCellElement.style.width = (window.innerWidth *.15) + "px";
+		
+		var menuTableElement = document.getElementById('menuTable');	
+		menuTableElement.style.height = (window.innerWidth / 10) + "px";
+	}
+	else {
+		var listCellElement = document.getElementById('listCell');
+		listCellElement.style.visibility = "visible";
+				
+		var menuTableElement = document.getElementById('menuTable');	
+		menuTableElement.style.height = (window.innerWidth / 15) + "px";		
+		
+		var menuItems = document.getElementsByClassName('menuItem'); 
+		for (var a = 0; a < menuItems.length; a++) { 
+			menuItems[a].style.fontSize = (window.innerWidth / 500) + "em"; 
+		} 
+	}
+	
+	var cafeMapElement = document.getElementById('cafeMap');
+	cafeMapElement.style.height = ((window.innerHeight / 2) * .75) + "px";
+
+	var cantinaMapElement = document.getElementById('cantinaMap');
+	cantinaMapElement.style.height = ((window.innerHeight / 2) * .75) + "px";
+	
+	var footerTableElement = document.getElementById('footerTable');
+	footerTableElement.style.top = (window.innerHeight - 45) + "px";
 }
 
-function onLoad() {
+function onLoad() {	
 	window.onresize();
 }
 
