@@ -2,8 +2,8 @@ window.onresize = function(event) {
 	cafeMapElement = document.getElementById('cafeMap');
 	cafeMapElement.style.height = ((window.innerHeight / 2) * .75) + "px";
 
-	candinaMapElement = document.getElementById('cantinaMap');
-	candinaMapElement.style.height = ((window.innerHeight / 2) * .75) + "px";
+	cantinaMapElement = document.getElementById('cantinaMap');
+	cantinaMapElement.style.height = ((window.innerHeight / 2) * .75) + "px";
 	
 	footerTableElement = document.getElementById('footerTable');
 	footerTableElement.style.top = (window.innerHeight - 45) + "px";
@@ -26,7 +26,7 @@ function onLoad() {
 
 function initMap() {	
 	window.onresize();
-	
+	return;
 	var cafeBoundary = new google.maps.LatLngBounds();
 	var cafeMap = new google.maps.Map(cafeMapElement, {	  
 	  center: { lat: 32.407716, lng: -94.716789 },
@@ -59,12 +59,8 @@ function initMap() {
 	
 	var infoWindow = new google.maps.InfoWindow({map: cafeMap});
 
-	// Try HTML5 geolocation.
-	if (navigator.geolocation) {
-		//var location_timeout = setTimeout("geolocFail()", 10000);
-				
+	if (navigator.geolocation) {				
 		navigator.geolocation.getCurrentPosition(function(position) {
-			//clearTimeout(location_timeout);
 			var pos = {
 			  lat: position.coords.latitude,
 			  lng: position.coords.longitude
@@ -74,13 +70,10 @@ function initMap() {
 			infoWindow.setContent('Location found.');
 			cafeMap.setCenter(pos);
 		}, function(error) {
-			//handleLocationError(true, infoWindow, cafeMap.getCenter());
-			var a = 1;
+			handleLocationError(true, infoWindow, cafeMap.getCenter());
 		});
 	} else {
-		var a = 1;
-	  // Browser doesn't support Geolocation
-	  //handleLocationError(false, infoWindow, cafeMap.getCenter());
+	  handleLocationError(false, infoWindow, cafeMap.getCenter());
 	}
 	
 	window.onresize();
