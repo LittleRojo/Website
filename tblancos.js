@@ -38,10 +38,10 @@ window.onresize = function(event) {
 		
 		var locationCellElement = document.getElementById('locationCell');
 		locationCellElement.style.visibility = "visible";
-		locationCellElement.style.width = (window.innerWidth *.15) + "px";
+		locationCellElement.style.width = (window.innerWidth * .15) + "px";
 		
 		var menuTableElement = document.getElementById('menuTable');	
-		menuTableElement.style.height = (window.innerWidth / 10) + "px";
+		menuTableElement.style.height = (window.innerHeight / 10) + "px";
 	}
 	else {
 		var menuCellElement = document.getElementById('menuCell');
@@ -51,10 +51,10 @@ window.onresize = function(event) {
 		listCellElement.style.visibility = "visible";
 				
 		var locationCellElement = document.getElementById('locationCell');
-		locationCellElement.style.width = (window.innerWidth *.15) + "px";
+		locationCellElement.style.width = (window.innerWidth * .15) + "px";
 		
 		var menuTableElement = document.getElementById('menuTable');	
-		menuTableElement.style.height = (window.innerWidth / 15) + "px";		
+		menuTableElement.style.height = (window.innerHeight / 15) + "px";		
 		
 		var menuItems = document.getElementsByClassName('menuItem'); 
 		for (var a = 0; a < menuItems.length; a++) { 
