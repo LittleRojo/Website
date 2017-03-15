@@ -45,14 +45,12 @@ window.onresize = function(event) {
 	}
 	else {
 		var menuCellElement = document.getElementById('menuCell');
-		menuCellElement.style.visibility = "visible";
 		menuCellElement.style.width = (window.innerWidth * .15) + "px";
 	
 		var listCellElement = document.getElementById('listCell');
 		listCellElement.style.visibility = "visible";
 				
 		var locationCellElement = document.getElementById('locationCell');
-		locationCellElement.style.visibility = "visible";
 		locationCellElement.style.width = (window.innerWidth *.15) + "px";
 		
 		var menuTableElement = document.getElementById('menuTable');	
