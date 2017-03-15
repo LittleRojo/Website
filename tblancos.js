@@ -97,7 +97,7 @@ function initMap() {
 	
 	var cantinaMapElement = document.getElementById('cantinaMap');
 	var cantinaBoundary = new google.maps.LatLngBounds();
-	var cantinaMap = new google.maps.Map(candinaMapElement, {
+	var cantinaMap = new google.maps.Map(cantinaMapElement, {
 		center: { lat: 32.956175, lng: -96.830576 },
 		scrollwheel: true,
 		zoom: 10
