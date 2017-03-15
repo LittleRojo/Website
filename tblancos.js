@@ -80,7 +80,7 @@ function initMap() {
 	window.onresize();
 	
 	var cafeMapElement = document.getElementById('cafeMap');
-	var cafeBoundary = new google.maps.LatLngBounds();
+	//var cafeBoundary = new google.maps.LatLngBounds();
 	var cafeMap = new google.maps.Map(cafeMapElement, {	  
 	  center: { lat: 32.407716, lng: -94.716789 },
 	  scrollwheel: true,
@@ -96,7 +96,7 @@ function initMap() {
 	var cafeGPS = new google.maps.LatLng(cafeMarker.position.lat(), cafeMarker.position.lng());
 	
 	var cantinaMapElement = document.getElementById('cantinaMap');
-	var cantinaBoundary = new google.maps.LatLngBounds();
+	//var cantinaBoundary = new google.maps.LatLngBounds();
 	var cantinaMap = new google.maps.Map(cantinaMapElement, {
 		center: { lat: 32.956175, lng: -96.830576 },
 		scrollwheel: true,
@@ -113,7 +113,7 @@ function initMap() {
 	
 	var infoWindow = new google.maps.InfoWindow({map: cafeMap});
 
-	if (navigator.geolocation) {				
+	/*if (navigator.geolocation) {				
 		navigator.geolocation.getCurrentPosition(function(position) {
 			var pos = {
 			  lat: position.coords.latitude,
@@ -128,7 +128,7 @@ function initMap() {
 		});
 	} else {
 	  handleLocationError(false, infoWindow, cafeMap.getCenter());
-	}
+	}*/
 	
 	window.onresize();
 }
