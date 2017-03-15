@@ -19,9 +19,7 @@ ul {
 
 li {
 	float: left;
-	width: 16%;	
-	margin-left: 2%;
-	margin-right: 2%;
+	width: 16%;		
 	margin-top: 1%;
 	text-decoration: none; 
 }
