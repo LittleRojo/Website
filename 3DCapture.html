@@ -1,9 +1,9 @@
 <html>
 	<head>
-		<title id='title'>3D Head</title>
+		<title id='title'>3D Capture</title>
 		<meta name='description' content='This is 0% anyones code.  Do what you want with it.
 										  -webGL version of index.html'>
-		<meta name='keywords' content='#3D Head #InformationExplosion'>
+		<meta name='keywords' content='#3DCapture #InformationExplosion'>
 		<meta id='author' name='author' content='me'>
 		<link rel='alternate' href='https://littlerojo.com' hreflang='en-us' />
 		<link rel='shortcut icon' href='https://littlerojo.com/favicon.ico' type='image/x-icon'>
@@ -42,6 +42,8 @@
     </head>
 	<body style="margin:0px" bgcolor="black">
 		<script>
+			var head;
+			var ground;
 			function startAnimation( delta ) {								
 				stepAnimation( delta );
 				effect.requestAnimationFrame( startAnimation );				
@@ -56,6 +58,10 @@
 				vrControls.update();
 
 				//FUN CODE HERE
+				ground.rotation.z -= .005;
+				if(head) {					
+					head.rotation.z += .005;					
+				}
 
 				orbitPos = camera.position.clone();
 				
@@ -122,7 +128,8 @@
 
 			function getPlane( _ ) {
 				var planeGeometry = new THREE.PlaneGeometry( _.width, _.height, 10, 10 );    
-				var planeMaterial = new THREE.MeshPhongMaterial( { 
+				planeGeometry.center();
+				var planeMaterial = new THREE.MeshBasicMaterial( { 
 					color: _.color, 
 					side: THREE.DoubleSide,
 				} );		
@@ -130,10 +137,9 @@
 					planeMaterial.map = THREE.ImageUtils.loadTexture( _.imageUrl );
 				}		
 				var planeMesh = new THREE.Mesh( planeGeometry, planeMaterial );
-				planeMesh.receiveShadow = true;
-				if( _.layout == 'flat' ) {
-					planeMesh.rotateX( deg( 90 ) );
-				}
+				if(_.receiveShadow) {
+					planeMesh.receiveShadow = _.receiveShadow;				
+				}				
 				if( _.x ) {				
 					planeMesh.translateX( _.x );
 				}
@@ -143,6 +149,9 @@
 				if( _.z ) {
 					planeMesh.translateZ( _.z );
 				}	
+				if( _.layout == 'flat' ) {
+					planeMesh.rotateX( deg( 90 ) );
+				}
 				if( _.name ) {
 					planeMesh.name = _.name;
 				}			
@@ -151,6 +160,7 @@
 
 			function getBox( _ ) {
 				var boxGeometry = new THREE.BoxGeometry( _.width, _.height, _.depth );
+				boxGeometry.center();
 				var boxMaterial = new THREE.MeshPhongMaterial( {
 					color: _.color,//new THREE.Color( "rgb(" + Math.floor( rand( 0, 255 ) ) + ", " + Math.floor( rand( 0, 255 ) ) + ", " + Math.floor( rand( 0, 255 ) ) + ")" ),
 				});
@@ -216,6 +226,7 @@
 				this.height = _.height,
 				this.depth = _.depth, 
 				this.url = _.url,
+				this.receiveShadow = true;
 				this.tweenTree = []; 
 			}
 
@@ -275,12 +286,11 @@
 			renderer.setSize( window.innerWidth, window.innerHeight );
 			renderer.setClearColor( 0x000000, 1 );
 			renderer.shadowMap.enabled = true;
-			renderer.shadowMap.renderReverseSided = false;
+			renderer.shadowMap.renderReverseSided = true;
 			renderer.sortObjects = false;
 			
 			camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 10000 );
-			camera.translateX( 0 );
-			camera.translateY( -200 );
+			camera.translateY( 100 );
 			camera.translateZ( -500 );
 		
 			orbitControls = new THREE.OrbitControls( camera );
@@ -303,50 +313,53 @@
 		
 			var ambientLight = getAmbientLight( {
 				color: 0xFFFFFF,
-				intensity: .8,
+				intensity: 1,
 			} );
-			scene.add( ambientLight );
+			//scene.add( ambientLight );
 
 			var spotLight = getSpotLight( {
 				color: 0xFFFFFF,
-				intensity: 100,
+				intensity: 1,
 				x: 0,
-				y: 10000,
-				z: -500,
+				y: 1500,
+				z: -1000,
 			} );
-			scene.add( spotLight );
+			//scene.add( spotLight );
 
-			var ground = getPlane( {
+			var dirLight = new THREE.PointLight(0xffffff, 10);
+			dirLight.position.set(0, 600, -100);
+			scene.add(dirLight);
+
+			ground = getPlane( {
 				name: 'ground',
-				x: 0,
-				y: 0,
-				z: 0,
-				width: 10000,
-				height: 10000,
-				color: 0x1A1515,
-				layout: 'flat',				
+				width: 1000,
+				height: 1000,
+				color: 0x212012,
+				layout: 'flat',	
+				receiveShadow: false,			
 			})			
-			//scene.add( ground );
-	
+			scene.add( ground );
+
 			document.body.appendChild( mainCanvas );
 
 			var loader = new THREE.PLYLoader();
 			loader.load( '/media/head.ply', function ( geometry ) {
-				geometry.computeVertexNormals();
+				//geometry.computeVertexNormals();
+				geometry.center();
 				var material = new THREE.MeshStandardMaterial( { color: 0x000000, shading: THREE.FlatShading } );
-				var mesh = new THREE.Mesh( geometry, material );
-				mesh.scale.multiplyScalar( 2 );
-				mesh.rotation.x = Math.PI / 2;
-				mesh.rotation.y = Math.PI;
-				mesh.position.y = -500;
-				mesh.position.z = 10;				
-				mesh.castShadow = true;
-				mesh.receiveShadow = true;
-				scene.add( mesh );
-			
-				clock.start();
-				startAnimation();
+				head = new THREE.Mesh( geometry, material );
+				head.position.x = 0;				
+				head.position.y = 150;
+				//head.position.z = -1000;
+				head.rotation.y = Math.PI;
+				head.rotation.x = Math.PI / 2;
+				head.castShadow = true;
+				head.receiveShadow = true;
+				scene.add( head );
 			} );
+
+			clock.start();
+			startAnimation();
 		</script>
 	</body>
 </html>

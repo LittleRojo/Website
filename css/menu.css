@@ -55,8 +55,8 @@
 }
 
 .navigation li:first-child {
-  -webkit-border-radius: 10px 0px 0px 10px;
-  border-radius: 10px 0px 0px 10px;
+  -webkit-border-radius: 10px 10px 0px 0px;
+  border-radius: 10px 10px 0px 0px;
 }
 
 .navigation li:hover li:last-child {
@@ -103,4 +103,10 @@
 .navigation ul li:last-child a:hover {
   -webkit-border-radius: 0px 0px 10px 10px;
   border-radius: 0px 0px 10px 10px;
+}
+
+.navigation ul li:first-child a,
+.navigation ul li:first-child a:hover {
+  -webkit-border-radius: 10px 10px 0px 0px;
+  border-radius: 10px 10px 0px 0px;
 }
