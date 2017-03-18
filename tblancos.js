@@ -20,6 +20,7 @@ var isMobile = {
 };
 
 window.onresize = function(event) {	
+	
 	if(window.innerWidth < 	960) {	
 		var cafeInfoElement = document.getElementById('cafeInfo');
 		cafeInfoElement.style.fontSize = (window.innerWidth / 32) + "px";
@@ -58,7 +59,7 @@ window.onresize = function(event) {
 		
 		var menuItems = document.getElementsByClassName('menuItem'); 
 		for (var a = 0; a < menuItems.length; a++) { 
-			menuItems[a].style.fontSize = (window.innerWidth / 500) + "em"; 
+			//menuItems[a].style.fontSize = (window.innerWidth / 500) + "em"; 
 		} 
 	}
 	
