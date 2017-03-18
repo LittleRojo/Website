@@ -330,12 +330,18 @@
 			dirLight.position.set(0, 600, -100);
 			scene.add(dirLight);
 
+			var texture = THREE.ImageUtils.loadTexture( "img/grass.png" );
+			texture.wrapS = THREE.RepeatWrapping; 
+			texture.wrapT = THREE.RepeatWrapping;
+			texture.repeat.set( 2500, 2500 ); 
+
 			ground = getPlane( {
 				name: 'ground',
 				width: 1000,
 				height: 1000,
 				color: 0x212012,
 				layout: 'flat',	
+				imageUrl: 'img/grass.png',
 				receiveShadow: false,			
 			})			
 			scene.add( ground );
