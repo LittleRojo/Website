@@ -6,17 +6,17 @@ import redis
 from flask import Flask, render_template, request
 from flask_socketio import SocketIO
 
-app = Flask(__name__)
+application = Flask(__name__)
 db = redis.StrictRedis('localhost', 6379, 0)
-socketio = SocketIO(app)
+socketio = SocketIO(application)
 
 
-@app.route('/')
+@application.route('/')
 def main():
     return render_template('main.html')
 
 
-@app.route('/pymeetups/')
+@application.route('/pymeetups/')
 def pymeetups():
     return render_template('pymeetups.html')
 
@@ -39,4 +39,4 @@ def ws_city(message):
                   namespace="/dd")
 
 if __name__ == '__main__':
-    socketio.run(app, "0.0.0.0", port=9902)
+    socketio.run(application, "0.0.0.0", port=9902)
