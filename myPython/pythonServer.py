@@ -35,32 +35,32 @@ def main():
 
 @sio.on('my event', namespace='/test')
 def test_message(sid, message):
-    sio.emit('Test', {'data': message['data']}, room=sid,
+    sio.emit('my response', {'data': message['data']}, room=sid,
              namespace='/test')
 
 
 @sio.on('my broadcast event', namespace='/test')
 def test_broadcast_message(sid, message):
-    sio.emit('Broadcast', {'data': message['data']}, namespace='/test')
+    sio.emit('my response', {'data': message['data']}, namespace='/test')
 
 
 @sio.on('join', namespace='/test')
 def join(sid, message):
     sio.enter_room(sid, message['room'], namespace='/test')
-    sio.emit('Join Room', {'data': 'Entered room: ' + message['room']},
+    sio.emit('my response', {'data': 'Entered room: ' + message['room']},
              room=sid, namespace='/test')
 
 
 @sio.on('leave', namespace='/test')
 def leave(sid, message):
     sio.leave_room(sid, message['room'], namespace='/test')
-    sio.emit('Leaving Room', {'data': 'Left room: ' + message['room']},
+    sio.emit('my response', {'data': 'Left room: ' + message['room']},
              room=sid, namespace='/test')
 
 
 @sio.on('close room', namespace='/test')
 def close(sid, message):
-    sio.emit('Closing Room',
+    sio.emit('my response',
              {'data': 'Room ' + message['room'] + ' is closing.'},
              room=message['room'], namespace='/test')
     sio.close_room(message['room'], namespace='/test')
@@ -68,7 +68,7 @@ def close(sid, message):
 
 @sio.on('my room event', namespace='/test')
 def send_room_message(sid, message):
-    sio.emit('Room Message', {'data': message['data']}, room=message['room'],
+    sio.emit('my response', {'data': message['data']}, room=message['room'],
              namespace='/test')
 
 
@@ -79,7 +79,7 @@ def disconnect_request(sid):
 
 @sio.on('connect', namespace='/test')
 def test_connect(sid, environ):
-    sio.emit('Server', {'data': 'Connected', 'count': 0}, room=sid,
+    sio.emit('my response', {'data': 'Connected', 'count': 0}, room=sid,
              namespace='/test')
 
 
