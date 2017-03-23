@@ -15,7 +15,6 @@ thread = None
 
 
 def background_thread():
-    return
     """Example of how to send server generated events to clients."""
     count = 0
     while True:
@@ -96,7 +95,7 @@ if __name__ == '__main__':
         # deploy with eventlet
         import eventlet
         import eventlet.wsgi
-        eventlet.wsgi.server(eventlet.listen(('127.0.0.1', 9902)), application)
+        eventlet.wsgi.server(eventlet.listen(('', 9902)), application)
     elif sio.async_mode == 'gevent':
         # deploy with gevent
         from gevent import pywsgi
@@ -106,10 +105,10 @@ if __name__ == '__main__':
         except ImportError:
             websocket = False
         if websocket:
-            pywsgi.WSGIServer(('127.0.0.1', 9902), application,
+            pywsgi.WSGIServer(('', 9902), application,
                               handler_class=WebSocketHandler).serve_forever()
         else:
-            pywsgi.WSGIServer(('127.0.0.1', 9902), application).serve_forever()
+            pywsgi.WSGIServer(('', 9902), application).serve_forever()
     elif sio.async_mode == 'gevent_uwsgi':
         print('Start the application through the uwsgi server. Example:')
         print('uwsgi --http :9902 --gevent 1000 --http-websockets --master '
