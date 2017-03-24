@@ -7,7 +7,7 @@
     <script type="text/javascript" charset="utf-8">
         $(document).ready(function(){
             namespace = '/test';
-            var socket = io.connect('http://' + document.domain + ':9902' + namespace, { transports: ['websocket'] });
+            var socket = io.connect('https://LittleRojo.com:9902' + namespace, { transports: ['websocket'] });
 
             socket.on('connect', function() {
                 socket.emit('my event', {data: 'I\'m connected!'});
