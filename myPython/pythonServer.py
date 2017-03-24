@@ -1,17 +1,18 @@
+#from app import app
 from flask import Flask, render_template
 from flask.ext.socketio import SocketIO, emit
 
-app = Flask(__name__)
-socketio = SocketIO(app)
+application = Flask(__name__)
+socketio = SocketIO(application)
 
 values = {
     'slider1': 25,
     'slider2': 0,
 }
 
-@app.route('/')
+@application.route('/')
 def index():
-    return render_template('index.html', **values)
+    return render_template('main.html', **values)
 
 @socketio.on('value changed')
 def value_changed(message):
@@ -19,4 +20,4 @@ def value_changed(message):
     emit('update value', message, broadcast=True)
 
 if __name__ == '__main__':
-    socketio.run(app, host='0.0.0.0:9903')
+    socketio.run(application, host='0.0.0.0:9903')
