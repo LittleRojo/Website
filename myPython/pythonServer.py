@@ -1,35 +1,32 @@
-# set async_mode to 'threading', 'eventlet', 'gevent' or 'gevent_uwsgi' to
-# force a mode else, the best mode is selected automatically from what's
-# installed
 async_mode = None
 
-from logging.handlers import RotatingFileHandler
-import logging
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, render_template
 import socketio
 
 sio = socketio.Server(logger=True, async_mode=async_mode)
-application = Flask(__name__)
-application.wsgi_app = socketio.Middleware(sio, application.wsgi_app)
-application.config['SECRET_KEY'] = 'secret!'
+app = Flask(__name__)
+app.wsgi_app = socketio.Middleware(sio, app.wsgi_app)
+app.config['SECRET_KEY'] = 'secret!'
 thread = None
 
 
 def background_thread():
     """Example of how to send server generated events to clients."""
+    #application.logger.warning('BG Started')
     count = 0
     while True:
-        sio.sleep(10)
+        sio.sleep(1)
         count += 1
-        sio.emit('my response', {'data': 'Server generated event'},
+        sio.emit('my response', {'data': 'Server Generated event' + count},
                  namespace='/test')
 
 
-@application.route('/')
+@app.route('/')
 def main():
     global thread
     if thread is None:
         thread = sio.start_background_task(background_thread)
+    #logger.error('before html')
     return render_template('main.html')
 
 
@@ -79,10 +76,10 @@ def disconnect_request(sid):
 
 @sio.on('connect', namespace='/test')
 def test_connect(sid, environ):
-    logger.error('before connect')
-    sio.emit('my response', {'data': 'Connected', 'count': 0}, room=sid,
+    #logger.error('before connect')
+    sio.emit('my response', {'data': 'Connected', 'count': 0},
              namespace='/test')
-    logger.error('after connect')
+    #logger.error('after connect')
     print('connected')
 
 
@@ -92,18 +89,20 @@ def test_disconnect(sid):
 
 
 if __name__ == '__main__':
-    handler = RotatingFileHandler('app.log', maxBytes=100000, backupCount=3)
-    logger = logging.getLogger('tdm')
-    logger.setLevel(logging.ERROR)
-    logger.addHandler(handler)
+    #application.run();
+    #handler = RotatingFileHandler('app.log', maxBytes=100000, backupCount=3)
+    #logger = logging.getLogger('tdm')
+    #logger.setLevel(logging.ERROR)
+    #logger.addHandler(handler)
+    #logger.error('started')
     if sio.async_mode == 'threading':
         # deploy with Werkzeug
-        application.run(threaded=True)
+        app.run(threaded=True)
     elif sio.async_mode == 'eventlet':
         # deploy with eventlet
         import eventlet
         import eventlet.wsgi
-        eventlet.wsgi.server(eventlet.listen(('0.0.0.0', 9902)), application)
+        eventlet.wsgi.server(eventlet.listen(('0.0.0.0', 9903)), app)
     elif sio.async_mode == 'gevent':
         # deploy with gevent
         from gevent import pywsgi
@@ -113,13 +112,13 @@ if __name__ == '__main__':
         except ImportError:
             websocket = False
         if websocket:
-            pywsgi.WSGIServer(('0.0.0.0', 9902), application,
+            pywsgi.WSGIServer(('0.0.0.0', 9903), app,
                               handler_class=WebSocketHandler).serve_forever()
         else:
-            pywsgi.WSGIServer(('0.0.0.0', 9902), application).serve_forever()
-    elif sio.async_mode == 'gevent_uwsgi':
-        print('Start the application through the uwsgi server. Example:')
-        print('uwsgi --http :9902 --gevent 1000 --http-websockets --master '
-              '--wsgi-file app.py --callable app')
-    else:
+            pywsgi.WSGIServer(('0.0.0.0', 9903), app).serve_forever()
+    #elif sio.async_mode == 'gevent_uwsgi':
+    #    print('Start the application through the uwsgi server. Example:')
+    #    print('uwsgi --http :9902 --gevent 1000 --http-websockets --master '
+    #          '--wsgi-file app.py --callable app')
+    #else:
         print('Unknown async_mode: ' + sio.async_mode)
