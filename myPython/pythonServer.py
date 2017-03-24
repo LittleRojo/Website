@@ -3,8 +3,9 @@
 # installed
 async_mode = None
 
-import time
-from flask import Flask, render_template
+from logging.handlers import RotatingFileHandler
+import logging
+from flask import Flask, request, jsonify, render_template
 import socketio
 
 sio = socketio.Server(logger=True, async_mode=async_mode)
@@ -78,8 +79,10 @@ def disconnect_request(sid):
 
 @sio.on('connect', namespace='/test')
 def test_connect(sid, environ):
+    logger.error('before connect')
     sio.emit('my response', {'data': 'Connected', 'count': 0}, room=sid,
              namespace='/test')
+    logger.error('after connect')
     print('connected')
 
 
@@ -89,6 +92,10 @@ def test_disconnect(sid):
 
 
 if __name__ == '__main__':
+    handler = RotatingFileHandler('app.log', maxBytes=100000, backupCount=3)
+    logger = logging.getLogger('tdm')
+    logger.setLevel(logging.ERROR)
+    logger.addHandler(handler)
     if sio.async_mode == 'threading':
         # deploy with Werkzeug
         application.run(threaded=True)
