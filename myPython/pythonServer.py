@@ -80,6 +80,7 @@ def disconnect_request(sid):
 def test_connect(sid, environ):
     sio.emit('my response', {'data': 'Connected', 'count': 0}, room=sid,
              namespace='/test')
+    print('connected')
 
 
 @sio.on('disconnect', namespace='/test')
