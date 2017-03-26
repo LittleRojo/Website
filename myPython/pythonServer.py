@@ -5,6 +5,7 @@ import socketio
 
 sio = socketio.Server(logger=True, async_mode=async_mode)
 app = Flask(__name__)
+application = app
 app.wsgi_app = socketio.Middleware(sio, app.wsgi_app)
 #app.config['SECRET_KEY'] = 'secret!'
 thread = None
