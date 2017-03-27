@@ -7,9 +7,6 @@ sio = socketio.Server(logger=True, async_mode=async_mode)
 app = Flask(__name__)
 application = app
 app.wsgi_app = socketio.Middleware(sio, app.wsgi_app)
-#app.config['SECRET_KEY'] = 'secret!'
-thread = None
-
 
 def background_thread():
     count = 0
@@ -18,12 +15,13 @@ def background_thread():
         count += 1
         sio.emit('my response', {'data': 'Server Generated event'}, namespace='/test')
 
+thread = None
+global thread
+if thread is None:
+    thread = sio.start_background_task(background_thread)
 
 @app.route('/')
 def main():
-    global thread
-    if thread is None:
-        thread = sio.start_background_task(background_thread)
     return render_template('main.html')
 
 
