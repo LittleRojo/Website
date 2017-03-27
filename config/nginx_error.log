@@ -1,2 +1,37 @@
 2017/03/27 03:36:38 [alert] 31333#0: *603 open socket #17 left in connection 6
 2017/03/27 03:36:38 [alert] 31333#0: aborting
+2017/03/27 12:10:22 [alert] 33241#0: *11 open socket #14 left in connection 3
+2017/03/27 12:10:22 [alert] 33243#0: *18 open socket #12 left in connection 3
+2017/03/27 12:10:22 [alert] 33241#0: *12 open socket #15 left in connection 5
+2017/03/27 12:10:22 [alert] 33243#0: aborting
+2017/03/27 12:10:22 [alert] 33241#0: aborting
+2017/03/27 12:10:23 [emerg] 33352#0: bind() to 0.0.0.0:9902 failed (98: Address already in use)
+2017/03/27 12:10:23 [emerg] 33352#0: bind() to 0.0.0.0:9902 failed (98: Address already in use)
+2017/03/27 12:10:23 [emerg] 33352#0: bind() to 0.0.0.0:9902 failed (98: Address already in use)
+2017/03/27 12:10:23 [emerg] 33352#0: bind() to 0.0.0.0:9902 failed (98: Address already in use)
+2017/03/27 12:10:23 [emerg] 33352#0: bind() to 0.0.0.0:9902 failed (98: Address already in use)
+2017/03/27 12:10:23 [emerg] 33352#0: still could not bind()
+2017/03/27 12:10:29 [emerg] 33389#0: bind() to 0.0.0.0:9902 failed (98: Address already in use)
+2017/03/27 12:10:29 [emerg] 33389#0: bind() to 0.0.0.0:9902 failed (98: Address already in use)
+2017/03/27 12:10:29 [emerg] 33389#0: bind() to 0.0.0.0:9902 failed (98: Address already in use)
+2017/03/27 12:10:29 [emerg] 33389#0: bind() to 0.0.0.0:9902 failed (98: Address already in use)
+2017/03/27 12:10:29 [emerg] 33389#0: bind() to 0.0.0.0:9902 failed (98: Address already in use)
+2017/03/27 12:10:29 [emerg] 33389#0: still could not bind()
+2017/03/27 12:11:38 [emerg] 33428#0: bind() to 0.0.0.0:9902 failed (98: Address already in use)
+2017/03/27 12:11:38 [emerg] 33428#0: bind() to 0.0.0.0:9902 failed (98: Address already in use)
+2017/03/27 12:11:38 [emerg] 33428#0: bind() to 0.0.0.0:9902 failed (98: Address already in use)
+2017/03/27 12:11:38 [emerg] 33428#0: bind() to 0.0.0.0:9902 failed (98: Address already in use)
+2017/03/27 12:11:38 [emerg] 33428#0: bind() to 0.0.0.0:9902 failed (98: Address already in use)
+2017/03/27 12:11:38 [emerg] 33428#0: still could not bind()
+2017/03/27 12:13:12 [emerg] 33469#0: bind() to 0.0.0.0:9902 failed (98: Address already in use)
+2017/03/27 12:13:12 [emerg] 33469#0: bind() to 0.0.0.0:9902 failed (98: Address already in use)
+2017/03/27 12:13:12 [emerg] 33469#0: bind() to 0.0.0.0:9902 failed (98: Address already in use)
+2017/03/27 12:13:12 [emerg] 33469#0: bind() to 0.0.0.0:9902 failed (98: Address already in use)
+2017/03/27 12:13:12 [emerg] 33469#0: bind() to 0.0.0.0:9902 failed (98: Address already in use)
+2017/03/27 12:13:12 [emerg] 33469#0: still could not bind()
+2017/03/27 12:16:26 [emerg] 33611#0: bind() to 0.0.0.0:9902 failed (98: Address already in use)
+2017/03/27 12:16:26 [emerg] 33611#0: bind() to 0.0.0.0:9902 failed (98: Address already in use)
+2017/03/27 12:16:26 [emerg] 33611#0: bind() to 0.0.0.0:9902 failed (98: Address already in use)
+2017/03/27 12:16:26 [emerg] 33611#0: bind() to 0.0.0.0:9902 failed (98: Address already in use)
+2017/03/27 12:16:26 [emerg] 33611#0: bind() to 0.0.0.0:9902 failed (98: Address already in use)
+2017/03/27 12:16:26 [emerg] 33611#0: still could not bind()
