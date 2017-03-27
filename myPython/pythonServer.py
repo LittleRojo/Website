@@ -15,10 +15,8 @@ def background_thread():
         count += 1
         sio.emit('my response', {'data': 'Server Generated event'}, namespace='/test')
 
-thread = None
 global thread
-if thread is None:
-    thread = sio.start_background_task(background_thread)
+thread = sio.start_background_task(background_thread)
 
 @app.route('/')
 def main():
@@ -81,7 +79,7 @@ if __name__ == '__main__':
         # deploy with eventlet
         import eventlet
         import eventlet.wsgi
-        eventlet.wsgi.server(eventlet.listen(('0.0.0.0', 9903)), app)
+        eventlet.wsgi.server(eventlet.listen(('wss://0.0.0.0', 9902)), app)
     elif sio.async_mode == 'gevent':
         # deploy with gevent
         from gevent import pywsgi
@@ -91,9 +89,9 @@ if __name__ == '__main__':
         except ImportError:
             websocket = False
         if websocket:
-            pywsgi.WSGIServer(('0.0.0.0', 9903), app, handler_class=WebSocketHandler).serve_forever()
+            pywsgi.WSGIServer(('wss://0.0.0.0', 9902), app, handler_class=WebSocketHandler).serve_forever()
         else:
-            pywsgi.WSGIServer(('0.0.0.0', 9903), app).serve_forever()
+            pywsgi.WSGIServer(('wss://0.0.0.0', 9902), app).serve_forever()
     elif sio.async_mode == 'gevent_uwsgi':
         print('Start the application through the uwsgi server. Example:')
         print('uwsgi --http :9902 --gevent 1000 --http-websockets --master --wsgi-file app.py --callable app')
