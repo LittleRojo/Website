@@ -1,19 +1,12 @@
-#from aiohttp import web
+async_mode = None
+
+from flask import Flask, render_template
 import socketio
-#from flask import Flask
-import eventlet
-import eventlet.wsgi
-#from . import wsgi_app
-#from gevent import pywsgi
 
-sio = socketio.Server()
-app = socketio.Middleware(sio)
-#pywsgi.WSGIServer(('', 9902), app).serve_forever()
-
-#app = Flask(__name__)
-#app.wsgi_app = socketio.Middleware(sio, app.wsgi_app)
-#app.config['SECRET_KEY'] = 'secret!'
-#eventlet.wsgi.server(eventlet.wrap_ssl(eventlet.listen(('0.0.0.0', 9902)), certfile = '/etc/ssl/ssl-bundle.crt', keyfile = '/etc/ssl/littlerojo.com.key') , app)
+sio = socketio.Server(logger=True, async_mode=async_mode)
+app = Flask(__name__)
+application = app
+app.wsgi_app = socketio.Middleware(sio, app.wsgi_app)
 
 def background_thread():
     count = 0
@@ -22,8 +15,8 @@ def background_thread():
         count += 1
         sio.emit('my response', {'data': 'Server Generated event'}, namespace='/test')
 
-#global thread
-#thread = sio.start_background_task(background_thread)
+global thread
+thread = sio.start_background_task(background_thread)
 
 @app.route('/')
 def main():
@@ -78,32 +71,29 @@ def test_connect(sid, environ):
 def test_disconnect(sid):
     print('Client disconnected')
 
+
 if __name__ == '__main__':
-	if sio.async_mode == 'threading':
-		app.run(threaded=True)
-		print('Threading')
-	elif sio.async_mode == 'eventlet':
-        	# deploy with eventlet
-        	import eventlet
-        	import eventlet.wsgi
-        	eventlet.wsgi.server(eventlet.wrap_ssl(eventlet.listen(('0.0.0.0', 9902)), certfile='/etc/ssl/ssl-bundle.crt', keyfile = '/etc/ssl/littlerojo.com.key', server_side = True), app)
-		print('Eventlet')
-	elif sio.async_mode == 'gevent':
-        	# deploy with gevent
-	        from gevent import pywsgi
-        	try:
-        		from geventwebsocket.handler import WebSocketHandler
-	        	websocket = True
-        	except ImportError:
-        		websocket = False
-	        if websocket:
-		        pywsgi.WSGIServer(('0.0.0.0', 9902), app, handler_class=WebSocketHandler).serve_forever()
-			print('gevent WebSocket') 
-	        else:
-        		pywsgi.WSGIServer(('0.0.0.0', 9902), app).serve_forever()
-			print('gevent Polling')
-	elif sio.async_mode == 'gevent_uwsgi':
-    		print('Start the application through the uwsgi server. Example:')
-        	print('uwsgi --http :9902 --gevent 1000 --http-websockets --master --wsgi-file app.py --callable app')
-	else:
-        	print('Unknown async_mode: ' + sio.async_mode)
+    if sio.async_mode == 'threading':
+        app.run(threaded=True)
+    elif sio.async_mode == 'eventlet':
+        # deploy with eventlet
+        import eventlet
+        import eventlet.wsgi
+        eventlet.wsgi.server(eventlet.wrap_ssl(eventlet.listen(('0.0.0.0', 9902)), certfile='ssl-bundle.crt', keyfile='littlerojo.com.key', server_side = True), app)
+    elif sio.async_mode == 'gevent':
+        # deploy with gevent
+        from gevent import pywsgi
+        try:
+            from geventwebsocket.handler import WebSocketHandler
+            websocket = True
+        except ImportError:
+            websocket = False
+        if websocket:
+            pywsgi.WSGIServer(('0.0.0.0', 9902), app, handler_class=WebSocketHandler).serve_forever()
+        else:
+            pywsgi.WSGIServer(('0.0.0.0', 9902), app).serve_forever()
+    elif sio.async_mode == 'gevent_uwsgi':
+        print('Start the application through the uwsgi server. Example:')
+        print('uwsgi --http :9902 --gevent 1000 --http-websockets --master --wsgi-file app.py --callable app')
+    else:
+        print('Unknown async_mode: ' + sio.async_mode)
