@@ -245,7 +245,9 @@
 
 			//window.addEventListener( 'DOMMouseScroll', onMouseWheel, false ); 
 
-			//window.addEventListener( 'touchstart', function( event ) {}, false );
+			window.addEventListener( 'touchstart', function( event ) {
+                socket.emit('my event', {data: 'me'});
+            }, false );
 			//window.addEventListener( 'touchmove', onTouchMove, false );
 			//window.addEventListener( 'touchend', onTouchEnd, false );
 			//window.addEventListener( 'orientationchange', onOrientationChange, false );
@@ -339,8 +341,7 @@
                 scene.add( object );
                 //orbitControls.target = object.position;
             });
-
-            socket.emit('my event', {data: 'me'});
+            
             //socket.emit('my broadcast event', {data: $('#broadcast_data').val()});
             //socket.emit('join', {room: $('#join_room').val()});
             //socket.emit('leave', {room: $('#leave_room').val()});
