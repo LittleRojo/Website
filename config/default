@@ -1,0 +1,30 @@
+upstream node {
+	#least_conn;
+	server 0.0.0.0:9902;
+}
+
+server {
+	listen 443 ssl default_server;
+	listen [::]:443 ssl default_server;
+	ssl on;
+	ssl_certificate /etc/ssl/ssl-bundle.crt;
+	ssl_certificate_key /etc/ssl/littlerojo.com.key;
+	ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+	server_name littlerojo.com;
+
+	root /var/www/html;
+	index index.html;
+
+	location / {
+		try_files $uri $uri/ =404;
+	}
+
+	location /socket {
+		proxy_pass http://node;
+		proxy_http_version 1.1;
+		proxy_set_header Upgrade $http_upgrade;
+		proxy_set_header Connection upgrade;
+		proxy_set_header Host $host;
+		add_header X-Cache-Status $upstream_cache_status;
+	}
+}
