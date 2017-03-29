@@ -246,7 +246,7 @@
 			//window.addEventListener( 'DOMMouseScroll', onMouseWheel, false ); 
 
 			window.addEventListener( 'touchstart', function( event ) {
-                socket.emit('my response', {data: 'me'});
+                socket.emit('my broadcast event', {data: 'me'});
             }, false );
 			//window.addEventListener( 'touchmove', onTouchMove, false );
 			//window.addEventListener( 'touchend', onTouchEnd, false );
