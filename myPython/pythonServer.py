@@ -16,7 +16,7 @@ def background_thread():
         sio.emit('my response', {'data': 'Server Generated event'}, namespace='/test')
 
 global thread
-thread = sio.start_background_task(background_thread)
+#thread = sio.start_background_task(background_thread)
 
 @app.route('/')
 def main():
