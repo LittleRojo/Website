@@ -2,16 +2,16 @@
 <html>
 <head>
    <head>
-		<title id='title'>Little Rojo - Live</title>
+		<title id='title'>Kinect</title>
 		<meta name='description' content='This is 0% anyones code.  Do what you want with it.'>
 		<meta name='keywords' content='#MyLittleMan #InformationExplosion'>
 		<meta id='author' name='author' content='me'>
 		<link rel='alternate' href='https://littlerojo.com' hreflang='en-us' />
 		<link rel='shortcut icon' href='https://littlerojo.com/favicon.ico' type='image/x-icon'>
 
-		<link rel='apple-touch-icon' href='https://littlerojo.com/img/live.png'>
+		<link rel='apple-touch-icon' href='https://littlerojo.com/img/kinect.png'>
 		<meta name='apple-mobile-web-app-capable' content='yes' />
-		<meta name='apple-mobile-web-app-title' content='Live Sockets' />
+		<meta name='apple-mobile-web-app-title' content='Kinect' />
 		<meta name='apple-mobile-web-app-status-bar-style' content='black-translucent' />
 		<meta name='viewport' content='width=device-width, user-scalable=no, initial-scale = 1.0, minimum-scale=1.0, maximum-scale=1.0'/>
 		
@@ -315,7 +315,7 @@
 				z: 0,
 				width: 10000,
 				height: 10000,
-				color: 0x1A1515,
+				color: 0x00FF00,
 				layout: 'flat',				
 			})			
 			scene.add( ground );
@@ -329,7 +329,7 @@
             });
             socket.on('my response', function(msg) {
                 //msg.data
-                var object = getBox( {
+                /*var object = getBox( {
                    x: rand( -450, 900),
 					//y: rand( -100, 100),
 					z: rand( -450, 900),
@@ -339,7 +339,7 @@
 					color: randColor(),									
                 } );
                 scene.add( object );
-                //orbitControls.target = object.position;
+                //orbitControls.target = object.position;*/
             });
             
             //socket.emit('my broadcast event', {data: $('#broadcast_data').val()});
