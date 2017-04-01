@@ -2,3 +2,6 @@
 .bash_history
 .bash_logout
 .bashrc
+.DS_Store
+.vscode
+.config
