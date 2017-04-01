@@ -1,55 +1,67 @@
-<!DOCTYPE HTML>
 <html>
-<head>
-   <head>
-		<title id='title'>Little Rojo - Live</title>
-		<meta name='description' content='This is 0% anyones code.  Do what you want with it.'>
+	<head>
+		<title id='title'>Music Capture</title>
+		<meta name='description' content='This is 0% anyones code.  Do what you want with it.
+										  -webGL version of index.html'>
 		<meta name='keywords' content='#MyLittleMan #InformationExplosion'>
 		<meta id='author' name='author' content='me'>
 		<link rel='alternate' href='https://littlerojo.com' hreflang='en-us' />
 		<link rel='shortcut icon' href='https://littlerojo.com/favicon.ico' type='image/x-icon'>
 
-		<link rel='apple-touch-icon' href='https://littlerojo.com/img/live.png'>
+		<link rel='apple-touch-icon' href='https://littlerojo.com/img/play.png'>
 		<meta name='apple-mobile-web-app-capable' content='yes' />
-		<meta name='apple-mobile-web-app-title' content='Live Sockets' />
+		<meta name='apple-mobile-web-app-title' content='Music Capture' />
 		<meta name='apple-mobile-web-app-status-bar-style' content='black-translucent' />
 		<meta name='viewport' content='width=device-width, user-scalable=no, initial-scale = 1.0, minimum-scale=1.0, maximum-scale=1.0'/>
-		
-		<!--<script type="text/javascript" src="js/jquery-3.1.0.js" ></script>		
-        <script type="text/javascript" src="//code.jquery.com/jquery-2.1.4.min.js"></script>-->
-        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.5/socket.io.min.js"></script>
 
-        <script>
+		<script>
 			var WebVRConfig = { 
 				DEFER_INITIALIZATION: true, 
 				ROTATE_INSTRUCTIONS_DISABLED: true,
 				CARDBOARD_UI_DISABLED: true, 
 			}
 		</script>
-		
-		<script type="text/javascript" src="js/three.min.js"></script>
+
+		<script type="text/javascript" src='js/three.min.js'></script>
 		<script type="text/javascript" src="js/webvr-polyfill.js"></script>		
 		<script type="text/javascript" src="js/OrbitControls.js" ></script>    	
 		<script type="text/javascript" src="js/VRControls.js" ></script>
 		<script type="text/javascript" src="js/VREffect.js" ></script>				
 		<script type="text/javascript" src="js/Webvr.js" ></script>
-		<script type="text/javascript" src="js/jquery-3.1.0.js" ></script>		
-		<script type="text/javascript" src="js/combinedCamera.js"></script>	
-		<script type="text/javascript" src="js/Tree.js"></script>	
-		<script type="text/javascript" src="me/Clock.js"></script>	
-    </head>
-   
-    </script>
-</head>
-<body style="margin:0px" bgcolor="black">
+		<script type="text/javascript" src="js/jquery-3.1.0.js" ></script>	
+		<script type="text/javascript" src="js/Tone.min.js" ></script>	
+
+		<!--<script type="text/javascript" src="me/mymidi.js" ></script>-->
+
 		<script>
-			function startAnimation( delta ) {
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+			ga('create', 'UA-80236281-1', 'auto');
+			ga('send', 'pageview');
+		</script>
+    </head>
+	<body style="margin:0px" bgcolor="black">
+		<script>
+			function startAnimation( delta ) {								
+				stepAnimation( delta );
+				effect.requestAnimationFrame( startAnimation );				
+			}
+			
+			function stopAnimation() {				
+			}
+
+			function stepAnimation( delta ) {
+				camera.position.x += 2;
+                noteLocation += 1;
+                orbitControls.target.z += noteLocation;
+
+
                 orbitControls.update();
 				vrControls.update();
 
-                //animation
-
-                orbitPos = camera.position.clone();
+				orbitPos = camera.position.clone();
 				
 				var rotatedPosition = fakeCamera.position.applyQuaternion( camera.quaternion );
 				camera.position.add( rotatedPosition );
@@ -58,21 +70,18 @@
 				effect.render( scene, camera );
 
 				camera.position.copy( orbitPos );
-
-				effect.requestAnimationFrame( startAnimation );				
-			}
-			
-			function stopAnimation() {				
 			}
 
 			function onWindowResize( event ){
-				if( vrButton !== undefined ) {					
+				if( vrButton !== undefined ) {
+					vrButton.style.left = window.innerWidth / 2 - 32 + 'px'; //Needs work
+					//vrButton.style.top = window.innerHeight - 58 + 'px'; //Needs work
 				}
 
 				camera.aspect = window.innerWidth / window.innerHeight;
 				camera.updateProjectionMatrix();
 
-				//resize logic
+				//renderer.setViewport( 0, 0 , window.innerWidth, window.innerHeight );
 
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				effect.setSize( window.innerWidth, window.innerHeight );
@@ -147,7 +156,8 @@
 			function getBox( _ ) {
 				var boxGeometry = new THREE.BoxGeometry( _.width, _.height, _.depth );
 				var boxMaterial = new THREE.MeshPhongMaterial( {
-					color: _.color,
+					color: new THREE.Color( "rgb(" + Math.floor( rand( 0, 255 ) ) + ", " + Math.floor( rand( 0, 255 ) ) + ", " + Math.floor( rand( 0, 255 ) ) + ")" ),
+                    //color: _.color,
 				});
 				if( _.imageUrl ) {
 					boxMaterial.map = THREE.ImageUtils.loadTexture( _.imageUrl );
@@ -205,13 +215,22 @@
 				return mesh;
 			}
 
+			function rendering( _ ) {
+				this.position = _.position,
+				this.width =_.width, 
+				this.height = _.height,
+				this.depth = _.depth, 
+				this.url = _.url,
+				this.tweenTree = []; 
+			}
+
 			function addMusic() {
 				music = document.createElement( 'audio' );
-				music.src = 'media/SuperMarioBrothers.mp3';
+				music.src = 'media/Eric_Clapton_-_Tears_In_Heaven.mp3';
 				music.type = "audio/mpeg";
 				music.autoplay = true;
 				music.volume = .2;
-				music.controls = true;
+				//music.controls = true;
 				music.loop = true;
 				document.body.appendChild( music );
 			}
@@ -231,11 +250,7 @@
 			function padLeft( number, size ) {
 				return ("00000" + number).slice(-'00000'.length);
 			}
-
-		
-			$( '.no-zoom' ).bind( 'touchend' , function( e ) {
-				e.preventDefault();
-			});
+						
 			window.addEventListener( 'resize', onWindowResize, false );
 			
 			//All these need work for custom controls
@@ -245,14 +260,26 @@
 
 			//window.addEventListener( 'DOMMouseScroll', onMouseWheel, false ); 
 
-			window.addEventListener( 'touchstart', function( event ) {
-                socket.emit('my broadcast event', {data: 'me'});
-            }, false );
+			//window.addEventListener( 'touchstart', function( event ) {}, false );
 			//window.addEventListener( 'touchmove', onTouchMove, false );
 			//window.addEventListener( 'touchend', onTouchEnd, false );
 			//window.addEventListener( 'orientationchange', onOrientationChange, false );
 
-			//window.addEventListener( 'keydown', onKeyDown, false );
+            var noteLocation = 0;
+            window.addEventListener( 'keydown', function() {
+                var ground = getBox( {
+                    name: 'note',
+                    x: 0,
+                    y: 0,
+                    z: noteLocation,
+                    width: 100,
+                    height: 100,
+                    depth: 100,
+                    color: 0xFF00FF,
+                    layout: 'flat',				
+                })			
+                scene.add( ground );
+            }, false );
 
 			InitializeWebVRPolyfill();
 
@@ -273,13 +300,13 @@
 			camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 10000 );
 			camera.translateX( 0 );
 			camera.translateY( 100 );
-			camera.translateZ( -800 );
-
+			camera.translateZ( 200 );
+		
 			orbitControls = new THREE.OrbitControls( camera );
 			orbitControls.zoomSpeed = .25;
 			orbitControls.rotateSpeed = .001;
 			orbitControls.keyPanSpeed = .001;
-			orbitControls.target = new THREE.Vector3( 10000, 1000, 0 );
+			orbitControls.target = new THREE.Vector3( 0, 0, 0 );
 
 			fakeCamera = new THREE.Object3D();
 			vrControls = new THREE.VRControls( fakeCamera );
@@ -291,70 +318,32 @@
 			}
 
 			scene = new THREE.Scene();
-			clock = new THREE.Clock( false );			
-
+			clock = new THREE.Clock( false );
+		
 			var ambientLight = getAmbientLight( {
 				color: 0xFFFFFF,
 				intensity: 1,
 			} );
 			scene.add( ambientLight );
 
-			var spotLight = getSpotLight( {
-				x: 0,
-				y: 1000,
-				z: 0,
-				color: 0xFFFFFF,//CE0FA,
-				intensity: 3.75,				
-			} );
-			//scene.add( spotLight );
-			
-			var ground = getPlane( {
-				name: 'ground',
+			var ground = getBox( {
+				name: 'note',
 				x: 0,
 				y: 0,
 				z: 0,
-				width: 10000,
-				height: 10000,
-				color: 0x1A1515,
+				width: 100,
+				height: 100,
+                depth: 100,
+				color: 0xFF00FF,
 				layout: 'flat',				
 			})			
 			scene.add( ground );
-			
-            var socket = io.connect('https://' + document.domain + ':9902/test', { transports: ['websocket'] } );
-            socket.on('connect', function() {
-                //connect                
-            });
-            socket.on('disconnect', function() {
-                //disconnected
-            });
-            socket.on('my response', function(msg) {
-                //msg.data
-                var object = getBox( {
-                   x: rand( -450, 900),
-					//y: rand( -100, 100),
-					z: rand( -450, 900),
-					width: rand( 10, 100),
-					height:  rand( 10, 500),
-					depth:  rand( 10, 100),	
-					color: randColor(),									
-                } );
-                scene.add( object );
-                //orbitControls.target = object.position;
-            });
-            
-            //socket.emit('my broadcast event', {data: $('#broadcast_data').val()});
-            //socket.emit('join', {room: $('#join_room').val()});
-            //socket.emit('leave', {room: $('#leave_room').val()});
-            //socket.emit('my room event', {room: $('#room_name').val(), data: $('#room_data').val()});
-            //socket.emit('close room', {room: $('#close_room').val()});
-            //socket.emit('disconnect request');
+	
+			document.body.appendChild( mainCanvas );	
 
-            orbitControls.target = new THREE.Vector3( 0, 100, 100);
+			var synth = new Tone.Synth().toMaster();
+            synth.triggerAttackRelease("C4", "8n");
 
-			addMusic();
-
-			document.body.appendChild( mainCanvas );
-			cameraMotionHandle = 1;
 			clock.start();
 			startAnimation();
 		</script>
