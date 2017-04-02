@@ -31,19 +31,19 @@ window.onresize = function(event) {
     	listCellElement.style.visibility = "hidden";
 
 		var cafeInfoElement = document.getElementById('cafeInfo'); 
-		cafeInfoElement.style.fontSize = (window.innerWidth / 32) + "px"; 
+		//cafeInfoElement.style.fontSize = (window.innerWidth / 32) + "px"; 
 		
 		var cantinaInfoElement = document.getElementById('cantinaInfo'); 
-		cantinaInfoElement.style.fontSize = (window.innerWidth / 32) + "px"; 		
+		//cantinaInfoElement.style.fontSize = (window.innerWidth / 32) + "px"; 		
 	}
 	else {
 		var menuCellElement = document.getElementById('menuCell'); 
     	menuCellElement.style.visibility = "hidden"; 
-		menuCellElement.style.width = "0px;"
+		menuCellElement.style.width = "0%;"
      
 		var locationCellElement = document.getElementById('locationCell'); 
 		locationCellElement.style.visibility = "hidden";   
-		locationCellElement.style.width = "0px;"
+		locationCellElement.style.width = "0%;"
 
 		var listCellElement = document.getElementById('listCell'); 
     	listCellElement.style.visibility = "visible";
@@ -55,7 +55,7 @@ window.onresize = function(event) {
 	else {
 		var menuItems = document.getElementsByClassName('menuItem'); 
 		for (var a = 0; a < menuItems.length; a++) { 
-			menuItems[a].style.fontSize = (window.innerWidth / 500) + "em"; 
+			//menuItems[a].style.fontSize = (window.innerWidth / 500) + "em"; 
 		} 
 	}
 	
