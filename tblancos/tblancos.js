@@ -21,41 +21,13 @@ var isMobile = {
 
 window.onresize = function(event) {		
 	if(window.innerWidth < 	960) {	
-		//var cafeInfoElement = document.getElementById('cafeInfo');
-		//cafeInfoElement.style.fontSize = (window.innerWidth / 32) + "px";
-		
-		//var cantinaInfoElement = document.getElementById('cantinaInfo');
-		//cantinaInfoElement.style.fontSize = (window.innerWidth / 32) + "px";
+
 	}
 	
 	if(isMobile.any()) {
-		//var menuCellElement = document.getElementById('menuCell');
-		//menuCellElement.style.visibility = "visible";
-		//menuCellElement.style.width = (window.innerWidth * .15) + "px";
-		
-		//var listCellElement = document.getElementById('listCell');
-		//listCellElement.style.width = "0%";
-		
-		//var locationCellElement = document.getElementById('locationCell');
-		//locationCellElement.style.visibility = "visible";
-		//locationCellElement.style.width = (window.innerWidth * .15) + "px";
-		
-		//var menuTableElement = document.getElementById('menuTable');	
-		//menuTableElement.style.height = (window.innerHeight / 10) + "px";
+
 	}
 	else {
-		//var menuCellElement = document.getElementById('menuCell');
-		//menuCellElement.style.width = (window.innerWidth * .15) + "px";
-	
-		//var listCellElement = document.getElementById('listCell');
-		//listCellElement.style.visibility = "visible";
-				
-		//var locationCellElement = document.getElementById('locationCell');
-		//locationCellElement.style.width = (window.innerWidth * .15) + "px";
-		
-		//var menuTableElement = document.getElementById('menuTable');	
-		//menuTableElement.style.height = (window.innerHeight / 15) + "px";		
-		
 		var menuItems = document.getElementsByClassName('menuItem'); 
 		for (var a = 0; a < menuItems.length; a++) { 
 			menuItems[a].style.fontSize = (window.innerWidth / 500) + "em"; 
@@ -67,25 +39,10 @@ window.onresize = function(event) {
 
 	var cantinaMapElement = document.getElementById('cantinaMap');
 	cantinaMapElement.style.height = ((window.innerHeight / 2) * .75) + "px";
-	
-	//var footerTableElement = document.getElementById('footerTable');
-	//footerTableElement.style.top = (window.innerHeight - 45) + "px";
 }
 
 function onLoad() {	
 	window.onresize();
-	var bodyElement = document.getElementById('body');
-	launchFullScreen(bodyElement);
-}
-
-function launchFullScreen(element) {
-  if(element.requestFullScreen) {
-    element.requestFullScreen();
-  } else if(element.mozRequestFullScreen) {
-    element.mozRequestFullScreen();
-  } else if(element.webkitRequestFullScreen) {
-    element.webkitRequestFullScreen();
-  }
 }
 
 function initMap() {	
