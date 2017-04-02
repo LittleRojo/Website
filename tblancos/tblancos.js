@@ -74,6 +74,18 @@ window.onresize = function(event) {
 
 function onLoad() {	
 	window.onresize();
+	var bodyElement = document.getElementById('body');
+	launchFullScreen(bodyElement);
+}
+
+function launchFullScreen(element) {
+  if(element.requestFullScreen) {
+    element.requestFullScreen();
+  } else if(element.mozRequestFullScreen) {
+    element.mozRequestFullScreen();
+  } else if(element.webkitRequestFullScreen) {
+    element.webkitRequestFullScreen();
+  }
 }
 
 function initMap() {	
