@@ -62,11 +62,11 @@ window.onresize = function(event) {
 		} 
 	}
 	
-	//var cafeMapElement = document.getElementById('cafeMap');
-	//cafeMapElement.style.height = ((window.innerHeight / 2) * .75) + "px";
+	var cafeMapElement = document.getElementById('cafeMap');
+	cafeMapElement.style.height = ((window.innerHeight / 2) * .75) + "px";
 
-	//var cantinaMapElement = document.getElementById('cantinaMap');
-	//cantinaMapElement.style.height = ((window.innerHeight / 2) * .75) + "px";
+	var cantinaMapElement = document.getElementById('cantinaMap');
+	cantinaMapElement.style.height = ((window.innerHeight / 2) * .75) + "px";
 	
 	//var footerTableElement = document.getElementById('footerTable');
 	//footerTableElement.style.top = (window.innerHeight - 45) + "px";
@@ -80,7 +80,7 @@ function initMap() {
 	window.onresize();
 	
 	var cafeMapElement = document.getElementById('cafeMap');
-	//var cafeBoundary = new google.maps.LatLngBounds();
+	var cafeBoundary = new google.maps.LatLngBounds();
 	var cafeMap = new google.maps.Map(cafeMapElement, {	  
 	  center: { lat: 32.407716, lng: -94.716789 },
 	  scrollwheel: true,
@@ -96,7 +96,7 @@ function initMap() {
 	var cafeGPS = new google.maps.LatLng(cafeMarker.position.lat(), cafeMarker.position.lng());
 	
 	var cantinaMapElement = document.getElementById('cantinaMap');
-	//var cantinaBoundary = new google.maps.LatLngBounds();
+	var cantinaBoundary = new google.maps.LatLngBounds();
 	var cantinaMap = new google.maps.Map(cantinaMapElement, {
 		center: { lat: 32.956175, lng: -96.830576 },
 		scrollwheel: true,
