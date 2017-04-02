@@ -47,8 +47,8 @@ function onLoad() {
 
 function initMap() {	
 	window.onresize();
-	
-	var cafeMapElement = document.getElementById('cafeMap');
+
+	var cafeMapElement = document.getElementById('cafeMap');	
 	var cafeBoundary = new google.maps.LatLngBounds();
 	var cafeMap = new google.maps.Map(cafeMapElement, {	  
 	  center: { lat: 32.407716, lng: -94.716789 },
@@ -63,7 +63,10 @@ function initMap() {
 	  title: 'T.Blanco\'s Cafe'
 	});	
 	var cafeGPS = new google.maps.LatLng(cafeMarker.position.lat(), cafeMarker.position.lng());
-	
+	cafeMapElement.onclick = function( element ) {
+		window.open('https://goo.gl/maps/ZAkHDkL9tGn');
+	}
+
 	var cantinaMapElement = document.getElementById('cantinaMap');
 	var cantinaBoundary = new google.maps.LatLngBounds();
 	var cantinaMap = new google.maps.Map(cantinaMapElement, {
@@ -79,26 +82,10 @@ function initMap() {
 	  title: 'T.Blanco\'s Cantina'
 	});
 	var cantinaGPS = new google.maps.LatLng(cantinaMarker.position.lat(), cantinaMarker.position.lng());
-	
-	var infoWindow = new google.maps.InfoWindow({map: cafeMap});
+	cantinaMapElement.onclick = function( element ) {
+		window.open('https://goo.gl/maps/vVtntxYu9f22');
+	}
 
-	/*if (navigator.geolocation) {				
-		navigator.geolocation.getCurrentPosition(function(position) {
-			var pos = {
-			  lat: position.coords.latitude,
-			  lng: position.coords.longitude
-			};
-
-			infoWindow.setPosition(pos);
-			infoWindow.setContent('Location found.');
-			cafeMap.setCenter(pos);
-		}, function(error) {
-			handleLocationError(true, infoWindow, cafeMap.getCenter());
-		});
-	} else {
-	  handleLocationError(false, infoWindow, cafeMap.getCenter());
-	}*/
-	
 	window.onresize();
 }
 
