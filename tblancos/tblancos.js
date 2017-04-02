@@ -21,11 +21,36 @@ var isMobile = {
 
 window.onresize = function(event) {		
 	if(window.innerWidth < 	960) {	
+		var menuCellElement = document.getElementById('menuCell'); 
+    	menuCellElement.style.visibility = "visible"; 		
+     
+		var locationCellElement = document.getElementById('locationCell'); 
+		locationCellElement.style.visibility = "visible"; 
 
+		var listCellElement = document.getElementById('listCell'); 
+    	listCellElement.style.visibility = "hidden";
+
+		var cafeInfoElement = document.getElementById('cafeInfo'); 
+		cafeInfoElement.style.fontSize = (window.innerWidth / 32) + "px"; 
+		
+		var cantinaInfoElement = document.getElementById('cantinaInfo'); 
+		cantinaInfoElement.style.fontSize = (window.innerWidth / 32) + "px"; 		
+	}
+	else {
+		var menuCellElement = document.getElementById('menuCell'); 
+    	menuCellElement.style.visibility = "hidden"; 
+		menuCellElement.style.width = "0px;"
+     
+		var locationCellElement = document.getElementById('locationCell'); 
+		locationCellElement.style.visibility = "hidden";   
+		locationCellElement.style.width = "0px;"
+
+		var listCellElement = document.getElementById('listCell'); 
+    	listCellElement.style.visibility = "visible";
 	}
 	
 	if(isMobile.any()) {
-
+		 
 	}
 	else {
 		var menuItems = document.getElementsByClassName('menuItem'); 
