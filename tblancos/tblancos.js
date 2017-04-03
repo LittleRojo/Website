@@ -49,20 +49,20 @@ window.onresize = function(event) {
     	listCellElement.style.visibility = "visible";
 	}
 	
-	if(isMobile.any()) {
-		 
+	if( window.innerHeight >= window.outerHeight) {
+		var footerElement = document.getElementById('footerTable');
+		footerElement.style.position = "relative";
 	}
 	else {
-		var menuItems = document.getElementsByClassName('menuItem'); 
-		for (var a = 0; a < menuItems.length; a++) { 
-			//menuItems[a].style.fontSize = (window.innerWidth / 500) + "em"; 
-		} 
+		var footerElement = document.getElementById('footerTable');
+		footerElement.style.position = "absolute";
+		footerElement.style.bottom = "0px";
 	}
 	
-	var cafeMapElement = document.getElementById('cafeMap');
+	//var cafeMapElement = document.getElementById('cafeMap');
 	//cafeMapElement.style.height = ((window.innerHeight / 2) * .75) + "px";
 
-	var cantinaMapElement = document.getElementById('cantinaMap');
+	//var cantinaMapElement = document.getElementById('cantinaMap');
 	//cantinaMapElement.style.height = ((window.innerHeight / 2) * .75) + "px";
 }
 
