@@ -4,7 +4,7 @@ body, html{
 	width:100%;
 }
 
-ul {
+#menuList {
 	width: 100%;
 	list-style-type: none;
 	display: inline-block;
@@ -17,17 +17,38 @@ ul {
 	margin-top: .70%;
 }
 
-li {
+#menuRow {
 	float: left;
 	width: 16%;		
 	margin-top: 0%;
 	text-decoration: none; 
 }
 
-.menuItem {	
+#menuRow a {	
 	text-decoration: none; 
 	font-size: 2em;
 	color: #ffffff;
+}
+
+#menuList2 {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 400px;
+    background-color: #f1f1f1;
+}
+
+#menuRow2 a {
+    display: block;
+    color: #000;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+/* Change the link color on hover */
+#menuRow2 a:hover {
+    background-color: #555;
+    color: white;
 }
 
 @font-face {
@@ -38,7 +59,7 @@ li {
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
 }
 
-
+/*
 @media (min-width: 0) and (max-width: 367) {
 	.menuItem {
 		font-size: .5em;
@@ -62,3 +83,4 @@ li {
 		font-size: 1.25em;
 	}
 }
+*/
