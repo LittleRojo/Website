@@ -45,7 +45,17 @@ window.onresize = function(event) {
 		var topMenu = document.getElementById('topMenu');
 		if(topMenu) {
 			topMenu.style.visibility = "hidden";
-		}		
+		}	
+
+		var cafeInfoElement = document.getElementById('cafeInfo'); 
+		if (cafeInfoElement) {
+			cafeInfoElement.style.fontSize = (window.innerWidth / 32) + "px"; 
+		}
+		
+		var cantinaInfoElement = document.getElementById('cantinaInfo'); 
+		if (cantinaInfoElement) {
+			cantinaInfoElement.style.fontSize = (window.innerWidth / 32) + "px";
+		}	
 	}
 	else {
 		var topMenuIcon = document.getElementById('topMenuIcon');
@@ -95,9 +105,7 @@ function showMenu() {
 	}
 }
 
-function initMap() {	
-	window.onresize();
-
+function initMap() {		
 	var cafeMapElement = document.getElementById('cafeMap');	
 	var cafeBoundary = new google.maps.LatLngBounds();
 	var cafeMap = new google.maps.Map(cafeMapElement, {	  
