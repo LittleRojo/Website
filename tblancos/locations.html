@@ -16,7 +16,7 @@
 
       <link rel='apple-touch-icon' href='https://littlerojo.com/tblancos/TBlancosMexicanCantinaLogo.png'>
       <meta name='apple-mobile-web-app-capable' content='yes' />
-      <meta name='apple-mobile-web-app-title' content="TBlanco's" />
+      <meta name='apple-mobile-web-app-title' content='TBlanco's />
       <meta name='apple-mobile-web-app-status-bar-style' content='black' />
       <meta name='viewport' content='width=device-width, user-scalable=no, initial-scale = 1.0, minimum-scale=1.0, maximum-scale=1.0'/>
      
@@ -37,44 +37,40 @@
 		</script>
     
   </head> 
-  <body id="body" onload="onLoad();" bgcolor="#734d26">   
+  <body id="body" onload="onLoad();" bgcolor="#734d26">       
     <div id="container" style="width:100%; height:100%;"> 
-     
       <!--Menu--> 
-       <div id="listCell2" style="position: absolute; top: 49px; visibility: hidden; z-index: 100;">                     
+      <div id="sideMenu" style="position: absolute; top: 49px; visibility: hidden; z-index: 100;">                     
           <ul id="menuList2" style="list-style-type: none; margin: 0; padding: 0; border-top: 3px black solid; border-right: 3px black solid; border-bottom: 3px black solid; width: 165px; background-color: #333;">  
-              <li id="menuRow2"><a class="menuItem2" style="font-weight:bold; font-size: 1.5em;" href="#cafe">Cafe</a></li>  
-              <li id="menuRow2"><a class="menuItem2" style="font-weight:bold; font-size: 1.5em;" href="#cantina">Cantina</a></li>  
-              <li id="menuRow2"><a class="menuItem2" style="font-weight:bold; font-size: 1.5em;" href="#catering">Catering</a></li>  
-              <li id="menuRow2"><a class="menuItem2" style="font-weight:bold; font-size: 1.5em;" href="#happyhour">Happy Hour</a></li>  
-              <li id="menuRow2"><a class="menuItem2" style="font-weight:bold; font-size: 1.5em;" href="locations.html">Locations</a></li>  
+              <li id="menuRow2"><a class="menuItem2" style="font-weight:bold; font-size: 1.5em;" href="cafe.html">Cafe</a></li>  
+              <li id="menuRow2"><a class="menuItem2" style="font-weight:bold; font-size: 1.5em;" href="cantina.html">Cantina</a></li>  
+              <li id="menuRow2"><a class="menuItem2" style="font-weight:bold; font-size: 1.5em;" href="catering.html">Catering</a></li>  
+              <li id="menuRow2"><a class="menuItem2" style="font-weight:bold; font-size: 1.5em;" href="happyhour.html">Happy Hour</a></li>  
+              <li id="menuRow2"><a class="menuItem2" style="font-weight:bold; font-size: 1.5em; color: #FFF700;" href="locations.html">Locations</a></li>  
           </ul>            
       </div> 
-      <div id="menuTable" style="display: table; width: 100%; text-align: left; background-color:#333; border-width: 3px; border-bottom: 3px black solid;">               
+      <div id="" style="display: table; width: 100%; text-align: left; background-color:#333; border-width: 3px; border-bottom: 3px black solid;">               
         <div style="display: table-row; width: 100%">           
-          <div id="menuCell" style="visibility: hidden; display: table-cell; vertical-align: middle;" onClick="showMenu()">           
+          <div id="topMenuIcon" style="display: table-cell; visibility: hidden; vertical-align: middle;" onClick="showMenu()">           
             <img style="margin-left: 15%; margin-top: 5px; margin-bottom: -3px; width: 42px;" src="3LinesMenuIconWhite.svg"> 
           </div> 
-          <div id="listCell" style="visibility: hidden; width: 100%; display: table-cell; vertical-align: middle; text-align:left;">                     
+          <div id="topMenu" style="width: 100%; visibility: hidden; display: table-cell; vertical-align: middle; text-align:left;">                     
             <ul id="menuList" style="text-align: left;">  
-              <li id="menuRow" style="margin-left: 20px; width: 14%"><a class="menuItem" style="font-weight:bold; font-size: 2.5em;" href="#cafe">Cafe</a></li>  
-              <li id="menuRow" style="width: 20%"><a class="menuItem" style="font-weight:bold; font-size: 2.5em;" href="#cantina">Cantina</a></li>  
-              <li id="menuRow" style="width: 21%"><a class="menuItem" style="font-weight:bold; font-size: 2.5em;" href="#catering">Catering</a></li>  
-              <li id="menuRow" style="width: 25%"><a class="menuItem" style="font-weight:bold; font-size: 2.5em;" href="#catering">Happy Hour</a></li>  
-              <li id="menuRow" style="width: 10%"><a class="menuItem" style="font-weight:bold; font-size: 2.5em;" href="locations.html">Locations</a></li>  
+              <li id="menuRow" style="margin-left: 20px; width: 14%"><a class="menuItem" style="font-weight:bold; font-size: 2.5em;" href="cafe.html">Cafe</a></li>  
+              <li id="menuRow" style="width: 20%"><a class="menuItem" style="font-weight:bold; font-size: 2.5em;" href="cantina.html">Cantina</a></li>  
+              <li id="menuRow" style="width: 21%"><a class="menuItem" style="font-weight:bold; font-size: 2.5em;" href="catering.html">Catering</a></li>  
+              <li id="menuRow" style="width: 25%"><a class="menuItem" style="font-weight:bold; font-size: 2.5em;" href="happyhour.html">Happy Hour</a></li>  
+              <li id="menuRow" style="width: 10%"><a class="menuItem" style="font-weight:bold; font-size: 2.5em; color: #FFF700;" href="locations.html">Locations</a></li>  
             </ul>            
-          </div> 
-          <!--<div id="locationCell" style="visibility: hidden; display: table-cell; vertical-align: middle;">         
-            <img style="margin-left: -25%; margin-top: 3px; width: 45px;" src="mapIcon.svg"> 
-          </div>-->             
+          </div>            
         </div> 
       </div>
-
-      <!--Content-->
-      <div id="contentElement" style="display: table; width: 100%; height: 400px; text-align: center;">               
-        <div style="display: table-row; width: 100%">           
-          <div id="" style="visibility: visible; display: table-cell; vertical-align: top;">  
-
+              
+      <!---Content-->
+      <div id="content" style="display: table; width: 100%;"> 
+        <div id="row1" style="display: table-row; width: 75%; height: 1%;"> 
+          <div id="" style="display: table-cell; width: 50%; vertical-align:top; text-align:center; margin: 0 auto;">           
+            
           <!--Logos--> 
           <div id="logoTable" style="display: table; width: 100%;"> 
             <div id="logoRow" style="display: table-row; width: 100%;"> 
@@ -92,11 +88,13 @@
             <div id="infoRow" style="display: table-row; width: 100%;"> 
               <div id="cafeInfoCell2"style="display: table-cell; width: 50%;">             
                   <p id="cafeInfo" style="text-align: center; font-family:josefin slab; font-weight: bold; font-size: 1.5em; color:#000000;"> 
-                  1045 Gardiner Mitchell Pkwy  
-                  <br> 
-                  Lakeport, Texas 75662  
-                  <br>  
-                  903.643.0100    
+                    1045 Gardiner Mitchell Pkwy  
+                    <br> 
+                    Lakeport, Texas 75662  
+                    <br>  
+                    903.643.0100   
+                    <br>
+                    <a href="mailto:mason@tblancos.com" target="_top">Email: mason@tblancos.com</a> 
                 </p> 
               </div> 
               <div id="cafeInfoCell2"style="display: table-cell; width:50%;">             
@@ -106,6 +104,8 @@
                   Addison, Texas 75001 
                   <br> 
                   469.677.8778   
+                  <br>
+                  <a href="mailto:mason@tblancos.com" target="_top">Email: mason@tblancos.com</a>
                 </p> 
               </div> 
             </div> 
@@ -128,17 +128,16 @@
                   </a>
                 </div> 
               </div> 
-              </div> 
             </div> 
+          </div> 
 
-          </div>
         </div>
       </div>
        
       <!--Footer--> 
-      <div id="footerTable" style="position: relative; display: table; width: 100%; text-align: bottom;">   
+      <div id="footer" style="position: absolute; visibility: hidden;  display: table; width: 100%;">   
         <div id="footerRow" style="display: table-row; width: 100%"> 
-          <div id="footercell" style="display: table-cell; width: 100%;"> 
+          <div id="footercell" style="display: table-cell; width: 100%; vertical-align: bottom;"> 
             <p style="text-align: center; color:#000000; font-family:josefin slab; font-size: 12px;"> 
               Copyright© 2016, T. Blanco's Mexican Cafe. All rights reserved. 
             </p>   

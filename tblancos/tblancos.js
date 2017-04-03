@@ -62,23 +62,23 @@ window.onresize = function(event) {
 	var content = document.getElementById('content'); 
 	if (content) {
 		content.style.position = "absolute";
-		content.style.top = "50px";
-		content.style.width = window.innerWidth + "px";
-		content.style.height = window.innerHeight - 100 + "px";
+		//content.style.top = "50px";
+		//content.style.width = window.innerWidth + "px";
+		//content.style.height = window.innerHeight - 950 + "px";
 		content.style.visibility = "visible"; 
 	}
 
 	var footer = document.getElementById('footer'); 
 	if (footer) {
-		footer.style.top = window.innerHeight - 50 + "px";
+		footer.style.top = window.outerHeight - 100 + "px";
 		footer.style.visibility = "visible"; 		
 	}	
 
 	var container = document.getElementById('container'); 
 	if (container) {
-		container.style.bottom = "10px";
-		container.style.width = window.innerWidth + "px";
-		container.style.height = window.innerHeight - 150 + "px";
+		container.style.top = "50px";
+		container.style.width = window.innerWidth - 15 + "px";
+		container.style.height = window.innerHeight - 15 + "px";
 		container.style.visibility = "visible"; 		
 	}
 }
