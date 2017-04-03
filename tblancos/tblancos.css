@@ -35,20 +35,20 @@ body, html{
     margin: 0;
     padding: 0;
     width: 400px;
-    background-color: #f1f1f1;
+    background-color: #333;
 }
 
 #menuRow2 a {
     display: block;
-    color: #000;
+    color: #ffffff;
     padding: 8px 16px;
     text-decoration: none;
 }
 
 /* Change the link color on hover */
 #menuRow2 a:hover {
-    background-color: #555;
-    color: white;
+    background-color: #000000;
+    color: #ffffff;
 }
 
 @font-face {

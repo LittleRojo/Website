@@ -101,6 +101,11 @@ window.onresize = function(event) {
 		footerElement.style.bottom = "0px";
 	}
 	
+	var listCellElement = document.getElementById('listCell2'); 
+	if (listCellElement) {
+		listCellElement.style.visibility = "hidden";
+	}
+
 	//var cafeMapElement = document.getElementById('cafeMap');
 	//cafeMapElement.style.height = ((window.innerHeight / 2) * .75) + "px";
 
