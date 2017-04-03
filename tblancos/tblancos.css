@@ -1,7 +1,3 @@
-menuItem {
-	color: #000000;
-}
-
 body, html{
 	margin:0;
 	padding:0;
@@ -28,7 +24,7 @@ li {
 	text-decoration: none; 
 }
 
-a {	
+.menuItem {	
 	text-decoration: none; 
 	font-size: 2em;
 	color: #ffffff;

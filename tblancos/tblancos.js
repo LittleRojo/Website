@@ -20,7 +20,7 @@ var isMobile = {
 };
 
 window.onresize = function(event) {		
-	if(window.innerWidth < 	960) {	
+	if(window.innerWidth < 	1200) {	
 		var menuCellElement = document.getElementById('menuCell'); 
     	menuCellElement.style.visibility = "visible"; 		
      
@@ -31,10 +31,10 @@ window.onresize = function(event) {
     	listCellElement.style.visibility = "hidden";
 
 		var cafeInfoElement = document.getElementById('cafeInfo'); 
-		//cafeInfoElement.style.fontSize = (window.innerWidth / 32) + "px"; 
+		cafeInfoElement.style.fontSize = (window.innerWidth / 32) + "px"; 
 		
 		var cantinaInfoElement = document.getElementById('cantinaInfo'); 
-		//cantinaInfoElement.style.fontSize = (window.innerWidth / 32) + "px"; 		
+		cantinaInfoElement.style.fontSize = (window.innerWidth / 32) + "px"; 		
 	}
 	else {
 		var menuCellElement = document.getElementById('menuCell'); 
@@ -60,10 +60,10 @@ window.onresize = function(event) {
 	}
 	
 	var cafeMapElement = document.getElementById('cafeMap');
-	cafeMapElement.style.height = ((window.innerHeight / 2) * .75) + "px";
+	//cafeMapElement.style.height = ((window.innerHeight / 2) * .75) + "px";
 
 	var cantinaMapElement = document.getElementById('cantinaMap');
-	cantinaMapElement.style.height = ((window.innerHeight / 2) * .75) + "px";
+	//cantinaMapElement.style.height = ((window.innerHeight / 2) * .75) + "px";
 }
 
 function onLoad() {	
