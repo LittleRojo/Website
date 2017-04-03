@@ -10,7 +10,7 @@ $(window).click(function(element) {
 	}
 });
 
-$('#menucontainer').click(function(event){
+$('#container').click(function(event){
     event.stopPropagation();
 });
 
