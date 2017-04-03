@@ -18,8 +18,7 @@ body, html{
 }
 
 #menuRow {
-	float: left;
-	width: 16%;		
+	float: left;	
 	margin-top: 0%;
 	text-decoration: none; 
 }
@@ -28,6 +27,10 @@ body, html{
 	text-decoration: none; 
 	font-size: 2em;
 	color: #ffffff;
+}
+
+#menuRow a:hover {
+    color: #723838;
 }
 
 #menuList2 {
@@ -47,8 +50,7 @@ body, html{
 
 /* Change the link color on hover */
 #menuRow2 a:hover {
-    /*background-color: #000000;*/
-    color: #ffffff;
+    color: #723838;
 }
 
 @font-face {
