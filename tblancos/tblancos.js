@@ -93,17 +93,22 @@ window.onresize = function(event) {
 	
 	if( window.innerHeight >= window.outerHeight) {
 		var footerElement = document.getElementById('footerTable');
-		footerElement.style.position = "relative";
+		//footerElement.style.position = "relative";
 	}
 	else {
 		var footerElement = document.getElementById('footerTable');
 		footerElement.style.position = "absolute";
-		footerElement.style.bottom = "0px";
+		//footerElement.style.bottom = "0px";
 	}
 	
 	var listCellElement = document.getElementById('listCell2'); 
 	if (listCellElement) {
 		listCellElement.style.visibility = "hidden";
+	}
+
+	var contentElement = document.getElementById('contentElement'); 
+	if (contentElement) {
+		contentElement.style.height = window.innerHeight - 100 + "px";
 	}
 
 	//var cafeMapElement = document.getElementById('cafeMap');
