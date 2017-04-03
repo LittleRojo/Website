@@ -34,7 +34,7 @@ window.onresize = function(event) {
 		cafeInfoElement.style.fontSize = (window.innerWidth / 32) + "px"; 
 		
 		var cantinaInfoElement = document.getElementById('cantinaInfo'); 
-		cantinaInfoElement.style.fontSize = (window.innerWidth / 32) + "px"; 		
+		cantinaInfoElement.style.fontSize = (window.innerWidth / 32) + "px";
 	}
 	else {
 		var menuCellElement = document.getElementById('menuCell'); 
