@@ -16,7 +16,7 @@
 
       <link rel='apple-touch-icon' href='https://littlerojo.com/tblancos/TBlancosMexicanCantinaLogo.png'>
       <meta name='apple-mobile-web-app-capable' content='yes' />
-      <meta name='apple-mobile-web-app-title' content="TBlanco's" />
+      <meta name='apple-mobile-web-app-title' content='TBlanco's />
       <meta name='apple-mobile-web-app-status-bar-style' content='black' />
       <meta name='viewport' content='width=device-width, user-scalable=no, initial-scale = 1.0, minimum-scale=1.0, maximum-scale=1.0'/>
      
@@ -25,7 +25,6 @@
      
     <!--JS-->     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2feAMwsOzlA0QjjXay81plW4LsB7JKYs&callback=initMap" async defer></script>
     <script type="text/javascript" src="tblancos.js"></script> 
     <script>
 			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -44,10 +43,10 @@
       <div id="sideMenu" style="position: absolute; top: 49px; visibility: hidden; z-index: 100;">                     
           <ul id="menuList2" style="list-style-type: none; margin: 0; padding: 0; border-top: 3px black solid; border-right: 3px black solid; border-bottom: 3px black solid; width: 165px; background-color: #333;">  
               <li id="menuRow2"><a class="menuItem2" style="font-weight:bold; font-size: 1.5em;" href="cafe.html">Cafe</a></li>  
-              <li id="menuRow2"><a class="menuItem2" style="font-weight:bold; font-size: 1.5em;" href="cantina.html">Cantina</a></li>  
+              <li id="menuRow2"><a class="menuItem2" style="font-weight:bold; font-size: 1.5em; color: #FFF700;" href="cantina.html">Cantina</a></li>  
               <li id="menuRow2"><a class="menuItem2" style="font-weight:bold; font-size: 1.5em;" href="catering.html">Catering</a></li>  
               <li id="menuRow2"><a class="menuItem2" style="font-weight:bold; font-size: 1.5em;" href="happyhour.html">Happy Hour</a></li>  
-              <li id="menuRow2"><a class="menuItem2" style="font-weight:bold; font-size: 1.5em; color: #FFF700;" href="locations.html">Locations</a></li>  
+              <li id="menuRow2"><a class="menuItem2" style="font-weight:bold; font-size: 1.5em;" href="locations.html">Locations</a></li>  
           </ul>            
       </div> 
       <div id="" style="display: table; width: 100%; text-align: left; background-color:#333; border-width: 3px; border-bottom: 3px black solid;">               
@@ -58,10 +57,10 @@
           <div id="topMenu" style="width: 100%; visibility: hidden; display: table-cell; vertical-align: middle; text-align:left;">                     
             <ul id="menuList" style="text-align: left;">  
               <li id="menuRow" style="margin-left: 20px; width: 14%"><a class="menuItem" style="font-weight:bold; font-size: 2.5em;" href="cafe.html">Cafe</a></li>  
-              <li id="menuRow" style="width: 20%"><a class="menuItem" style="font-weight:bold; font-size: 2.5em;" href="cantina.html">Cantina</a></li>  
+              <li id="menuRow" style="width: 20%"><a class="menuItem" style="font-weight:bold; font-size: 2.5em; color: #FFF700;" href="cantina.html">Cantina</a></li>  
               <li id="menuRow" style="width: 21%"><a class="menuItem" style="font-weight:bold; font-size: 2.5em;" href="catering.html">Catering</a></li>  
               <li id="menuRow" style="width: 25%"><a class="menuItem" style="font-weight:bold; font-size: 2.5em;" href="happyhour.html">Happy Hour</a></li>  
-              <li id="menuRow" style="width: 10%"><a class="menuItem" style="font-weight:bold; font-size: 2.5em; color: #FFF700;" href="locations.html">Locations</a></li>  
+              <li id="menuRow" style="width: 10%"><a class="menuItem" style="font-weight:bold; font-size: 2.5em;" href="locations.html">Locations</a></li>  
             </ul>            
           </div>            
         </div> 
@@ -69,73 +68,19 @@
               
       <!---Content-->
       <div id="content" style="display: table; visibility: hidden;  width: 100%; height: 400px; text-align: center;">               
-        <div style="display: table-row; width: 100%">           
-     
-          <!--Logos--> 
-          <div id="logoTable" style="display: table; width: 100%;"> 
-            <div id="logoRow" style="display: table-row; width: 100%;"> 
-              <div id="cafeLogoCell" style="display: table-cell; width: 50%; vertical-align:top; text-align:center;">           
-                <img style="width: 90%; max-width: 500px; margin-top: 10%;" src="TBlancosMexicanCafeLogo.png"> 
-              </div> 
-              <div id="cantinaLogoCell" style="display: table-cell; width: 50%; vertical-align:top; text-align:center; margin: 0 auto;">         
-                <img style="width: 90%; max-width: 500px; margin-top: 10%;" src="TBlancosMexicanCantinaLogo.png">     
-              </div> 
-            </div> 
+        <div style="display: table-row; width: 100%; height: 15%;">           
+          <div id="" style="display: table-cell; vertical-align: top;">           
+            <img style="margin-top: 45px; width: 360px;" src="TBlancosMexicanCantinaLogo.png"> 
           </div> 
-          
-          <!--Contact Info--> 
-          <div id="infoTable" style="display: table; width: 100%;"> 
-            <div id="infoRow" style="display: table-row; width: 100%;"> 
-              <div id="cafeInfoCell2"style="display: table-cell; width: 50%;">             
-                  <p id="cafeInfo" style="text-align: center; font-family:josefin slab; font-weight: bold; font-size: 1.5em; color:#000000;"> 
-                  1045 Gardiner Mitchell Pkwy  
-                  <br> 
-                  Lakeport, Texas 75662  
-                  <br>  
-                  903.643.0100    
-                  <br>
-                  <a href="mailto:mason@tblancos.com" target="_top">Email: mason@tblancos.com</a>
-                </p> 
-              </div> 
-              <div id="cafeInfoCell2"style="display: table-cell; width:50%;">             
-                <p id="cantinaInfo" style="text-align: center; font-family:josefin slab; font-weight: bold; font-size: 1.5em; color:#000000;"> 
-                  15207 Addison Road 
-                  <br> 
-                  Addison, Texas 75001 
-                  <br> 
-                  469.677.8778   
-                  <br>
-                  <a href="mailto:mason@tblancos.com" target="_top">Email: mason@tblancos.com</a>
-                </p> 
-              </div> 
-            </div> 
-          </div> 
-          
-          <!--Maps--> 
-          <div id="mapTable" style="display: table; width: 100%;"> 
-            <div id="mapRow" style="display: table-row; width: 100%;"> 
-              <div id="cafeMapCell" style="display: table-cell; width: 50%; text-align: center;"> 
-                <div id="cafeMap" style="display: inline-block; width: 90%; height:250px; border:5px solid #1a0000; border-radius:100; vertical-align:middle;">               
-                  <a href="https://goo.gl/maps/ZAkHDkL9tGn" target="_blank">
-                      <img src="TBLancosMexicanCafeMap.png" style="width: 100%; height: 100%;"/>
-                  </a>
-                </div> 
-              </div> 
-              <div id="cantinaMapCell" style="display: table-cell; width: 50%; text-align: center;"> 
-                <div id="cantinaMap" style="display: inline-block; width: 90%; height:250px; border:5px solid #1a0000; border-radius:100; vertical-align:middle; ">                         
-                  <a href="https://goo.gl/maps/vVtntxYu9f22" target="_blank">
-                    <img src="TBLancosMexicanCantinaMap.png" style="width: 100%; height: 100%;"/>
-                  </a>
-                </div> 
-              </div> 
-              </div> 
-            </div> 
-
-          </div>
         </div>
-      </div>
-       
-       <!--Footer--> 
+        <div style="display: table-row; width: 100%">           
+          <div id="" style="display: table-cell; vertical-align: top;">           
+            <img style="margin-top: 15px; width: 760px;" src="cantinaRestaurantPicture.png"> 
+          </div> 
+        </div>
+      </div> 
+
+      <!--Footer--> 
       <div id="footer" style="position: absolute; visibility: hidden;  display: table; width: 100%;">   
         <div id="footerRow" style="display: table-row; width: 100%"> 
           <div id="footercell" style="display: table-cell; width: 100%; vertical-align: bottom;"> 
@@ -144,7 +89,7 @@
             </p>   
           <div> 
         </div> 
-      </div>   
+      </div> 
        
     </div> 
   </body> 

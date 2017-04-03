@@ -36,86 +36,51 @@ var isMobile = {
 };
 
 window.onresize = function(event) {		
-	if(window.innerWidth < 	1200) {			
-		var cafeLogoCellElement = document.getElementById('cafeLogoCell'); 
-		if (cafeLogoCellElement) {
-    		cafeLogoCellElement.style.visibility = "visible"; 		
-		}
-     
-		var cantinaLogoCellElement = document.getElementById('cantinaLogoCell'); 
-		if (cantinaLogoCellElement) {
-			cantinaLogoCellElement.style.visibility = "visible"; 
+	if(window.innerWidth < 	1200) {		
+		var topMenuIcon = document.getElementById('topMenuIcon');
+		if( topMenuIcon ) {
+			topMenuIcon.style.visibility = "visible";
 		}
 
-		var menuCellElement = document.getElementById('menuCell'); 
-    	if (menuCellElement) {
-			menuCellElement.style.visibility = "visible"; 		
-		}
-     
-		var locationCellElement = document.getElementById('locationCell'); 
-		if (locationCellElement) {
-			locationCellElement.style.visibility = "visible"; 
-		}
-
-		var listCellElement = document.getElementById('listCell'); 
-		if (listCellElement) {
-    		listCellElement.style.visibility = "hidden";
-		}
-
-		var cafeInfoElement = document.getElementById('cafeInfo'); 
-		if (cafeInfoElement) {
-			cafeInfoElement.style.fontSize = (window.innerWidth / 32) + "px"; 
-		}
-		
-		var cantinaInfoElement = document.getElementById('cantinaInfo'); 
-		if (cantinaInfoElement) {
-			cantinaInfoElement.style.fontSize = (window.innerWidth / 32) + "px";
-		}
+		var topMenu = document.getElementById('topMenu');
+		if(topMenu) {
+			topMenu.style.visibility = "hidden";
+		}		
 	}
 	else {
-		var menuCellElement = document.getElementById('menuCell'); 
-		if (menuCellElement) {
-			menuCellElement.style.visibility = "hidden"; 
-			menuCellElement.style.width = "0%;"
-		}
-     
-		var locationCellElement = document.getElementById('locationCell'); 
-		if (locationCellElement) {
-			locationCellElement.style.visibility = "hidden";   
-			locationCellElement.style.width = "0%;"
+		var topMenuIcon = document.getElementById('topMenuIcon');
+		if( topMenuIcon ) {
+			topMenuIcon.style.visibility = "hidden";
 		}
 
-		var listCellElement = document.getElementById('listCell'); 
-		if (listCellElement) {
-    		listCellElement.style.visibility = "visible";
+		var topMenu = document.getElementById('topMenu');
+		if(topMenu) {
+			topMenu.style.visibility = "visible";
 		}
-	}
-	
-	if( window.innerHeight >= window.outerHeight) {
-		var footerElement = document.getElementById('footerTable');
-		//footerElement.style.position = "relative";
-	}
-	else {
-		var footerElement = document.getElementById('footerTable');
-		footerElement.style.position = "absolute";
-		//footerElement.style.bottom = "0px";
-	}
-	
-	var listCellElement = document.getElementById('listCell2'); 
-	if (listCellElement) {
-		listCellElement.style.visibility = "hidden";
+	}	
+
+	var content = document.getElementById('content'); 
+	if (content) {
+		content.style.position = "absolute";
+		content.style.top = "50px";
+		content.style.width = window.innerWidth + "px";
+		content.style.height = window.innerHeight - 100 + "px";
+		content.style.visibility = "visible"; 
 	}
 
-	var contentElement = document.getElementById('contentElement'); 
-	if (contentElement) {
-		contentElement.style.height = window.innerHeight - 100 + "px";
+	var footer = document.getElementById('footer'); 
+	if (footer) {
+		footer.style.top = window.innerHeight - 50 + "px";
+		footer.style.visibility = "visible"; 		
+	}	
+
+	var container = document.getElementById('container'); 
+	if (container) {
+		container.style.bottom = "10px";
+		container.style.width = window.innerWidth + "px";
+		container.style.height = window.innerHeight - 150 + "px";
+		container.style.visibility = "visible"; 		
 	}
-
-	//var cafeMapElement = document.getElementById('cafeMap');
-	//cafeMapElement.style.height = ((window.innerHeight / 2) * .75) + "px";
-
-	//var cantinaMapElement = document.getElementById('cantinaMap');
-	//cantinaMapElement.style.height = ((window.innerHeight / 2) * .75) + "px";
 }
 
 function onLoad() {	
@@ -124,7 +89,7 @@ function onLoad() {
 
 function showMenu() {
 	menuClick = 1;
-	var listCellElement = document.getElementById('listCell2'); 
+	var listCellElement = document.getElementById('sideMenu'); 
 	if (listCellElement && listCellElement.style.visibility == "hidden") {
 		listCellElement.style.visibility = "visible";
 	}

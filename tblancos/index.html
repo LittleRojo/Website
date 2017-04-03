@@ -39,47 +39,43 @@
   <body id="body" onload="onLoad();" bgcolor="#734d26">   
     <div id="container" style="width:100%; height:100%;"> 
      
-      <!--Menu--> 
-      <div id="listCell2" style="position: absolute; top: 49px; visibility: hidden; z-index: 100;">                     
+     <div id="sideMenu" style="position: absolute; top: 49px; visibility: hidden; z-index: 100;">                     
           <ul id="menuList2" style="list-style-type: none; margin: 0; padding: 0; border-top: 3px black solid; border-right: 3px black solid; border-bottom: 3px black solid; width: 165px; background-color: #333;">  
-              <li id="menuRow2"><a class="menuItem2" style="font-weight:bold; font-size: 1.5em;" href="#cafe">Cafe</a></li>  
-              <li id="menuRow2"><a class="menuItem2" style="font-weight:bold; font-size: 1.5em;" href="#cantina">Cantina</a></li>  
-              <li id="menuRow2"><a class="menuItem2" style="font-weight:bold; font-size: 1.5em;" href="#catering">Catering</a></li>  
-              <li id="menuRow2"><a class="menuItem2" style="font-weight:bold; font-size: 1.5em;" href="#happyhour">Happy Hour</a></li>  
+              <li id="menuRow2"><a class="menuItem2" style="font-weight:bold; font-size: 1.5em; color: #FFF700;" href="cafe.html">Cafe</a></li>  
+              <li id="menuRow2"><a class="menuItem2" style="font-weight:bold; font-size: 1.5em;" href="cantina.html">Cantina</a></li>  
+              <li id="menuRow2"><a class="menuItem2" style="font-weight:bold; font-size: 1.5em;" href="catering.html">Catering</a></li>  
+              <li id="menuRow2"><a class="menuItem2" style="font-weight:bold; font-size: 1.5em;" href="happyhour.html">Happy Hour</a></li>  
               <li id="menuRow2"><a class="menuItem2" style="font-weight:bold; font-size: 1.5em;" href="locations.html">Locations</a></li>  
           </ul>            
       </div> 
-      <div id="menuTable" style="display: table; width: 100%; text-align: left; background-color:#333; border-width: 3px; border-bottom: 3px black solid;">               
+      <div id="" style="display: table; width: 100%; text-align: left; background-color:#333; border-width: 3px; border-bottom: 3px black solid;">               
         <div style="display: table-row; width: 100%">           
-          <div id="menuCell" style="visibility: hidden; display: table-cell; vertical-align: middle;" onClick="showMenu()">           
+          <div id="topMenuIcon" style="display: table-cell; visibility: hidden; vertical-align: middle;" onClick="showMenu()">           
             <img style="margin-left: 15%; margin-top: 5px; margin-bottom: -3px; width: 42px;" src="3LinesMenuIconWhite.svg"> 
           </div> 
-          <div id="listCell" style="visibility: hidden; width: 100%; display: table-cell; vertical-align: middle; text-align:left;">                     
+          <div id="topMenu" style="width: 100%; visibility: hidden; display: table-cell; vertical-align: middle; text-align:left;">                     
             <ul id="menuList" style="text-align: left;">  
-              <li id="menuRow" style="margin-left: 20px; width: 14%"><a class="menuItem" style="font-weight:bold; font-size: 2.5em;" href="#cafe">Cafe</a></li>  
-              <li id="menuRow" style="width: 20%"><a class="menuItem" style="font-weight:bold; font-size: 2.5em;" href="#cantina">Cantina</a></li>  
-              <li id="menuRow" style="width: 21%"><a class="menuItem" style="font-weight:bold; font-size: 2.5em;" href="#catering">Catering</a></li>  
-              <li id="menuRow" style="width: 25%"><a class="menuItem" style="font-weight:bold; font-size: 2.5em;" href="#catering">Happy Hour</a></li>  
+              <li id="menuRow" style="margin-left: 20px; width: 14%"><a class="menuItem" style="font-weight:bold; font-size: 2.5em; color: #FFF700;" href="cafe.html">Cafe</a></li>  
+              <li id="menuRow" style="width: 20%"><a class="menuItem" style="font-weight:bold; font-size: 2.5em;" href="cantina.html">Cantina</a></li>  
+              <li id="menuRow" style="width: 21%"><a class="menuItem" style="font-weight:bold; font-size: 2.5em;" href="catering.html">Catering</a></li>  
+              <li id="menuRow" style="width: 25%"><a class="menuItem" style="font-weight:bold; font-size: 2.5em;" href="catering.html">Happy Hour</a></li>  
               <li id="menuRow" style="width: 10%"><a class="menuItem" style="font-weight:bold; font-size: 2.5em;" href="locations.html">Locations</a></li>  
             </ul>            
-          </div> 
-          <!--<div id="locationCell" style="visibility: hidden; display: table-cell; vertical-align: middle;">         
-            <img style="margin-left: -25%; margin-top: 3px; width: 45px;" src="mapIcon.svg"> 
-          </div>-->             
+          </div>            
         </div> 
       </div>
               
       <!---Content-->
-      <div id="contentElement" style="display: table; width: 100%; height: 400px; text-align: center;">               
+      <div id="content" style="display: table; visibility: hidden;  width: 100%; height: 400px; text-align: center;">               
         <div style="display: table-row; width: 100%">           
-          <div id="" style="visibility: visible; display: table-cell; vertical-align: middle;">           
+          <div id="" style="display: table-cell; vertical-align: middle;">           
             <img style="margin-top: 5px; width: 360px;" src="Neon-Logo-Reduced-2-1280x312.jpg"> 
           </div> 
         </div>
       </div> 
 
       <!--Footer--> 
-      <div id="footerTable" style="position: relative; display: table; width: 100%;">   
+      <div id="footer" style="position: relative; visibility: hidden;  display: table; width: 100%;">   
         <div id="footerRow" style="display: table-row; width: 100%"> 
           <div id="footercell" style="display: table-cell; width: 100%; vertical-align: bottom;"> 
             <p style="text-align: center; color:#000000; font-family:josefin slab; font-size: 12px;"> 

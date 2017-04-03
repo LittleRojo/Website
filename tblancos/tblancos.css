@@ -1,4 +1,5 @@
 body, html{
+	overflow-x: hidden;
 	margin:0;
 	padding:0;
 	width:100%;
@@ -30,7 +31,7 @@ body, html{
 }
 
 #menuRow a:hover {
-    color: #723838;
+    color: #FFF700;
 }
 
 #menuList2 {
@@ -50,7 +51,7 @@ body, html{
 
 /* Change the link color on hover */
 #menuRow2 a:hover {
-    color: #723838;
+    color: #FFF700;
 }
 
 @font-face {
