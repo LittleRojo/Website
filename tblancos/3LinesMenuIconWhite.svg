@@ -12,7 +12,7 @@
    viewBox="0 0 25 25"
    width="25px"
    id="svg3689"
-   sodipodi:docname="3LinesMenuIconWHite.svg"
+   sodipodi:docname="3LinesMenuIconWhite.svg"
    inkscape:version="0.92.1 r15371">
   <metadata
      id="metadata3693">
@@ -22,7 +22,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -39,9 +39,9 @@
      inkscape:window-height="1017"
      id="namedview3691"
      showgrid="false"
-     inkscape:zoom="32.72"
-     inkscape:cx="12.5"
-     inkscape:cy="12.5"
+     inkscape:zoom="16.36"
+     inkscape:cx="12.31931"
+     inkscape:cy="18.758271"
      inkscape:window-x="1072"
      inkscape:window-y="166"
      inkscape:window-maximized="1"
@@ -51,14 +51,14 @@
   <defs
      id="defs3684" />
   <g
-     fill="none"
-     fill-rule="evenodd"
      id="TabBar-Icons"
+     stroke-width="1"
      stroke="none"
-     stroke-width="1">
+     fill-rule="evenodd"
+     fill="none">
     <g
-       fill="#000000"
-       id="Hamburger-Round">
+       id="Hamburger-Round"
+       fill="#000000">
       <path
          d="M0,4 C0,2.8954305 0.889763236,2 2.00359486,2 L22.9964051,2 C24.10296,2 25,2.88772964 25,4 C25,5.1045695 24.1102368,6 22.9964051,6 L2.00359486,6 C0.897039974,6 0,5.11227036 0,4 L0,4 Z M0,12 C0,10.8954305 0.889763236,10 2.00359486,10 L22.9964051,10 C24.10296,10 25,10.8877296 25,12 C25,13.1045695 24.1102368,14 22.9964051,14 L2.00359486,14 C0.897039974,14 0,13.1122704 0,12 L0,12 Z M0,20 C0,18.8954305 0.889763236,18 2.00359486,18 L22.9964051,18 C24.10296,18 25,18.8877296 25,20 C25,21.1045695 24.1102368,22 22.9964051,22 L2.00359486,22 C0.897039974,22 0,21.1122704 0,20 L0,20 Z"
          id="Hamburger" />
