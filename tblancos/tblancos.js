@@ -62,9 +62,9 @@ window.onresize = function(event) {
 	var content = document.getElementById('content'); 
 	if (content) {
 		content.style.position = "absolute";
-		//content.style.top = "50px";
-		//content.style.width = window.innerWidth + "px";
-		//content.style.height = window.innerHeight - 950 + "px";
+		content.style.top = "50px";
+		content.style.width = window.innerWidth + "px";
+		content.style.height = window.innerHeight - 950 + "px";
 		content.style.visibility = "visible"; 
 	}
 
@@ -76,9 +76,6 @@ window.onresize = function(event) {
 
 	var container = document.getElementById('container'); 
 	if (container) {
-		container.style.top = "50px";
-		container.style.width = window.innerWidth - 15 + "px";
-		container.style.height = window.innerHeight - 15 + "px";
 		container.style.visibility = "visible"; 		
 	}
 }
