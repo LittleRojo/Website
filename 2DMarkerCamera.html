@@ -334,9 +334,8 @@
             socket.on('disconnect', function() {
                 //disconnected
             });
-            socket.on('my response', function(msg) {
-                //msg.data
-                /*var object = getBox( {
+            socket.on('my response', function( msg ) {
+                var object = getBox( {
                    x: rand( -450, 900),
 					//y: rand( -100, 100),
 					z: rand( -450, 900),
@@ -345,6 +344,8 @@
 					depth:  rand( 10, 100),	
 					color: randColor(),									
                 } );
+				object.material.map = THREE.ImageUtils.loadTexture( msg.data );
+				object.material.needsUpdate = true;	
                 scene.add( object );
                 //orbitControls.target = object.position;*/
             });
@@ -366,16 +367,22 @@
 			startAnimation();
 
 			function fileUpload() {
-				var b = document.getElementById("photoUpload");
+				var b = document.getElementById("cameraUpload");
 				for(var a = 0; a < b.files.length; a++ ) {
-					var fileBytes = b.files[a];
+					var file = b.files[a];
+					//var fileURL = window.URL.createObjectURL(file);				
+
+					var reader = new FileReader();  				
+					reader.onload = function(evt) {
+						socket.emit('my broadcast event', { data: evt.target.result } );
+					};
+					reader.readAsBinaryString(file);
 				}
 			}
 
 		</script>
 		
-		<input id="photoUpload" onchange="fileUpload();" style="position: fixed; bottom: 15px; left: 10px;" type="file" accept="image/*;capture=camera">
-		<input id="videoUpload" onchange="fileUpload();" style="position: fixed; bottom: 15px; right: 10px;" type="file" accept="video/*;capture=camcorder">
+		<input id="cameraUpload" onchange="fileUpload();" style="position: fixed; bottom: 15px; left: 10px;" type="file" accept="image/*;capture=camera">		
 	
 	</body>
 </html>
