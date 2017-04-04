@@ -277,7 +277,7 @@
 			renderer.shadowMap.renderReverseSided = false;
 			renderer.sortObjects = false;
 			
-			camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 10000 );
+			camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000000 );
 			camera.translateX( 0 );
 			camera.translateY( 100 );
 			camera.translateZ( -800 );
@@ -313,7 +313,7 @@
 				color: 0xFFFFFF,//CE0FA,
 				intensity: 30.75,				
 			} );
-			scene.add( spotLight );
+			//scene.add( spotLight );
 			
 			var ground = getPlane( {
 				name: 'ground',
@@ -335,19 +335,28 @@
                 //disconnected
             });
             socket.on('my response', function( msg ) {
-                var object = getBox( {
-                   x: rand( -450, 900),
-					//y: rand( -100, 100),
-					z: rand( -450, 900),
-					width: rand( 10, 100),
-					height:  rand( 10, 500),
-					depth:  rand( 10, 100),	
-					color: randColor(),									
-                } );
-				object.material.map = THREE.ImageUtils.loadTexture( msg.data );
-				object.material.needsUpdate = true;	
-                scene.add( object );
-                //orbitControls.target = object.position;*/
+				if( msg.data != "Connected") {
+
+					var image = new Image();
+					image.src = msg.data;
+					image.onload = function () {
+						var object = getBox( {
+							x: rand( -450, 900),
+							//y: rand( -100, 100),
+							z: rand( -450, 900),
+							width: image.width,
+							height:  image.height,
+							depth:  rand( 10, 100),	
+							color: 0xFFFFFF,								
+						} );
+						object.material.map = new THREE.Texture();
+						object.material.map.image = image;
+						object.material.map.needsUpdate = true;
+						scene.add( object );
+					};
+					
+               		//orbitControls.target = object.position;*/
+				}
             });
             
             //socket.emit('my broadcast event', {data: $('#broadcast_data').val()});
@@ -376,7 +385,7 @@
 					reader.onload = function(evt) {
 						socket.emit('my broadcast event', { data: evt.target.result } );
 					};
-					reader.readAsBinaryString(file);
+					reader.readAsDataURL(file);
 				}
 			}
 
