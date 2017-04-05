@@ -79,7 +79,7 @@ if __name__ == '__main__':
         # deploy with eventlet
         import eventlet
         import eventlet.wsgi
-        eventlet.wsgi.server(eventlet.wrap_ssl(eventlet.listen(('0.0.0.0', 9902)), certfile='/etc/ssl/ssl-bundle.crt', keyfile='/etc/ssl/littlerojo.com.key', server_side = True), app)
+        eventlet.wsgi.server(eventlet.wrap_ssl(eventlet.listen(('0.0.0.0', 9902))), app)
     elif sio.async_mode == 'gevent':
         # deploy with gevent
         from gevent import pywsgi
