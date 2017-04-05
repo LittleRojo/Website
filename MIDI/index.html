@@ -1,0 +1,316 @@
+<html>
+	<head>
+		<title>VR Setup</title>
+		<meta name="description" content="This is 0% personal code.  Just an organization of others work.">
+		<meta name="keywords" content="#InformationExplosion">
+		<meta id="author" name="author" content="Me">
+		<link rel="alternate" href="https://littlerojo.com" hreflang="en-us" />
+		<link rel="shortcut icon" href="https://littlerojo.com/img/vrLogo.png" type="image/x-icon" />
+
+		<link rel="apple-touch-icon" href="https://littlerojo.com/img/vrLogo.png">
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-title" content="VR Setup" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale = 1.0, minimum-scale=1.0, maximum-scale=1.0"/>
+
+		<script>
+			var WebVRConfig = { 
+				DEFER_INITIALIZATION: true, 
+				ROTATE_INSTRUCTIONS_DISABLED: true,
+				CARDBOARD_UI_DISABLED: true, 
+			}
+		</script>
+		
+		<script type="text/javascript" src="js/three.min.js"></script>
+		<script type="text/javascript" src="js/webvr-polyfill.js"></script>		
+		<script type="text/javascript" src="js/OrbitControls.js" ></script>    	
+		<script type="text/javascript" src="js/VRControls.js" ></script>
+		<script type="text/javascript" src="js/VREffect.js" ></script>		
+		<script type="text/javascript" src="js/Webvr.js" ></script>
+		<script type="text/javascript" src="js/Tween.js" ></script>
+		<script type="text/javascript" src="js/jquery-3.1.0.js"></script>
+
+		<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+			ga('create', 'UA-80236281-1', 'auto');
+			ga('send', 'pageview');
+		</script>
+
+	</head>	
+	<body style="margin:0px" bgcolor="black">
+		<script>
+			var stopScene = false;
+			function AnimateScene( delta ) {
+				if( stopScene) {
+					return;
+				}
+				
+				orbitControls.update();
+				vrControls.update();
+
+				orbitPos = camera.position.clone();
+				
+				var rotatedPosition = fakeCamera.position.applyQuaternion( camera.quaternion );
+				camera.position.add( rotatedPosition );
+				camera.quaternion.multiply( fakeCamera.quaternion );  		
+
+
+
+				TWEEN.update();
+				effect.render( scene, camera );
+				effect.requestAnimationFrame( AnimateScene );				
+
+				camera.position.copy( orbitPos );
+			}
+
+			function onWindowResize( event ){
+				if( vrButton !== undefined ) {
+					vrButton.style.left = window.innerWidth / 2 - 32 + 'px'; //Needs work
+					vrButton.style.top = window.innerHeight - 58 + 'px'; //Needs work
+				}
+
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				effect.setSize( window.innerWidth, window.innerHeight );
+
+				renderer.render( scene, camera );
+				effect.render( scene, camera );
+			}
+
+			function getDirectionalLight( _ ) {
+				var directionalLight = new THREE.DirectionalLight( _.color, _.intensity );				
+				directionalLight.castShadow = _.shadow;
+				if( _.x ) {				
+					directionalLight.translateX( _.x );
+				}
+				if( _.y ) {
+					directionalLight.translateY( _.y );
+				}	
+				if( _.z ) {
+					directionalLight.translateZ( _.z );
+				}	
+				return directionalLight;
+			}
+
+			function getAmbientLight( _ ) {
+				var ambientLight = new THREE.AmbientLight( _.color, _.intensity );
+				return ambientLight;
+			}
+
+			function getSpotLight( _ ) {
+				var spotLight = new THREE.SpotLight( _.color, _.intensity );
+				if( _.x ) {				
+					spotLight.translateX( _.x );
+				}
+				if( _.y ) {
+					spotLight.translateY( _.y );
+				}	
+				if( _.z ) {
+					spotLight.translateZ( _.z );
+				}	
+				return spotLight;
+			}
+
+			function getPlane( _ ) {
+				var planeGeometry = new THREE.PlaneGeometry( _.width, _.height, 10, 10 );    
+				var planeMaterial = new THREE.MeshPhongMaterial( { 
+					color: _.color, 
+					side: THREE.DoubleSide,
+				} );		
+				if( _.map ) {
+					planeMaterial.map = THREE.ImageUtils.loadTexture( _.map );
+				}		
+				var planeMesh = new THREE.Mesh( planeGeometry, planeMaterial );
+				planeMesh.receiveShadow = true;
+				if( _.layout == 'flat' ) {
+					planeMesh.rotateX( deg( 90 ) );
+				}
+				if( _.x ) {				
+					planeMesh.translateX( _.x );
+				}
+				if( _.y ) {
+					planeMesh.translateY( _.y );
+				}	
+				if( _.z ) {
+					planeMesh.translateZ( _.z );
+				}			
+				return planeMesh; 
+			}
+
+			function getBox( _ ) {
+				var boxGeometry = new THREE.BoxGeometry( _.width, _.height, _.depth );
+				var boxMaterial = new THREE.MeshPhongMaterial( {
+					color: new THREE.Color( "rgb(" + Math.floor( rand( 0, 255 ) ) + ", " + Math.floor( rand( 0, 255 ) ) + ", " + Math.floor( rand( 0, 255 ) ) + ")" ),
+				});
+				if( _.map ) {
+					boxMaterial.map = THREE.ImageUtils.loadTexture( _.map );
+				}	
+				var boxMesh = new THREE.Mesh( boxGeometry, boxMaterial );
+				boxMesh.receiveShadow = true;
+				if( _.x ) {				
+					boxMesh.translateX( _.x );
+				}
+				if( _.y ) {
+					boxMesh.translateY( _.y );
+				}	
+				if( _.z ) {
+					boxMesh.translateZ( _.z );
+				}
+				return boxMesh;
+			}
+
+			function addMusic() {
+				music = document.createElement( 'audio' );
+				music.src = 'media/Kansas_-_Carry_On_My_Wayward_Son.mp3';
+				music.type = "audio/mpeg";
+				music.autoplay = true;
+				//music.controls = true;
+				music.loop = true;
+				document.body.appendChild( music );
+			}
+
+			function deg( degree ) { 
+				return degree * ( Math.PI / 180 ); 
+			}
+
+			function rand( min, max ) {
+				return Math.random() * max + min;
+			}
+			
+			function randColor() {
+				return Math.floor(Math.random()*16777215).toString(16);
+			}
+			$( '.no-zoom' ).bind( 'touchend' , function( e ) {
+				e.preventDefault();
+			});
+			window.addEventListener( 'resize', onWindowResize, false );
+			
+			//All these need work for custom controls
+			//window.addEventListener( 'mousedown', onMouseDown, false );
+			//window.addEventListener( 'mousemove', onMouseMove, false );
+			//window.addEventListener( 'mouseup', onMouseUp, false );
+
+			//window.addEventListener( 'DOMMouseScroll', onMouseWheel, false ); 
+
+			//window.addEventListener( 'touchstart', onTouchStart, false );
+			//window.addEventListener( 'touchmove', onTouchMove, false );
+			//window.addEventListener( 'touchend', onTouchEnd, false );
+			//window.addEventListener( 'orientationchange', onOrientationChange, false );
+
+			//window.addEventListener( 'keydown', onKeyDown, false );
+
+			InitializeWebVRPolyfill();
+
+			mainCanvas = document.createElement( 'canvas' );
+			mainCanvas.style.top = 0;
+			mainCanvas.style.left = 0;
+			mainCanvas.width = window.innerWidth;
+			mainCanvas.height = window.innerHeight;
+			
+			renderer = new THREE.WebGLRenderer({ canvas:mainCanvas, antilias: true, alpha: true, clearAlpha: 1});
+			renderer.setPixelRatio( window.devicePixelRatio );
+			renderer.setSize( window.innerWidth, window.innerHeight );
+			renderer.setClearColor( 0x000000, 1 );
+			renderer.shadowMap.enabled = true;
+			renderer.shadowMap.renderReverseSided = false;
+			renderer.sortObjects = false;
+			
+			camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+			camera.translateX( 0 );
+			camera.translateY( 10 );
+			camera.translateZ( 0 );
+
+			orbitControls = new THREE.OrbitControls( camera );
+			orbitControls.zoomSpeed = .09;
+			orbitControls.rotateSpeed = .001;
+			orbitControls.keyPanSpeed = .001;
+			orbitControls.target = new THREE.Vector3( 0, 10, 0 );
+
+			cameraTween = new TWEEN.Tween( camera.position );
+			cameraTween.to( {
+				x: rand( -150, 150 ), 
+				y: rand( 10, 60 ), 
+				z: rand( -150, 150 ), 
+			}, 5000 );
+			cameraTween.onComplete( function() {
+				cameraTween.to( {
+				x: rand( -150, 150 ), 
+				y: rand( 10, 60 ), 
+				z: rand( -150, 150 ), 
+			}, 5000 );
+			cameraTween.start();
+			} );
+			cameraTween.onUpdate( function() {
+				camera.position.setX( this.x );
+				camera.position.setY( this.y );
+				camera.position.setZ( this.z );
+				orbitControls.target.setX( this.x );
+				orbitControls.target.setY( this.y );
+				orbitControls.target.setZ( this.z );
+			} );
+			cameraTween.start();
+			cameraState = 1;
+
+			fakeCamera = new THREE.Object3D();
+			vrControls = new THREE.VRControls( fakeCamera );
+
+			effect = new THREE.VREffect( renderer );
+			if ( WEBVR.isAvailable() === true ) {
+				vrButton = WEBVR.getButton( effect );
+				document.body.appendChild( vrButton );
+			}
+
+			scene = new THREE.Scene();
+			clock = new THREE.Clock();
+			
+			var ambientLight = getAmbientLight( {
+				color: 0xFFFFFF,
+				intensity: 1,
+			} );
+			scene.add( ambientLight );
+
+			var spotLight = getSpotLight( {
+				x: 0,
+				y: 50,
+				z: 0,
+				color: 0xFFFFFF,//CE0FA,
+				intensity: 3.75,				
+			} );
+			//scene.add( spotLight );
+			
+			var ground = getPlane( {
+				x: 0,
+				y: 0,
+				z: 0,
+				width: 1000,
+				height: 1000,
+				color: 0x00FF00,
+				layout: 'flat',				
+			})			
+			scene.add( ground );
+
+			for(var a = 0; a < 100; a++ ) {
+				var building = getBox( {
+					x: rand( -450, 900),
+					//y: rand( -100, 100),
+					z: rand( -450, 900),
+					width: rand( 10, 100),
+					height:  rand( 10, 500),
+					depth:  rand( 10, 100),	
+					color: randColor(),										
+				} );
+				scene.add( building );			
+			}
+
+			addMusic();
+
+			document.body.appendChild( mainCanvas );
+			AnimateScene();	
+		</script>	
+	</body>
+</html>

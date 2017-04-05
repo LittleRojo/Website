@@ -6,11 +6,4 @@
 .DS_Store
 .vscode
 .config
-=======
-
-# .v4p backup files
-*~.xml
-
-# Dynamic plugins .dll
-bin/
->>>>>>> a9f83fe525ef49cb73787ca64eca62b9ce5628f1
+.info/
