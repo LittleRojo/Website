@@ -1,6 +1,3 @@
 [submodule "capSpireLogo"]
 	path = capSpireLogo
 	url = https://github.com/LittleRojo/capSpireLogo
-[submodule "PixelPeople"]
-	path = PixelPeople
-	url = https://github.com/LittleRojo/PixelPeople
